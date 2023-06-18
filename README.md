@@ -15,3 +15,34 @@ npm run build
 firebase login
 firebase deploy
 ```
+
+### Storage rules
+
+```js
+
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      // allow read, write: if request.auth != null;
+      allow  read, write;
+    }
+  }
+}
+
+// BLOCK
+
+rules_version = '2';
+
+// Craft rules based on data in your Firestore database
+// allow write: if firestore.get(
+//    /databases/(default)/documents/users/$(request.auth.uid)).data.isAdmin;
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
+```

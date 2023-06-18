@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import { useState } from 'react';
+import { storage } from './firebase.ts';
+import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [imgUrl, setImgUrl] = useState<null | string>(null);
+  const [progresspercent, setProgresspercent] = useState(0);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const file = e.target[0]?.files[0];
+    if (!file) return;
+    const storageRef = ref(storage, `files/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        setProgresspercent(progress);
+      },
+      (error) => {
+        alert(error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setImgUrl(downloadURL);
+        });
+      }
+    );
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="container">
+        <h1>Artdatabanken 2023</h1>
+        <form onSubmit={handleSubmit} className="form">
+          <input type="file" />
+          <button type="submit">Upload</button>
+        </form>
+
+        <progress value={progresspercent} max="100" />
+        <div>{progresspercent}%</div>
+
+        {imgUrl && <img src={imgUrl} alt="uploaded file" height={200} />}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
