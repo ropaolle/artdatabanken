@@ -7,11 +7,12 @@ function App() {
   const [imgUrl, setImgUrl] = useState<null | string>(null);
   const [progresspercent, setProgresspercent] = useState(0);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
 
     const file = e.target[0]?.files[0];
     if (!file) return;
+
     const storageRef = ref(storage, `files/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
