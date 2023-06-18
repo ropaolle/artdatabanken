@@ -1,4 +1,18 @@
 
+header {
+  background-color: rgba(0, 0, 255, 0.234);
+}
+footer {
+  background-color: rgba(0, 128, 0, 0.371);
+}
+
+/* #root>footer, #root>header, #root>main {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: var(--block-spacing-vertical) 0;
+} */
+
 /*:root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
