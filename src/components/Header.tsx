@@ -1,4 +1,9 @@
-export default function Header() {
+type Props = {
+  
+  show: () => undefined;
+};
+
+export default function Header({ show }: Props) {
   return (
     <header className="container">
       <nav>
@@ -12,7 +17,17 @@ export default function Header() {
             <a href="#">Link</a>
           </li>
           <li>
-            <a href="#">Link</a>
+            <a
+              // href={`/api/auth/signin`}
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                show();
+                // signIn();
+              }}
+            >
+              Sign in
+            </a>
           </li>
           <li>
             <details role="list" dir="rtl">
