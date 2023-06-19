@@ -4,8 +4,10 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## Links
 
-- [Deploy to Firebase](https://vitejs.dev/guide/static-deploy.html#google-firebase)
 - [Favicon](https://medium.com/swlh/are-you-using-svg-favicons-yet-a-guide-for-modern-browsers-836a6aace3df)
+- FIREBASE
+  - [Deploy to Firebase](https://vitejs.dev/guide/static-deploy.html#google-firebase)
+  - [File exists](https://jsmobiledev.com/article/storage-file-exist/)
 
 ## SETUP
 

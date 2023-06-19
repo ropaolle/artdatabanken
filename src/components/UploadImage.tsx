@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { storage } from '../firebase.ts';
+import { storage, checkIfFileExists, listAllFiles } from '../firebase.ts';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 
 type Props = {
@@ -20,16 +20,20 @@ export default function UploadImage({ open, show }: Props) {
   const [imgUrl, setImgUrl] = useState<null | string>(null);
   const [progresspercent, setProgresspercent] = useState(0);
 
-  const handleSubmit = (e: React.FormEvent<YourFormElement>) => {
-    // https://stackoverflow.com/questions/56322667/how-to-type-a-form-component-with-onsubmit
+  // listAllFiles('files');
+
+  const handleSubmit = async (e: React.FormEvent<YourFormElement>) => {
     e.preventDefault();
 
     const file = e.currentTarget.elements.imageFiles?.files?.[0];
     if (!file) return;
+    const path = `files/${file.name}`;
+
+    // const exists = await checkIfFileExists(path);
 
     setImgUrl(null);
 
-    const storageRef = ref(storage, `files/${file.name}`);
+    const storageRef = ref(storage, path);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
