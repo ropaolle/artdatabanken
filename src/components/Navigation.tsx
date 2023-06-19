@@ -2,23 +2,35 @@ import logo from '../assets/logo.svg';
 
 type Props = {
   show: () => void;
+  images: () => void;
 };
 
-export default function Navigation({ show }: Props) {
+export default function Navigation({ show, images }: Props) {
   return (
     <header className="container">
       <nav>
         <ul>
           <li>
-            <img src={logo} className="logo" alt="Logo" height={32} width={32} />
+            <img src={logo} className="logo" alt="Logo" height={24} width={24} /> Artdatabanken
           </li>
         </ul>
         <ul>
           <li>
             <a href="#">Sidgenerator</a>
           </li>
-          <li>
+          {/* <li>
             <a href="#">Bilder</a>
+          </li> */}
+          <li>
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                images();
+              }}
+            >
+              Bilder
+            </a>
           </li>
           <li>
             <a

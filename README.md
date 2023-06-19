@@ -2,12 +2,24 @@
 
 Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://console.firebase.google.com/).
 
+## TODO
+
+- [ ] Sida med filter som visar alla bilder.
+- [ ] Sida med filter som visar alla poster.
+
 ## Links
 
 - [Favicon](https://medium.com/swlh/are-you-using-svg-favicons-yet-a-guide-for-modern-browsers-836a6aace3df)
 - FIREBASE
   - [Deploy to Firebase](https://vitejs.dev/guide/static-deploy.html#google-firebase)
+  - [Upload files](https://firebase.google.com/docs/storage/web/upload-files)
   - [File exists](https://jsmobiledev.com/article/storage-file-exist/)
+  - [Async/Await uploadTask](https://stackoverflow.com/questions/53156127/async-await-uploadtask)
+  - [Add, set and update data](https://firebase.google.com/docs/firestore/manage-data/add-data)
+  - [Get data](https://firebase.google.com/docs/firestore/query-data/get-data)
+- REACT
+  - [Async in UseEffect](https://devtrium.com/posts/async-functions-useeffect)
+  - [Responsive image grid](https://www.w3schools.com/howto/howto_css_image_grid_responsive.asp)
 
 ## SETUP
 
