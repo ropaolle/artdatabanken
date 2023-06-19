@@ -1,9 +1,13 @@
-
-header {
-  background-color: rgba(0, 0, 255, 0.234);
+.center {
+  text-align: center;
 }
+
+/* header {
+  background-color: rgba(0, 0, 255, 0.1);
+} */
 footer {
-  background-color: rgba(0, 128, 0, 0.371);
+  /* background-color: rgba(188, 193, 188, 0.371); */
+  text-align: center;
 }
 
 /* #root>footer, #root>header, #root>main {

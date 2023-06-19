@@ -4,22 +4,30 @@ import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 
 type Props = {
   open: boolean;
-
   show: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+interface FormElements extends HTMLFormControlsCollection {
+  imageFiles: HTMLInputElement;
+}
+
+interface YourFormElement extends HTMLFormElement {
+  readonly elements: FormElements;
+}
+
 export default function UploadImage({ open, show }: Props) {
+  const [imgName, setImgName] = useState<null | string>(null);
   const [imgUrl, setImgUrl] = useState<null | string>(null);
   const [progresspercent, setProgresspercent] = useState(0);
 
-  const handleSubmit = (e: any) => {
-    console.log('e', { ...e });
-    console.log('e', e.target);
-    console.log('e', e.currentTarget);
+  const handleSubmit = (e: React.FormEvent<YourFormElement>) => {
+    // https://stackoverflow.com/questions/56322667/how-to-type-a-form-component-with-onsubmit
     e.preventDefault();
 
-    const file = e.target[0]?.files[0];
+    const file = e.currentTarget.elements.imageFiles?.files?.[0];
     if (!file) return;
+
+    setImgUrl(null);
 
     const storageRef = ref(storage, `files/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
@@ -36,12 +44,13 @@ export default function UploadImage({ open, show }: Props) {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImgUrl(downloadURL);
+          setImgName(null);
         });
       }
     );
   };
 
-  const hide = (e) => {
+  const hide = (e: React.FormEvent) => {
     e.preventDefault();
     show(false);
   };
@@ -52,25 +61,39 @@ export default function UploadImage({ open, show }: Props) {
         <article>
           <a href="#" aria-label="Close" className="close" onClick={hide}></a>
           <h3>Upload image</h3>
-          <p>Välj bild som ska laddas upp.</p>
 
-          <p>
-            <div className="grid">
-              <input type="file" />
-              <button role="button" type="submit">
-                Upload
-              </button>
-            </div>
-              <progress value={progresspercent} max="100" />
-          </p>
-          <p>{imgUrl && <img src={imgUrl} alt="uploaded file" height={200} />}</p>
+          <label htmlFor="file">
+            Välj vilken bild som ska laddas upp.
+            <input
+              type="file"
+              id="imageFiles"
+              // multiple
+              onChange={({ target }) => {
+                setImgUrl(null);
+                setProgresspercent(0);
+                setImgName(target.files?.[0].name || null);
+              }}
+            />
+          </label>
+
+          <div className="center">
+            <p>
+              {!imgUrl && (
+                <>
+                  <progress value={progresspercent} max="100" />
+                  {progresspercent}%
+                </>
+              )}
+              {imgUrl && <img src={imgUrl} alt="uploaded file" width={400} />}
+            </p>
+          </div>
 
           <footer>
             <div className="grid">
               <button role="button" className="secondary" onClick={hide}>
                 Close
               </button>
-              <button role="button" type="submit">
+              <button role="button" type="submit" disabled={imgName === null}>
                 Upload
               </button>
             </div>

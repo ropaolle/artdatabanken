@@ -1,35 +1,37 @@
+import logo from '../assets/logo.svg';
+
 type Props = {
-  
-  show: () => undefined;
+  show: () => void;
 };
 
-export default function Header({ show }: Props) {
+export default function Navigation({ show }: Props) {
   return (
     <header className="container">
       <nav>
         <ul>
           <li>
-            <strong>Brand</strong>
+            <img src={logo} className="logo" alt="Logo" height={32} width={32} />
           </li>
         </ul>
         <ul>
           <li>
-            <a href="#">Link</a>
+            <a href="#">Sidgenerator</a>
+          </li>
+          <li>
+            <a href="#">Bilder</a>
           </li>
           <li>
             <a
-              // href={`/api/auth/signin`}
               href="#"
               onClick={(e) => {
                 e.preventDefault();
                 show();
-                // signIn();
               }}
             >
-              Sign in
+              Ladda upp
             </a>
           </li>
-          <li>
+          {/* <li>
             <details role="list" dir="rtl">
               <summary aria-haspopup="listbox" role="link" className="contrast">
                 Theme
@@ -52,7 +54,7 @@ export default function Header({ show }: Props) {
                 </li>
               </ul>
             </details>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </header>
