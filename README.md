@@ -4,11 +4,13 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
+- [ ] Image corp library
 - [ ] Sida med filter som visar alla bilder.
 - [ ] Sida med filter som visar alla poster.
 
 ## Links
 
+- [Artdatabanken 2018](https://artdatabanken.firebaseapp.com/generator)
 - [Favicon](https://medium.com/swlh/are-you-using-svg-favicons-yet-a-guide-for-modern-browsers-836a6aace3df)
 - FIREBASE
   - [Deploy to Firebase](https://vitejs.dev/guide/static-deploy.html#google-firebase)
@@ -20,6 +22,10 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 - REACT
   - [Async in UseEffect](https://devtrium.com/posts/async-functions-useeffect)
   - [Responsive image grid](https://www.w3schools.com/howto/howto_css_image_grid_responsive.asp)
+  - [REACT image corp](https://github.com/DominicTobias/react-image-crop)
+    - [React image cropping libraries](https://blog.logrocket.com/top-react-image-cropping-libraries/#react-image-crop)
+    - [How-to](https://levelup.gitconnected.com/crop-images-on-upload-in-your-react-app-with-react-image-crop-5f3cd0ad2b35)
+    - [How-to 2](https://github.com/DominicTobias/react-image-crop/issues/32)
 
 ## SETUP
 
