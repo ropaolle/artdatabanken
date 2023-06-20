@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, listAll } from 'firebase/storage';
-import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, query, where, getDocs, doc, getDoc } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -16,6 +16,12 @@ export const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
 export const db = getFirestore(app);
 
+export const checkIfImageExists = async (name: string): Promise<boolean> => {
+  const docRef = doc(db, 'images', name);
+  const docSnap = await getDoc(docRef);
+
+  return docSnap.exists();
+};
 // export const checkIfFileExists = (filePath: string): Promise<boolean> => {
 //   const storageRef = ref(storage, filePath);
 
@@ -61,11 +67,11 @@ export const getImages = async (): any => {
 
   const querySnapshot = await getDocs(collection(db, 'images'));
 
-  return querySnapshot.docs.map(doc => doc.data())
+  return querySnapshot.docs.map((doc) => doc.data());
   console.log('querySnapshot', querySnapshot);
   querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
-    console.log(doc.id, ' => ', {...doc.data()});
+    console.log(doc.id, ' => ', { ...doc.data() });
   });
 };
 

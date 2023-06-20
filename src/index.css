@@ -21,6 +21,11 @@ dialog h3 {
   margin-bottom: 1rem;
 }
 
+.preview-canvas-wrapper canvas {
+  width: 500px;
+  height: 500px;
+}
+
 
 /* .row {
   display: flex;
