@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
-import { storage, db, checkIfImageExists } from '../lib/firebase.ts';
+import { storage, db, checkIfImageExists } from '../../lib/firebase.ts';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 
 import ReactCrop, { type Crop, PixelCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
-import { canvasPreview } from './canvasPreview';
+import { canvasPreview } from './canvasPreviewFixed';
 import { useDebounceEffect } from './useDebounceEffect';
 
 type Props = {
@@ -21,12 +21,20 @@ interface CustomFormElement extends HTMLFormElement {
   readonly elements: FormElements;
 }
 
+const defaultCropArea: Crop = {
+  unit: 'px',
+  width: 250,
+  height: 250,
+  x: 250,
+  y: 250,
+};
+
 export default function UploadImage({ open, show }: Props) {
   const [selectedFile, setSelectedFile] = useState<File>();
   const [imageExists, setImageExists] = useState<boolean>(false);
   const [imageUploaded, setImageUploaded] = useState<boolean>(false);
   const [progresspercent, setProgresspercent] = useState(0);
-  const [crop, setCrop] = useState<Crop>();
+  const [crop, setCrop] = useState<Crop>(defaultCropArea);
   const [preview, setPreview] = useState<string>();
   const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
 
@@ -72,7 +80,7 @@ export default function UploadImage({ open, show }: Props) {
         throw new Error('Failed to create blob');
       }
 
-      const path = `files/${filename}`;
+      const path = `images/${filename}`;
       const storageRef = ref(storage, path);
       const uploadTask = uploadBytesResumable(storageRef, blob);
 
@@ -97,14 +105,14 @@ export default function UploadImage({ open, show }: Props) {
           });
         }
       );
-    });
+    }, 'image/jpeg');
   };
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
     // Clear form
     setProgresspercent(0);
     setImageUploaded(false);
-    setImageExists(false)
+    setImageExists(false);
 
     // File selected
     const file = e?.target.files?.[0];
@@ -125,39 +133,46 @@ export default function UploadImage({ open, show }: Props) {
     show(false);
   };
 
+  const doSetCrop = (c) => {
+    // console.log('c', c);
+    setCrop(c);
+  };
+
   return (
-    <dialog open={open}>
+    <dialog id="dude" open={open}>
       <form onSubmit={handleSubmit} className="form">
         <article>
           <a href="#" aria-label="Close" className="close" onClick={hide}></a>
           <h3>Ladda upp bild</h3>
           <p>Ladda upp en ny eller ersätt befintlig bild.</p>
 
-          <input type="file" id="imageFiles" onChange={handleChange} />
+          <div>
+            <input type="file" id="imageFiles" onChange={handleChange} />
+          </div>
 
           {!imageUploaded && (
-            <ReactCrop crop={crop} onChange={(c) => setCrop(c)} onComplete={(c) => setCompletedCrop(c)} aspect={1}>
+            <ReactCrop crop={crop} onChange={(c) => doSetCrop(c)} onComplete={(c) => setCompletedCrop(c)} aspect={1}>
               <img src={preview} ref={imgRef} />
             </ReactCrop>
           )}
 
-          <div className="preview-canvas-wrapper">
-            <canvas ref={previewCanvasRef} hidden={!imageUploaded} />
-          </div>
+          {/* <div className="preview-canvas-wrapper"> */}
+          <canvas ref={previewCanvasRef} hidden={!imageUploaded} />
+          {/* </div> */}
 
           {progresspercent > 0 && <progress value={progresspercent} max="100" />}
 
           <footer>
             {imageExists && !imageUploaded && (
               <div className="info">
-                Bilden existerar redan. Om du laddar upp en ny bild med samma namn skrivs den befintliga över.
+                Bilden existerar. Om du laddar upp en ny bild med samma namn skrivs den befintliga bilden över!
               </div>
             )}
             <div className="grid">
               <button role="button" className="secondary" onClick={hide}>
                 Stäng
               </button>
-              {/* <button role="button">Beskär</button> */}
+              <button role="button">Beskär</button>
               <button role="button" type="submit" disabled={imageUploaded}>
                 Ladda upp
               </button>

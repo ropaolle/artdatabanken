@@ -22,10 +22,16 @@ dialog h3 {
 }
 
 .preview-canvas-wrapper canvas {
-  width: 500px;
-  height: 500px;
+  /* width: 500px;
+  height: 500px; */
 }
 
+/* Override Pico styling */
+.ReactCrop__drag-handle[role='button'] {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
 
 /* .row {
   display: flex;
