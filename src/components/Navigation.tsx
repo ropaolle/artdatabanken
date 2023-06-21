@@ -2,10 +2,9 @@ import logo from '../assets/logo.svg';
 
 type Props = {
   show: () => void;
-  images: () => void;
 };
 
-export default function Navigation({ show, images }: Props) {
+export default function Navigation({ show }: Props) {
   return (
     <header className="container">
       <nav>
@@ -24,10 +23,10 @@ export default function Navigation({ show, images }: Props) {
           <li>
             <a
               href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                images();
-              }}
+              // onClick={(e) => {
+              //   e.preventDefault();
+              //   images();
+              // }}
             >
               Bilder
             </a>

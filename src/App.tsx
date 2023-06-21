@@ -1,23 +1,17 @@
 import { useState } from 'react';
 // import './App.css';
-import Navigation from './components/Navigation.tsx';
-import Footer from './components/Footer.tsx';
-import { UploadImage } from './components';
-import ImageList from './components/ImageList.tsx';
-// import ImageView from './components/ImageView.tsx';
+import { Navigation, ImageView, UploadImage, Footer } from './components';
 
 function App() {
-  const [openUploadDialog, setOpenUploadDialog] = useState(false);
-  const [openImageDialog, setOpenImageDialog] = useState(false);
+  const [showUploadDialog, setShowUploadDialog] = useState(false);
 
   return (
     <>
-      <Navigation show={() => setOpenUploadDialog(true)} images={() => setOpenImageDialog(true)} />
+      <Navigation show={() => setShowUploadDialog(true)} />
       <main className="container">
         <h1>Sidgenerator</h1>
         {/* <h2>Bilder</h2> */}
-        <UploadImage open={openUploadDialog} show={setOpenUploadDialog} />
-        <ImageList open={openImageDialog} show={setOpenImageDialog} />
+        <UploadImage open={showUploadDialog} show={setShowUploadDialog} />
         {/* <ImageView /> */}
         {/* <ReactCrop crop={crop} onChange={(c) => setCrop(c)}>
           <img src={'image516.jpg'} />

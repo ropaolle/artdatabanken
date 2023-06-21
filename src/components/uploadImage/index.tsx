@@ -5,8 +5,8 @@ import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 
 import ReactCrop, { type Crop, PixelCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
-import { canvasPreview } from './canvasPreviewFixed';
-import { useDebounceEffect } from './useDebounceEffect';
+import { drawCanvasPreview } from './drawCanvasPreview';
+import { useDebounceEffect } from '../../lib//useDebounceEffect';
 
 type Props = {
   open: boolean;
@@ -58,7 +58,13 @@ export default function UploadImage({ open, show }: Props) {
     async () => {
       if (completedCrop?.width && completedCrop?.height && imgRef.current && previewCanvasRef.current) {
         // We use canvasPreview as it's much faster than imgPreview.
-        canvasPreview(imgRef.current, previewCanvasRef.current, completedCrop);
+        drawCanvasPreview({
+          image: imgRef.current,
+          canvas: previewCanvasRef.current,
+          crop: completedCrop,
+          width: 500,
+          height: 500,
+        });
       }
     },
     100,
@@ -129,13 +135,8 @@ export default function UploadImage({ open, show }: Props) {
   };
 
   const hide = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault();  
     show(false);
-  };
-
-  const doSetCrop = (c) => {
-    // console.log('c', c);
-    setCrop(c);
   };
 
   return (
@@ -151,14 +152,12 @@ export default function UploadImage({ open, show }: Props) {
           </div>
 
           {!imageUploaded && (
-            <ReactCrop crop={crop} onChange={(c) => doSetCrop(c)} onComplete={(c) => setCompletedCrop(c)} aspect={1}>
+            <ReactCrop crop={crop} onChange={(c) => setCrop(c)} onComplete={(c) => setCompletedCrop(c)} aspect={1}>
               <img src={preview} ref={imgRef} />
             </ReactCrop>
           )}
 
-          {/* <div className="preview-canvas-wrapper"> */}
           <canvas ref={previewCanvasRef} hidden={!imageUploaded} />
-          {/* </div> */}
 
           {progresspercent > 0 && <progress value={progresspercent} max="100" />}
 
