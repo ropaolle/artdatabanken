@@ -1,12 +1,45 @@
 import { useState, useEffect, useRef } from 'react';
-import { storage, db, checkIfImageExists } from '../../lib/firebase.ts';
-import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
+import { db, checkIfImageExists, canvasToBlob, uploadFile } from '../lib/firebase.ts';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import ReactCrop, { type PixelCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
-import { drawCanvasPreview } from './drawCanvasPreview';
-import { useDebounceEffect } from '../../lib//useDebounceEffect';
+import { useDebounceEffect } from '../lib/useDebounceEffect';
+
+type CanvasProps = {
+  image: HTMLImageElement;
+  canvas: HTMLCanvasElement;
+  crop: PixelCrop;
+  width: number;
+  height: number;
+};
+
+async function drawCanvasPreview({ image, canvas, crop, width, height }: CanvasProps) {
+  const ctx = canvas.getContext('2d');
+
+  if (!ctx) {
+    throw new Error('No 2d context');
+  }
+
+  canvas.width = width;
+  canvas.height = height;
+  const scaleX = image.naturalWidth / image.width;
+  const scaleY = image.naturalHeight / image.height;
+
+  ctx.save();
+  ctx.drawImage(
+    image,
+    crop.x * scaleX,
+    crop.y * scaleY,
+    crop.width * scaleX,
+    crop.height * scaleX,
+    0,
+    0,
+    width,
+    height
+  );
+  ctx.restore();
+}
 
 type Inputs = {
   imageFile: FileList;
@@ -39,51 +72,6 @@ export default function UploadImage({ open, show }: Props) {
 
   const { register, handleSubmit } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = async ({ imageFile }) => {
-    const filename = imageFile[0].name;
-    if (!filename) { // TODO: is this needed?
-      console.error('Should not happen!', imageFile);
-      return;
-    }
-
-    if (!previewCanvasRef.current) {
-      throw new Error('Crop canvas does not exist');
-    }
-
-    previewCanvasRef.current.toBlob((blob) => {
-      if (!blob) {
-        throw new Error('Failed to create blob');
-      }
-
-      const path = `images/${filename}`;
-      const storageRef = ref(storage, path);
-      const uploadTask = uploadBytesResumable(storageRef, blob);
-
-      uploadTask.on(
-        'state_changed',
-        (snapshot) => {
-          const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-          setProgresspercent(progress);
-        },
-        (error) => {
-          alert(error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setDoc(doc(db, 'images', filename), {
-              filename,
-              downloadURL,
-              updatedAt: serverTimestamp(),
-            }).catch((error) => console.error(error));
-
-            setImageUploaded(true);
-            setProgresspercent(0);
-          });
-        }
-      );
-    }, 'image/jpeg');
-  };
-
   useEffect(() => {
     if (!selectedFile) {
       setPreview(undefined);
@@ -114,6 +102,28 @@ export default function UploadImage({ open, show }: Props) {
     [completedCrop]
   );
 
+  const onSubmit: SubmitHandler<Inputs> = async ({ imageFile }) => {
+    if (!previewCanvasRef.current) {
+      throw new Error('Crop canvas does not exist');
+    }
+
+    const filename = imageFile[0].name;
+    const path = `images/${filename}`;
+    const blob = await canvasToBlob(previewCanvasRef.current);
+    const downloadURL = await uploadFile(blob, path, (progress: number) => {
+      setProgresspercent(progress);
+    });
+
+    setDoc(doc(db, 'images', filename), {
+      filename,
+      downloadURL,
+      updatedAt: serverTimestamp(),
+    }).catch((error) => console.error(error));
+
+    setImageUploaded(true);
+    setProgresspercent(0);
+  };
+
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
     // Clear state
     setImageUploaded(false);
@@ -123,10 +133,8 @@ export default function UploadImage({ open, show }: Props) {
     // Set selected file
     const file = e?.target.files?.[0];
     if (file) {
-      console.log('file', file);
       setSelectedFile(file);
-      const imageExists = await checkIfImageExists(file.name);
-      setImageExists(imageExists);
+      setImageExists(await checkIfImageExists(file.name));
     }
   };
 
@@ -136,7 +144,7 @@ export default function UploadImage({ open, show }: Props) {
   };
 
   return (
-    <dialog /* id="dude" */ open={open}>
+    <dialog open={open}>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <article>
           <a href="#" aria-label="Close" className="close" onClick={hide}></a>

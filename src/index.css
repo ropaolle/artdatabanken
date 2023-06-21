@@ -26,6 +26,11 @@ dialog h3 {
   height: 500px;
 } */
 
+canvas {
+  width: 500px;
+  height: 500px;
+}
+
 /* Override Pico styling */
 .ReactCrop__drag-handle[role='button'] {
   padding: 0;

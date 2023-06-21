@@ -4,7 +4,8 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-- [ ] Image corp library
+- [ ] Refactor upload to use async/await insted of callbacks
+- [x] Image corp library
 - [ ] Sida med filter som visar alla bilder.
 - [ ] Sida med filter som visar alla poster.
 

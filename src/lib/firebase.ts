@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getStorage, ref, listAll } from 'firebase/storage';
+import { getStorage, ref, listAll, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import { getFirestore, collection, query, where, getDocs, doc, getDoc } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
@@ -21,6 +21,38 @@ export const checkIfImageExists = async (name: string): Promise<boolean> => {
   const docSnap = await getDoc(docRef);
 
   return docSnap.exists();
+};
+
+export const canvasToBlob = async (ref: HTMLCanvasElement): Promise<Blob> =>
+  new Promise((resolve, reject) => {
+    ref.toBlob((blob) => {
+      if (!blob) {
+        reject(new Error('Failed to create blob'));
+        return;
+      }
+      resolve(blob);
+    }, 'image/jpeg');
+  });
+
+export const uploadFile = async (blob: Blob, path: string, onProgress: (progress: number) => void): Promise<string> => {
+  const storageRef = ref(storage, path);
+  const uploadTask = uploadBytesResumable(storageRef, blob);
+
+  return new Promise((resolve, reject) => {
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        onProgress(progress);
+      },
+      (error) => {
+        reject(error);
+      },
+      async () => {
+        resolve(await getDownloadURL(uploadTask.snapshot.ref));
+      }
+    );
+  });
 };
 
 export const getFiles = (filePath: string): Promise<string[]> => {
