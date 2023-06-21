@@ -1,25 +1,21 @@
 import { useState, useEffect, useRef } from 'react';
-import { storage, db, checkIfImageExists } from '../../lib/firebase.ts';
+import { storage, db } from '../../lib/firebase.ts';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
-
+import { useForm, SubmitHandler, useWatch } from 'react-hook-form';
 import ReactCrop, { type Crop, PixelCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { drawCanvasPreview } from './drawCanvasPreview';
 import { useDebounceEffect } from '../../lib//useDebounceEffect';
 
+type Inputs = {
+  imageFile: FileList;
+};
+
 type Props = {
   open: boolean;
   show: React.Dispatch<React.SetStateAction<boolean>>;
 };
-
-interface FormElements extends HTMLFormControlsCollection {
-  imageFiles: HTMLInputElement;
-}
-
-interface CustomFormElement extends HTMLFormElement {
-  readonly elements: FormElements;
-}
 
 const defaultCropArea: Crop = {
   unit: 'px',
@@ -31,7 +27,6 @@ const defaultCropArea: Crop = {
 
 export default function UploadImage({ open, show }: Props) {
   const [selectedFile, setSelectedFile] = useState<File>();
-  const [imageExists, setImageExists] = useState<boolean>(false);
   const [imageUploaded, setImageUploaded] = useState<boolean>(false);
   const [progresspercent, setProgresspercent] = useState(0);
   const [crop, setCrop] = useState<Crop>(defaultCropArea);
@@ -40,6 +35,55 @@ export default function UploadImage({ open, show }: Props) {
 
   const imgRef = useRef<HTMLImageElement>(null);
   const previewCanvasRef = useRef<HTMLCanvasElement>(null);
+
+  const {
+    register,
+    handleSubmit,
+    // watch,
+    // formState: { errors },
+  } = useForm<Inputs>();
+
+  const onSubmit: SubmitHandler<Inputs> = ({ imageFile }) => {
+    console.log(imageFile);
+    const filename = imageFile[0].name;
+    // if (!filename) return;
+
+    if (!previewCanvasRef.current) {
+      throw new Error('Crop canvas does not exist');
+    }
+
+    previewCanvasRef.current.toBlob((blob) => {
+      if (!blob) {
+        throw new Error('Failed to create blob');
+      }
+
+      const path = `images/${filename}`;
+      const storageRef = ref(storage, path);
+      const uploadTask = uploadBytesResumable(storageRef, blob);
+
+      uploadTask.on(
+        'state_changed',
+        (snapshot) => {
+          const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+          setProgresspercent(progress);
+        },
+        (error) => {
+          alert(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            setDoc(doc(db, 'images', filename), {
+              filename,
+              downloadURL,
+              updatedAt: serverTimestamp(),
+            }).catch((error) => console.log(error));
+            setImageUploaded(true);
+            setProgresspercent(0);
+          });
+        }
+      );
+    }, 'image/jpeg');
+  };
 
   useEffect(() => {
     if (!selectedFile) {
@@ -71,7 +115,7 @@ export default function UploadImage({ open, show }: Props) {
     [completedCrop]
   );
 
-  const handleSubmit = async (e: React.FormEvent<CustomFormElement>) => {
+  /* const handleSubmit = async (e: React.FormEvent<CustomFormElement>) => {
     e.preventDefault();
 
     const filename = e.currentTarget.elements.imageFiles?.files?.[0]?.name;
@@ -112,44 +156,35 @@ export default function UploadImage({ open, show }: Props) {
         }
       );
     }, 'image/jpeg');
-  };
+  }; */
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
-    // Clear form
-    setProgresspercent(0);
+    // Clear state
     setImageUploaded(false);
-    setImageExists(false);
-
-    // File selected
+    setProgresspercent(0);
+    setPreview(undefined);
+    setCompletedCrop(undefined);
+    // Set selected file
     const file = e?.target.files?.[0];
-    if (!file) {
-      setSelectedFile(undefined);
-      return;
-    }
     setSelectedFile(file);
-
-    // File exists in Firebase DB
-    const filename = e?.target.files?.[0]?.name || '';
-    const imageExists = await checkIfImageExists(filename);
-    setImageExists(imageExists);
   };
 
   const hide = (e: React.FormEvent) => {
-    e.preventDefault();  
+    e.preventDefault();
     show(false);
   };
 
   return (
     <dialog id="dude" open={open}>
-      <form onSubmit={handleSubmit} className="form">
+      {/* <form onSubmit={handleSubmit} className="form"> */}
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
         <article>
           <a href="#" aria-label="Close" className="close" onClick={hide}></a>
+
           <h3>Ladda upp bild</h3>
           <p>Ladda upp en ny eller ersätt befintlig bild.</p>
 
-          <div>
-            <input type="file" id="imageFiles" onChange={handleChange} />
-          </div>
+          <input type="file" {...register('imageFile', { onChange: handleChange })} />
 
           {!imageUploaded && (
             <ReactCrop crop={crop} onChange={(c) => setCrop(c)} onComplete={(c) => setCompletedCrop(c)} aspect={1}>
@@ -162,23 +197,28 @@ export default function UploadImage({ open, show }: Props) {
           {progresspercent > 0 && <progress value={progresspercent} max="100" />}
 
           <footer>
-            {imageExists && !imageUploaded && (
-              <div className="info">
-                Bilden existerar. Om du laddar upp en ny bild med samma namn skrivs den befintliga bilden över!
-              </div>
-            )}
-            <div className="grid">
-              <button role="button" className="secondary" onClick={hide}>
-                Stäng
-              </button>
-              <button role="button">Beskär</button>
-              <button role="button" type="submit" disabled={imageUploaded}>
-                Ladda upp
-              </button>
-            </div>
+            <button role="button" type="submit" disabled={!selectedFile || !!imageUploaded} /* aria-busy="true" */>
+              Ladda upp
+            </button>
           </footer>
         </article>
       </form>
     </dialog>
   );
 }
+
+/*
+const [imageExists, setImageExists] = useState<boolean>(false);
+
+ // File exists in Firebase DB
+    const filename = e?.target.files?.[0]?.name || '';
+    const imageExists = await checkIfImageExists(filename);
+    setImageExists(imageExists);
+
+{imageExists && !imageUploaded && (
+  <div className="info">
+    Bilden existerar. Om du laddar upp en ny bild med samma namn skrivs den befintliga bilden över!
+  </div>
+)}
+
+*/

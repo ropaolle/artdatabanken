@@ -22,22 +22,6 @@ export const checkIfImageExists = async (name: string): Promise<boolean> => {
 
   return docSnap.exists();
 };
-// export const checkIfFileExists = (filePath: string): Promise<boolean> => {
-//   const storageRef = ref(storage, filePath);
-
-//   return getDownloadURL(storageRef)
-//     .then((url) => {
-//       return Promise.resolve(true);
-//     })
-//     .catch((error) => {
-//       console.log('error', error);
-//       if (error.code === 'storage/object-not-found') {
-//         return Promise.resolve(false);
-//       } else {
-//         return Promise.reject(error);
-//       }
-//     });
-// };
 
 export const getFiles = (filePath: string): Promise<string[]> => {
   const listRef = ref(storage, filePath);
