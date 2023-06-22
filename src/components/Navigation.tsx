@@ -15,14 +15,14 @@ export default function Navigation({ show }: Props) {
         </ul>
         <ul>
           <li>
-            <a href="#">Sidgenerator</a>
+            <a href="#speices">Arter</a>
           </li>
           {/* <li>
             <a href="#">Bilder</a>
           </li> */}
           <li>
             <a
-              href="#"
+              href="#images"
               // onClick={(e) => {
               //   e.preventDefault();
               //   images();

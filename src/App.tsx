@@ -1,7 +1,6 @@
 import { useState } from 'react';
 // import './App.css';
-import { Navigation, ImageView, UploadImage, Footer } from './components';
-
+import { Navigation, ImageView, SpeicesView, UploadImage, Footer } from './components';
 
 function App() {
   const [showUploadDialog, setShowUploadDialog] = useState(false);
@@ -11,9 +10,10 @@ function App() {
       <Navigation show={() => setShowUploadDialog(true)} />
       <UploadImage open={showUploadDialog} show={setShowUploadDialog} />
       <main className="container">
-        <h1>Sidgenerator</h1>
-        <h2>Bilder</h2>
-        {/* <ImageView /> */}
+        <h2 id="speices">Arter</h2>
+        <SpeicesView />
+        <h2 id="images">Bilder</h2>
+        <ImageView />
       </main>
       <Footer />
     </>

@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
-import { db, checkIfImageExists, canvasToBlob, uploadFile } from '../lib/firebase.ts';
+import { db, checkIfImageExistsInDB, canvasToBlob, uploadFile, checkIfFileExists } from '../lib/firebase.ts';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import ReactCrop, { type PixelCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { useDebounceEffect } from '../lib/useDebounceEffect';
+import { Icon } from '@iconify/react';
 
 type CanvasProps = {
   image: HTMLImageElement;
@@ -109,16 +110,23 @@ export default function UploadImage({ open, show }: Props) {
 
     const filename = imageFile[0].name;
     const path = `images/${filename}`;
-    const blob = await canvasToBlob(previewCanvasRef.current);
-    const downloadURL = await uploadFile(blob, path, (progress: number) => {
-      setProgresspercent(progress);
-    });
 
-    setDoc(doc(db, 'images', filename), {
-      filename,
-      downloadURL,
-      updatedAt: serverTimestamp(),
-    }).catch((error) => console.error(error));
+    try {
+      const blob = await canvasToBlob(previewCanvasRef.current);
+      const downloadURL = await uploadFile(blob, path, (progress: number) => {
+        setProgresspercent(progress);
+      });
+
+      const fileInfo = {
+        filename,
+        downloadURL,
+        updatedAt: serverTimestamp(),
+      };
+
+      await setDoc(doc(db, 'images', filename), fileInfo);
+    } catch (error) {
+      console.error(error);
+    }
 
     setImageUploaded(true);
     setProgresspercent(0);
@@ -133,8 +141,11 @@ export default function UploadImage({ open, show }: Props) {
     // Set selected file
     const file = e?.target.files?.[0];
     if (file) {
+      const s = await checkIfFileExists(`images/${file.name}`);
+      console.log('s', s);
+
       setSelectedFile(file);
-      setImageExists(await checkIfImageExists(file.name));
+      setImageExists(await checkIfImageExistsInDB(file.name));
     }
   };
 
@@ -167,7 +178,8 @@ export default function UploadImage({ open, show }: Props) {
           <footer>
             {imageExists && !imageUploaded && (
               <div className="info">
-                Bilden existerar. Om du laddar upp en ny bild med samma namn skrivs den befintliga bilden över!
+                <Icon icon="material-symbols:info-outline" /> En bild med namnet <b>{selectedFile?.name}</b> existerar.
+                Om du laddar upp en ny bild med samma namn skrivs den befintliga bilden över!
               </div>
             )}
             <button role="button" type="submit" disabled={!completedCrop} aria-busy={progresspercent > 0}>

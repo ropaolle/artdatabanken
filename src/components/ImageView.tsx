@@ -1,8 +1,15 @@
 import { useEffect, useState } from 'react';
+import { type Timestamp } from 'firebase/firestore';
 import { getImages } from '../lib/firebase.ts';
 
+type ImageInfo = {
+  filename: string;
+  downloadURL: string;
+  updatedAt: Timestamp;
+};
+
 export default function ImageView() {
-  const [imageList, setImageList] = useState<string[]>([]);
+  const [imageList, setImageList] = useState<ImageInfo[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,26 +21,19 @@ export default function ImageView() {
   }, []);
 
   const images = imageList.map(({ filename, downloadURL, updatedAt }) => (
-    <div key={filename} >
-      <img src={downloadURL} width={100} />
-      {/* <div>{updatedAt}</div> */}
-      <div>{updatedAt.toDate().toString()}</div>
-    </div>
+    <figure className="gallery-image" key={filename}>
+      <img src={downloadURL} alt={filename} loading="lazy" />
+      <div className="info">
+        <div>Namn: {filename}</div>
+        <div>Skapad: {updatedAt.toDate().toLocaleDateString()}</div>
+      </div>
+    </figure>
   ));
 
-  // console.log('images', imageList);
-
   return (
-    <>
-      <h3>Bilder</h3>
-      <div className="row">
-        <div className="column">
-          {images}          
-        </div>
-        <div className="column">
-          {images}          
-        </div>
-      </div>
-    </>
+    <div className="gallery">
+      {images}
+      {images}
+    </div>
   );
 }
