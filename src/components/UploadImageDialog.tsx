@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { db, checkIfImageExistsInDB, canvasToBlob, uploadFile /* , checkIfFileExists */ } from '../lib/firebase.ts';
+import { db, checkIfImageExistsInDB, canvasToBlob, uploadFile } from '../lib/firebase.ts';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import ReactCrop, { type PixelCrop } from 'react-image-crop';

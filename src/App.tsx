@@ -1,28 +1,24 @@
 import { useState, useEffect } from 'react';
 // import './App.css';
 import { Navigation, ImageView, AddSpeciesDialog, UploadImageDialog, Footer, Dialogs } from './components';
-import { getImageInfo } from './lib/firebase.ts';
-import { DocumentData } from 'firebase/firestore';
+import { getImageInfo, ImageInfo } from './lib/firebase.ts';
+import { Timestamp } from 'firebase/firestore';
 
-const dummyImageData: DocumentData[] = [
+const dummyImageData: ImageInfo[] = [
   {
     filename: 'image01.jpg',
     downloadURL: './?/image01.jpg',
-    updatedAt: {
-      toDate: () => new Date(),
-    },
+    updatedAt: new Timestamp(0, 0),
   },
   {
     filename: 'image02.jpg',
     downloadURL: './?/image02.jpg',
-    updatedAt: {
-      toDate: () => new Date(),
-    },
+    updatedAt: new Timestamp(0, 0),
   },
 ];
 
 function App() {
-  const [images, setImages] = useState<DocumentData[]>(dummyImageData);
+  const [images, setImages] = useState<ImageInfo[]>(dummyImageData);
   const [showUploadDialog, setShowUploadDialog] = useState(false);
   const [showAddSpeciesDialog, setShowAddSpeciesDialog] = useState(false);
 
@@ -51,8 +47,12 @@ function App() {
   return (
     <>
       <Navigation show={showDialog} />
-      {/* <UploadImageDialog open={showUploadDialog} hide={() => showDialog(Dialogs.UPLOAD_IMAGE_DIALOG, false)} />
-      <AddSpeciesDialog open={showAddSpeciesDialog} hide={() => showDialog(Dialogs.ADD_SPECIES_DIALOG, false)} /> */}
+      <UploadImageDialog open={showUploadDialog} hide={() => showDialog(Dialogs.UPLOAD_IMAGE_DIALOG, false)} />
+      <AddSpeciesDialog
+        imageFilenames={images.map(({ filename }) => filename)}
+        open={showAddSpeciesDialog}
+        hide={() => showDialog(Dialogs.ADD_SPECIES_DIALOG, false)}
+      />
 
       <main className="container">
         <h2 id="speices">Arter</h2>

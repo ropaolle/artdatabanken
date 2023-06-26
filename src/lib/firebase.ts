@@ -1,16 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, listAll, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
-import {
-  getFirestore,
-  collection,
-  query,
-  where,
-  getDocs,
-  doc,
-  getDoc,
-  type Timestamp,
-  DocumentData,
-} from 'firebase/firestore';
+import { getFirestore, collection, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -32,7 +22,7 @@ export const checkIfFileExists = async (filePath: string): Promise<string | bool
 
   return new Promise((resolve, reject) => {
     getDownloadURL(storageRef)
-      .then((url) => {
+      .then((/* url */) => {
         resolve(true);
       })
       .catch((error) => {
@@ -104,27 +94,23 @@ export const getFileList = (filePath: string): Promise<string[]> => {
     });
 };
 
-export const getImageInfo = async (): Promise<DocumentData[]> => {
-  const querySnapshot = await getDocs(collection(db, 'images'));
-  return querySnapshot.docs.map((doc) => doc.data());
+export type ImageInfo = {
+  filename: string;
+  downloadURL: string;
+  updatedAt: Timestamp;
 };
 
-/* export const getImageFilenames = async (): Promise<string[]> => {
-  // const q = query(collection(db, 'cities'), where('capital', '==', true));
-  // const querySnapshot = await getDocs(q);
-
+export const getImageInfo = async (): Promise<ImageInfo[]> => {
   const querySnapshot = await getDocs(collection(db, 'images'));
+  return querySnapshot.docs.map((doc) => doc.data() as ImageInfo);
+};
 
-  // return querySnapshot.docs.map((doc) => doc.data());
-  // console.log('querySnapshot', querySnapshot);
-  const images: string[] = [];
-  querySnapshot.forEach((doc) => {
-    const { filename } = doc.data();
-    images.push(filename);
-    // doc.data() is never undefined for query doc snapshots
+export type SpeciesInfo = {
+  species: string;
+  updatedAt: Timestamp;
+};
 
-    // console.log(doc.id, ' => ', { ...doc.data() });
-  });
-
-  return images;
-}; */
+export const getSpeciesInfo = async (): Promise<SpeciesInfo[]> => {
+  const querySnapshot = await getDocs(collection(db, 'species'));
+  return querySnapshot.docs.map((doc) => doc.data() as SpeciesInfo);
+};

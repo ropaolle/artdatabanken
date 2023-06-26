@@ -1,7 +1,7 @@
-import { DocumentData } from 'firebase/firestore';
+import { type ImageInfo } from '../lib/firebase';
 
 type Props = {
-  images: DocumentData[];
+  images: ImageInfo[];
 };
 
 export default function ImageView({ images }: Props) {

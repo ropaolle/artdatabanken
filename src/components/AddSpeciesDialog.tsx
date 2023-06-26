@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
-import { db, getImageInfo } from '../lib/firebase.ts';
+import { db } from '../lib/firebase.ts';
 import { toDatalist, toOptions } from '../lib';
 
 const counties = [
@@ -65,13 +65,10 @@ type Inputs = {
 type Props = {
   open: boolean;
   hide: () => void;
-  // show: (dialog: string, show?: boolean) => void;
-  // show: React.Dispatch<React.SetStateAction<boolean>>;
+  imageFilenames: string[];
 };
 
-export default function AddSpeciesDialog({ open, hide }: Props) {
-  
-
+export default function AddSpeciesDialog({ open, hide, imageFilenames }: Props) {
   const {
     register,
     handleSubmit,
@@ -91,12 +88,10 @@ export default function AddSpeciesDialog({ open, hide }: Props) {
     },
   });
 
-
-
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log(data);
     try {
-      console.log('files', images);
+      console.log('files', imageFilenames);
       await setDoc(doc(db, 'species', data.species), { ...data, updatedAt: serverTimestamp() });
     } catch (error) {
       console.error(error);
@@ -175,7 +170,7 @@ export default function AddSpeciesDialog({ open, hide }: Props) {
                 Bild
                 {/* <input type="file" {...register('imageFile', { onChange: handleChange })} /> */}
                 <input list="images-data" autoComplete="off" {...register('image')} />
-                <datalist id="images-data">{toDatalist(images)}</datalist>
+                <datalist id="images-data">{toDatalist(imageFilenames)}</datalist>
               </label>
             </div>
 
