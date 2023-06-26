@@ -63,11 +63,10 @@ type Inputs = {
 type Props = {
   open: boolean;
   hide: () => void;
-  // imageFilenames: string[];
   images: ImageInfo[];
 };
 
-export default function AddSpeciesDialog({ open, hide, images }: Props) {
+export default function SpeciesDialog({ open, hide, images }: Props) {
   const {
     register,
     handleSubmit,
@@ -86,8 +85,6 @@ export default function AddSpeciesDialog({ open, hide, images }: Props) {
       sex: '',
     },
   });
-
-  console.log('images', images);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {

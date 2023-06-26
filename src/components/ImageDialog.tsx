@@ -61,7 +61,7 @@ const defaultCropArea: PixelCrop = {
   y: 250,
 };
 
-export default function UploadImageDialog({ open, hide }: Props) {
+export default function ImageDialog({ open, hide }: Props) {
   const [selectedFile, setSelectedFile] = useState<File>();
   const [imageExists, setImageExists] = useState<boolean>(false);
   const [imageUploaded, setImageUploaded] = useState<boolean>(false);
@@ -155,7 +155,7 @@ export default function UploadImageDialog({ open, hide }: Props) {
   };
 
   return (
-    <dialog id="uploadImageDialog" open={open}>
+    <dialog id="imageDialog" open={open}>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <article>
           <a href="#" aria-label="Close" className="close" onClick={onClick}></a>

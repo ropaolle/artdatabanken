@@ -1,7 +1,8 @@
 import Navigation from './Navigation';
 import ImageView from './ImageView';
-import AddSpeciesDialog from './AddSpeciesDialog';
-import UploadImageDialog from './UploadImageDialog';
+import SpeciesView from './SpeciesView';
+import SpeciesDialog from './SpeciesDialog';
+import ImageDialog from './ImageDialog';
 import Footer from './Footer';
 
 export enum Dialogs {
@@ -9,4 +10,4 @@ export enum Dialogs {
   ADD_SPECIES_DIALOG,
 }
 
-export { Navigation, ImageView, AddSpeciesDialog, UploadImageDialog, Footer };
+export { Navigation, ImageView, SpeciesView, SpeciesDialog, ImageDialog, Footer };

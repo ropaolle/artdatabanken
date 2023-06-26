@@ -6,7 +6,7 @@ type Props = {
 
 export default function SpeciesView({ species }: Props) {
   const imageList = species.map(({ species, updatedAt }) => (
-    <div className="info">
+    <div className="info" key={species}>
       <div>Namn: {species}</div>
       <div>Skapad: {updatedAt.toDate().toLocaleDateString()}</div>
     </div>

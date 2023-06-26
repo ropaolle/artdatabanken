@@ -1,33 +1,22 @@
 import { useState, useEffect } from 'react';
 // import './App.css';
-import { Navigation, ImageView, AddSpeciesDialog, UploadImageDialog, Footer, Dialogs } from './components';
-import { getImageInfo, ImageInfo } from './lib/firebase.ts';
-// import { Timestamp } from 'firebase/firestore';
-
-// const dummyImageData: ImageInfo[] = [
-//   {
-//     filename: 'image01.jpg',
-//     downloadURL: './?/image01.jpg',
-//     updatedAt: new Timestamp(0, 0),
-//   },
-//   {
-//     filename: 'image02.jpg',
-//     downloadURL: './?/image02.jpg',
-//     updatedAt: new Timestamp(0, 0),
-//   },
-// ];
+import { Navigation, ImageView, SpeciesView, SpeciesDialog, ImageDialog, Footer, Dialogs } from './components';
+import { getImageInfo, type ImageInfo, getSpeciesInfo, type SpeciesInfo } from './lib/firebase.ts';
 
 function App() {
   const [images, setImages] = useState<ImageInfo[]>([]);
+  const [species, setSpecies] = useState<SpeciesInfo[]>([]);
   const [showUploadDialog, setShowUploadDialog] = useState(false);
-  const [showAddSpeciesDialog, setShowAddSpeciesDialog] = useState(false);
+  const [showSpeciesDialog, setShowSpeciesDialog] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getImageInfo();
-      // console.log('data', data);
-      // setImages((prevState) => [...prevState, ...data]);
-      setImages(() => data);
+      const images = await getImageInfo();
+      const species = await getSpeciesInfo();
+      // console.log('images', images);
+      // console.log('species', species);
+      setImages(() => images);
+      setSpecies(() => species);
     };
     fetchData().catch(console.error);
   }, []);
@@ -38,7 +27,7 @@ function App() {
         setShowUploadDialog(show);
         break;
       case Dialogs.ADD_SPECIES_DIALOG:
-        setShowAddSpeciesDialog(show);
+        setShowSpeciesDialog(show);
         break;
     }
   };
@@ -46,16 +35,16 @@ function App() {
   return (
     <>
       <Navigation show={showDialog} />
-      <UploadImageDialog open={showUploadDialog} hide={() => showDialog(Dialogs.UPLOAD_IMAGE_DIALOG, false)} />
-      <AddSpeciesDialog
-        // imageFilenames={images.map(({ filename }) => filename)}
+      <ImageDialog open={showUploadDialog} hide={() => showDialog(Dialogs.UPLOAD_IMAGE_DIALOG, false)} />
+      <SpeciesDialog
         images={images}
-        open={showAddSpeciesDialog}
+        open={showSpeciesDialog}
         hide={() => showDialog(Dialogs.ADD_SPECIES_DIALOG, false)}
       />
 
       <main className="container">
         <h2 id="speices">Arter</h2>
+        <SpeciesView species={species} />
         <h2 id="images">Bilder</h2>
         <ImageView images={images} />
       </main>
