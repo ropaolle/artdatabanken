@@ -11,8 +11,8 @@ footer {
   margin-top: 2rem;
 }
 
-.info {
-  color: rgba(255, 0, 0, 0.65);
+dialog .info {
+  color: #39638e;
   font-size: smaller;
   margin-bottom: 1rem;
 }
@@ -21,10 +21,21 @@ dialog h3 {
   margin-bottom: 1rem;
 }
 
-/* .preview-canvas-wrapper canvas {
+form .input-horizontal {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+@media (max-width: 992px) {
+  form .input-horizontal {
+    display: block;
+  }
+}
+
+canvas {
   width: 500px;
   height: 500px;
-} */
+}
 
 /* Override Pico styling */
 .ReactCrop__drag-handle[role='button'] {
@@ -33,36 +44,51 @@ dialog h3 {
   border: none;
 }
 
-/* .row {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 4px;
+/* .iconify {
+  top: -1px;
+  position: relative;
+} */
+
+/* Gallery */
+
+.gallery {
+  display: grid;
+  gap: 1rem;
+
+  grid-template-columns: auto auto auto auto auto;
 }
 
-.column {
-  flex: 25%;
-  max-width: 25%;
-  padding: 0 4px;
-}
-
-.column img {
-  margin-top: 8px;
-  vertical-align: middle;
+.gallery-image {
   width: 100%;
+  height: 100%;
+  /* object-fit: cover; */
+  margin-bottom: 0;
 }
 
-@media screen and (max-width: 800px) {
-  .column {
-    -ms-flex: 50%;
-    flex: 50%;
-    max-width: 50%;
-  }
+.gallery-image .info {
+  font-size: smaller;
 }
 
-@media screen and (max-width: 600px) {
-  .column {
-    -ms-flex: 100%;
-    flex: 100%;
-    max-width: 100%;
-  }
+/* <datalist> and <option> styling */
+
+/* datalist {
+  position: absolute;
+  max-height: 20em;
+  border: 0 none;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+datalist option {
+  font-size: 0.8em;
+  padding: 0.3em 1em;
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+datalist option:hover,
+datalist option:focus {
+  color: #fff;
+  background-color: #036;
+  outline: 0 none;
 } */

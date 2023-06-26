@@ -1,7 +1,8 @@
 import logo from '../assets/logo.svg';
+import { Dialogs } from '.';
 
 type Props = {
-  show: () => void;
+  show: (dialog: number, show?: boolean) => void;
 };
 
 export default function Navigation({ show }: Props) {
@@ -15,14 +16,23 @@ export default function Navigation({ show }: Props) {
         </ul>
         <ul>
           <li>
-            <a href="#">Sidgenerator</a>
+            {/* <a href="#speices">Arter</a> */}
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                show(Dialogs.ADD_SPECIES_DIALOG);
+              }}
+            >
+              Ny art
+            </a>
           </li>
           {/* <li>
             <a href="#">Bilder</a>
           </li> */}
           <li>
             <a
-              href="#"
+              href="#images"
               // onClick={(e) => {
               //   e.preventDefault();
               //   images();
@@ -36,7 +46,7 @@ export default function Navigation({ show }: Props) {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                show();
+                show(Dialogs.UPLOAD_IMAGE_DIALOG);
               }}
             >
               Ladda upp

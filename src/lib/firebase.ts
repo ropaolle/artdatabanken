@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getStorage, ref, listAll } from 'firebase/storage';
-import { getFirestore, collection, query, where, getDocs, doc, getDoc } from 'firebase/firestore';
+import { getStorage, ref, listAll, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
+import { getFirestore, collection, query, where, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -16,28 +16,64 @@ export const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
 export const db = getFirestore(app);
 
-export const checkIfImageExists = async (name: string): Promise<boolean> => {
+export const checkIfFileExists = async (filePath: string): Promise<string | boolean> => {
+  const storage = getStorage();
+  const storageRef = ref(storage, filePath);
+
+  return new Promise((resolve, reject) => {
+    getDownloadURL(storageRef)
+      .then((url) => {
+        resolve(true);
+      })
+      .catch((error) => {
+        if (error.code === 'storage/object-not-found') {
+          resolve(false);
+        } else {
+          reject(error);
+        }
+      });
+  });
+};
+
+export const checkIfImageExistsInDB = async (name: string): Promise<boolean> => {
   const docRef = doc(db, 'images', name);
   const docSnap = await getDoc(docRef);
 
   return docSnap.exists();
 };
-// export const checkIfFileExists = (filePath: string): Promise<boolean> => {
-//   const storageRef = ref(storage, filePath);
 
-//   return getDownloadURL(storageRef)
-//     .then((url) => {
-//       return Promise.resolve(true);
-//     })
-//     .catch((error) => {
-//       console.log('error', error);
-//       if (error.code === 'storage/object-not-found') {
-//         return Promise.resolve(false);
-//       } else {
-//         return Promise.reject(error);
-//       }
-//     });
-// };
+export const canvasToBlob = async (ref: HTMLCanvasElement): Promise<Blob> => {
+  return new Promise((resolve, reject) => {
+    ref.toBlob((blob) => {
+      if (!blob) {
+        reject(new Error('Failed to create blob'));
+        return;
+      }
+      resolve(blob);
+    }, 'image/jpeg');
+  });
+};
+
+export const uploadFile = async (blob: Blob, path: string, onProgress: (progress: number) => void): Promise<string> => {
+  const storageRef = ref(storage, path);
+  const uploadTask = uploadBytesResumable(storageRef, blob);
+
+  return new Promise((resolve, reject) => {
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        onProgress(progress);
+      },
+      (error) => {
+        reject(error);
+      },
+      async () => {
+        resolve(await getDownloadURL(uploadTask.snapshot.ref));
+      }
+    );
+  });
+};
 
 export const getFiles = (filePath: string): Promise<string[]> => {
   const listRef = ref(storage, filePath);
@@ -45,9 +81,9 @@ export const getFiles = (filePath: string): Promise<string[]> => {
   return listAll(listRef)
     .then((res) => {
       // All the prefixes under listRef. You may call listAll() recursively on them.
-      /* res.prefixes.forEach((folderRef) => {
-        console.log('folderRef', folderRef);
-      }); */
+      // res.prefixes.forEach((folderRef) => {
+      //   console.log('folderRef', folderRef);
+      // });
 
       // All the items under listRef.
       // res.items.forEach((itemRef) => {
@@ -75,4 +111,22 @@ export const getImages = async (): any => {
   });
 };
 
-// import { collection, query, where, getDocs } from 'firebase/firestore';
+export const getImageFilenames = async (): Promise<string[]> => {
+  // const q = query(collection(db, 'cities'), where('capital', '==', true));
+  // const querySnapshot = await getDocs(q);
+
+  const querySnapshot = await getDocs(collection(db, 'images'));
+
+  // return querySnapshot.docs.map((doc) => doc.data());
+  // console.log('querySnapshot', querySnapshot);
+  const images: string[] = [];
+  querySnapshot.forEach((doc) => {
+    const { filename } = doc.data();
+    images.push(filename);
+    // doc.data() is never undefined for query doc snapshots
+
+    // console.log(doc.id, ' => ', { ...doc.data() });
+  });
+
+  return images;
+};

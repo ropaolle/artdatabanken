@@ -4,9 +4,24 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-- [ ] Image corp library
+county "Uppland"
+date 39948
+family "Kråkfåglar"
+id 0
+image "image067.jpg"
+kingdom "Fåglar"
+order "Tättingar"
+place "Råstasjön"
+speices "Skata"
+speices_latin "Pica pica"
+
 - [ ] Sida med filter som visar alla bilder.
+- [ ] Thumbnails
 - [ ] Sida med filter som visar alla poster.
+- [ ] Delete image or record and make sure assosiated files also is deleted. Delet images that does not exist in db.
+- [ ] Security for files and db
+- [x] Refactor upload to use async/await insted of callbacks
+- [x] Image corp library
 
 ## Links
 
@@ -15,8 +30,6 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 - FIREBASE
   - [Deploy to Firebase](https://vitejs.dev/guide/static-deploy.html#google-firebase)
   - [Upload files](https://firebase.google.com/docs/storage/web/upload-files)
-  - [File exists](https://jsmobiledev.com/article/storage-file-exist/)
-  - [Async/Await uploadTask](https://stackoverflow.com/questions/53156127/async-await-uploadtask)
   - [Add, set and update data](https://firebase.google.com/docs/firestore/manage-data/add-data)
   - [Get data](https://firebase.google.com/docs/firestore/query-data/get-data)
 - REACT
@@ -27,6 +40,12 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
     - [How-to](https://levelup.gitconnected.com/crop-images-on-upload-in-your-react-app-with-react-image-crop-5f3cd0ad2b35)
     - [How-to 2](https://github.com/DominicTobias/react-image-crop/issues/32)
     - [Example](https://codesandbox.io/s/react-image-crop-demo-with-react-hooks-forked-8khsjq?file=/src/App.tsx:4265-4277)
+    - [Optimizing canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Optimizing_canvas)
+  - [React-hook-form](https://react-hook-form.com/get-started)
+    - [Modal form](https://codesandbox.io/s/react-hook-form-modal-form-conditional-inputs-c7n0r)
+  - [DayJS](https://github.com/iamkun/dayjs)
+- CSS
+  - [Grid](https://www.w3schools.com/css/css_grid_container.asp)
 
 ## SETUP
 
