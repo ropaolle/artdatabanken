@@ -1,6 +1,7 @@
+import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
-import { db } from '../lib/firebase.ts';
+import { db, getFiles, getImageFilenames } from '../lib/firebase.ts';
 import { toDatalist, toOptions } from '../lib';
 
 const counties = [
@@ -28,11 +29,11 @@ const counties = [
   { value: 'norrbotten', label: 'Norrbottens län' },
 ];
 
-// const sexes = [
-//   { value: '', label: 'Ange kön…' },
-//   { value: 'male', label: 'Hane' },
-//   { value: 'female', label: 'Hona' },
-// ];
+const sexes = [
+  { value: '', label: 'Ange kön…' },
+  { value: 'male', label: 'Hane' },
+  { value: 'female', label: 'Hona' },
+];
 
 const classes = [
   'Däggdjur',
@@ -47,6 +48,8 @@ const classes = [
   'Spindeldjur',
 ];
 
+
+
 type Inputs = {
   species: string;
   place: string;
@@ -57,6 +60,8 @@ type Inputs = {
   county: string;
   speciesLatin: string;
   sex: string;
+  image: string;
+  // imageFile: FileList;
 };
 
 type Props = {
@@ -67,6 +72,8 @@ type Props = {
 };
 
 export default function AddSpeciesDialog({ open, hide }: Props) {
+  const [images, setImages] = useState<string[]>(['image01.jpg', 'image02.jpg']);
+
   const {
     register,
     handleSubmit,
@@ -86,10 +93,21 @@ export default function AddSpeciesDialog({ open, hide }: Props) {
     },
   });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log('fetch data');
+      const data = await getImageFilenames();
+      console.log('data', data);
+      setImages(data);
+    };
+
+    fetchData().catch(console.error);
+  }, [images]);
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log(data);
-
     try {
+      console.log('files', images);
       await setDoc(doc(db, 'species', data.species), { ...data, updatedAt: serverTimestamp() });
     } catch (error) {
       console.error(error);
@@ -115,7 +133,7 @@ export default function AddSpeciesDialog({ open, hide }: Props) {
 
             <div className="input-horizontal">
               <label htmlFor="species">Art*</label>
-              <input {...register('species') /* , { required: true } */} />
+              <input {...(register('species'), { required: true })} />
 
               <label htmlFor="kingdom">Klass</label>
               <input list="classes-data" autoComplete="off" {...register('kingdom')} />
@@ -129,6 +147,9 @@ export default function AddSpeciesDialog({ open, hide }: Props) {
 
               <label htmlFor="speciesLatin">Latinskt namn</label>
               <input {...register('speciesLatin')} />
+
+              <label htmlFor="place">Lokal</label>
+              <input {...register('place')} />
             </div>
 
             <div className="grid">
@@ -136,19 +157,7 @@ export default function AddSpeciesDialog({ open, hide }: Props) {
                 Län
                 <select {...register('county')}>{toOptions(counties)}</select>
               </label>
-
-              <label htmlFor="place">
-                Lokal
-                <input {...register('place')} />
-              </label>
-            </div>
-
-            <div className="grid">
-              {/* <label htmlFor="sex">
-                Kön
-                <select {...register('sex')}>{toOptions(sexes)}</select>
-              </label> */}
-              <fieldset>
+              {/* <fieldset>
                 <legend>Kön</legend>
                 <div className="grid">
                   <label htmlFor="small">
@@ -160,11 +169,24 @@ export default function AddSpeciesDialog({ open, hide }: Props) {
                     Hane
                   </label>
                 </div>
-              </fieldset>
+              </fieldset> */}
+              <label htmlFor="sex">
+                Kön
+                <select {...register('sex')}>{toOptions(sexes)}</select>
+              </label>
+            </div>
 
+            <div className="grid">
               <label htmlFor="date">
                 Datum
                 <input type="date" {...register('date')} />
+              </label>
+
+              <label htmlFor="date">
+                Bild
+                {/* <input type="file" {...register('imageFile', { onChange: handleChange })} /> */}
+                <input list="images-data" autoComplete="off" {...register('image')} />
+                <datalist id="images-data">{toDatalist(images)}</datalist>
               </label>
             </div>
 

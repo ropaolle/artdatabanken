@@ -62,8 +62,6 @@ const defaultCropArea: PixelCrop = {
 };
 
 export default function UploadImageDialog({ open, hide }: Props) {
-  // const [isOpen, setIsOpen] = useState(false);
-
   const [selectedFile, setSelectedFile] = useState<File>();
   const [imageExists, setImageExists] = useState<boolean>(false);
   const [imageUploaded, setImageUploaded] = useState<boolean>(false);

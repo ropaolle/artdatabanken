@@ -9,18 +9,20 @@ type ImageInfo = {
 };
 
 export default function ImageView() {
-  const [imageList, setImageList] = useState<ImageInfo[]>([]);
+  const [images, setimages] = useState<ImageInfo[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const images = await getImages();
-      setImageList(images);
+      console.log('fetch data');
+      const data = await getImages();
+      console.log('data', data);
+      setimages(data);
     };
 
     fetchData().catch(console.error);
-  }, []);
+  }, [images]);
 
-  const images = imageList.map(({ filename, downloadURL, updatedAt }) => (
+  const imageList = images.map(({ filename, downloadURL, updatedAt }) => (
     <figure className="gallery-image" key={filename}>
       <img src={downloadURL} alt={filename} loading="lazy" />
       <div className="info">
@@ -30,10 +32,5 @@ export default function ImageView() {
     </figure>
   ));
 
-  return (
-    <div className="gallery">
-      {images}
-      {images}
-    </div>
-  );
+  return <div className="gallery">{imageList}</div>;
 }

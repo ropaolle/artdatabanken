@@ -81,9 +81,9 @@ export const getFiles = (filePath: string): Promise<string[]> => {
   return listAll(listRef)
     .then((res) => {
       // All the prefixes under listRef. You may call listAll() recursively on them.
-      /* res.prefixes.forEach((folderRef) => {
-        console.log('folderRef', folderRef);
-      }); */
+      // res.prefixes.forEach((folderRef) => {
+      //   console.log('folderRef', folderRef);
+      // });
 
       // All the items under listRef.
       // res.items.forEach((itemRef) => {
@@ -111,4 +111,22 @@ export const getImages = async (): any => {
   });
 };
 
-// import { collection, query, where, getDocs } from 'firebase/firestore';
+export const getImageFilenames = async (): Promise<string[]> => {
+  // const q = query(collection(db, 'cities'), where('capital', '==', true));
+  // const querySnapshot = await getDocs(q);
+
+  const querySnapshot = await getDocs(collection(db, 'images'));
+
+  // return querySnapshot.docs.map((doc) => doc.data());
+  // console.log('querySnapshot', querySnapshot);
+  const images: string[] = [];
+  querySnapshot.forEach((doc) => {
+    const { filename } = doc.data();
+    images.push(filename);
+    // doc.data() is never undefined for query doc snapshots
+
+    // console.log(doc.id, ' => ', { ...doc.data() });
+  });
+
+  return images;
+};
