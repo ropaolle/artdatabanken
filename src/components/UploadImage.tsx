@@ -7,6 +7,8 @@ import 'react-image-crop/dist/ReactCrop.css';
 import { useDebounceEffect } from '../lib/useDebounceEffect';
 import { Icon } from '@iconify/react';
 
+export const dialogId = 'uploadDialog'
+
 type CanvasProps = {
   image: HTMLImageElement;
   canvas: HTMLCanvasElement;
@@ -141,9 +143,6 @@ export default function UploadImage({ open, show }: Props) {
     // Set selected file
     const file = e?.target.files?.[0];
     if (file) {
-      const s = await checkIfFileExists(`images/${file.name}`);
-      console.log('s', s);
-
       setSelectedFile(file);
       setImageExists(await checkIfImageExistsInDB(file.name));
     }
@@ -155,7 +154,7 @@ export default function UploadImage({ open, show }: Props) {
   };
 
   return (
-    <dialog open={open}>
+    <dialog id={dialogId} open={open}>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <article>
           <a href="#" aria-label="Close" className="close" onClick={hide}></a>
