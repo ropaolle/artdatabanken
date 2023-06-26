@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getFiles } from '../lib/firebase.ts';
+import { getFileList } from '../lib/firebase.ts';
 
 type Props = {
   open: boolean;
@@ -11,7 +11,7 @@ export default function ImageList({ open, show }: Props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getFiles('files');
+      const data = await getFileList('files');
       setImgList(data);
     };
 

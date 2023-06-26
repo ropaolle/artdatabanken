@@ -1,6 +1,16 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, listAll, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
-import { getFirestore, collection, query, where, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  getDocs,
+  doc,
+  getDoc,
+  type Timestamp,
+  DocumentData,
+} from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -75,21 +85,18 @@ export const uploadFile = async (blob: Blob, path: string, onProgress: (progress
   });
 };
 
-export const getFiles = (filePath: string): Promise<string[]> => {
+/**
+ *
+ * @param filePath Firebase storage folder
+ * @returns Array of filenames
+ *
+ * Note: res.prefixes returns all the prefixes under listRef. You may call listAll() recursively on them.
+ */
+export const getFileList = (filePath: string): Promise<string[]> => {
   const listRef = ref(storage, filePath);
 
   return listAll(listRef)
     .then((res) => {
-      // All the prefixes under listRef. You may call listAll() recursively on them.
-      // res.prefixes.forEach((folderRef) => {
-      //   console.log('folderRef', folderRef);
-      // });
-
-      // All the items under listRef.
-      // res.items.forEach((itemRef) => {
-      //   console.log('itemRef', itemRef);
-      // });
-
       return Promise.resolve(res.items.map(({ name }) => name));
     })
     .catch((error) => {
@@ -97,21 +104,12 @@ export const getFiles = (filePath: string): Promise<string[]> => {
     });
 };
 
-export const getImages = async (): any => {
-  // const q = query(collection(db, 'cities'), where('capital', '==', true));
-  // const querySnapshot = await getDocs(q);
-
+export const getImageInfo = async (): Promise<DocumentData[]> => {
   const querySnapshot = await getDocs(collection(db, 'images'));
-
   return querySnapshot.docs.map((doc) => doc.data());
-  console.log('querySnapshot', querySnapshot);
-  querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    console.log(doc.id, ' => ', { ...doc.data() });
-  });
 };
 
-export const getImageFilenames = async (): Promise<string[]> => {
+/* export const getImageFilenames = async (): Promise<string[]> => {
   // const q = query(collection(db, 'cities'), where('capital', '==', true));
   // const querySnapshot = await getDocs(q);
 
@@ -129,4 +127,4 @@ export const getImageFilenames = async (): Promise<string[]> => {
   });
 
   return images;
-};
+}; */

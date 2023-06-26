@@ -1,27 +1,10 @@
-import { useEffect, useState } from 'react';
-import { type Timestamp } from 'firebase/firestore';
-import { getImages } from '../lib/firebase.ts';
+import { DocumentData } from 'firebase/firestore';
 
-type ImageInfo = {
-  filename: string;
-  downloadURL: string;
-  updatedAt: Timestamp;
+type Props = {
+  images: DocumentData[];
 };
 
-export default function ImageView() {
-  const [images, setimages] = useState<ImageInfo[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      console.log('fetch data');
-      const data = await getImages();
-      console.log('data', data);
-      setimages(data);
-    };
-
-    fetchData().catch(console.error);
-  }, [images]);
-
+export default function ImageView({ images }: Props) {
   const imageList = images.map(({ filename, downloadURL, updatedAt }) => (
     <figure className="gallery-image" key={filename}>
       <img src={downloadURL} alt={filename} loading="lazy" />

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
-import { db, getFiles, getImageFilenames } from '../lib/firebase.ts';
+import { db, getImageInfo } from '../lib/firebase.ts';
 import { toDatalist, toOptions } from '../lib';
 
 const counties = [
@@ -48,8 +48,6 @@ const classes = [
   'Spindeldjur',
 ];
 
-
-
 type Inputs = {
   species: string;
   place: string;
@@ -72,7 +70,7 @@ type Props = {
 };
 
 export default function AddSpeciesDialog({ open, hide }: Props) {
-  const [images, setImages] = useState<string[]>(['image01.jpg', 'image02.jpg']);
+  
 
   const {
     register,
@@ -93,16 +91,7 @@ export default function AddSpeciesDialog({ open, hide }: Props) {
     },
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      console.log('fetch data');
-      const data = await getImageFilenames();
-      console.log('data', data);
-      setImages(data);
-    };
 
-    fetchData().catch(console.error);
-  }, [images]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log(data);
