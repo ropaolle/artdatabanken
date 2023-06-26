@@ -1,13 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
-import { db, checkIfImageExistsInDB, canvasToBlob, uploadFile, checkIfFileExists } from '../lib/firebase.ts';
+import { db, checkIfImageExistsInDB, canvasToBlob, uploadFile /* , checkIfFileExists */ } from '../lib/firebase.ts';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import ReactCrop, { type PixelCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { useDebounceEffect } from '../lib/useDebounceEffect';
 import { Icon } from '@iconify/react';
-
-export const dialogId = 'uploadDialog'
 
 type CanvasProps = {
   image: HTMLImageElement;
@@ -50,7 +48,9 @@ type Inputs = {
 
 type Props = {
   open: boolean;
-  show: React.Dispatch<React.SetStateAction<boolean>>;
+  hide: () => void;
+  // hide: (dialog: string, show?: boolean) => void;
+  // show: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const defaultCropArea: PixelCrop = {
@@ -61,7 +61,9 @@ const defaultCropArea: PixelCrop = {
   y: 250,
 };
 
-export default function UploadImage({ open, show }: Props) {
+export default function UploadImageDialog({ open, hide }: Props) {
+  // const [isOpen, setIsOpen] = useState(false);
+
   const [selectedFile, setSelectedFile] = useState<File>();
   const [imageExists, setImageExists] = useState<boolean>(false);
   const [imageUploaded, setImageUploaded] = useState<boolean>(false);
@@ -148,16 +150,17 @@ export default function UploadImage({ open, show }: Props) {
     }
   };
 
-  const hide = (e: React.FormEvent) => {
+  const onClick = (e: React.FormEvent) => {
     e.preventDefault();
-    show(false);
+    hide();
+    // show(dialogId, false);
   };
 
   return (
-    <dialog id={dialogId} open={open}>
+    <dialog id="uploadImageDialog" open={open}>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <article>
-          <a href="#" aria-label="Close" className="close" onClick={hide}></a>
+          <a href="#" aria-label="Close" className="close" onClick={onClick}></a>
 
           <h3>Ladda upp bild</h3>
           <p>Ladda upp en ny eller ersätt befintlig bild.</p>

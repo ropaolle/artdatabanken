@@ -61,10 +61,12 @@ type Inputs = {
 
 type Props = {
   open: boolean;
-  show: React.Dispatch<React.SetStateAction<boolean>>;
+  hide: () => void;
+  // show: (dialog: string, show?: boolean) => void;
+  // show: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function AddSpecies({ open, show }: Props) {
+export default function AddSpeciesDialog({ open, hide }: Props) {
   const {
     register,
     handleSubmit,
@@ -96,9 +98,10 @@ export default function AddSpecies({ open, show }: Props) {
 
   // console.log(watch('example'));
 
-  const hide = (e: React.FormEvent) => {
+  const onClick = (e: React.FormEvent) => {
     e.preventDefault();
-    show(false);
+    hide();
+    // show(dialogId, false);
   };
 
   return (
@@ -106,7 +109,7 @@ export default function AddSpecies({ open, show }: Props) {
       <div className="species-view">
         <form onSubmit={handleSubmit(onSubmit)}>
           <article>
-            <a href="#" aria-label="Close" className="close" onClick={hide}></a>
+            <a href="#" aria-label="Close" className="close" onClick={onClick}></a>
 
             <h3>Lägg till ny art</h3>
 

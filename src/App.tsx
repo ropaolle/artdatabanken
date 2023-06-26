@@ -1,20 +1,18 @@
 import { useState } from 'react';
 // import './App.css';
-import { Navigation, ImageView, AddSpecies, UploadImage, Footer } from './components';
+import { Navigation, ImageView, AddSpeciesDialog, UploadImageDialog, Footer, Dialogs } from './components';
 
 function App() {
   const [showUploadDialog, setShowUploadDialog] = useState(false);
   const [showAddSpeciesDialog, setShowAddSpeciesDialog] = useState(false);
 
-  const showDialog = (dialog: string/* , show: boolean */) => {
+  const showDialog = (dialog: number, show = true) => {
     switch (dialog) {
-      case 'uploadDialog':
-        setShowUploadDialog(true);
+      case Dialogs.UPLOAD_IMAGE_DIALOG:
+        setShowUploadDialog(show);
         break;
-      case 'addSpeciesDialog':
-        setShowAddSpeciesDialog(true);
-        break;
-      default:
+      case Dialogs.ADD_SPECIES_DIALOG:
+        setShowAddSpeciesDialog(show);
         break;
     }
   };
@@ -22,8 +20,9 @@ function App() {
   return (
     <>
       <Navigation show={showDialog} />
-      <UploadImage open={showUploadDialog} show={setShowUploadDialog} />
-      <AddSpecies open={showAddSpeciesDialog} show={setShowAddSpeciesDialog} />
+      <UploadImageDialog open={showUploadDialog} hide={() => showDialog(Dialogs.UPLOAD_IMAGE_DIALOG, false)} />
+      <AddSpeciesDialog open={showAddSpeciesDialog} hide={() => showDialog(Dialogs.ADD_SPECIES_DIALOG, false)} />
+
       <main className="container">
         <h2 id="speices">Arter</h2>
         <h2 id="images">Bilder</h2>
