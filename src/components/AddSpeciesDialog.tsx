@@ -1,7 +1,6 @@
-// import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
-import { db } from '../lib/firebase.ts';
+import { db, type ImageInfo } from '../lib/firebase.ts';
 import { toDatalist, toOptions } from '../lib';
 
 const counties = [
@@ -59,39 +58,40 @@ type Inputs = {
   speciesLatin: string;
   sex: string;
   image: string;
-  // imageFile: FileList;
 };
 
 type Props = {
   open: boolean;
   hide: () => void;
-  imageFilenames: string[];
+  // imageFilenames: string[];
+  images: ImageInfo[];
 };
 
-export default function AddSpeciesDialog({ open, hide, imageFilenames }: Props) {
+export default function AddSpeciesDialog({ open, hide, images }: Props) {
   const {
     register,
     handleSubmit,
     // watch,
-    // formState: { errors },
+    formState: { errors },
   } = useForm<Inputs>({
     defaultValues: {
-      species: 'Skogsmus',
+      species: undefined,
       place: '',
       date: new Date().toLocaleDateString(),
       kingdom: '',
       order: '',
       family: '',
       county: '',
-      speciesLatin: 'Musus musus',
+      speciesLatin: '',
       sex: '',
     },
   });
 
+  console.log('images', images);
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data);
     try {
-      console.log('files', imageFilenames);
+      console.log('Add species', data);
       await setDoc(doc(db, 'species', data.species), { ...data, updatedAt: serverTimestamp() });
     } catch (error) {
       console.error(error);
@@ -100,10 +100,16 @@ export default function AddSpeciesDialog({ open, hide, imageFilenames }: Props) 
 
   // console.log(watch('example'));
 
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
+    const filename = e?.target.value;
+    // if (filename && imageFilenames.includes(filename)) {
+    //   console.log('e', filename);
+    // }
+  };
+
   const onClick = (e: React.FormEvent) => {
     e.preventDefault();
     hide();
-    // show(dialogId, false);
   };
 
   return (
@@ -117,23 +123,38 @@ export default function AddSpeciesDialog({ open, hide, imageFilenames }: Props) 
 
             <div className="input-horizontal">
               <label htmlFor="species">Art*</label>
-              <input {...(register('species'), { required: true })} />
+              <div>
+                <input {...register('species', { required: true })} />
+                {errors.species && errors.species.type === 'required' && (
+                  <span className="error">This is required!</span>
+                )}
+              </div>
 
               <label htmlFor="kingdom">Klass</label>
-              <input list="classes-data" autoComplete="off" {...register('kingdom')} />
-              <datalist id="classes-data">{toDatalist(classes)}</datalist>
+              <div>
+                <input list="classes-data" autoComplete="off" {...register('kingdom')} />
+                <datalist id="classes-data">{toDatalist(classes)}</datalist>
+              </div>
 
               <label htmlFor="order">Ordning</label>
-              <input {...register('order')} />
+              <div>
+                <input {...register('order')} />
+              </div>
 
               <label htmlFor="family">Familj</label>
-              <input {...register('family') /* , { required: true } */} />
+              <div>
+                <input {...register('family')} />
+              </div>
 
               <label htmlFor="speciesLatin">Latinskt namn</label>
-              <input {...register('speciesLatin')} />
+              <div>
+                <input {...register('speciesLatin')} />
+              </div>
 
               <label htmlFor="place">Lokal</label>
-              <input {...register('place')} />
+              <div>
+                <input {...register('place')} />
+              </div>
             </div>
 
             <div className="grid">
@@ -141,19 +162,7 @@ export default function AddSpeciesDialog({ open, hide, imageFilenames }: Props) 
                 Län
                 <select {...register('county')}>{toOptions(counties)}</select>
               </label>
-              {/* <fieldset>
-                <legend>Kön</legend>
-                <div className="grid">
-                  <label htmlFor="small">
-                    <input type="radio" value="female" {...register('sex')} />
-                    Hona
-                  </label>
-                  <label htmlFor="medium">
-                    <input type="radio" value="male" {...register('sex')} />
-                    Hane
-                  </label>
-                </div>
-              </fieldset> */}
+
               <label htmlFor="sex">
                 Kön
                 <select {...register('sex')}>{toOptions(sexes)}</select>
@@ -168,9 +177,8 @@ export default function AddSpeciesDialog({ open, hide, imageFilenames }: Props) 
 
               <label htmlFor="date">
                 Bild
-                {/* <input type="file" {...register('imageFile', { onChange: handleChange })} /> */}
-                <input list="images-data" autoComplete="off" {...register('image')} />
-                <datalist id="images-data">{toDatalist(imageFilenames)}</datalist>
+                <input list="images-data" autoComplete="off" {...register('image', { onChange: handleChange })} />
+                <datalist id="images-data">{toDatalist(images.map(({ filename }) => filename))}</datalist>
               </label>
             </div>
 

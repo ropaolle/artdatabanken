@@ -2,14 +2,24 @@ import { initializeApp } from 'firebase/app';
 import { getStorage, ref, listAll, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import { getFirestore, collection, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore';
 
-// Your web app's Firebase configuration
+// PROD
+// const firebaseConfig = {
+//   apiKey: 'AIzaSyDG2cSWrnZpiiRI_rtbteXWotkljcDKO-U',
+//   authDomain: 'artdatabanken-2023.firebaseapp.com',
+//   projectId: 'artdatabanken-2023',
+//   storageBucket: 'artdatabanken-2023.appspot.com',
+//   messagingSenderId: '755130876588',
+//   appId: '1:755130876588:web:ff1adae7ec3b17d1c01509',
+// };
+
+// DEV
 const firebaseConfig = {
-  apiKey: 'AIzaSyDG2cSWrnZpiiRI_rtbteXWotkljcDKO-U',
-  authDomain: 'artdatabanken-2023.firebaseapp.com',
-  projectId: 'artdatabanken-2023',
-  storageBucket: 'artdatabanken-2023.appspot.com',
-  messagingSenderId: '755130876588',
-  appId: '1:755130876588:web:ff1adae7ec3b17d1c01509',
+  apiKey: 'AIzaSyARGHDdkUk65SPDDSc6tgj5jX9rq7FsUYk',
+  authDomain: 'artdatabanken-2023-dev.firebaseapp.com',
+  projectId: 'artdatabanken-2023-dev',
+  storageBucket: 'artdatabanken-2023-dev.appspot.com',
+  messagingSenderId: '544182237871',
+  appId: '1:544182237871:web:829c6e290800094bdcf25a',
 };
 
 export const app = initializeApp(firebaseConfig);
@@ -103,6 +113,10 @@ export type ImageInfo = {
 export const getImageInfo = async (): Promise<ImageInfo[]> => {
   const querySnapshot = await getDocs(collection(db, 'images'));
   return querySnapshot.docs.map((doc) => doc.data() as ImageInfo);
+  // return querySnapshot.docs.map((doc) => {
+  //   const { filename, downloadURL, updatedAt } = doc.data();
+  //   return { filename, downloadURL, updatedAt: updatedAt.toDate() };
+  // });
 };
 
 export type SpeciesInfo = {
