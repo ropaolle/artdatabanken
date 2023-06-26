@@ -20,8 +20,8 @@ function App() {
   return (
     <>
       <Navigation show={showDialog} />
-      {/* <UploadImageDialog open={showUploadDialog} hide={() => showDialog(Dialogs.UPLOAD_IMAGE_DIALOG, false)} />
-      <AddSpeciesDialog open={showAddSpeciesDialog} hide={() => showDialog(Dialogs.ADD_SPECIES_DIALOG, false)} /> */}
+      <UploadImageDialog open={showUploadDialog} hide={() => showDialog(Dialogs.UPLOAD_IMAGE_DIALOG, false)} />
+      <AddSpeciesDialog open={showAddSpeciesDialog} hide={() => showDialog(Dialogs.ADD_SPECIES_DIALOG, false)} />
 
       <main className="container">
         <h2 id="speices">Arter</h2>
