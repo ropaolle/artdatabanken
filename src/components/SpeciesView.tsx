@@ -2,35 +2,45 @@ import { useState, useEffect } from 'react';
 import { type SpeciesInfo } from '../lib/firebase';
 import { Icon } from '@iconify/react';
 
-type Filters = Omit<SpeciesInfo, 'updatedAt'>;
+interface ItemInfo extends Omit<SpeciesInfo, 'updatedAt'> {
+  all: string;
+}
 
 type Props = {
-  species: SpeciesInfo[];
+  species: ItemInfo[];
 };
 
 export default function SpeciesView({ species }: Props) {
-  const [sort, setSort] = useState({ column: '', ascending: true });
-  const [filters, setFilter] = useState({ kingdom: '' });
+  const [sort, setSort] = useState({ column: 'species', ascending: false });
+  const [filters, setFilter] = useState({ all: '' });
   const [items, setItems] = useState(species);
 
   useEffect(() => {
-    const filteredSpecies = species.filter((item) =>
-      Object.entries(filters).every(([key, value]) => {
-        if (typeof key !== 'string' || key === '') return true;
-        // FIXA: updatedAt omitted as this only works on filters with string values
-        const property = item[key as keyof Filters];
-        return property.toLowerCase().includes(value.toLowerCase());
-      })
-    );
+    const filteredSpecies = species.filter((item) => {
+      // Free text filter
+      if (filters.all && filters.all !== '') {
+        return Object.entries(item).some(([, value]) => {
+          if (typeof value !== 'string') return false;
+          return value.toLowerCase().includes(filters.all);
+        });
+      }
+
+      // Column filter
+      return Object.entries(filters).every(([key, value]) => {
+        if (typeof key !== 'string' || key === '' || key === 'all') return true;
+        const property = item[key as keyof ItemInfo];
+        return property?.includes(value.toLowerCase());
+      });
+    });
 
     setItems(filteredSpecies);
   }, [species, filters]);
 
-  const localeSort = (a: SpeciesInfo, b: SpeciesInfo) => {
+  const localeSort = (a: ItemInfo, b: ItemInfo) => {
     // Ignore sort
     if (sort.column === '') return 0;
     // Compare columns
-    const column = sort.column as keyof Filters;
+    const column = sort.column as keyof ItemInfo;
     const localeCompare = a[column].localeCompare(b[column], 'sv', { sensitivity: 'base' });
     // Sort order
     return sort.ascending ? -localeCompare : localeCompare;
@@ -63,7 +73,7 @@ export default function SpeciesView({ species }: Props) {
       const id = e?.target.id;
       const value = e?.target.value || '';
 
-      return typeof id === 'string' ? { ...prevValues, [id]: value } : prevValues;
+      return typeof id === 'string' ? { ...prevValues, [id]: value.toLowerCase() } : prevValues;
     });
   };
 
@@ -87,12 +97,13 @@ export default function SpeciesView({ species }: Props) {
     <div className="species-view">
       <form>
         <div className="grid">
-          {/* <label htmlFor="all">
-            Filter
+          {/* INFO: Free text filters overrides column filters. */}
+          <label htmlFor="all">
+            Fritextsökning
             <input id="all" onChange={handleFilterChange} />
-          </label> */}
+          </label>
 
-          <label htmlFor="species">
+          {/* <label htmlFor="species">
             Art
             <input id="species" onChange={handleFilterChange} />
           </label>
@@ -100,10 +111,7 @@ export default function SpeciesView({ species }: Props) {
           <label htmlFor="speciesLatin">
             Latinskt namn
             <input id="speciesLatin" onChange={handleFilterChange} />
-          </label>
-
-          <div></div>
-          <div></div>
+          </label> */}
         </div>
       </form>
 
