@@ -5,20 +5,9 @@ type Props = {
   species: SpeciesInfo[];
 };
 
-const defaultFilters = [
-  { name: 'kingdom', value: '' },
-  { name: 'order', value: '' },
-  { name: 'family', value: '' },
-  { name: 'species', value: 'a' },
-  { name: 'sex', value: '' },
-  { name: 'county', value: '' },
-  { name: 'place', value: '' },
-  { name: 'speciesLatin', value: '' },
-  { name: 'image', value: '' },
-  { name: 'date', value: '' },
-];
+type SpeciesFilters = Omit<SpeciesInfo, 'updatedAt'>;
 
-/* const defaultFilters2 = {
+const defaultFilters = {
   kingdom: '',
   order: '',
   family: '',
@@ -29,7 +18,7 @@ const defaultFilters = [
   speciesLatin: '',
   image: '',
   date: '',
-}; */
+};
 
 export default function SpeciesView({ species }: Props) {
   // const [sort, setSort] = useState<string>();
@@ -37,49 +26,43 @@ export default function SpeciesView({ species }: Props) {
   const [items, setItems] = useState<SpeciesInfo[]>();
 
   useEffect(() => {
-    setItems(species);
-  }, [species]);
+    const applyFilters = (data: SpeciesFilters[]) =>
+      data.filter((item) =>
+        Object.entries(filters).every(([key, value]) => {
+          if (typeof key !== 'string' || key === '') return true;
+          const property = item[key as keyof SpeciesFilters];
+          return property.includes(value);
+        })
+      );
 
-  const applyFilters = (data: SpeciesInfo[]) =>
-    data.filter((item) => {
-      return filters.every(({ name, value }) => {
-        const key = item[name as keyof SpeciesInfo];
-        if (typeof key !== 'string' || key === '') return false;
-        return key.includes(value);
-      });
-    });
-
-  //   console.log('filters', filters);
+    setItems(applyFilters(species));
+    // console.log('filter');
+  }, [species, filters]);
 
   const speciesTable =
     items &&
-    applyFilters(items).map(
-      // const speciesTable = items && items.map(
-      ({ kingdom, order, family, species, sex, speciesLatin, place, county, date, image, updatedAt }) => (
-        <tr key={species}>
-          <td>{kingdom}</td>
-          <td>{order}</td>
-          <td>{family}</td>
-          <td>{species}</td>
-          <td>{sex}</td>
-          <td>{speciesLatin}</td>
-          <td>{place}</td>
-          <td>{county}</td>
-          <td>{date}</td>
-          {/* <td>{updatedAt.toDate().toLocaleDateString()}</td> */}
-          <td>{image}</td>
-        </tr>
-      )
-    );
+    items.map(({ kingdom, order, family, species, sex, speciesLatin, place, county, date, image, updatedAt }) => (
+      <tr key={species}>
+        <td>{kingdom}</td>
+        <td>{order}</td>
+        <td>{family}</td>
+        <td>{species}</td>
+        <td>{sex}</td>
+        <td>{speciesLatin}</td>
+        <td>{place}</td>
+        <td>{county}</td>
+        <td>{date}</td>
+        {/* <td>{updatedAt.toDate().toLocaleDateString()}</td> */}
+        <td>{image}</td>
+      </tr>
+    ));
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
     setFilter((prevValues) => {
-      const filter = prevValues.find(({ name }) => name === e?.target.id);
-      if (filter) {
-        filter.value = e?.target.value || '';
-      }
+      const id = e?.target.id;
+      const value = e?.target.value || '';
 
-      return [...prevValues];
+      return typeof id === 'string' ? { ...prevValues, [id]: value } : prevValues;
     });
   };
 
