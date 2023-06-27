@@ -44,6 +44,7 @@ speices_latin "Pica pica"
   - [React-hook-form](https://react-hook-form.com/get-started)
     - [Modal form](https://codesandbox.io/s/react-hook-form-modal-form-conditional-inputs-c7n0r)
   - [DayJS](https://github.com/iamkun/dayjs)
+  - [useEffect on objects](https://dev.to/hey_yogini/useeffect-dependency-array-and-object-comparison-45el)
 - CSS
   - [Grid](https://www.w3schools.com/css/css_grid_container.asp)
 

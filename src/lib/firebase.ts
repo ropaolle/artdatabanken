@@ -113,15 +113,20 @@ export type ImageInfo = {
 export const getImageInfo = async (): Promise<ImageInfo[]> => {
   const querySnapshot = await getDocs(collection(db, 'images'));
   return querySnapshot.docs.map((doc) => doc.data() as ImageInfo);
-  // return querySnapshot.docs.map((doc) => {
-  //   const { filename, downloadURL, updatedAt } = doc.data();
-  //   return { filename, downloadURL, updatedAt: updatedAt.toDate() };
-  // });
 };
 
 export type SpeciesInfo = {
+  kingdom: string;
+  order: string;
+  family: string;
   species: string;
-  updatedAt: Timestamp;
+  sex: string;
+  county: string;
+  place: string;
+  speciesLatin: string;
+  image: string;
+  date: string;
+  updatedAt?: Timestamp;
 };
 
 export const getSpeciesInfo = async (): Promise<SpeciesInfo[]> => {

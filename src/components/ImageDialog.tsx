@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { db, checkIfImageExistsInDB, canvasToBlob, uploadFile } from '../lib/firebase.ts';
-import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { doc, setDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import ReactCrop, { type PixelCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
@@ -49,8 +49,6 @@ type Inputs = {
 type Props = {
   open: boolean;
   hide: () => void;
-  // hide: (dialog: string, show?: boolean) => void;
-  // show: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const defaultCropArea: PixelCrop = {
@@ -125,7 +123,11 @@ export default function ImageDialog({ open, hide }: Props) {
         updatedAt: serverTimestamp(),
       };
 
-      await setDoc(doc(db, 'images', filename), fileInfo);
+      if (imageExists) {
+        await updateDoc(doc(db, 'images', filename), fileInfo);
+      } else {
+        await setDoc(doc(db, 'images', filename), { ...fileInfo, createdAt: serverTimestamp() });
+      }
     } catch (error) {
       console.error(error);
     }
