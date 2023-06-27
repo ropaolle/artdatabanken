@@ -193,3 +193,6 @@ export default function ImageDialog({ open, hide }: Props) {
     </dialog>
   );
 }
+
+
+
