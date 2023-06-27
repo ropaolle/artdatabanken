@@ -4,22 +4,13 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-county "Uppland"
-date 39948
-family "Kråkfåglar"
-id 0
-image "image067.jpg"
-kingdom "Fåglar"
-order "Tättingar"
-place "Råstasjön"
-speices "Skata"
-speices_latin "Pica pica"
 
 - [ ] Sida med filter som visar alla bilder.
 - [ ] Thumbnails
-- [ ] Sida med filter som visar alla poster.
+- [ ] Lägg till mer data
 - [ ] Delete image or record and make sure assosiated files also is deleted. Delet images that does not exist in db.
 - [ ] Security for files and db
+- [x] Sida med filter som visar alla poster.
 - [x] Refactor upload to use async/await insted of callbacks
 - [x] Image corp library
 
