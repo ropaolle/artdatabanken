@@ -11,6 +11,15 @@ footer {
   margin-top: 2rem;
 }
 
+th {
+  white-space: nowrap;
+}
+
+th a {
+  text-decoration: none;
+  color: hsl(205, 20%, 32%);
+}
+
 dialog .info {
   color: #39638e;
   font-size: smaller;
@@ -22,7 +31,7 @@ dialog h3 {
 }
 
 form .error {
-  color: #c62828
+  color: #c62828;
 }
 
 form .input-horizontal {
