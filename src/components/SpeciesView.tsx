@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { SpeciesInfo, ImageInfo } from '../lib/firebase';
 import { Icon } from '@iconify/react';
+import { Link } from '.';
 
 interface ItemInfo extends Omit<SpeciesInfo, 'updatedAt'> {
   all: string;
@@ -115,6 +116,11 @@ export default function SpeciesView({ species, images }: Props) {
 
   return (
     <div className="species-view">
+      <div className="grid">
+
+      <h1 id="speices">Arter</h1>
+      <Link onClick={() => {}}>Ny Art</Link>
+      </div>
       <form>
         <div className="grid">
           {/* INFO: Free text filters overrides column filters. */}

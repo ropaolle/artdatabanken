@@ -1,5 +1,5 @@
 import logo from '../assets/logo.svg';
-import { Dialogs } from '.';
+import { Link, Dialogs } from '.';
 
 type Props = {
   show: (dialog: number, show?: boolean) => void;
@@ -12,80 +12,22 @@ export default function Navigation({ show, setPage }: Props) {
       <nav>
         <ul>
           <li>
-          <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                setPage('');
-              }}
-            >
-            
-            <img src={logo} className="logo" alt="Logo" height={24} width={24} /> Artdatabanken
-            </a>
+            <Link onClick={() => setPage('')}>
+              <img src={logo} className="logo" alt="Logo" height={24} width={24} /> Artdatabanken
+            </Link>
           </li>
         </ul>
         <ul>
           <li>
-            {/* <a href="#speices">Arter</a> */}
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                show(Dialogs.ADD_SPECIES_DIALOG);
-              }}
-            >
-              Ny art
-            </a>
+            <Link onClick={() => setPage('species')}>Arter</Link>
           </li>
-          {/* <li>
-            <a href="#">Bilder</a>
-          </li> */}
+
           <li>
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                setPage('images');
-              }}
-            >
-              Bilder
-            </a>
+            <Link onClick={() => setPage('images')}>Bilder</Link>
           </li>
           <li>
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                show(Dialogs.UPLOAD_IMAGE_DIALOG);
-              }}
-            >
-              Ladda upp
-            </a>
+            <Link onClick={() => show(Dialogs.ADD_SPECIES_DIALOG)}>Ny Art</Link>
           </li>
-          {/* <li>
-            <details role="list" dir="rtl">
-              <summary aria-haspopup="listbox" role="link" className="contrast">
-                Theme
-              </summary>
-              <ul role="listbox">
-                <li>
-                  <a href="#" data-theme-switcher="auto">
-                    Auto
-                  </a>
-                </li>
-                <li>
-                  <a href="#" data-theme-switcher="light">
-                    Light
-                  </a>
-                </li>
-                <li>
-                  <a href="#" data-theme-switcher="dark">
-                    Dark
-                  </a>
-                </li>
-              </ul>
-            </details>
-          </li> */}
         </ul>
       </nav>
     </header>

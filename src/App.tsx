@@ -53,19 +53,8 @@ function App() {
           </>
         )}
 
-        {page === 'species' && (
-          <>
-            <h1 id="images">Bilder</h1>
-            <ImageView images={images} />
-          </>
-        )}
-
-        {page === 'images' && (
-          <>
-            <h1 id="images">Bilder</h1>
-            <ImageView images={images} />
-          </>
-        )}
+        {page === 'species' && <SpeciesView species={species} images={images} />}
+        {page === 'images' && <ImageView images={images} />}
       </main>
       <Footer />
     </>

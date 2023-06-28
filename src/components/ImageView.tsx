@@ -15,5 +15,10 @@ export default function ImageView({ images }: Props) {
     </figure>
   ));
 
-  return <div className="gallery">{imageList}</div>;
+  return (
+    <div className="species-view">
+      <h1 id="images">Bilder</h1>
+      <div className="gallery">{imageList}</div>
+    </div>
+  );
 }

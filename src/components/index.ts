@@ -4,10 +4,11 @@ import SpeciesView from './SpeciesView';
 import SpeciesDialog from './SpeciesDialog';
 import ImageDialog from './ImageDialog';
 import Footer from './Footer';
+import Link from './Link';
 
 export enum Dialogs {
   UPLOAD_IMAGE_DIALOG,
   ADD_SPECIES_DIALOG,
 }
 
-export { Navigation, ImageView, SpeciesView, SpeciesDialog, ImageDialog, Footer };
+export { Navigation, ImageView, SpeciesView, SpeciesDialog, ImageDialog, Footer, Link };
