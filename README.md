@@ -4,15 +4,15 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-- [ ] Uppdatera art
-- [ ] Välj bild i art
-- [ ] CSS styling on datalists
 - [ ] ?
+- [ ] Uppdatera art
+- [ ] CSS styling on datalists
 - [ ] Sida med filter som visar alla bilder.
 - [ ] Importera arter från Excel
 - [ ] Importera bilder från Firebase
 - [ ] Delete image or record and make sure assosiated files also is deleted. Delet images that does not exist in db.
 - [ ] Security for files and db
+- [x] Välj bild i art
 - [x] Thumbnails
 - [x] Sida med filter som visar alla poster.
 - [x] Refactor upload to use async/await insted of callbacks

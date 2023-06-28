@@ -44,7 +44,7 @@ function App() {
 
       <main className="container">
         <h2 id="speices">Arter</h2>
-        <SpeciesView species={species} />
+        <SpeciesView species={species} images={images} />
         <h2 id="images">Bilder</h2>
         <ImageView images={images} />
       </main>

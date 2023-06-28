@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { type SpeciesInfo } from '../lib/firebase';
+import type { SpeciesInfo, ImageInfo } from '../lib/firebase';
 import { Icon } from '@iconify/react';
 
 interface ItemInfo extends Omit<SpeciesInfo, 'updatedAt'> {
@@ -7,13 +7,17 @@ interface ItemInfo extends Omit<SpeciesInfo, 'updatedAt'> {
 }
 
 type Props = {
+  // species: SpeciesInfo[];
   species: ItemInfo[];
+  images: ImageInfo[];
 };
 
-export default function SpeciesView({ species }: Props) {
+export default function SpeciesView({ species, images }: Props) {
   const [sort, setSort] = useState({ column: 'species', ascending: false });
   const [filters, setFilter] = useState({ all: '' });
   const [items, setItems] = useState(species);
+
+  // console.log('images', images);
 
   useEffect(() => {
     const filteredSpecies = species.filter((item) => {
@@ -37,12 +41,11 @@ export default function SpeciesView({ species }: Props) {
   }, [species, filters]);
 
   const localeSort = (a: ItemInfo, b: ItemInfo) => {
-    // Ignore sort
-    if (sort.column === '') return 0;
-    // Compare columns
-    const column = sort.column as keyof ItemInfo;
-    const localeCompare = a[column].localeCompare(b[column], 'sv', { sensitivity: 'base' });
-    // Sort order
+    const itemA = a[sort.column as keyof ItemInfo];
+    const itemB = b[sort.column as keyof ItemInfo];
+    if (!itemA || !itemB) return 0;
+    const localeCompare = itemA.localeCompare(itemB, 'sv', { sensitivity: 'base' });
+    // Set sort order
     return sort.ascending ? -localeCompare : localeCompare;
   };
 
@@ -52,25 +55,40 @@ export default function SpeciesView({ species }: Props) {
 
   const speciesTable = items
     .sort(localeSort)
-    .map(({ kingdom, order, family, species, sex, speciesLatin, place, county, date, image /* , updatedAt */ }) => (
-      <tr key={species} id={species} onClick={handleClick}>
-        <td>{kingdom}</td>
-        <td>{order}</td>
-        <td>{family}</td>
-        <td>{species}</td>
-        <td>{sex}</td>
-        <td>{speciesLatin}</td>
-        {/* <td>
-          <div>{place}</div>
-          <div>{county}</div>
-          <div>{date}</div>
-        </td> */}
-        <td>{place}</td>
-        <td>{county}</td>
-        <td>{date}</td>
-        <td>{image}</td>
-      </tr>
-    ));
+    .map(
+      ({
+        kingdom,
+        order,
+        family,
+        species,
+        sex,
+        speciesLatin,
+        place,
+        county,
+        date,
+        image,
+        thumbnailURL /* , updatedAt */,
+      }) => (
+        <tr key={species} id={species} onClick={handleClick}>
+          <td>{kingdom}</td>
+          <td>{order}</td>
+          <td>{family}</td>
+          <td>{species}</td>
+          <td>{sex}</td>
+          <td>{speciesLatin}</td>
+          <td>
+            <div>{place}</div>
+            <div>{county}</div>
+          </td>
+          {/* <td>{place}</td>
+          <td>{county}</td> */}
+          <td>{date}</td>
+          <td>
+            <img src={thumbnailURL} alt={image} title={image} loading="lazy" />
+          </td>
+        </tr>
+      )
+    );
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
     setFilter((prevValues) => {
@@ -87,14 +105,12 @@ export default function SpeciesView({ species }: Props) {
   };
 
   const HeaderCell = ({ header, id }: { header: string; id: string }) => (
-    <th>
-      <a href="#" onClick={(e) => handleTableSortClick(e, id)}>
-        {header}
-        {sort.column === id && (
-          <Icon icon={`material-symbols:keyboard-arrow-${sort.ascending ? 'up' : 'down'}-rounded`} />
-        )}
-      </a>
-    </th>
+    <a href="#" onClick={(e) => handleTableSortClick(e, id)}>
+      {header}
+      {sort.column === id && (
+        <Icon icon={`material-symbols:keyboard-arrow-${sort.ascending ? 'up' : 'down'}-rounded`} />
+      )}
+    </a>
   );
 
   return (
@@ -123,16 +139,35 @@ export default function SpeciesView({ species }: Props) {
         <table className="species-table" role="grid">
           <thead>
             <tr>
-              <HeaderCell header="Klass" id="kingdom" />
-              <HeaderCell header="Order" id="order" />
-              <HeaderCell header="Familj" id="family" />
-              <HeaderCell header="Art" id="species" />
-              <HeaderCell header="Kön" id="sex" />
-              <HeaderCell header="Latinskt namn" id="speciesLatin" />
-              <HeaderCell header="Lokal" id="place" />
-              <HeaderCell header="Län" id="county" />
-              <HeaderCell header="Datum" id="date" />
-              <HeaderCell header="Bild" id="image" />
+              <th>
+                <HeaderCell header="Klass" id="kingdom" />
+              </th>
+              <th>
+                <HeaderCell header="Order" id="order" />
+              </th>
+              <th>
+                <HeaderCell header="Familj" id="family" />
+              </th>
+              <th>
+                <HeaderCell header="Art" id="species" />
+              </th>
+              <th>
+                <HeaderCell header="Kön" id="sex" />
+              </th>
+              <th>
+                <HeaderCell header="Latinskt namn" id="speciesLatin" />
+              </th>
+              <th>
+                <HeaderCell header="Lokal" id="place" />
+                <br />
+                <HeaderCell header="Län" id="county" />
+              </th>
+              <th>
+                <HeaderCell header="Datum" id="date" />
+              </th>
+              <th>
+                <HeaderCell header="Bild" id="image" />
+              </th>
             </tr>
           </thead>
           <tbody>{speciesTable}</tbody>

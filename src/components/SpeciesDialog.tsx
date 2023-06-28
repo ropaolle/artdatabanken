@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { db, type ImageInfo } from '../lib/firebase.ts';
@@ -167,6 +168,8 @@ const defaultValues = {
 };
 
 export default function SpeciesDialog({ open, hide, images }: Props) {
+  const [previewImage, setPreviewImage] = useState<string>();
+
   const {
     register,
     handleSubmit,
@@ -180,7 +183,19 @@ export default function SpeciesDialog({ open, hide, images }: Props) {
     try {
       // TODO: CreatedAt
       console.log('Add species', data);
-      await setDoc(doc(db, 'species', data.species), { ...data, updatedAt: serverTimestamp() });
+
+      const image = images.find(({ filename }) => filename === data.image);
+      // if (image) {
+      //   delete image.createdAt;
+      //   delete image.updatedAt;
+      // }
+      // console.log('image', image);
+      await setDoc(doc(db, 'species', data.species), {
+        ...data,
+        updatedAt: serverTimestamp(),
+        downloadURL: image?.downloadURL,
+        thumbnailURL: image?.thumbnailURL,
+      });
     } catch (error) {
       console.error(error);
     }
@@ -190,6 +205,11 @@ export default function SpeciesDialog({ open, hide, images }: Props) {
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
     const filename = e?.target.value;
+    // console.log('filename', filename);
+    const image = images.find((image) => image.filename === filename);
+    setPreviewImage(image?.thumbnailURL);
+
+    console.log('image', image);
     // if (filename && imageFilenames.includes(filename)) {
     //   console.log('e', filename);
     // }
@@ -255,19 +275,24 @@ export default function SpeciesDialog({ open, hide, images }: Props) {
                 Kön
                 <select {...register('sex')}>{toOptions(sexes)}</select>
               </label>
-            </div>
 
-            <div className="grid">
               <label htmlFor="date">
                 Datum
                 <input type="date" {...register('date')} />
               </label>
+            </div>
 
+            <div className="grid">
               <label htmlFor="date">
                 Bild
                 <input list="images-data" autoComplete="off" {...register('image', { onChange: handleChange })} />
                 <datalist id="images-data">{toDatalist(images.map(({ filename }) => filename))}</datalist>
               </label>
+
+              <div className="info-preview">
+                <label htmlFor="date">Förhandsgranskning</label>
+                {previewImage ? <img src={previewImage} /> : <div>Bild saknas.</div>}
+              </div>
             </div>
 
             <footer>
