@@ -4,12 +4,16 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-
+- [ ] Uppdatera art
+- [ ] Välj bild i art
+- [ ] CSS styling on datalists
+- [ ] ?
 - [ ] Sida med filter som visar alla bilder.
-- [ ] Thumbnails
-- [ ] Lägg till mer data
+- [ ] Importera arter från Excel
+- [ ] Importera bilder från Firebase
 - [ ] Delete image or record and make sure assosiated files also is deleted. Delet images that does not exist in db.
 - [ ] Security for files and db
+- [x] Thumbnails
 - [x] Sida med filter som visar alla poster.
 - [x] Refactor upload to use async/await insted of callbacks
 - [x] Image corp library
@@ -38,6 +42,9 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
   - [useEffect on objects](https://dev.to/hey_yogini/useeffect-dependency-array-and-object-comparison-45el)
 - CSS
   - [Grid](https://www.w3schools.com/css/css_grid_container.asp)
+- JavaScript
+  - [Create thumbnails on the client](https://codepen.io/mttaked/pen/ZLdEKm)
+  - [Create thumbnails in a Firebase cloud function](https://medium.com/@christianrb/how-to-create-an-image-thumbnail-with-firebase-cloud-functions-73d4584290ba)
 
 ## SETUP
 

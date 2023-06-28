@@ -52,7 +52,7 @@ export const checkIfImageExistsInDB = async (name: string): Promise<boolean> => 
   return docSnap.exists();
 };
 
-export const canvasToBlob = async (ref: HTMLCanvasElement): Promise<Blob> => {
+const canvasToBlob = async (ref: HTMLCanvasElement): Promise<Blob> => {
   return new Promise((resolve, reject) => {
     ref.toBlob((blob) => {
       if (!blob) {
@@ -64,7 +64,13 @@ export const canvasToBlob = async (ref: HTMLCanvasElement): Promise<Blob> => {
   });
 };
 
-export const uploadFile = async (blob: Blob, path: string, onProgress: (progress: number) => void): Promise<string> => {
+export const uploadFile = async (
+  canvasRef: HTMLCanvasElement,
+  /* blob: Blob, */ path: string,
+  onProgress: (progress: number) => void
+): Promise<string> => {
+  const blob = await canvasToBlob(canvasRef);
+
   const storageRef = ref(storage, path);
   const uploadTask = uploadBytesResumable(storageRef, blob);
 
@@ -107,6 +113,7 @@ export const getFileList = (filePath: string): Promise<string[]> => {
 export type ImageInfo = {
   filename: string;
   downloadURL: string;
+  thumbnailURL: string;
   updatedAt: Timestamp;
 };
 

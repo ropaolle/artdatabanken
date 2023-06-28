@@ -5,9 +5,9 @@ type Props = {
 };
 
 export default function ImageView({ images }: Props) {
-  const imageList = images.map(({ filename, downloadURL, updatedAt }) => (
+  const imageList = images.map(({ filename, downloadURL, thumbnailURL, updatedAt }) => (
     <figure className="gallery-image" key={filename}>
-      <img src={downloadURL} alt={filename} loading="lazy" />
+      <img src={thumbnailURL} alt={filename} loading="lazy" />
       <div className="info">
         <div>Namn: {filename}</div>
         <div>Skapad: {updatedAt.toDate().toLocaleDateString()}</div>

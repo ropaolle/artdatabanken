@@ -15,9 +15,19 @@ th {
   white-space: nowrap;
 }
 
+
 th a {
   text-decoration: none;
   color: hsl(205, 20%, 32%);
+}
+
+th a:hover {
+  color: hsl(205, 20%, 20%);
+}
+
+table[role=grid] tbody tr:hover {
+  background-color: #39638e2e;
+  cursor: pointer;
 }
 
 dialog .info {
@@ -53,9 +63,14 @@ form .input-horizontal div {
   }
 }
 
-canvas {
+canvas.image {
   width: 500px;
   height: 500px;
+}
+
+canvas.thumbnail {
+  width: 100px;
+  height: 100px;
 }
 
 /* Override Pico styling */

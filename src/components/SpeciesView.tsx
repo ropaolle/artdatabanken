@@ -46,10 +46,14 @@ export default function SpeciesView({ species }: Props) {
     return sort.ascending ? -localeCompare : localeCompare;
   };
 
+  const handleClick = (e: React.MouseEvent) => {
+    console.log(e.currentTarget.id);
+  };
+
   const speciesTable = items
     .sort(localeSort)
     .map(({ kingdom, order, family, species, sex, speciesLatin, place, county, date, image /* , updatedAt */ }) => (
-      <tr key={species}>
+      <tr key={species} id={species} onClick={handleClick}>
         <td>{kingdom}</td>
         <td>{order}</td>
         <td>{family}</td>

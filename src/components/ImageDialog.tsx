@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { db, checkIfImageExistsInDB, canvasToBlob, uploadFile } from '../lib/firebase.ts';
+import { db, checkIfImageExistsInDB, /* canvasToBlob, */ uploadFile } from '../lib/firebase.ts';
 import { doc, setDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import ReactCrop, { type PixelCrop } from 'react-image-crop';
@@ -15,7 +15,7 @@ type CanvasProps = {
   height: number;
 };
 
-async function drawCanvasPreview({ image, canvas, crop, width, height }: CanvasProps) {
+async function drawImageOnCanvas({ image, canvas, crop, width, height }: CanvasProps) {
   const ctx = canvas.getContext('2d');
 
   if (!ctx) {
@@ -70,6 +70,7 @@ export default function ImageDialog({ open, hide }: Props) {
 
   const imgRef = useRef<HTMLImageElement>(null);
   const previewCanvasRef = useRef<HTMLCanvasElement>(null);
+  const thumbnailCanvasRef = useRef<HTMLCanvasElement>(null);
 
   const { register, handleSubmit } = useForm<Inputs>();
 
@@ -88,14 +89,27 @@ export default function ImageDialog({ open, hide }: Props) {
 
   useDebounceEffect(
     async () => {
-      if (completedCrop?.width && completedCrop?.height && imgRef.current && previewCanvasRef.current) {
+      if (
+        completedCrop?.width &&
+        completedCrop?.height &&
+        imgRef.current &&
+        previewCanvasRef.current &&
+        thumbnailCanvasRef.current
+      ) {
         // We use canvasPreview as it's much faster than imgPreview.
-        drawCanvasPreview({
+        drawImageOnCanvas({
           image: imgRef.current,
           canvas: previewCanvasRef.current,
           crop: completedCrop,
           width: 500,
           height: 500,
+        });
+        drawImageOnCanvas({
+          image: imgRef.current,
+          canvas: thumbnailCanvasRef.current,
+          crop: completedCrop,
+          width: 100,
+          height: 100,
         });
       }
     },
@@ -104,22 +118,31 @@ export default function ImageDialog({ open, hide }: Props) {
   );
 
   const onSubmit: SubmitHandler<Inputs> = async ({ imageFile }) => {
-    if (!previewCanvasRef.current) {
+    if (!previewCanvasRef.current || !thumbnailCanvasRef.current) {
       throw new Error('Crop canvas does not exist');
     }
 
     const filename = imageFile[0].name;
     const path = `images/${filename}`;
 
+    const [name, ext] = filename.split('.');
+    const thumbnailPath = `images/${name}_thumb.${ext}`;
+
     try {
-      const blob = await canvasToBlob(previewCanvasRef.current);
-      const downloadURL = await uploadFile(blob, path, (progress: number) => {
+      // Upload image
+      const downloadURL = await uploadFile(previewCanvasRef.current, path, (progress: number) => {
+        setProgresspercent(progress);
+      });
+
+      // // Upload thumb
+      const thumbnailURL = await uploadFile(thumbnailCanvasRef.current, thumbnailPath, (progress: number) => {
         setProgresspercent(progress);
       });
 
       const fileInfo = {
         filename,
         downloadURL,
+        thumbnailURL,
         updatedAt: serverTimestamp(),
       };
 
@@ -147,13 +170,13 @@ export default function ImageDialog({ open, hide }: Props) {
     if (file) {
       setSelectedFile(file);
       setImageExists(await checkIfImageExistsInDB(file.name));
+      console.log('file.name', file.name);
     }
   };
 
   const onClick = (e: React.FormEvent) => {
     e.preventDefault();
     hide();
-    // show(dialogId, false);
   };
 
   return (
@@ -173,26 +196,39 @@ export default function ImageDialog({ open, hide }: Props) {
             </ReactCrop>
           )}
 
-          <canvas ref={previewCanvasRef} hidden={!imageUploaded} />
+          <div>
+            <canvas className="image" ref={previewCanvasRef} hidden={!imageUploaded} />
+            <canvas className="thumbnail" ref={thumbnailCanvasRef} hidden />
+          </div>
 
           {progresspercent > 0 && <progress value={progresspercent} max="100" />}
 
-          <footer>
-            {imageExists && !imageUploaded && (
-              <div className="info">
-                <Icon icon="material-symbols:info-outline" /> En bild med namnet <b>{selectedFile?.name}</b> existerar.
-                Om du laddar upp en ny bild med samma namn skrivs den befintliga bilden över!
-              </div>
-            )}
-            <button role="button" type="submit" disabled={!completedCrop} aria-busy={progresspercent > 0}>
-              Ladda upp
-            </button>
-          </footer>
+          {!imageUploaded && (
+            <footer>
+              {imageExists && !imageUploaded && (
+                <div className="info">
+                  <Icon icon="material-symbols:info-outline" /> En bild med namnet <b>{selectedFile?.name}</b>{' '}
+                  existerar. Om du laddar upp en ny bild med samma namn skrivs den befintliga bilden över!
+                </div>
+              )}
+              <button
+                role="button"
+                type="submit"
+                disabled={!completedCrop || imageUploaded}
+                aria-busy={progresspercent > 0}
+              >
+                Ladda upp
+              </button>
+            </footer>
+          )}
+
+          {imageUploaded && (
+            <div className="info">
+              Uppladdningen av <b>{selectedFile?.name}</b> lyckades.
+            </div>
+          )}
         </article>
       </form>
     </dialog>
   );
 }
-
-
-
