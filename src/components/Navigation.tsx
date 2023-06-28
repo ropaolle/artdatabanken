@@ -3,15 +3,25 @@ import { Dialogs } from '.';
 
 type Props = {
   show: (dialog: number, show?: boolean) => void;
+  setPage: (page: React.SetStateAction<string | undefined>) => void;
 };
 
-export default function Navigation({ show }: Props) {
+export default function Navigation({ show, setPage }: Props) {
   return (
     <header className="container">
       <nav>
         <ul>
           <li>
+          <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setPage('');
+              }}
+            >
+            
             <img src={logo} className="logo" alt="Logo" height={24} width={24} /> Artdatabanken
+            </a>
           </li>
         </ul>
         <ul>
@@ -32,11 +42,11 @@ export default function Navigation({ show }: Props) {
           </li> */}
           <li>
             <a
-              href="#images"
-              // onClick={(e) => {
-              //   e.preventDefault();
-              //   images();
-              // }}
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setPage('images');
+              }}
             >
               Bilder
             </a>

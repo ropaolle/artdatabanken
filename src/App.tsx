@@ -4,6 +4,7 @@ import { Navigation, ImageView, SpeciesView, SpeciesDialog, ImageDialog, Footer,
 import { getImageInfo, type ImageInfo, getSpeciesInfo, type SpeciesInfo } from './lib/firebase.ts';
 
 function App() {
+  const [page, setPage] = useState<string>();
   const [images, setImages] = useState<ImageInfo[]>([]);
   const [species, setSpecies] = useState<SpeciesInfo[]>([]);
   const [showUploadDialog, setShowUploadDialog] = useState(false);
@@ -34,7 +35,7 @@ function App() {
 
   return (
     <>
-      <Navigation show={showDialog} />
+      <Navigation show={showDialog} setPage={setPage} />
       <ImageDialog open={showUploadDialog} hide={() => showDialog(Dialogs.UPLOAD_IMAGE_DIALOG, false)} />
       <SpeciesDialog
         images={images}
@@ -43,10 +44,28 @@ function App() {
       />
 
       <main className="container">
-        <h2 id="speices">Arter</h2>
-        <SpeciesView species={species} images={images} />
-        <h2 id="images">Bilder</h2>
-        <ImageView images={images} />
+        {!page && (
+          <>
+            <h1>Artdatabanken</h1>
+            <p>Skapa dina egna artsamlingar för direkt utskrift eller lagring som pdf-filer. </p>
+            <h2>Hur gör man?</h2>
+            <p></p>
+          </>
+        )}
+
+        {page === 'species' && (
+          <>
+            <h1 id="images">Bilder</h1>
+            <ImageView images={images} />
+          </>
+        )}
+
+        {page === 'images' && (
+          <>
+            <h1 id="images">Bilder</h1>
+            <ImageView images={images} />
+          </>
+        )}
       </main>
       <Footer />
     </>
