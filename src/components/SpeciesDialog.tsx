@@ -68,17 +68,17 @@ type Props = {
   images: ImageInfo[];
 };
 
-// const defaultValues = {
-//   species: undefined,
-//   place: '',
-//   date: new Date().toLocaleDateString(),
-//   kingdom: '',
-//   order: '',
-//   family: '',
-//   county: '',
-//   speciesLatin: '',
-//   sex: '',
-// };
+const defaultValues2 = {
+  species: undefined,
+  place: '',
+  date: new Date().toLocaleDateString(),
+  kingdom: '',
+  order: '',
+  family: '',
+  county: '',
+  speciesLatin: '',
+  sex: '',
+};
 
 export default function SpeciesDialog({ open, close, defaultValues, images }: Props) {
   const [previewImage, setPreviewImage] = useState<string>();
@@ -88,7 +88,7 @@ export default function SpeciesDialog({ open, close, defaultValues, images }: Pr
     handleSubmit,
     // watch,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful, isSubmitting },
   } = useForm<Inputs>({
     // defaultValues: defaultValues,
   });
@@ -102,7 +102,14 @@ export default function SpeciesDialog({ open, close, defaultValues, images }: Pr
     // console.log('reset');
     reset(defaultValues);
     loadPreview(defaultValues.image);
-  }, [defaultValues]);
+  }, [defaultValues, reset]);
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset(defaultValues2);
+      close();
+    }
+  }, [isSubmitSuccessful, reset, close]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
@@ -129,7 +136,7 @@ export default function SpeciesDialog({ open, close, defaultValues, images }: Pr
   // console.log(watch('example'));
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
-    loadPreview(e?.target.value || '')
+    loadPreview(e?.target.value || '');
   };
 
   const onClick = (e: React.FormEvent) => {
@@ -214,10 +221,14 @@ export default function SpeciesDialog({ open, close, defaultValues, images }: Pr
 
             <footer>
               <div className="grid">
-                <button role="button" type="reset">
+                {/* <button role="button" type="reset">
                   Rensa
-                </button>
-                <button role="button" type="submit">
+                </button>     */}
+                <div></div>
+                <button className='secondary' role="button" type="button">
+                  Radera
+                </button>     
+                <button role="button" type="submit" aria-busy={isSubmitting}>
                   Spara
                 </button>
               </div>

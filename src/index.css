@@ -57,6 +57,14 @@ dialog h3 {
   width: auto;
 }
 
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+  --secondary: #d81b60;
+  --secondary-hover: #c2185b;
+  --secondary-focus: rgba(216, 27, 96, 0.125);
+  --secondary-inverse: #FFF;
+}
+
 form .error {
   color: #c62828;
 }

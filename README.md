@@ -5,10 +5,10 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 ## TODO
 
 - [ ] ?
-- [ ] Radera bild och art
+- [ ] Radera art
+- [ ] Radera bild 
 - [ ] Använd inte filnamn och art som dokumentnamn. Skapa ett unikt id.
 - [ ] Art: Lagra länk till bild. INte filnamn.
-- [ ] Normalisera filnamn. Små bokstäver och mellanslag till bindestreck.
 - [ ] CSS styling on datalists
 - [ ] Sida med filter som visar alla bilder.
 - [ ] Importera arter från Excel
@@ -16,6 +16,7 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 - [ ] Delete image/record and make sure assosiated files also is deleted. Delet images that does not exist in db.
 - [ ] Skriv ut eller spara som pdf.
 - [ ] Security for files and db
+- [x] Normalisera filnamn. Små bokstäver och mellanslag till bindestreck.
 - [x] Uppdatera art
 - [x] Välj bild i art
 - [x] Thumbnails
