@@ -10,6 +10,7 @@ import {
   Footer,
   Dialogs,
   PageGenerator,
+  Dialog,
 } from './components';
 import { getImageInfo, type ImageInfo, getSpeciesInfo, type SpeciesInfo } from './lib/firebase.ts';
 
@@ -118,9 +119,11 @@ function App() {
   const [page, setPage] = useState<string>();
   const [images, setImages] = useState<ImageInfo[]>([]);
   const [species, setSpecies] = useState<SpeciesInfo[]>([]);
+
   const [showUploadDialog, setShowUploadDialog] = useState(false);
   const [showSpeciesDialog, setShowSpeciesDialog] = useState(false);
   const [speciesDialog, setSpeciesDialog] = useState(defaultValues /* defaultTatting(1) */);
+  const [showDialog2, setShowDialog2] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -150,13 +153,21 @@ function App() {
     <>
       <Navigation show={showDialog} setPage={setPage} />
       <ImageDialog open={showUploadDialog} close={() => showDialog(Dialogs.UPLOAD_IMAGE_DIALOG, false)} />
-      <ImageDeleteDialog open={true}  close={() => showDialog(Dialogs.UPLOAD_IMAGE_DIALOG, false)} />
+      {/* <ImageDeleteDialog open={true} close={() => showDialog(Dialogs.UPLOAD_IMAGE_DIALOG, false)} /> */}
       <SpeciesDialog
         images={images}
         open={showSpeciesDialog}
         close={() => showDialog(Dialogs.ADD_SPECIES_DIALOG, false)}
         defaultValues={speciesDialog}
       />
+      <Dialog id="basDialog" title={'My dialog 2023'} open={showDialog2} show={setShowDialog2}>
+        <div>OLLE</div>
+        <footer>
+          <button role="button" type="submit" aria-busy={false}>
+            Spara
+          </button>
+        </footer>
+      </Dialog>
 
       <main className="container">
         {!page && (

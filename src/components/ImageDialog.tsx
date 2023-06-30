@@ -126,7 +126,7 @@ export default function ImageDialog({ open, close }: Props) {
     const path = `images/${filename}`;
 
     const [name, ext] = filename.split('.');
-    const thumbnail = `${name}_thumb.${ext}`
+    const thumbnail = `${name}_thumb.${ext}`;
     const thumbnailPath = `images/${thumbnail}`;
 
     try {
@@ -186,9 +186,10 @@ export default function ImageDialog({ open, close }: Props) {
     <dialog id="imageDialog" open={open}>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <article>
-          <a href="#" aria-label="Close" className="close" onClick={onClick}></a>
-
-          <h3>Ladda upp bild</h3>
+          <header>
+            <a href="#" aria-label="Close" className="close" onClick={onClick}></a>
+            <b>Ladda upp bild</b>
+          </header>
           <p>Ladda upp en ny eller ersätt befintlig bild.</p>
 
           <input type="file" {...register('imageFile', { onChange: handleChange })} />
@@ -210,8 +211,8 @@ export default function ImageDialog({ open, close }: Props) {
             <footer>
               {imageExists && !imageUploaded && (
                 <div className="info">
-                  <Icon icon="material-symbols:info-outline" /> En bild med namnet <b>{selectedFile?.name}</b>{' '}
-                  existerar redan. Om du laddar upp en ny bild med samma namn skrivs den befintliga bilden över!
+                  <Icon icon="material-symbols:info-outline" /> En bild med namnet <b>{selectedFile?.name}</b> existerar
+                  redan. Om du laddar upp en ny bild med samma namn skrivs den befintliga bilden över!
                 </div>
               )}
               <button
