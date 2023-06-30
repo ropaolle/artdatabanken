@@ -12,12 +12,26 @@ import {
 } from './components';
 import { getImageInfo, type ImageInfo, getSpeciesInfo, type SpeciesInfo } from './lib/firebase.ts';
 
+const defaultValues = {
+  species: '',
+  place: '',
+  date: new Date().toLocaleDateString(),
+  kingdom: '',
+  order: '',
+  family: '',
+  county: '',
+  speciesLatin: '',
+  sex: '',
+  image: 'image515.jpg',
+};
+
 function App() {
   const [page, setPage] = useState<string>();
   const [images, setImages] = useState<ImageInfo[]>([]);
   const [species, setSpecies] = useState<SpeciesInfo[]>([]);
   const [showUploadDialog, setShowUploadDialog] = useState(false);
   const [showSpeciesDialog, setShowSpeciesDialog] = useState(false);
+  const [speciesDialog, setSpeciesDialog] = useState(defaultValues);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,16 +45,19 @@ function App() {
     fetchData().catch(console.error);
   }, []);
 
-  const showDialog = (dialog: number, show = true) => {
+  const showDialog = (dialog: number, show = true, data?: SpeciesInfo) => {
     switch (dialog) {
       case Dialogs.UPLOAD_IMAGE_DIALOG:
         setShowUploadDialog(show);
         break;
       case Dialogs.ADD_SPECIES_DIALOG:
+        if (data) setSpeciesDialog(data);
         setShowSpeciesDialog(show);
         break;
     }
   };
+
+  // console.log('speciesDialog', speciesDialog);
 
   return (
     <>
@@ -49,7 +66,8 @@ function App() {
       <SpeciesDialog
         images={images}
         open={showSpeciesDialog}
-        hide={() => showDialog(Dialogs.ADD_SPECIES_DIALOG, false)}
+        close={() => showDialog(Dialogs.ADD_SPECIES_DIALOG, false)}
+        defaultValues={speciesDialog}
       />
 
       <main className="container">

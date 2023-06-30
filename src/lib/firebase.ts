@@ -134,7 +134,7 @@ export type SpeciesInfo = {
   speciesLatin: string;
   image: string;
   date: string;
-  updatedAt: Timestamp;
+  updatedAt?: Timestamp;
   thumbnailURL?: string;
   // all?: string;
 };

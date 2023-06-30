@@ -1,96 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { db, type ImageInfo } from '../lib/firebase.ts';
 import { toDatalist, toOptions } from '../lib';
-
-const tattingar = [
-  [
-    'Fåglar',
-    'Tättingar',
-    'Kråkfåglar',
-    'Skata',
-    'Pica pica',
-    'male',
-    'Råstasjön',
-    'stockholm',
-    '2009-05-15',
-    'image067.jpg',
-  ],
-  [
-    'Fåglar',
-    'Tättingar',
-    'Kråkfåglar',
-    'Kråka',
-    'Corvus corone',
-    'female',
-    'Råstasjön',
-    'stockholm',
-    '2009-05-15',
-    'image068.jpg',
-  ],
-  [
-    'Fåglar',
-    'Tättingar',
-    'Kråkfåglar',
-    'Råka',
-    'Corvus frugilegus',
-    'male',
-    'Verkeån',
-    'skane',
-    '2010-05-19',
-    'image066.jpg',
-  ],
-  [
-    'Fåglar',
-    'Tättingar',
-    'Kråkfåglar',
-    'Lavskrika',
-    'Perisoreus infaustus',
-    'male',
-    'Ånnsjön',
-    'jamtland',
-    '2010-06-16',
-    'image069.jpg',
-  ],
-  [
-    'Fåglar',
-    'Tättingar',
-    'Kråkfåglar',
-    'Kaja',
-    'Corvus monedula',
-    'male',
-    'Ottenby',
-    'Öland',
-    '2009-07-12',
-    'image070.jpg',
-  ],
-  [
-    'Fåglar',
-    'Tättingar',
-    'Kråkfåglar',
-    'Nötskrika',
-    'Garrulus glandarius',
-    'male',
-    'Källhagen',
-    'sodermanland',
-    '2018-04-28',
-    'image301.jpg',
-  ],
-];
-
-const defaultTatting = (id = 0) => ({
-  species: tattingar[id][3],
-  place: tattingar[id][6],
-  date: tattingar[id][8],
-  kingdom: tattingar[id][0],
-  order: tattingar[id][1],
-  family: tattingar[id][2],
-  county: tattingar[id][7],
-  speciesLatin: tattingar[id][4],
-  sex: tattingar[id][5],
-  image: tattingar[id][9],
-});
 
 const counties = [
   { value: '', label: 'Ange län…' },
@@ -151,33 +63,46 @@ type Inputs = {
 
 type Props = {
   open: boolean;
-  hide: () => void;
+  close: () => void;
+  defaultValues: Inputs;
   images: ImageInfo[];
 };
 
-const defaultValues = {
-  species: undefined,
-  place: '',
-  date: new Date().toLocaleDateString(),
-  kingdom: '',
-  order: '',
-  family: '',
-  county: '',
-  speciesLatin: '',
-  sex: '',
-};
+// const defaultValues = {
+//   species: undefined,
+//   place: '',
+//   date: new Date().toLocaleDateString(),
+//   kingdom: '',
+//   order: '',
+//   family: '',
+//   county: '',
+//   speciesLatin: '',
+//   sex: '',
+// };
 
-export default function SpeciesDialog({ open, hide, images }: Props) {
+export default function SpeciesDialog({ open, close, defaultValues, images }: Props) {
   const [previewImage, setPreviewImage] = useState<string>();
 
   const {
     register,
     handleSubmit,
     // watch,
+    reset,
     formState: { errors },
   } = useForm<Inputs>({
-    defaultValues: defaultTatting(2),
+    // defaultValues: defaultValues,
   });
+
+  const loadPreview = (filename: string) => {
+    const image = images.find((image) => image.filename === filename);
+    setPreviewImage(image?.thumbnailURL);
+  };
+
+  useEffect(() => {
+    // console.log('reset');
+    reset(defaultValues);
+    loadPreview(defaultValues.image);
+  }, [defaultValues]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
@@ -204,20 +129,12 @@ export default function SpeciesDialog({ open, hide, images }: Props) {
   // console.log(watch('example'));
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
-    const filename = e?.target.value;
-    // console.log('filename', filename);
-    const image = images.find((image) => image.filename === filename);
-    setPreviewImage(image?.thumbnailURL);
-
-    console.log('image', image);
-    // if (filename && imageFilenames.includes(filename)) {
-    //   console.log('e', filename);
-    // }
+    loadPreview(e?.target.value || '')
   };
 
   const onClick = (e: React.FormEvent) => {
     e.preventDefault();
-    hide();
+    close();
   };
 
   return (
@@ -296,9 +213,14 @@ export default function SpeciesDialog({ open, hide, images }: Props) {
             </div>
 
             <footer>
-              <button role="button" type="submit">
-                Spara
-              </button>
+              <div className="grid">
+                <button role="button" type="reset">
+                  Rensa
+                </button>
+                <button role="button" type="submit">
+                  Spara
+                </button>
+              </div>
             </footer>
           </article>
         </form>

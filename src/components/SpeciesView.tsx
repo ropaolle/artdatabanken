@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { SpeciesInfo, ImageInfo } from '../lib/firebase';
 import { Icon } from '@iconify/react';
-import { Link, Dialogs } from '.';
+import { Dialogs } from '.';
 
 interface ItemInfo extends Omit<SpeciesInfo, 'updatedAt'> {
   all: string;
@@ -11,7 +11,7 @@ type Props = {
   // species: SpeciesInfo[];
   species: ItemInfo[];
   images: ImageInfo[];
-  show: (dialog: number, show?: boolean) => void;
+  show: (dialog: number, show?: boolean, data?: SpeciesInfo) => void;
 };
 
 export default function SpeciesView({ species, images, show }: Props) {
@@ -51,8 +51,11 @@ export default function SpeciesView({ species, images, show }: Props) {
     return sort.ascending ? -localeCompare : localeCompare;
   };
 
-  const handleClick = (e: React.MouseEvent) => {
-    console.log(e.currentTarget.id);
+  const handleRowClick = (e: React.MouseEvent) => {
+    const selected = species.find(({ species }) => species === e.currentTarget.id);
+    if (selected) {
+      show(Dialogs.ADD_SPECIES_DIALOG, true, selected);
+    }
   };
 
   const speciesTable = items
@@ -71,7 +74,7 @@ export default function SpeciesView({ species, images, show }: Props) {
         image,
         thumbnailURL /* , updatedAt */,
       }) => (
-        <tr key={species} id={species} onClick={handleClick}>
+        <tr key={species} id={species} onClick={handleRowClick}>
           <td>{kingdom}</td>
           <td>{order}</td>
           <td>{family}</td>
