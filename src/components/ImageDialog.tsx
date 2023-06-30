@@ -48,7 +48,7 @@ type Inputs = {
 
 type Props = {
   open: boolean;
-  hide: () => void;
+  close: () => void;
 };
 
 const defaultCropArea: PixelCrop = {
@@ -59,7 +59,7 @@ const defaultCropArea: PixelCrop = {
   y: 250,
 };
 
-export default function ImageDialog({ open, hide }: Props) {
+export default function ImageDialog({ open, close }: Props) {
   const [selectedFile, setSelectedFile] = useState<File>();
   const [imageExists, setImageExists] = useState<boolean>(false);
   const [imageUploaded, setImageUploaded] = useState<boolean>(false);
@@ -126,7 +126,8 @@ export default function ImageDialog({ open, hide }: Props) {
     const path = `images/${filename}`;
 
     const [name, ext] = filename.split('.');
-    const thumbnailPath = `images/${name}_thumb.${ext}`;
+    const thumbnail = `${name}_thumb.${ext}`
+    const thumbnailPath = `images/${thumbnail}`;
 
     try {
       // Upload image
@@ -141,6 +142,7 @@ export default function ImageDialog({ open, hide }: Props) {
 
       const fileInfo = {
         filename,
+        thumbnail,
         downloadURL,
         thumbnailURL,
         updatedAt: serverTimestamp(),
@@ -177,7 +179,7 @@ export default function ImageDialog({ open, hide }: Props) {
 
   const onClick = (e: React.FormEvent) => {
     e.preventDefault();
-    hide();
+    close();
   };
 
   return (

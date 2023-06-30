@@ -115,6 +115,7 @@ export const getFileList = (filePath: string): Promise<string[]> => {
 
 export type ImageInfo = {
   filename: string;
+  thumbnail: string;
   downloadURL: string;
   thumbnailURL: string;
   createdAt: Timestamp;
@@ -127,6 +128,7 @@ export const getImageInfo = async (): Promise<ImageInfo[]> => {
 };
 
 export type SpeciesInfo = {
+  id: string;
   kingdom: string;
   order: string;
   family: string;
@@ -135,14 +137,17 @@ export type SpeciesInfo = {
   county: string;
   place: string;
   speciesLatin: string;
-  image: string;
   date: string;
+  image: string;
   updatedAt?: Timestamp;
-  thumbnailURL?: string;
+  // thumbnailURL?: string;
   // all?: string;
 };
 
 export const getSpeciesInfo = async (): Promise<SpeciesInfo[]> => {
   const querySnapshot = await getDocs(collection(db, 'species'));
-  return querySnapshot.docs.map((doc) => doc.data() as SpeciesInfo);
+  // querySnapshot
+  // const data = doc.data();
+
+  return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id } as SpeciesInfo));
 };

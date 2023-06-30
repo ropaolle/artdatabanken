@@ -9,11 +9,12 @@ type Props = {
 export default function ImageView({ images, show }: Props) {
   const imageList = images.map(({ filename, downloadURL, thumbnailURL, updatedAt }) => (
     <figure className="gallery-image" key={filename}>
-      <img src={thumbnailURL} alt={filename} loading="lazy" />
-      <div className="info">
-        <div>Namn: {filename}</div>
-        <div>Skapad: {updatedAt.toDate().toLocaleDateString()}</div>
-      </div>
+      <div className='zoom'><img src={thumbnailURL} alt={filename} loading="lazy" /></div>
+      {/* <div className="info">
+        <div>{filename}</div>
+     
+      </div> */}
+     
     </figure>
   ));
 

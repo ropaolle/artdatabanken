@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { doc, updateDoc, addDoc, serverTimestamp, collection, deleteDoc } from 'firebase/firestore';
 import { db, type ImageInfo } from '../lib/firebase.ts';
 import { toDatalist, toOptions } from '../lib';
 
@@ -49,6 +49,7 @@ const classes = [
 ];
 
 type Inputs = {
+  id?: string;
   species: string;
   place: string;
   date: string;
@@ -64,12 +65,12 @@ type Inputs = {
 type Props = {
   open: boolean;
   close: () => void;
-  defaultValues: Inputs;
+  defaultValues?: Inputs;
   images: ImageInfo[];
 };
 
-const defaultValues2 = {
-  species: undefined,
+const defaults = {
+  species: '',
   place: '',
   date: new Date().toLocaleDateString(),
   kingdom: '',
@@ -78,9 +79,10 @@ const defaultValues2 = {
   county: '',
   speciesLatin: '',
   sex: '',
+  image: '',
 };
 
-export default function SpeciesDialog({ open, close, defaultValues, images }: Props) {
+export default function SpeciesDialog({ open, close, defaultValues = defaults, images }: Props) {
   const [previewImage, setPreviewImage] = useState<string>();
 
   const {
@@ -106,28 +108,23 @@ export default function SpeciesDialog({ open, close, defaultValues, images }: Pr
 
   useEffect(() => {
     if (isSubmitSuccessful) {
-      reset(defaultValues2);
+      reset(defaults);
       close();
     }
   }, [isSubmitSuccessful, reset, close]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      // TODO: CreatedAt
       console.log('Add species', data);
 
-      const image = images.find(({ filename }) => filename === data.image);
-      // if (image) {
-      //   delete image.createdAt;
-      //   delete image.updatedAt;
-      // }
-      // console.log('image', image);
-      await setDoc(doc(db, 'species', data.species), {
-        ...data,
-        updatedAt: serverTimestamp(),
-        downloadURL: image?.downloadURL,
-        thumbnailURL: image?.thumbnailURL,
-      });
+      if (data.id) {
+        await updateDoc(doc(db, 'species', data.id), {
+          ...data,
+          updatedAt: serverTimestamp(),
+        });
+      } else {
+        await addDoc(collection(db, 'species'), { ...data, createdAt: serverTimestamp() });
+      }
     } catch (error) {
       console.error(error);
     }
@@ -135,13 +132,24 @@ export default function SpeciesDialog({ open, close, defaultValues, images }: Pr
 
   // console.log(watch('example'));
 
-  const handleChange = async (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
     loadPreview(e?.target.value || '');
   };
 
-  const onClick = (e: React.FormEvent) => {
+  const handleClose = (e: React.FormEvent) => {
     e.preventDefault();
     close();
+  };
+
+  const handleDelete = async () => {
+    if (defaultValues.id) {
+      try {
+        await deleteDoc(doc(db, 'species', defaultValues.id));
+        close();
+      } catch (error) {
+        console.error(error);
+      }
+    }
   };
 
   return (
@@ -149,7 +157,7 @@ export default function SpeciesDialog({ open, close, defaultValues, images }: Pr
       <div className="species-view">
         <form onSubmit={handleSubmit(onSubmit)}>
           <article>
-            <a href="#" aria-label="Close" className="close" onClick={onClick}></a>
+            <a href="#" aria-label="Close" className="close" onClick={handleClose}></a>
 
             <h3>Lägg till ny art</h3>
 
@@ -209,7 +217,11 @@ export default function SpeciesDialog({ open, close, defaultValues, images }: Pr
             <div className="grid">
               <label htmlFor="date">
                 Bild
-                <input list="images-data" autoComplete="off" {...register('image', { onChange: handleChange })} />
+                {/* <select {...register('image', { onChange: handleImageChange })}>
+                  <option value="">Välj bild…</option>
+                  {toOptions(images.map(({ filename }) => ({ value: filename, label: filename })))}
+                </select> */}
+                <input list="images-data" autoComplete="off" {...register('image', { onChange: handleImageChange })} />
                 <datalist id="images-data">{toDatalist(images.map(({ filename }) => filename))}</datalist>
               </label>
 
@@ -225,9 +237,15 @@ export default function SpeciesDialog({ open, close, defaultValues, images }: Pr
                   Rensa
                 </button>     */}
                 <div></div>
-                <button className='secondary' role="button" type="button">
+                <button
+                  className="contrast"
+                  role="button"
+                  type="button"
+                  disabled={!defaultValues.id}
+                  onClick={handleDelete}
+                >
                   Radera
-                </button>     
+                </button>
                 <button role="button" type="submit" aria-busy={isSubmitting}>
                   Spara
                 </button>

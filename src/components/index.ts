@@ -3,6 +3,7 @@ import ImageView from './ImageView';
 import SpeciesView from './SpeciesView';
 import SpeciesDialog from './SpeciesDialog';
 import ImageDialog from './ImageDialog';
+import ImageDeleteDialog from './ImageDeleteDialog';
 import Footer from './Footer';
 import Link from './Link';
 import PageGenerator from './PageGenerator';
@@ -12,4 +13,4 @@ export enum Dialogs {
   ADD_SPECIES_DIALOG,
 }
 
-export { Navigation, ImageView, SpeciesView, SpeciesDialog, ImageDialog, Footer, Link, PageGenerator };
+export { Navigation, ImageView, SpeciesView, SpeciesDialog,ImageDeleteDialog, ImageDialog, Footer, Link, PageGenerator };

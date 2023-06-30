@@ -51,49 +51,37 @@ export default function SpeciesView({ species, images, show }: Props) {
     return sort.ascending ? -localeCompare : localeCompare;
   };
 
-  const handleRowClick = (e: React.MouseEvent) => {
-    const selected = species.find(({ species }) => species === e.currentTarget.id);
+  const handleRowClick = (e: React.MouseEvent /* <Element, MouseEvent> */) => {
+    const selected = species.find(({ id }) => id === e.currentTarget.id);
     if (selected) {
       show(Dialogs.ADD_SPECIES_DIALOG, true, selected);
     }
   };
 
+  const getImage = (name: string) => images.find((image) => image.filename === name);
+
   const speciesTable = items
     .sort(localeSort)
-    .map(
-      ({
-        kingdom,
-        order,
-        family,
-        species,
-        sex,
-        speciesLatin,
-        place,
-        county,
-        date,
-        image,
-        thumbnailURL /* , updatedAt */,
-      }) => (
-        <tr key={species} id={species} onClick={handleRowClick}>
-          <td>{kingdom}</td>
-          <td>{order}</td>
-          <td>{family}</td>
-          <td>{species}</td>
-          <td>{sex}</td>
-          <td>{speciesLatin}</td>
-          <td>
-            <div>{place}</div>
-            <div>{county}</div>
-          </td>
-          {/* <td>{place}</td>
+    .map(({ id, kingdom, order, family, species, sex, speciesLatin, place, county, date, image }) => (
+      <tr key={species} id={id} onClick={handleRowClick}>
+        <td>{kingdom}</td>
+        <td>{order}</td>
+        <td>{family}</td>
+        <td>{species}</td>
+        <td>{sex}</td>
+        <td>{speciesLatin}</td>
+        <td>
+          <div>{place}</div>
+          <div>{county}</div>
+        </td>
+        {/* <td>{place}</td>
           <td>{county}</td> */}
-          <td>{date}</td>
-          <td>
-            <img src={thumbnailURL} alt={image} title={image} loading="lazy" />
-          </td>
-        </tr>
-      )
-    );
+        <td>{date}</td>
+        <td>
+          <img src={getImage(image)?.thumbnailURL} alt={image} title={image} loading="lazy" />
+        </td>
+      </tr>
+    ));
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
     setFilter((prevValues) => {
