@@ -123,9 +123,9 @@ export default function SpeciesView({ species, images, show }: Props) {
       <div className="grid">
         <h1 id="speices">Arter</h1>
         <div className="header-buttons">
-          <a href="#" role="button" onClick={() => show(Dialogs.ADD_SPECIES_DIALOG)}>
+          <button role="button" onClick={() => show(Dialogs.ADD_SPECIES_DIALOG)}>
             Ny Art
-          </a>
+          </button>
         </div>
       </div>
       <form>

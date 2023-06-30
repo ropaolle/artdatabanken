@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { db, checkIfImageExistsInDB, /* canvasToBlob, */ uploadFile } from '../lib/firebase.ts';
-import { doc, setDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
+import { db, checkIfImageExistsInDB, /* canvasToBlob, */ uploadFile, normalizeFilename } from '../lib/firebase.ts';
+import { doc, addDoc, setDoc, updateDoc, serverTimestamp, collection } from 'firebase/firestore';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import ReactCrop, { type PixelCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
@@ -122,7 +122,7 @@ export default function ImageDialog({ open, hide }: Props) {
       throw new Error('Crop canvas does not exist');
     }
 
-    const filename = imageFile[0].name;
+    const filename = normalizeFilename(imageFile[0].name);
     const path = `images/${filename}`;
 
     const [name, ext] = filename.split('.');
@@ -149,6 +149,7 @@ export default function ImageDialog({ open, hide }: Props) {
       if (imageExists) {
         await updateDoc(doc(db, 'images', filename), fileInfo);
       } else {
+        // await addDoc(collection(db, 'images'), { ...fileInfo, createdAt: serverTimestamp() })
         await setDoc(doc(db, 'images', filename), { ...fileInfo, createdAt: serverTimestamp() });
       }
     } catch (error) {
@@ -208,7 +209,7 @@ export default function ImageDialog({ open, hide }: Props) {
               {imageExists && !imageUploaded && (
                 <div className="info">
                   <Icon icon="material-symbols:info-outline" /> En bild med namnet <b>{selectedFile?.name}</b>{' '}
-                  existerar. Om du laddar upp en ny bild med samma namn skrivs den befintliga bilden över!
+                  existerar redan. Om du laddar upp en ny bild med samma namn skrivs den befintliga bilden över!
                 </div>
               )}
               <button

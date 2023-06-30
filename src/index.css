@@ -49,10 +49,12 @@ dialog h3 {
   margin-bottom: 1rem;
 }
 
-/* .species-view .buttons,
-.image-view .buttons, */
 .header-buttons {
   text-align: right;
+}
+
+.header-buttons button {
+  width: auto;
 }
 
 form .error {

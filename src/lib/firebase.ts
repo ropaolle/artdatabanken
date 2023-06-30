@@ -45,8 +45,10 @@ export const checkIfFileExists = async (filePath: string): Promise<string | bool
   });
 };
 
+export const normalizeFilename = (filename: string) => filename.replaceAll(' ', '-').toLowerCase();
+
 export const checkIfImageExistsInDB = async (name: string): Promise<boolean> => {
-  const docRef = doc(db, 'images', name);
+  const docRef = doc(db, 'images', normalizeFilename(name));
   const docSnap = await getDoc(docRef);
 
   return docSnap.exists();
@@ -66,7 +68,8 @@ const canvasToBlob = async (ref: HTMLCanvasElement): Promise<Blob> => {
 
 export const uploadFile = async (
   canvasRef: HTMLCanvasElement,
-  /* blob: Blob, */ path: string,
+  /* blob: Blob, */
+  path: string,
   onProgress: (progress: number) => void
 ): Promise<string> => {
   const blob = await canvasToBlob(canvasRef);
