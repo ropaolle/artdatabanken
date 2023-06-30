@@ -1,6 +1,15 @@
 import { useState, useEffect } from 'react';
 // import './App.css';
-import { Navigation, ImageView, SpeciesView, SpeciesDialog, ImageDialog, Footer, Dialogs } from './components';
+import {
+  Navigation,
+  ImageView,
+  SpeciesView,
+  SpeciesDialog,
+  ImageDialog,
+  Footer,
+  Dialogs,
+  PageGenerator,
+} from './components';
 import { getImageInfo, type ImageInfo, getSpeciesInfo, type SpeciesInfo } from './lib/firebase.ts';
 
 function App() {
@@ -53,8 +62,9 @@ function App() {
           </>
         )}
 
-        {page === 'species' && <SpeciesView species={species} images={images} />}
-        {page === 'images' && <ImageView images={images} />}
+        {page === 'species' && <SpeciesView species={species} images={images} show={showDialog} />}
+        {page === 'images' && <ImageView images={images} show={showDialog} />}
+        {page === 'generator' && <PageGenerator />}
       </main>
       <Footer />
     </>

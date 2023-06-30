@@ -10,7 +10,8 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 - [ ] Sida med filter som visar alla bilder.
 - [ ] Importera arter från Excel
 - [ ] Importera bilder från Firebase
-- [ ] Delete image or record and make sure assosiated files also is deleted. Delet images that does not exist in db.
+- [ ] Delete image/record and make sure assosiated files also is deleted. Delet images that does not exist in db.
+- [ ] Skriv ut eller spara som pdf.
 - [ ] Security for files and db
 - [x] Välj bild i art
 - [x] Thumbnails
@@ -45,6 +46,7 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 - JavaScript
   - [Create thumbnails on the client](https://codepen.io/mttaked/pen/ZLdEKm)
   - [Create thumbnails in a Firebase cloud function](https://medium.com/@christianrb/how-to-create-an-image-thumbnail-with-firebase-cloud-functions-73d4584290ba)
+  - [Get URL Parameters](https://www.sitepoint.com/get-url-parameters-with-javascript/)
 
 ## SETUP
 

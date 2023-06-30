@@ -1,8 +1,8 @@
 import logo from '../assets/logo.svg';
-import { Link, Dialogs } from '.';
+import { Link /* , Dialogs */ } from '.';
 
 type Props = {
-  show: (dialog: number, show?: boolean) => void;
+  show?: (dialog: number, show?: boolean) => void;
   setPage: (page: React.SetStateAction<string | undefined>) => void;
 };
 
@@ -21,13 +21,15 @@ export default function Navigation({ show, setPage }: Props) {
           <li>
             <Link onClick={() => setPage('species')}>Arter</Link>
           </li>
-
           <li>
             <Link onClick={() => setPage('images')}>Bilder</Link>
           </li>
           <li>
-            <Link onClick={() => show(Dialogs.ADD_SPECIES_DIALOG)}>Ny Art</Link>
+            <Link onClick={() => setPage('generator')}>Sidgenerator</Link>
           </li>
+          {/* <li>
+            <Link onClick={() => show(Dialogs.ADD_SPECIES_DIALOG)}>Ny Art</Link>
+          </li> */}
         </ul>
       </nav>
     </header>

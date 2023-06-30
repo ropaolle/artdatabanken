@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { SpeciesInfo, ImageInfo } from '../lib/firebase';
 import { Icon } from '@iconify/react';
-import { Link } from '.';
+import { Link, Dialogs } from '.';
 
 interface ItemInfo extends Omit<SpeciesInfo, 'updatedAt'> {
   all: string;
@@ -11,9 +11,10 @@ type Props = {
   // species: SpeciesInfo[];
   species: ItemInfo[];
   images: ImageInfo[];
+  show: (dialog: number, show?: boolean) => void;
 };
 
-export default function SpeciesView({ species, images }: Props) {
+export default function SpeciesView({ species, images, show }: Props) {
   const [sort, setSort] = useState({ column: 'species', ascending: false });
   const [filters, setFilter] = useState({ all: '' });
   const [items, setItems] = useState(species);
@@ -117,9 +118,12 @@ export default function SpeciesView({ species, images }: Props) {
   return (
     <div className="species-view">
       <div className="grid">
-
-      <h1 id="speices">Arter</h1>
-      <Link onClick={() => {}}>Ny Art</Link>
+        <h1 id="speices">Arter</h1>
+        <div className="header-buttons">
+          <a href="#" role="button" onClick={() => show(Dialogs.ADD_SPECIES_DIALOG)}>
+            Ny Art
+          </a>
+        </div>
       </div>
       <form>
         <div className="grid">
