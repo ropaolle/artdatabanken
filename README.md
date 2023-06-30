@@ -5,7 +5,7 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 ## TODO
 
 - [ ] ?
-- [ ] Uppdatera art
+- [ ] Radera bild och art
 - [ ] CSS styling on datalists
 - [ ] Sida med filter som visar alla bilder.
 - [ ] Importera arter från Excel
@@ -13,6 +13,7 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 - [ ] Delete image/record and make sure assosiated files also is deleted. Delet images that does not exist in db.
 - [ ] Skriv ut eller spara som pdf.
 - [ ] Security for files and db
+- [x] Uppdatera art
 - [x] Välj bild i art
 - [x] Thumbnails
 - [x] Sida med filter som visar alla poster.
