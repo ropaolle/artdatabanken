@@ -29,7 +29,7 @@ table[role='grid'] tbody tr:hover {
   cursor: pointer;
 }
 
-dialog .info {
+/* dialog .info {
   color: #39638e;
   font-size: smaller;
   margin-bottom: 1rem;
@@ -47,7 +47,7 @@ dialog .info-preview img {
 
 dialog h3 {
   margin-bottom: 1rem;
-}
+} */
 
 .header-buttons {
   text-align: right;

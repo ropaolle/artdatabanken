@@ -118,8 +118,8 @@ export type ImageInfo = {
   thumbnail: string;
   downloadURL: string;
   thumbnailURL: string;
-  createdAt: Timestamp;
-  updatedAt: Timestamp;
+  createdAt?: Timestamp;
+  updatedAt?: Timestamp;
 };
 
 export const getImageInfo = async (): Promise<ImageInfo[]> => {

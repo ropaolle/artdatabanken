@@ -7,12 +7,12 @@ import ImageDeleteDialog from './ImageDeleteDialog';
 import Footer from './Footer';
 import Link from './Link';
 import PageGenerator from './PageGenerator';
-import Dialog from './Dialog';
+import Dialog, { Dialogs, type ShowDialog, type DialogProps } from './Dialog';
 
-export enum Dialogs {
-  UPLOAD_IMAGE_DIALOG,
-  ADD_SPECIES_DIALOG,
-}
+// export enum Dialogs {
+//   UPLOAD_IMAGE_DIALOG,
+//   ADD_SPECIES_DIALOG,
+// }
 
 export {
   Navigation,
@@ -25,4 +25,7 @@ export {
   Link,
   PageGenerator,
   Dialog,
+  Dialogs,
+  ShowDialog,
+  DialogProps,
 };

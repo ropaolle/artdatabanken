@@ -1,56 +1,62 @@
-// import { useState, useEffect, useRef } from 'react';
-// import { db, checkIfImageExistsInDB, /* canvasToBlob, */ uploadFile, normalizeFilename } from '../lib/firebase.ts';
-// import { doc, addDoc, setDoc, updateDoc, serverTimestamp, collection } from 'firebase/firestore';
-// import { useForm, SubmitHandler } from 'react-hook-form';
-// import ReactCrop, { type PixelCrop } from 'react-image-crop';
-// import 'react-image-crop/dist/ReactCrop.css';
-// import { useDebounceEffect } from '../lib/useDebounceEffect';
-// import { Icon } from '@iconify/react';
+import { ImageInfo } from '../lib/firebase';
+import { Dialog, type DialogProps } from '.';
 
-type Props = {
-  open: boolean;
-  close: () => void;
-};
+interface Props extends DialogProps {
+  image: ImageInfo | undefined;
+}
 
-export default function ImageDeleteDialog({ open, close }: Props) {
-  const onClick = (e: React.FormEvent) => {
-    e.preventDefault();
-    close();
+export default function ImageDeleteDialog({ id, open, show, children, image }: Props) {
+  // const { filename, downloadURL, thumbnail, thumbnailURL, createdAt, updatedAt } = image || {};
+  const deleteImage = () => {
+    // TODO: Firebase delete
   };
 
   return (
-    <dialog id="imageDeleteDialog" open={open}>
-      <form className="form">
-        <article>
-          <a href="#" aria-label="Close" className="close" onClick={onClick}></a>
-
-          <h3>image001.jpg</h3>
-          <p>Ladda upp en ny eller ersätt befintlig bild.</p>
-
-          <footer>
-            <div className="grid">
-              <div></div>
-              <button
-                className="contrast"
-                role="button"
-                type="button"
-                // disabled={!defaultValues.id}
-                // onClick={handleDelete}
-              >
-                Radera
-              </button>
-              <button
-                role="button"
-
-                // disabled={!defaultValues.id}
-                // onClick={handleDelete}
-              >
-                Avbryt
-              </button>
-            </div>
-          </footer>
-        </article>
-      </form>
-    </dialog>
+    <Dialog {...{ id, open, show, children }} title={`Bild: ${image?.filename}`}>
+      {image && (
+        <>
+          <img src={image.downloadURL} alt={image.filename} />
+          <table>
+            <tbody>
+              <tr>
+                <td>Filnamn</td>
+                <td>
+                  <a href={image.downloadURL} target="_blank">
+                    {image.filename}
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>Thumbnail</td>
+                <td>
+                  <a href={image.thumbnailURL} target="_blank">
+                    {image.thumbnail}
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>Skapad</td>
+                <td>{image.createdAt?.toDate().toLocaleString()}</td>
+              </tr>
+              <tr>
+                <td>Uppdaterad</td>
+                <td>{image.updatedAt?.toDate().toLocaleString()}</td>
+              </tr>
+            </tbody>
+          </table>
+        </>
+      )}
+      <footer>
+        <div className="grid">
+          <div></div>
+          <button className="contrast" type="button" role="button" onClick={deleteImage}>
+            Radera
+          </button>
+          <button className="secondary" type="button" role="button" onClick={() => show(id, false)}>
+            Avbryt
+          </button>
+        </div>
+      </footer>
+    </Dialog>
   );
 }
