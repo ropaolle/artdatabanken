@@ -17,15 +17,15 @@ export type DialogProps = {
   open: boolean;
   show: ShowDialog;
   children?: React.ReactNode;
-  onSubmit?: SubmitHandler<FieldValues>;  
+  onSubmit?: SubmitHandler<FieldValues>;
   // handleSubmit: any;
 };
 
 /* export const DialogButton = ({ label, className }: { label: string; className: string }) => (
   <button type="button" role="button" className={className}>
-    {label}
+  {label}
   </button>
-); */
+  ); */
 
 export default function Dialog({ id, title, open, show, children, onSubmit /* , handleSubmit */ }: DialogProps) {
   const handleClose = (e: React.FormEvent) => {
@@ -33,6 +33,7 @@ export default function Dialog({ id, title, open, show, children, onSubmit /* , 
     show(id, false);
   };
 
+  // console.log('open', open);
   // console.log('typeof handleSubmit', typeof handleSubmit);
 
   // if (!handleSubmit) return null;
@@ -43,7 +44,7 @@ export default function Dialog({ id, title, open, show, children, onSubmit /* , 
       <form onSubmit={onSubmit} className="form">
         <article>
           <header>
-            <a href="#" aria-label="Close" className="close" onClick={handleClose}></a>
+            <a href="#" aria-label="Close" className="close" onClick={handleClose} />
             <div>{title}</div>
           </header>
           {children}

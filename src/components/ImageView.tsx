@@ -28,7 +28,7 @@ export default function ImageView({ images, show }: Props) {
       <div className="grid">
         <h1 id="images">Bilder</h1>
         <div className="header-buttons">
-          <button role="button" onClick={() => show(Dialogs.UPLOAD_IMAGE_DIALOG)}>
+          <button role="button" onClick={() => show(Dialogs.UPLOAD_IMAGE_DIALOG, true)}>
             Ladd upp bild
           </button>
         </div>

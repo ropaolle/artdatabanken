@@ -42,7 +42,7 @@ function App() {
   const [images, setImages] = useState<ImageInfo[]>([]);
   const [species, setSpecies] = useState<SpeciesInfo[]>([]);
 
-  // const [showUploadDialog, setShowUploadDialog] = useState(false);
+  // const [showUploadImageDialog, setShowImageUploadDialog] = useState(false);
   // const [showSpeciesDialog, setShowSpeciesDialog] = useState(false);
   // const [speciesDialog, setSpeciesDialog] = useState(defaultValues /* defaultTatting(1) */);
   const [showDialog, setShowDialog] = useState(dialogStates);
@@ -60,15 +60,20 @@ function App() {
     fetchData().catch(console.error);
   }, []);
 
-  const openDialog = (dialog: Dialogs, show = true, data: SpeciesInfo | ImageInfo | undefined) => {
+  const openDialog = (dialog: Dialogs, show = true, data?: SpeciesInfo | ImageInfo | undefined) => {
+    console.log('dialog', dialog, show);
     switch (dialog) {
       case Dialogs.DELETE_IMAGE_DIALOG:
         setSelectedImage(data as ImageInfo);
         break;
+      // case Dialogs.UPLOAD_IMAGE_DIALOG:
+      //   break;
     }
 
     setShowDialog((prevValue) => ({ ...prevValue, [dialog]: show }));
   };
+
+  // console.log('showDialog', showDialog);
 
   // const showDialog = (dialog: number, show = true, data?: SpeciesInfo) => {
   //   switch (dialog) {
@@ -98,14 +103,13 @@ function App() {
 
       <UploadImageDialog
         id={Dialogs.UPLOAD_IMAGE_DIALOG}
-        open={showDialog.UPLOAD_IMAGE_DIALOG}
+        open={showDialog.UPLOAD_IMAGE_DIALOG}        
         show={openDialog}
-        image={selectedImage}
-      />
+        />
       <DeleteImageDialog
         id={Dialogs.DELETE_IMAGE_DIALOG}
         open={showDialog.DELETE_IMAGE_DIALOG}
-        show={openDialog}
+        show={openDialog}        
         image={selectedImage}
       />
 

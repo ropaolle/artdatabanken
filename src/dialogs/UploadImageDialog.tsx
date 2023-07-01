@@ -20,11 +20,9 @@ const defaultCropArea: PixelCrop = {
   y: 250,
 };
 
-// export default function UploadImageDialog({ open, close }: Props) {
 export default function UploadImageDialog({ id, open, show, children }: DialogProps) {
-  const [selectedFile, setSelectedFile] = useState<File>();
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imageExists, setImageExists] = useState<boolean>(false);
-  // const [imageUploaded, setImageUploaded] = useState<boolean>(false);
   const [crop, setCrop] = useState<PixelCrop>(defaultCropArea);
   const [preview, setPreview] = useState<string>();
   const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
@@ -36,36 +34,14 @@ export default function UploadImageDialog({ id, open, show, children }: DialogPr
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitSuccessful, isSubmitting, isDirty, isLoading, isSubmitted, isValid, isValidating },
+    formState: { errors, isSubmitSuccessful, isSubmitting, isDirty },
   } = useForm<Inputs>();
 
-  // console.log(
-  //   'errors, isSubmitSuccessful, isSubmitting, isDirty, isLoading, isSubmitted, isValid, isValidating',
-  //   errors,
-  //   isSubmitSuccessful,
-  //   isSubmitting,
-  //   isDirty,
-  //   isLoading,
-  //   isSubmitted,
-  //   isValid,
-  //   isValidating
-  // );
-
   useEffect(() => {
-    console.log(
-      'reset',
-      errors,
-      isSubmitSuccessful,
-      isSubmitting,
-      isDirty,
-      isLoading,
-      isSubmitted,
-      isValid,
-      isValidating
-    );
-    // reset({ imageFile: undefined });
-    reset(undefined, { keepIsSubmitted: true });
-  }, [isSubmitSuccessful, reset]);
+    setSelectedFile(null);
+    reset();
+    show(id, false);
+  }, [isSubmitSuccessful]);
 
   useEffect(() => {
     if (!selectedFile) {
@@ -78,6 +54,14 @@ export default function UploadImageDialog({ id, open, show, children }: DialogPr
 
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
+
+  useEffect(() => {
+    const imageExists = async () => {
+      setImageExists(selectedFile ? await checkIfImageExistsInDB(selectedFile.name) : false);
+    };
+
+    imageExists();
   }, [selectedFile]);
 
   useDebounceEffect(
@@ -138,59 +122,45 @@ export default function UploadImageDialog({ id, open, show, children }: DialogPr
     } catch (error) {
       console.error(error);
     }
-    // } finally {
-    //   reset();
-    // }
   };
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
-    // Clear state
-    // reset();
-    // setPreview(undefined);
-    // setCompletedCrop(undefined);
-    // Set selected file
+    console.log('e?.target.files', e?.target.files);
+    e.preventDefault();
     const file = e?.target.files?.[0];
-    setSelectedFile(file);
-    if (file) {
-      setImageExists(await checkIfImageExistsInDB(file.name));
-    }
+    setSelectedFile(file || null);
   };
 
+  // console.log('errors', errors);
+  // console.log('isDirty', isDirty);
+
   return (
-    <Dialog {...{ id, open, show, children }} onSubmit={handleSubmit(onSubmit)} title="Ladda upp bild">
+    <Dialog {...{ id, show, children }} open={open} onSubmit={handleSubmit(onSubmit)} title="Ladda upp bild">
       <p>Ladda upp en ny eller ersätt befintlig bild.</p>
 
-      <input type="file" {...register('imageFile', { onChange: handleChange })} />
+      <input type="file" {...register('imageFile', { required: true, onChange: handleChange })} />
 
-      {!isSubmitSuccessful && (
-        <ReactCrop crop={crop} onChange={(c) => setCrop(c)} onComplete={(c) => setCompletedCrop(c)} aspect={1}>
-          <img src={preview} ref={imgRef} />
-        </ReactCrop>
-      )}
+      <ReactCrop crop={crop} onChange={(c) => setCrop(c)} onComplete={(c) => setCompletedCrop(c)} aspect={1}>
+        <img src={preview} ref={imgRef} />
+      </ReactCrop>
 
       <div>
         <canvas className="image" ref={previewCanvasRef} hidden={!isSubmitSuccessful} />
         <canvas className="thumbnail" ref={thumbnailCanvasRef} hidden />
       </div>
 
-      {/* {!isSubmitSuccessful && ()} */}
       <footer>
-        {imageExists /* && !isSubmitSuccessful */ && (
+        {imageExists && (
           <div className="info">
             <Icon icon="material-symbols:info-outline" /> En bild med namnet <b>{selectedFile?.name}</b> existerar
             redan. Om du laddar upp en ny bild med samma namn skrivs den befintliga bilden över!
           </div>
         )}
+
         <button role="button" type="submit" disabled={!completedCrop || isSubmitSuccessful} aria-busy={isSubmitting}>
           Ladda upp
         </button>
       </footer>
-
-      {isSubmitSuccessful && (
-        <div className="info">
-          Uppladdningen av <b>{selectedFile?.name}</b> lyckades.
-        </div>
-      )}
     </Dialog>
   );
 }

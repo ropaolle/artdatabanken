@@ -7,13 +7,17 @@ table {
   font-size: small;
 }
 
-
-
-/* dialog .info {
+dialog .info {
   color: #39638e;
   font-size: smaller;
   margin-bottom: 1rem;
 }
+
+dialog .info:empty {
+  display: none;
+}
+
+/* 
 
 dialog .info-preview div {
   color: #39638e;

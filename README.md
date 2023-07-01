@@ -2,6 +2,10 @@
 
 Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://console.firebase.google.com/).
 
+## Buggar
+
+- [ ] UploadImageDialog döljs och kan inte visas igen, Ladda upp fil -> Välj fil -> Avbryt.
+
 ## TODO
 
 - [ ] Radera bild
