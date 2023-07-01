@@ -1,4 +1,5 @@
-import { ImageInfo } from '../lib/firebase';
+import { doc, deleteDoc } from 'firebase/firestore';
+import { db, type ImageInfo, deleteFile } from '../lib/firebase';
 import { Dialog, type DialogProps } from '.';
 
 interface Props extends DialogProps {
@@ -6,9 +7,26 @@ interface Props extends DialogProps {
 }
 
 export default function ImageDeleteDialog({ id, open, show, children, image }: Props) {
-  // const { filename, downloadURL, thumbnail, thumbnailURL, createdAt, updatedAt } = image || {};
-  const deleteImage = () => {
-    // TODO: Firebase delete
+  const deleteImage = async () => {
+    if (!image?.filename) return;
+
+    try {
+      await deleteFile(image.filename);
+    } catch (error) {
+      console.error(error);
+    }
+
+    try {
+      await deleteFile(image.thumbnail);
+    } catch (error) {
+      console.error(error);
+    }
+
+    try {
+      await deleteDoc(doc(db, 'images', image.filename));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

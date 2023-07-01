@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getStorage, ref, listAll, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
+import { getStorage, ref, listAll, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
 import { getFirestore, collection, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore';
 
 // PROD
@@ -94,24 +94,17 @@ export const uploadFile = async (
   });
 };
 
-/**
- *
- * @param filePath Firebase storage folder
- * @returns Array of filenames
- *
- * Note: res.prefixes returns all the prefixes under listRef. You may call listAll() recursively on them.
- */
-export const getFileList = (filePath: string): Promise<string[]> => {
-  const listRef = ref(storage, filePath);
+// export const getFileList = (filePath: string): Promise<string[]> => {
+//   const listRef = ref(storage, filePath);
 
-  return listAll(listRef)
-    .then((res) => {
-      return Promise.resolve(res.items.map(({ name }) => name));
-    })
-    .catch((error) => {
-      return Promise.reject(error);
-    });
-};
+//   return listAll(listRef)
+//     .then((res) => {
+//       return Promise.resolve(res.items.map(({ name }) => name));
+//     })
+//     .catch((error) => {
+//       return Promise.reject(error);
+//     });
+// };
 
 export type ImageInfo = {
   filename: string;
@@ -146,8 +139,19 @@ export type SpeciesInfo = {
 
 export const getSpeciesInfo = async (): Promise<SpeciesInfo[]> => {
   const querySnapshot = await getDocs(collection(db, 'species'));
-  // querySnapshot
-  // const data = doc.data();
-
   return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id } as SpeciesInfo));
+};
+
+export const deleteFile = async (filename: string, path = 'images'): Promise<void> => {
+  const fileRef = ref(storage, `${path}/${filename}`);
+
+  return new Promise((resolve, reject) => {
+    deleteObject(fileRef)
+      .then(() => {
+        resolve();
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
 };

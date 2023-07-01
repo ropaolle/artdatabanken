@@ -80,8 +80,6 @@ function App() {
   //   }
   // };
 
-  console.log('showDialog', showDialog);
-
   return (
     <>
       <Navigation setPage={setPage} />
