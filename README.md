@@ -4,9 +4,9 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-- [ ] Filtrera bilder (filnamn, används används ej)
 - [ ] Radera bild
-
+  - Visa info om att raderingen lyckades och stäng dialog.
+- [ ] Filtrera bilder (filnamn, används används ej)
 - [ ] CSS styling on datalists
 - [ ] Importera arter från Excel
 - [ ] Importera bilder från Firebase

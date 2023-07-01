@@ -1,12 +1,12 @@
 import { doc, deleteDoc } from 'firebase/firestore';
 import { db, type ImageInfo, deleteFile } from '../lib/firebase';
-import { Dialog, type DialogProps } from '.';
+import Dialog, { type DialogProps } from './Dialog';
 
 interface Props extends DialogProps {
   image: ImageInfo | undefined;
 }
 
-export default function ImageDeleteDialog({ id, open, show, children, image }: Props) {
+export default function DeleteImageDialog({ id, open, show, children, image }: Props) {
   const deleteImage = async () => {
     if (!image?.filename) return;
 

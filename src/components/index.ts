@@ -1,13 +1,14 @@
 import Navigation from './Navigation';
 import ImageView from './ImageView';
 import SpeciesView from './SpeciesView';
-import SpeciesDialog from './SpeciesDialog';
-import ImageDialog from './ImageDialog';
-import ImageDeleteDialog from './ImageDeleteDialog';
+// import SpeciesDialog from './SpeciesDialog';
+// import ImageDialog from './ImageDialog';
 import Footer from './Footer';
 import Link from './Link';
 import PageGenerator from './PageGenerator';
-import Dialog, { Dialogs, type ShowDialog, type DialogProps } from './Dialog';
+
+// import Dialog, { Dialogs, type ShowDialog, type DialogProps } from './Dialogs/Dialog';
+// import DeleteImageDialog from './Dialogs/DeleteImageDialog';
 
 // export enum Dialogs {
 //   UPLOAD_IMAGE_DIALOG,
@@ -18,14 +19,15 @@ export {
   Navigation,
   ImageView,
   SpeciesView,
-  SpeciesDialog,
-  ImageDeleteDialog,
-  ImageDialog,
+  // SpeciesDialog,
+  // ImageDeleteDialog,
+  // ImageDialog,
   Footer,
   Link,
   PageGenerator,
-  Dialog,
-  Dialogs,
-  ShowDialog,
-  DialogProps,
+  // Dialogs
+  // Dialog,
+  // Dialogs,
+  // ShowDialog,
+  // DialogProps,
 };

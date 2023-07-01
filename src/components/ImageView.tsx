@@ -1,5 +1,5 @@
 import { type ImageInfo } from '../lib/firebase';
-import { Dialogs, type ShowDialog } from '.';
+import { Dialogs, type ShowDialog } from '../dialogs';
 
 type Props = {
   images: ImageInfo[];

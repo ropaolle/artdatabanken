@@ -3,21 +3,25 @@ import { useState, useEffect } from 'react';
 import {
   Navigation,
   ImageView,
-  SpeciesView,
-  SpeciesDialog,
-  ImageDialog,
-  ImageDeleteDialog,
+  // SpeciesView,
+  // SpeciesDialog,
+  // ImageDialog,
+  // ImageDeleteDialog,
   Footer,
   // Dialogs,
   PageGenerator,
-  Dialog,
-  Dialogs,
+  // Dialog,
+  // Dialogs,
 } from './components';
+
+import { Dialogs, DeleteImageDialog, UploadImageDialog } from './dialogs';
+
 import { getImageInfo, type ImageInfo, getSpeciesInfo, type SpeciesInfo } from './lib/firebase.ts';
 // import { Dialogs } from './App.tsx';
 
 const dialogStates = {
   [Dialogs.DELETE_IMAGE_DIALOG]: false,
+  [Dialogs.UPLOAD_IMAGE_DIALOG]: false,
 };
 
 const defaultValues = {
@@ -57,8 +61,6 @@ function App() {
   }, []);
 
   const openDialog = (dialog: Dialogs, show = true, data: SpeciesInfo | ImageInfo | undefined) => {
-    console.log('dialog', dialog);
-    console.log('data', data, typeof data);
     switch (dialog) {
       case Dialogs.DELETE_IMAGE_DIALOG:
         setSelectedImage(data as ImageInfo);
@@ -84,6 +86,7 @@ function App() {
     <>
       <Navigation setPage={setPage} />
       {/* <ImageDialog open={showUploadDialog} close={() => showDialog(Dialogs.UPLOAD_IMAGE_DIALOG, false)} /> */}
+
       {/* <SpeciesDialog
         images={images}
         open={showSpeciesDialog}
@@ -92,7 +95,14 @@ function App() {
       /> */}
 
       {/* <ImageDeleteDialog open={true} close={() => showDialog(Dialogs.UPLOAD_IMAGE_DIALOG, false)} /> */}
-      <ImageDeleteDialog
+
+      <UploadImageDialog
+        id={Dialogs.UPLOAD_IMAGE_DIALOG}
+        open={showDialog.UPLOAD_IMAGE_DIALOG}
+        show={openDialog}
+        image={selectedImage}
+      />
+      <DeleteImageDialog
         id={Dialogs.DELETE_IMAGE_DIALOG}
         open={showDialog.DELETE_IMAGE_DIALOG}
         show={openDialog}
@@ -114,19 +124,12 @@ function App() {
             <h1>Artdatabanken</h1>
             <p>Skapa dina egna artsamlingar för direkt utskrift eller lagring som pdf-filer. </p>
             <h2>Hur gör man?</h2>
-            <p></p>
-            <button
-              onClick={() => {
-                openDialog(Dialogs.DELETE_IMAGE_DIALOG);
-              }}
-            >
-              Öppna
-            </button>
+            <p>Hubba ...</p>
           </>
         )}
 
         {/* {page === 'species' && <SpeciesView species={species} images={images} show={showDialog} />} */}
-        {page === 'images' && <ImageView images={images} show={openDialog}/* show={showDialog} */ />}
+        {page === 'images' && <ImageView images={images} show={openDialog} /* show={showDialog} */ />}
         {page === 'generator' && <PageGenerator />}
       </main>
       <Footer />
