@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { doc, deleteDoc } from 'firebase/firestore';
 import { db, type ImageInfo, deleteFile } from '../lib/firebase';
 import Dialog, { type DialogProps } from './Dialog';
@@ -7,26 +8,27 @@ interface Props extends DialogProps {
 }
 
 export default function DeleteImageDialog({ id, open, show, children, image }: Props) {
+  const [deletingImage, setDeletingImage] = useState(false);
+  const [imageDeleted, setImageDeleted] = useState(false);
+
   const deleteImage = async () => {
     if (!image?.filename) return;
 
-    try {
-      await deleteFile(image.filename);
-    } catch (error) {
-      console.error(error);
-    }
+    setDeletingImage(true);
 
-    try {
-      await deleteFile(image.thumbnail);
-    } catch (error) {
-      console.error(error);
-    }
-
-    try {
-      await deleteDoc(doc(db, 'images', image.filename));
-    } catch (error) {
-      console.error(error);
-    }
+    Promise.all([
+      await deleteFile(image.filename),
+      await deleteFile(image.thumbnail),
+      await deleteDoc(doc(db, 'images', image.filename)),
+    ])
+      .then(() => {
+        setImageDeleted(true);
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        setDeletingImage(false);
+        show(id, false);
+      });
   };
 
   return (
@@ -67,13 +69,25 @@ export default function DeleteImageDialog({ id, open, show, children, image }: P
       <footer>
         <div className="grid">
           <div></div>
-          <button className="contrast" type="button" role="button" onClick={deleteImage}>
+          <button
+            className="contrast"
+            type="button"
+            role="button"
+            onClick={deleteImage}
+            aria-busy={deletingImage}
+            disabled={imageDeleted}
+          >
             Radera
           </button>
           <button className="secondary" type="button" role="button" onClick={() => show(id, false)}>
             Avbryt
           </button>
         </div>
+        {/* {imageDeleted && (
+          <div className="info">
+            <b>{image?.filename}</b> har raderats.
+          </div>
+        )} */}
       </footer>
     </Dialog>
   );

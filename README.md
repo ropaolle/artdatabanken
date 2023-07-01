@@ -5,14 +5,15 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 ## TODO
 
 - [ ] Radera bild
-  - Visa info om att raderingen lyckades och stäng dialog.
+  - Visa enn toast om att bild raderats.
+  - Uppdatera image-view.
 - [ ] Filtrera bilder (filnamn, används används ej)
 - [ ] CSS styling on datalists
 - [ ] Importera arter från Excel
 - [ ] Importera bilder från Firebase
-- [ ] Delete image/record and make sure assosiated files also is deleted. Delet images that does not exist in db.
 - [ ] Skriv ut eller spara som pdf.
 - [ ] Security for files and db
+- [x] Delete image/record and make sure assosiated files also is deleted. Delet images that does not exist in db.
 - [x] Art: Lagra länk till bild. INte filnamn.
 - [x] Använd inte filnamn och art som dokumentnamn. Skapa ett unikt id.
 - [x] Radera art
@@ -48,6 +49,8 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
   - [useEffect on objects](https://dev.to/hey_yogini/useeffect-dependency-array-and-object-comparison-45el)
 - CSS
   - [Grid](https://www.w3schools.com/css/css_grid_container.asp)
+  - [Toast notification](https://www.codingnepalweb.com/toast-notification-html-css-javascript/)
+  - [Snackbar/toast](https://www.w3schools.com/howto/howto_js_snackbar.asp)
 - JavaScript
   - [Create thumbnails on the client](https://codepen.io/mttaked/pen/ZLdEKm)
   - [Create thumbnails in a Firebase cloud function](https://medium.com/@christianrb/how-to-create-an-image-thumbnail-with-firebase-cloud-functions-73d4584290ba)

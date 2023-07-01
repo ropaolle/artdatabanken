@@ -68,12 +68,10 @@ const canvasToBlob = async (ref: HTMLCanvasElement): Promise<Blob> => {
 
 export const uploadFile = async (
   canvasRef: HTMLCanvasElement,
-  /* blob: Blob, */
   path: string,
-  onProgress: (progress: number) => void
+  onProgress?: (progress: number) => void
 ): Promise<string> => {
   const blob = await canvasToBlob(canvasRef);
-
   const storageRef = ref(storage, path);
   const uploadTask = uploadBytesResumable(storageRef, blob);
 
@@ -82,7 +80,7 @@ export const uploadFile = async (
       'state_changed',
       (snapshot) => {
         const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-        onProgress(progress);
+        typeof onProgress === 'function' && onProgress(progress);
       },
       (error) => {
         reject(error);
