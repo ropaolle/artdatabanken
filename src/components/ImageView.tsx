@@ -1,11 +1,6 @@
-import { useStoreState } from '../state';
-import { DialogTypes, type ShowDialog } from '../dialogs';
+import { useStoreState, showDeleteImageDialog, showUploadImageDialog } from '../state';
 
-type Props = {
-  show: ShowDialog;
-};
-
-export default function ImageView({ show }: Props) {
+export default function ImageView() {
   const value = useStoreState('app');
 
   if (!value?.images) return null;
@@ -16,7 +11,8 @@ export default function ImageView({ show }: Props) {
       <figure
         className="gallery-image"
         key={filename}
-        onClick={() => show(DialogTypes.DELETE_IMAGE_DIALOG, true, image)}
+        onClick={() => showDeleteImageDialog(true, image)}
+        // onClick={() => show(DialogTypes.DELETE_IMAGE_DIALOG, true, image)}
       >
         <div className="zoom">
           <img src={thumbnailURL} alt={filename} loading="lazy" />
@@ -30,7 +26,7 @@ export default function ImageView({ show }: Props) {
       <div className="grid">
         <h1 id="images">Bilder</h1>
         <div className="header-buttons">
-          <button role="button" onClick={() => show(DialogTypes.UPLOAD_IMAGE_DIALOG, true)}>
+          <button role="button" onClick={() => showUploadImageDialog(true)}>
             Ladd upp bild
           </button>
         </div>

@@ -10,12 +10,20 @@ type AppState = {
 type DialogState = {
   id: DialogTypes;
   open: boolean;
-  values?: SpeciesInfo;
 };
+
+interface DeleteImageDialogState extends DialogState {
+  values?: ImageInfo;
+}
+interface SpeciesDialogState extends DialogState {
+  values?: SpeciesInfo;
+}
 
 type GlobalState = {
   app: AppState;
-  speciesDialog: DialogState;
+  speciesDialog: SpeciesDialogState;
+  deleteImageDialog: DeleteImageDialogState;
+  uploadImageDialog: DialogState;
 };
 
 type Action =
@@ -25,7 +33,9 @@ type Action =
   | { type: 'addSpecies'; species: SpeciesInfo }
   | { type: 'updateSpecies'; species: SpeciesInfo }
   | { type: 'deleteSpecies'; id: string }
-  | { type: 'showSpeciesDialog'; state: boolean; values?: SpeciesInfo };
+  | { type: 'showSpeciesDialog'; state: boolean; values?: SpeciesInfo }
+  | { type: 'showDeleteImageDialog'; state: boolean; values?: ImageInfo }
+  | { type: 'showUploadImageDialog'; state: boolean };
 
 export const initStore = (app: AppState) =>
   dispatch({
@@ -70,14 +80,28 @@ export const showSpeciesDialog = (state: boolean, values?: SpeciesInfo) =>
     type: 'showSpeciesDialog',
   });
 
+export const showDeleteImageDialog = (state: boolean, values?: ImageInfo) =>
+  dispatch({
+    state,
+    values,
+    type: 'showDeleteImageDialog',
+  });
+
+export const showUploadImageDialog = (state: boolean) =>
+  dispatch({
+    state,
+    type: 'showUploadImageDialog',
+  });
+
 export const { dispatch, useStoreState } = createStore(
   (state: GlobalState, action: Action) => {
     // console.log('state', state);
+    // console.log('action', action);
     switch (action.type) {
       case 'initStore':
         return {
           ...state,
-          ...action.app,
+          app: action.app,
         };
 
       case 'addImage':
@@ -119,6 +143,18 @@ export const { dispatch, useStoreState } = createStore(
           speciesDialog: { ...state.speciesDialog, open: action.state, values: action.values },
         };
 
+      case 'showDeleteImageDialog':
+        return {
+          ...state,
+          deleteImageDialog: { ...state.deleteImageDialog, open: action.state, values: action.values },
+        };
+
+      case 'showUploadImageDialog':
+        return {
+          ...state,
+          uploadImageDialog: { ...state.uploadImageDialog, open: action.state },
+        };
+
       default:
         return state;
     }
@@ -131,6 +167,14 @@ export const { dispatch, useStoreState } = createStore(
     },
     speciesDialog: {
       id: DialogTypes.SPECIES_DIALOG,
+      open: false,
+    },
+    uploadImageDialog: {
+      id: DialogTypes.UPLOAD_IMAGE_DIALOG,
+      open: false,
+    },
+    deleteImageDialog: {
+      id: DialogTypes.DELETE_IMAGE_DIALOG,
       open: false,
     },
   }

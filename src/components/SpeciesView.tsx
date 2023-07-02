@@ -11,6 +11,7 @@ import { useStoreState, showSpeciesDialog } from '../state';
 
 export default function SpeciesView() {
   const value = useStoreState('app');
+  console.log('value', value);
   const [sort, setSort] = useState({ column: 'species', ascending: false });
   const [filters, setFilter] = useState({ all: '' });
   // const [items, setItems] = useState(value?.species);

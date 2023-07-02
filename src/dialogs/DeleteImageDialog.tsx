@@ -1,14 +1,11 @@
 import { useState } from 'react';
-import { deleteImage } from '../state';
+import { useStoreState, deleteImage, showDeleteImageDialog } from '../state';
 import { doc, deleteDoc } from 'firebase/firestore';
-import { db, type ImageInfo, deleteFile } from '../lib/firebase';
-import Dialog, { type DialogProps } from './Dialog';
+import { db, deleteFile } from '../lib/firebase';
+import Dialog, { DialogTypes } from './Dialog';
 
-interface Props extends DialogProps {
-  image: ImageInfo | undefined;
-}
-
-export default function DeleteImageDialog({ id, open, show, children, image }: Props) {
+export default function DeleteImageDialog() {
+  const { open, values: image } = useStoreState('deleteImageDialog');
   const [deletingImage, setDeletingImage] = useState(false);
 
   // TODO: Destruct image ...
@@ -26,12 +23,14 @@ export default function DeleteImageDialog({ id, open, show, children, image }: P
       .catch((error) => console.error(error))
       .finally(() => {
         setDeletingImage(false);
-        show(id, false);
+        showDeleteImageDialog(false);
       });
   };
 
+  const hide = () => showDeleteImageDialog(false);
+
   return (
-    <Dialog {...{ id, open, show, children }} title={`Bild: ${image?.filename}`}>
+    <Dialog id={DialogTypes.DELETE_IMAGE_DIALOG} open={open} hide={hide} title={`Bild: ${image?.filename}`}>
       {image && (
         <>
           <img src={image.downloadURL} alt={image.filename} />
@@ -77,7 +76,7 @@ export default function DeleteImageDialog({ id, open, show, children, image }: P
           >
             Radera
           </button>
-          <button className="secondary" type="button" role="button" onClick={() => show(id, false)}>
+          <button className="secondary" type="button" role="button" onClick={hide}>
             Avbryt
           </button>
         </div>

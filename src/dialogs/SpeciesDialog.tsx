@@ -142,11 +142,13 @@ export default function SpeciesDialog() {
     }
   };
 
+  const hide = () => showSpeciesDialog(false);
+
   return (
     <Dialog
       id={DialogTypes.SPECIES_DIALOG}
       open={open}
-      hide={() => showSpeciesDialog(false)}
+      hide={hide}
       onSubmit={handleSubmit(onSubmit)}
       title={`Lägg till ny art`}
     >
