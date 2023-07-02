@@ -1,14 +1,21 @@
 import { type PixelCrop } from 'react-image-crop';
 
-type CanvasProps = {
-  image: HTMLImageElement;
-  canvas: HTMLCanvasElement;
-  crop: PixelCrop;
-  width: number;
-  height: number;
-};
+// type CanvasProps = {
+//   image: HTMLImageElement;
+//   canvas: HTMLCanvasElement;
+//   crop: PixelCrop;
+//   width: number;
+//   height: number;
+// };
 
-export async function drawImageOnCanvas({ image, canvas, crop, width, height }: CanvasProps) {
+// export async function drawImageOnCanvas({ image, canvas, crop, width, height }: CanvasProps) {
+export async function drawImageOnCanvas(
+  image: HTMLImageElement,
+  canvas: HTMLCanvasElement,
+  crop: PixelCrop,
+  width: number,
+  height: number
+) {
   const ctx = canvas.getContext('2d');
 
   if (!ctx) {

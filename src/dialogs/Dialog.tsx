@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import './Dialog.css';
 import type { SpeciesInfo, ImageInfo } from '../lib/firebase';
-import type { SubmitHandler, FieldValues } from 'react-hook-form';
 
 export enum Dialogs {
   DELETE_IMAGE_DIALOG = 'DELETE_IMAGE_DIALOG',
@@ -17,7 +16,7 @@ export type DialogProps = {
   open: boolean;
   show: ShowDialog;
   children?: React.ReactNode;
-  onSubmit?: SubmitHandler<FieldValues>;
+  onSubmit?: React.FormEventHandler<HTMLFormElement>;
 };
 
 export default function Dialog({ id, title, open, show, children, onSubmit }: DialogProps) {

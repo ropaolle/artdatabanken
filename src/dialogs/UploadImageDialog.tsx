@@ -34,7 +34,7 @@ export default function UploadImageDialog({ id, open, show, children }: DialogPr
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitSuccessful, isSubmitting },
+    formState: { isSubmitSuccessful, isSubmitting },
   } = useForm<Inputs>();
 
   useEffect(() => {
@@ -45,6 +45,7 @@ export default function UploadImageDialog({ id, open, show, children }: DialogPr
 
   useEffect(() => {
     if (!selectedFile) {
+      setCompletedCrop(undefined);
       setPreview(undefined);
       return;
     }
@@ -75,20 +76,8 @@ export default function UploadImageDialog({ id, open, show, children }: DialogPr
         thumbnailCanvasRef.current
       ) {
         // We use canvasPreview as it's much faster than imgPreview.
-        drawImageOnCanvas({
-          image: imgRef.current,
-          canvas: previewCanvasRef.current,
-          crop: completedCrop,
-          width: 500,
-          height: 500,
-        });
-        drawImageOnCanvas({
-          image: imgRef.current,
-          canvas: thumbnailCanvasRef.current,
-          crop: completedCrop,
-          width: 100,
-          height: 100,
-        });
+        drawImageOnCanvas(imgRef.current, previewCanvasRef.current, completedCrop, 500, 500);
+        drawImageOnCanvas(imgRef.current, thumbnailCanvasRef.current, completedCrop, 100, 100);
       }
     },
     100,
@@ -133,7 +122,7 @@ export default function UploadImageDialog({ id, open, show, children }: DialogPr
     <Dialog {...{ id, show, children }} open={open} onSubmit={handleSubmit(onSubmit)} title="Ladda upp bild">
       <p>Ladda upp en ny eller ersätt befintlig bild.</p>
 
-      <input type="file" {...register('imageFile', { required: true, onChange: handleChange })} />
+      <input type="file" {...register('imageFile', { required: 'This field is required!', onChange: handleChange })} />
 
       <ReactCrop crop={crop} onChange={(c) => setCrop(c)} onComplete={(c) => setCompletedCrop(c)} aspect={1}>
         <img src={preview} ref={imgRef} />
@@ -152,7 +141,12 @@ export default function UploadImageDialog({ id, open, show, children }: DialogPr
           </div>
         )}
 
-        <button role="button" type="submit" disabled={!completedCrop || isSubmitSuccessful} aria-busy={isSubmitting}>
+        <button
+          role="button"
+          type="submit"
+          disabled={!completedCrop || completedCrop.width === 0 || completedCrop.height === 0}
+          aria-busy={isSubmitting}
+        >
           Ladda upp
         </button>
       </footer>
