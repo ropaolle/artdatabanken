@@ -131,8 +131,6 @@ export type SpeciesInfo = {
   date: string;
   image: string;
   updatedAt?: Timestamp;
-  // thumbnailURL?: string;
-  // all?: string;
 };
 
 export const getSpeciesInfo = async (): Promise<SpeciesInfo[]> => {

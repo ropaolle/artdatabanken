@@ -11,6 +11,7 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 ## TODO
 
 - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
+- [ ] Move CSS to local files, i.e UploadImageDialog.tsx + UploadImageDialog.css.
 - [ ] Filtrera bilder (filnamn, används används ej)
 - [ ] CSS styling on datalists
 - [ ] Importera arter från Excel

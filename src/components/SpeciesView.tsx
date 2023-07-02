@@ -16,6 +16,8 @@ export default function SpeciesView() {
   const [filters, setFilter] = useState({ all: '' });
   // const [items, setItems] = useState(value?.species);
 
+  // console.log('species', species);
+
   // TODO: Add filter functionality
   // useEffect(() => {
   //   const filteredSpecies = value.species.filter((item) => {

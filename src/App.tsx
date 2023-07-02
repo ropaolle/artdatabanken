@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { initStore } from './state';
-// import './App.css';
+import './App.css';
 import { Navigation, ImageView, Footer, PageGenerator, SpeciesView } from './components';
 import { DeleteImageDialog, UploadImageDialog, SpeciesDialog } from './dialogs';
 import { getImageInfo, getSpeciesInfo } from './lib/firebase.ts';

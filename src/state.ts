@@ -125,7 +125,7 @@ export const { dispatch, useStoreState } = createStore(
         if (index !== -1) state.species[index] = action.species;
         return {
           ...state,
-          species: { ...state.species },
+          species: [...state.species],
         };
       }
 
