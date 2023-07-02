@@ -1,13 +1,5 @@
 import { useEffect } from 'react';
-import { useStoreState, showDialog } from '../state';
 import './Dialog.css';
-import type { SpeciesInfo, ImageInfo } from '../lib/firebase';
-
-// export enum Dialogs {
-//   DELETE_IMAGE_DIALOG = 'DELETE_IMAGE_DIALOG',
-//   UPLOAD_IMAGE_DIALOG = 'UPLOAD_IMAGE_DIALOG',
-//   SPECIES_DIALOG = 'SPECIES_DIALOG',
-// }
 
 export enum DialogTypes {
   DELETE_IMAGE_DIALOG = 'DELETE_IMAGE_DIALOG',
@@ -15,18 +7,17 @@ export enum DialogTypes {
   SPECIES_DIALOG = 'SPECIES_DIALOG',
 }
 
-export type ShowDialog = (dialog: DialogTypes, show: boolean, data?: SpeciesInfo | ImageInfo) => void;
-
 export type DialogProps = {
   id: DialogTypes;
   title?: string;
-  open?: boolean;
-  show?: ShowDialog;
+  open: boolean;
+  hide: () => void;
+  // show?: ShowDialog;
   children?: React.ReactNode;
   onSubmit?: React.FormEventHandler<HTMLFormElement>;
 };
 
-export default function Dialog({ id, title, open, show, children, onSubmit }: DialogProps) {
+export default function Dialog({ id, title, open, hide, children, onSubmit }: DialogProps) {
   // BUGG: Chromium bugg that closes dialogs when a file input dialog is canceled, see
   // https://stackoverflow.com/questions/76400460/html-dialog-closes-automatically-when-file-input-is-cancelled-how-to-prevent.
   useEffect(() => {
@@ -56,8 +47,7 @@ export default function Dialog({ id, title, open, show, children, onSubmit }: Di
 
   const handleClose = (e: React.FormEvent) => {
     e.preventDefault();
-    typeof show === 'function' && show(id, false);
-    showDialog(false);
+    hide();
   };
 
   return (

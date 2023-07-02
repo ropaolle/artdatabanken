@@ -2,16 +2,12 @@ import { useState, useEffect } from 'react';
 import type { SpeciesInfo, ImageInfo } from '../lib/firebase';
 import { Icon } from '@iconify/react';
 // import { Dialogs } from '../dialogs';
-import { useStoreState, showDialog } from '../state';
-import { Dialogs, type ShowDialog } from '../dialogs';
+import { useStoreState, showSpeciesDialog } from '../state';
+// import { DialogTypes } from '../dialogs';
 
 // interface ItemInfo extends Omit<SpeciesInfo, 'updatedAt'> {
 //   all: string;
 // }
-
-// type Props = {
-//   show: ShowDialog;
-// };
 
 export default function SpeciesView() {
   const value = useStoreState('app');
@@ -53,11 +49,10 @@ export default function SpeciesView() {
     return sort.ascending ? -localeCompare : localeCompare;
   };
 
-  const handleRowClick = (e: React.MouseEvent /* <Element, MouseEvent> */) => {
+  const handleRowClick = (e: React.MouseEvent) => {
     const selected = value.species.find(({ id }) => id === e.currentTarget.id);
     if (selected) {
-      // show(Dialogs.SPECIES_DIALOG, true, selected);
-      showDialog(true, selected);
+      showSpeciesDialog(true, selected);
     }
   };
 
@@ -66,7 +61,8 @@ export default function SpeciesView() {
   const speciesTable = value.species
     .sort(localeSort)
     .map(({ id, kingdom, order, family, species, sex, speciesLatin, place, county, date, image }) => (
-      <tr key={species} id={id} onClick={handleRowClick}>
+      <tr key={id} id={id} onClick={handleRowClick}>
+        <td>{id}</td>
         <td>{kingdom}</td>
         <td>{order}</td>
         <td>{family}</td>
@@ -115,7 +111,7 @@ export default function SpeciesView() {
         <h1 id="speices">Arter</h1>
         <div className="header-buttons">
           {/* <button role="button" onClick={() => show(Dialogs.SPECIES_DIALOG, true)}> */}
-          <button role="button" onClick={() => showDialog(true)}>
+          <button role="button" onClick={() => showSpeciesDialog(true)}>
             Ny Art
           </button>
         </div>

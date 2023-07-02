@@ -15,17 +15,19 @@ type DialogState = {
 
 type GlobalState = {
   app: AppState;
-  // dialogs: DialogState[];
   speciesDialog: DialogState;
 };
 
 type Action =
-  | { type: 'initStore'; app: GlobalState }
+  | { type: 'initStore'; app: AppState }
   | { type: 'addImage'; image: ImageInfo }
   | { type: 'deleteImage'; filename: string }
-  | { type: 'showDialog'; state: boolean; values?: SpeciesInfo };
+  | { type: 'addSpecies'; species: SpeciesInfo }
+  | { type: 'updateSpecies'; species: SpeciesInfo }
+  | { type: 'deleteSpecies'; id: string }
+  | { type: 'showSpeciesDialog'; state: boolean; values?: SpeciesInfo };
 
-export const initStore = (app: GlobalState) =>
+export const initStore = (app: AppState) =>
   dispatch({
     app,
     type: 'initStore',
@@ -43,25 +45,30 @@ export const deleteImage = (filename: string) =>
     type: 'deleteImage',
   });
 
-export const showDialog = (state: boolean, values?: SpeciesInfo) =>
+export const addSpecies = (species: SpeciesInfo) =>
+  dispatch({
+    species,
+    type: 'addSpecies',
+  });
+
+export const updateSpecies = (species: SpeciesInfo) =>
+  dispatch({
+    species,
+    type: 'updateSpecies',
+  });
+
+export const deleteSpecies = (id: string) =>
+  dispatch({
+    id,
+    type: 'deleteSpecies',
+  });
+
+export const showSpeciesDialog = (state: boolean, values?: SpeciesInfo) =>
   dispatch({
     state,
     values,
-    type: 'showDialog',
+    type: 'showSpeciesDialog',
   });
-
-// const defaults = {
-//   species: '',
-//   place: '',
-//   date: new Date().toLocaleDateString(),
-//   kingdom: '',
-//   order: '',
-//   family: '',
-//   county: '',
-//   speciesLatin: '',
-//   sex: '',
-//   image: '',
-// };
 
 export const { dispatch, useStoreState } = createStore(
   (state: GlobalState, action: Action) => {
@@ -71,9 +78,6 @@ export const { dispatch, useStoreState } = createStore(
         return {
           ...state,
           ...action.app,
-          // speciesDialog: {
-          //   open: true,
-          // },
         };
 
       case 'addImage':
@@ -85,23 +89,35 @@ export const { dispatch, useStoreState } = createStore(
       case 'deleteImage':
         return {
           ...state,
-          app: { ...state.app, images: state.app.images.filter((image) => action.filename !== image.filename) },
+          app: { ...state.app, images: state.app.images.filter(({ filename }) => action.filename !== filename) },
         };
 
-      case 'showDialog':
+      case 'addSpecies':
+        return {
+          ...state,
+          app: { ...state.app, species: [...state.app.species, action.species] },
+        };
+
+      case 'updateSpecies': {
+        const index = state.app.species.findIndex(({ id }) => action.species.id === id);
+        if (index !== -1) state.app.species[index] = action.species;
+        return {
+          ...state,
+          app: { ...state.app },
+        };
+      }
+
+      case 'deleteSpecies':
+        return {
+          ...state,
+          app: { ...state.app, species: state.app.species.filter(({ id }) => action.id !== id) },
+        };
+
+      case 'showSpeciesDialog':
         return {
           ...state,
           speciesDialog: { ...state.speciesDialog, open: action.state, values: action.values },
         };
-
-      // case 'setLastName':
-      //   return {
-      //     ...state,
-      //     person: {
-      //       ...state.person,
-      //       lastName: action.lastName,
-      //     },
-      //   };
 
       default:
         return state;
@@ -113,12 +129,9 @@ export const { dispatch, useStoreState } = createStore(
       images: [],
       species: [],
     },
-    // dialogs: {
     speciesDialog: {
       id: DialogTypes.SPECIES_DIALOG,
       open: false,
-      // values: defaults,
     },
-    // },
   }
 );

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useStoreState, showDialog } from '../state';
+import { useStoreState, showSpeciesDialog, deleteSpecies, addSpecies, updateSpecies } from '../state';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { doc, updateDoc, addDoc, serverTimestamp, collection, deleteDoc } from 'firebase/firestore';
-import { db /* , type ImageInfo */ } from '../lib/firebase.ts';
+import { db } from '../lib/firebase.ts';
 import { toDatalist, toOptions } from '../lib';
-import Dialog, { type DialogProps, DialogTypes } from './Dialog';
+import Dialog, { DialogTypes } from './Dialog';
 
 const counties = [
   { value: '', label: 'Ange län…' },
@@ -77,17 +77,9 @@ const defaults = {
   image: '',
 };
 
-// interface Props extends DialogProps {
-//   defaultValues?: any;
-// }
-
-const id = DialogTypes.SPECIES_DIALOG;
-
-// export default function SpeciesDialog({ /* id,  */children }: Props) {
 export default function SpeciesDialog() {
   const value = useStoreState('app');
   const { open, values } = useStoreState('speciesDialog');
-  // console.log('values', values);
 
   const [previewImage, setPreviewImage] = useState<string>();
 
@@ -111,7 +103,7 @@ export default function SpeciesDialog() {
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset(defaults);
-      showDialog(false);
+      showSpeciesDialog(false);
     }
   }, [isSubmitSuccessful, reset]);
 
@@ -124,8 +116,10 @@ export default function SpeciesDialog() {
           ...data,
           updatedAt: serverTimestamp(),
         });
+        updateSpecies(data);
       } else {
-        await addDoc(collection(db, 'species'), { ...data, createdAt: serverTimestamp() });
+        const doc = await addDoc(collection(db, 'species'), { ...data, createdAt: serverTimestamp() });
+        addSpecies({ ...data, id: doc.id });
       }
     } catch (error) {
       console.error(error);
@@ -140,7 +134,8 @@ export default function SpeciesDialog() {
     if (values?.id) {
       try {
         await deleteDoc(doc(db, 'species', values.id));
-        close();
+        showSpeciesDialog(false);
+        deleteSpecies(values.id);
       } catch (error) {
         console.error(error);
       }
@@ -149,8 +144,9 @@ export default function SpeciesDialog() {
 
   return (
     <Dialog
-      {...{ /* id, */ open /* , show */ /* , children */ }}
-      id={id}
+      id={DialogTypes.SPECIES_DIALOG}
+      open={open}
+      hide={() => showSpeciesDialog(false)}
       onSubmit={handleSubmit(onSubmit)}
       title={`Lägg till ny art`}
     >
