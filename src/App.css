@@ -21,10 +21,10 @@ th a {
 }
 
 th a:hover {
-  color: hsl(205, 20%, 20%);
+  color: hsl(207, 32%, 17%);
 }
 
-table[role='grid'] tbody tr:hover {
+figure table[role='grid'] tbody tr:hover {
   background-color: #39638e2e;
   cursor: pointer;
 }
