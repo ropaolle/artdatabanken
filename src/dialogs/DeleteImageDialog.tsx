@@ -5,13 +5,14 @@ import { db, deleteFile } from '../lib/firebase';
 import Dialog, { DialogTypes } from './Dialog';
 
 export default function DeleteImageDialog() {
-  const { open, values: image } = useStoreState('deleteImageDialog');
+  const { open, values } = useStoreState('deleteImageDialog');
   const [deletingImage, setDeletingImage] = useState(false);
 
-  // TODO: Destruct image ...
+  if (!values) return;
+
+  const { filename, thumbnail, downloadURL, thumbnailURL, createdAt, updatedAt } = values;
 
   const handleDeleteImage = async () => {
-    const { filename, thumbnail } = image || {};
     if (!filename || !thumbnail) return;
 
     setDeletingImage(true);
@@ -30,40 +31,37 @@ export default function DeleteImageDialog() {
   const hide = () => showDeleteImageDialog(false);
 
   return (
-    <Dialog id={DialogTypes.DELETE_IMAGE_DIALOG} open={open} hide={hide} title={`Bild: ${image?.filename}`}>
-      {image && (
-        <>
-          <img src={image.downloadURL} alt={image.filename} />
-          <table>
-            <tbody>
-              <tr>
-                <td>Filnamn</td>
-                <td>
-                  <a href={image.downloadURL} target="_blank">
-                    {image.filename}
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>Thumbnail</td>
-                <td>
-                  <a href={image.thumbnailURL} target="_blank">
-                    {image.thumbnail}
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>Skapad</td>
-                <td>{image.createdAt?.toDate().toLocaleString()}</td>
-              </tr>
-              <tr>
-                <td>Uppdaterad</td>
-                <td>{image.updatedAt?.toDate().toLocaleString()}</td>
-              </tr>
-            </tbody>
-          </table>
-        </>
-      )}
+    <Dialog id={DialogTypes.DELETE_IMAGE_DIALOG} open={open} hide={hide} title={`Bild: ${filename}`}>
+      <img src={downloadURL} alt={filename} />
+      <table>
+        <tbody>
+          <tr>
+            <td>Filnamn</td>
+            <td>
+              <a href={downloadURL} target="_blank">
+                {filename}
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Thumbnail</td>
+            <td>
+              <a href={thumbnailURL} target="_blank">
+                {thumbnail}
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Skapad</td>
+            <td>{createdAt?.toDate().toLocaleString()}</td>
+          </tr>
+          <tr>
+            <td>Uppdaterad</td>
+            <td>{updatedAt?.toDate().toLocaleString()}</td>
+          </tr>
+        </tbody>
+      </table>
+
       <footer>
         <div className="grid">
           <div></div>

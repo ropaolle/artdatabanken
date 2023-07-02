@@ -10,18 +10,17 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-- [ ] Global state?
-  - 
-- [ ] Skapa och ändra arter SpeciesDialog
-- [ ] Radera bild
-  - Visa en toast om att bild raderats.
-  - Uppdatera image-view.
+- [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
 - [ ] Filtrera bilder (filnamn, används används ej)
 - [ ] CSS styling on datalists
 - [ ] Importera arter från Excel
 - [ ] Importera bilder från Firebase
 - [ ] Skriv ut eller spara som pdf.
 - [ ] Security for files and db
+- [x] Global state?
+- [x] Skapa och ändra arter SpeciesDialog
+- [x] Radera bild
+- [x] Uppdatera image-view.
 - [x] Delete image/record and make sure assosiated files also is deleted. Delet images that does not exist in db.
 - [x] Art: Lagra länk till bild. INte filnamn.
 - [x] Använd inte filnamn och art som dokumentnamn. Skapa ett unikt id.

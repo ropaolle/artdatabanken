@@ -11,7 +11,6 @@ import { useStoreState, showSpeciesDialog } from '../state';
 
 export default function SpeciesView() {
   const value = useStoreState('app');
-  console.log('value', value);
   const [sort, setSort] = useState({ column: 'species', ascending: false });
   const [filters, setFilter] = useState({ all: '' });
   // const [items, setItems] = useState(value?.species);
@@ -63,7 +62,7 @@ export default function SpeciesView() {
     .sort(localeSort)
     .map(({ id, kingdom, order, family, species, sex, speciesLatin, place, county, date, image }) => (
       <tr key={id} id={id} onClick={handleRowClick}>
-        <td>{id}</td>
+        {/* <td>{id}</td> */}
         <td>{kingdom}</td>
         <td>{order}</td>
         <td>{family}</td>

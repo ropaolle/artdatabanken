@@ -109,7 +109,7 @@ export default function SpeciesDialog() {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      console.log('Add species', data);
+      // console.log('Add species', data);
 
       if (data.id) {
         await updateDoc(doc(db, 'species', data.id), {
