@@ -10,10 +10,12 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
+- [ ] Skapa och ändra arter SpeciesDialog
 - [ ] Radera bild
-  - Visa enn toast om att bild raderats.
+  - Visa en toast om att bild raderats.
   - Uppdatera image-view.
 - [ ] Filtrera bilder (filnamn, används används ej)
+- [ ] Global state?
 - [ ] CSS styling on datalists
 - [ ] Importera arter från Excel
 - [ ] Importera bilder från Firebase
