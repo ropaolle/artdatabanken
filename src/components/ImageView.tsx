@@ -1,4 +1,4 @@
-import { useGlobalState } from '../state';
+import { useStoreState } from '../state';
 import { Dialogs, type ShowDialog } from '../dialogs';
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
 };
 
 export default function ImageView({ show }: Props) {
-  const [value] = useGlobalState('app');
+  const value = useStoreState('app');
 
   if (!value?.images) return null;
 

@@ -1,24 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useGlobalState } from './state';
+import { initStore } from './state';
 // import './App.css';
-import {
-  Navigation,
-  ImageView,
-  // SpeciesView,
-  // SpeciesDialog,
-  // ImageDialog,
-  // ImageDeleteDialog,
-  Footer,
-  // Dialogs,
-  PageGenerator,
-  // Dialog,
-  // Dialogs,
-} from './components';
-
+import { Navigation, ImageView, Footer, PageGenerator } from './components';
 import { Dialogs, DeleteImageDialog, UploadImageDialog } from './dialogs';
-
 import { getImageInfo, type ImageInfo, getSpeciesInfo, type SpeciesInfo } from './lib/firebase.ts';
-// import { Dialogs } from './App.tsx';
 
 const dialogStates = {
   [Dialogs.DELETE_IMAGE_DIALOG]: false,
@@ -39,7 +24,7 @@ const defaultValues = {
 };
 
 function App() {
-  const [value, update] = useGlobalState('app');
+  // const [value, update] = useGlobalState('app');
   const [page, setPage] = useState<string>();
   // const [images, setImages] = useState<ImageInfo[]>([]);
   const [species, setSpecies] = useState<SpeciesInfo[]>([]);
@@ -56,7 +41,9 @@ function App() {
       const species = await getSpeciesInfo();
       // console.log('images', images);
       // console.log('species', species);
-      update({ images, species });
+
+      initStore({ app: { images, species } });
+      // update({ images, species });
       // setImages(() => images);
       setSpecies(() => species);
     };
