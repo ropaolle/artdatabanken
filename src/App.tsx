@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useGlobalState } from './state';
 // import './App.css';
 import {
   Navigation,
@@ -38,8 +39,9 @@ const defaultValues = {
 };
 
 function App() {
+  const [value, update] = useGlobalState('app');
   const [page, setPage] = useState<string>();
-  const [images, setImages] = useState<ImageInfo[]>([]);
+  // const [images, setImages] = useState<ImageInfo[]>([]);
   const [species, setSpecies] = useState<SpeciesInfo[]>([]);
 
   // const [showUploadImageDialog, setShowImageUploadDialog] = useState(false);
@@ -54,7 +56,8 @@ function App() {
       const species = await getSpeciesInfo();
       // console.log('images', images);
       // console.log('species', species);
-      setImages(() => images);
+      update({ images, species });
+      // setImages(() => images);
       setSpecies(() => species);
     };
     fetchData().catch(console.error);
@@ -72,17 +75,7 @@ function App() {
     setShowDialog((prevValue) => ({ ...prevValue, [dialog]: show }));
   };
 
-  // const showDialog = (dialog: number, show = true, data?: SpeciesInfo) => {
-  //   switch (dialog) {
-  //     case Dialogs.UPLOAD_IMAGE_DIALOG:
-  //       setShowUploadDialog(show);
-  //       break;
-  //     case Dialogs.ADD_SPECIES_DIALOG:
-  //       if (data) setSpeciesDialog(data);
-  //       setShowSpeciesDialog(show);
-  //       break;
-  //   }
-  // };
+  // console.log('value app', value);
 
   return (
     <>
@@ -98,15 +91,11 @@ function App() {
 
       {/* <ImageDeleteDialog open={true} close={() => showDialog(Dialogs.UPLOAD_IMAGE_DIALOG, false)} /> */}
 
-      <UploadImageDialog
-        id={Dialogs.UPLOAD_IMAGE_DIALOG}
-        open={showDialog.UPLOAD_IMAGE_DIALOG}        
-        show={openDialog}
-        />
+      <UploadImageDialog id={Dialogs.UPLOAD_IMAGE_DIALOG} open={showDialog.UPLOAD_IMAGE_DIALOG} show={openDialog} />
       <DeleteImageDialog
         id={Dialogs.DELETE_IMAGE_DIALOG}
         open={showDialog.DELETE_IMAGE_DIALOG}
-        show={openDialog}        
+        show={openDialog}
         image={selectedImage}
       />
 
@@ -130,7 +119,7 @@ function App() {
         )}
 
         {/* {page === 'species' && <SpeciesView species={species} images={images} show={showDialog} />} */}
-        {page === 'images' && <ImageView images={images} show={openDialog} /* show={showDialog} */ />}
+        {page === 'images' && <ImageView /* images={images} */ show={openDialog} /* show={showDialog} */ />}
         {page === 'generator' && <PageGenerator />}
       </main>
       <Footer />

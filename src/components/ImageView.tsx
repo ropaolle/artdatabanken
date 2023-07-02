@@ -1,24 +1,22 @@
-import { type ImageInfo } from '../lib/firebase';
+import { useGlobalState } from '../state';
 import { Dialogs, type ShowDialog } from '../dialogs';
 
 type Props = {
-  images: ImageInfo[];
   show: ShowDialog;
-  // show: (dialog: number, show?: boolean) => void;
 };
 
-export default function ImageView({ images, show }: Props) {
-  const imageList = images.map((image) => {
+export default function ImageView({ show }: Props) {
+  const [value] = useGlobalState('app');
+
+  if (!value?.images) return null;
+
+  const imageList = value.images.map((image) => {
     const { filename, thumbnail, downloadURL, thumbnailURL, updatedAt } = image;
     return (
       <figure className="gallery-image" key={filename} onClick={() => show(Dialogs.DELETE_IMAGE_DIALOG, true, image)}>
         <div className="zoom">
           <img src={thumbnailURL} alt={filename} loading="lazy" />
         </div>
-        {/* <div className="info">
-        <div>{filename}</div>
-     
-      </div> */}
       </figure>
     );
   });

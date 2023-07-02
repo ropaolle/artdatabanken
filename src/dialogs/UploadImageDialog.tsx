@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useGlobalState } from '../state';
 import { db, checkIfImageExistsInDB, uploadFile, normalizeFilename } from '../lib/firebase.ts';
 import { doc, setDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -21,6 +22,7 @@ const defaultCropArea: PixelCrop = {
 };
 
 export default function UploadImageDialog({ id, open, show, children }: DialogProps) {
+  const [, update] = useGlobalState('app');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imageExists, setImageExists] = useState<boolean>(false);
   const [crop, setCrop] = useState<PixelCrop>(defaultCropArea);
@@ -101,13 +103,15 @@ export default function UploadImageDialog({ id, open, show, children }: DialogPr
         thumbnail,
         downloadURL: await uploadFile(previewCanvasRef.current, path),
         thumbnailURL: await uploadFile(thumbnailCanvasRef.current, thumbnailPath),
-        updatedAt: serverTimestamp(),
+        // updatedAt: serverTimestamp(),
       };
       if (imageExists) {
-        await updateDoc(doc(db, 'images', filename), fileInfo);
+        await updateDoc(doc(db, 'images', filename), { ...fileInfo, updatedAt: serverTimestamp() });
       } else {
         await setDoc(doc(db, 'images', filename), { ...fileInfo, createdAt: serverTimestamp() });
       }
+
+      update((prevValue) => ({ ...prevValue, images: [...prevValue.images, fileInfo] }));
     } catch (error) {
       console.error(error);
     }
