@@ -10,7 +10,8 @@ import { useStoreState, showSpeciesDialog } from '../state';
 // }
 
 export default function SpeciesView() {
-  const value = useStoreState('app');
+  const images = useStoreState('images');
+  const species = useStoreState('species');
   const [sort, setSort] = useState({ column: 'species', ascending: false });
   const [filters, setFilter] = useState({ all: '' });
   // const [items, setItems] = useState(value?.species);
@@ -37,7 +38,7 @@ export default function SpeciesView() {
   //   setItems(filteredSpecies);
   // }, [value.species, filters]);
 
-  if (!value?.images) return null;
+  if (!images) return null;
 
   // TODO: Refactor to be cleaner in TypeScript
   const localeSort = (a: SpeciesInfo, b: SpeciesInfo) => {
@@ -50,15 +51,15 @@ export default function SpeciesView() {
   };
 
   const handleRowClick = (e: React.MouseEvent) => {
-    const selected = value.species.find(({ id }) => id === e.currentTarget.id);
+    const selected = species.find(({ id }) => id === e.currentTarget.id);
     if (selected) {
       showSpeciesDialog(true, selected);
     }
   };
 
-  const getImage = (name: string) => value.images.find((image) => image.filename === name);
+  const getImage = (name: string) => images.find((image) => image.filename === name);
 
-  const speciesTable = value.species
+  const speciesTable = species
     .sort(localeSort)
     .map(({ id, kingdom, order, family, species, sex, speciesLatin, place, county, date, image }) => (
       <tr key={id} id={id} onClick={handleRowClick}>

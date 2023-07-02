@@ -1,11 +1,11 @@
 import { useStoreState, showDeleteImageDialog, showUploadImageDialog } from '../state';
 
 export default function ImageView() {
-  const value = useStoreState('app');
+  const images = useStoreState('images');
 
-  if (!value?.images) return null;
+  if (!images) return null;
 
-  const imageList = value.images.map((image) => {
+  const imageList = images.map((image) => {
     const { filename, thumbnail, downloadURL, thumbnailURL, updatedAt } = image;
     return (
       <figure

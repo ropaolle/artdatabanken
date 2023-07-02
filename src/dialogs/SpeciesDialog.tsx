@@ -78,11 +78,9 @@ const defaults = {
 };
 
 export default function SpeciesDialog() {
-  const value = useStoreState('app');
+  const images = useStoreState('images');
   const { open, values } = useStoreState('speciesDialog');
-
   const [previewImage, setPreviewImage] = useState<string>();
-
   const {
     register,
     handleSubmit,
@@ -91,7 +89,7 @@ export default function SpeciesDialog() {
   } = useForm<Inputs>();
 
   const loadPreview = (filename: string | undefined) => {
-    const image = value.images.find((image) => image.filename === filename);
+    const image = images.find((image) => image.filename === filename);
     setPreviewImage(image?.thumbnailURL);
   };
 

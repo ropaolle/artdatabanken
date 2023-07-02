@@ -2,11 +2,6 @@ import { createStore } from 'react-hooks-global-state';
 import type { ImageInfo, SpeciesInfo } from './lib/firebase.ts';
 import { DialogTypes } from './dialogs/Dialog.tsx';
 
-type AppState = {
-  images: ImageInfo[];
-  species: SpeciesInfo[];
-};
-
 type DialogState = {
   id: DialogTypes;
   open: boolean;
@@ -20,14 +15,15 @@ interface SpeciesDialogState extends DialogState {
 }
 
 type GlobalState = {
-  app: AppState;
+  images: ImageInfo[];
+  species: SpeciesInfo[];
   speciesDialog: SpeciesDialogState;
   deleteImageDialog: DeleteImageDialogState;
   uploadImageDialog: DialogState;
 };
 
 type Action =
-  | { type: 'initStore'; app: AppState }
+  | { type: 'initStore'; images: ImageInfo[]; species: SpeciesInfo[] }
   | { type: 'addImage'; image: ImageInfo }
   | { type: 'deleteImage'; filename: string }
   | { type: 'addSpecies'; species: SpeciesInfo }
@@ -37,9 +33,10 @@ type Action =
   | { type: 'showDeleteImageDialog'; state: boolean; values?: ImageInfo }
   | { type: 'showUploadImageDialog'; state: boolean };
 
-export const initStore = (app: AppState) =>
+export const initStore = (images: ImageInfo[], species: SpeciesInfo[]) =>
   dispatch({
-    app,
+    images,
+    species,
     type: 'initStore',
   });
 
@@ -101,40 +98,41 @@ export const { dispatch, useStoreState } = createStore(
       case 'initStore':
         return {
           ...state,
-          app: action.app,
+          images: action.images,
+          species: action.species,
         };
 
       case 'addImage':
         return {
           ...state,
-          app: { ...state.app, images: [...state.app.images, action.image] },
+          images: [...state.images, action.image],
         };
 
       case 'deleteImage':
         return {
           ...state,
-          app: { ...state.app, images: state.app.images.filter(({ filename }) => action.filename !== filename) },
+          images: state.images.filter(({ filename }) => action.filename !== filename),
         };
 
       case 'addSpecies':
         return {
           ...state,
-          app: { ...state.app, species: [...state.app.species, action.species] },
+          species: [...state.species, action.species],
         };
 
       case 'updateSpecies': {
-        const index = state.app.species.findIndex(({ id }) => action.species.id === id);
-        if (index !== -1) state.app.species[index] = action.species;
+        const index = state.species.findIndex(({ id }) => action.species.id === id);
+        if (index !== -1) state.species[index] = action.species;
         return {
           ...state,
-          app: { ...state.app },
+          species: { ...state.species },
         };
       }
 
       case 'deleteSpecies':
         return {
           ...state,
-          app: { ...state.app, species: state.app.species.filter(({ id }) => action.id !== id) },
+          species: state.species.filter(({ id }) => action.id !== id),
         };
 
       case 'showSpeciesDialog':
@@ -160,11 +158,8 @@ export const { dispatch, useStoreState } = createStore(
     }
   },
   {
-    // TODO: remove app level and access props directly
-    app: {
-      images: [],
-      species: [],
-    },
+    images: [],
+    species: [],
     speciesDialog: {
       id: DialogTypes.SPECIES_DIALOG,
       open: false,

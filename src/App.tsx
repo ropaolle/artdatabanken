@@ -13,7 +13,7 @@ function App() {
     const fetchData = async () => {
       const images = await getImageInfo();
       const species = await getSpeciesInfo();
-      initStore({ images, species });
+      initStore(images, species);
     };
     fetchData().catch(console.error);
   }, []);
@@ -22,7 +22,6 @@ function App() {
     <>
       <Navigation setPage={setPage} />
 
-      {/* TODO: Shold app state be loaded once and passed as propps to components or be loaded inn the components?  */}
       <SpeciesDialog />
       <DeleteImageDialog />
       <UploadImageDialog />
