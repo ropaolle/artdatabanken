@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getStorage, ref, listAll, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
+import { getStorage, ref, listAll, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
 import { getFirestore, collection, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore';
 
 // PROD
@@ -68,12 +68,10 @@ const canvasToBlob = async (ref: HTMLCanvasElement): Promise<Blob> => {
 
 export const uploadFile = async (
   canvasRef: HTMLCanvasElement,
-  /* blob: Blob, */
   path: string,
-  onProgress: (progress: number) => void
+  onProgress?: (progress: number) => void
 ): Promise<string> => {
   const blob = await canvasToBlob(canvasRef);
-
   const storageRef = ref(storage, path);
   const uploadTask = uploadBytesResumable(storageRef, blob);
 
@@ -82,7 +80,7 @@ export const uploadFile = async (
       'state_changed',
       (snapshot) => {
         const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-        onProgress(progress);
+        typeof onProgress === 'function' && onProgress(progress);
       },
       (error) => {
         reject(error);
@@ -94,32 +92,25 @@ export const uploadFile = async (
   });
 };
 
-/**
- *
- * @param filePath Firebase storage folder
- * @returns Array of filenames
- *
- * Note: res.prefixes returns all the prefixes under listRef. You may call listAll() recursively on them.
- */
-export const getFileList = (filePath: string): Promise<string[]> => {
-  const listRef = ref(storage, filePath);
+// export const getFileList = (filePath: string): Promise<string[]> => {
+//   const listRef = ref(storage, filePath);
 
-  return listAll(listRef)
-    .then((res) => {
-      return Promise.resolve(res.items.map(({ name }) => name));
-    })
-    .catch((error) => {
-      return Promise.reject(error);
-    });
-};
+//   return listAll(listRef)
+//     .then((res) => {
+//       return Promise.resolve(res.items.map(({ name }) => name));
+//     })
+//     .catch((error) => {
+//       return Promise.reject(error);
+//     });
+// };
 
 export type ImageInfo = {
   filename: string;
   thumbnail: string;
   downloadURL: string;
   thumbnailURL: string;
-  createdAt: Timestamp;
-  updatedAt: Timestamp;
+  createdAt?: Timestamp;
+  updatedAt?: Timestamp;
 };
 
 export const getImageInfo = async (): Promise<ImageInfo[]> => {
@@ -146,8 +137,19 @@ export type SpeciesInfo = {
 
 export const getSpeciesInfo = async (): Promise<SpeciesInfo[]> => {
   const querySnapshot = await getDocs(collection(db, 'species'));
-  // querySnapshot
-  // const data = doc.data();
-
   return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id } as SpeciesInfo));
+};
+
+export const deleteFile = async (filename: string, path = 'images'): Promise<void> => {
+  const fileRef = ref(storage, `${path}/${filename}`);
+
+  return new Promise((resolve, reject) => {
+    deleteObject(fileRef)
+      .then(() => {
+        resolve();
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
 };

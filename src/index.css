@@ -29,7 +29,7 @@ table[role='grid'] tbody tr:hover {
   cursor: pointer;
 }
 
-dialog .info {
+/* dialog .info {
   color: #39638e;
   font-size: smaller;
   margin-bottom: 1rem;
@@ -47,7 +47,7 @@ dialog .info-preview img {
 
 dialog h3 {
   margin-bottom: 1rem;
-}
+} */
 
 .header-buttons {
   text-align: right;
@@ -160,4 +160,30 @@ datalist option:focus {
   color: #fff;
   background-color: #036;
   outline: 0 none;
+} */
+
+
+/* Dialog */
+
+/* dialog article>footer {
+  text-align: right;
+}
+
+dialog article>footer, dialog article>header {
+  padding: calc(var(--block-spacing-vertical) * .5) var(--block-spacing-horizontal);
+}
+
+article>footer {
+  margin-top: var(--block-spacing-vertical);
+  margin-bottom: calc(var(--block-spacing-vertical) * -1);
+  border-top: var(--border-width) solid var(--card-border-color);
+  border-bottom-right-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+article>footer, article>header {
+  margin-right: calc(var(--block-spacing-horizontal) * -1);
+  margin-left: calc(var(--block-spacing-horizontal) * -1);
+  padding: calc(var(--block-spacing-vertical) * .66) var(--block-spacing-horizontal);
+  background-color: var(--card-sectionning-background-color);
 } */

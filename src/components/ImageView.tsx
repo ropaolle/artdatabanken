@@ -1,29 +1,34 @@
 import { type ImageInfo } from '../lib/firebase';
-import { Dialogs } from '.';
+import { Dialogs, type ShowDialog } from '../dialogs';
 
 type Props = {
   images: ImageInfo[];
-  show: (dialog: number, show?: boolean) => void;
+  show: ShowDialog;
+  // show: (dialog: number, show?: boolean) => void;
 };
 
 export default function ImageView({ images, show }: Props) {
-  const imageList = images.map(({ filename, downloadURL, thumbnailURL, updatedAt }) => (
-    <figure className="gallery-image" key={filename}>
-      <div className='zoom'><img src={thumbnailURL} alt={filename} loading="lazy" /></div>
-      {/* <div className="info">
+  const imageList = images.map((image) => {
+    const { filename, thumbnail, downloadURL, thumbnailURL, updatedAt } = image;
+    return (
+      <figure className="gallery-image" key={filename} onClick={() => show(Dialogs.DELETE_IMAGE_DIALOG, true, image)}>
+        <div className="zoom">
+          <img src={thumbnailURL} alt={filename} loading="lazy" />
+        </div>
+        {/* <div className="info">
         <div>{filename}</div>
      
       </div> */}
-     
-    </figure>
-  ));
+      </figure>
+    );
+  });
 
   return (
     <div className="image-view">
       <div className="grid">
         <h1 id="images">Bilder</h1>
         <div className="header-buttons">
-          <button role="button" onClick={() => show(Dialogs.UPLOAD_IMAGE_DIALOG)}>
+          <button role="button" onClick={() => show(Dialogs.UPLOAD_IMAGE_DIALOG, true)}>
             Ladd upp bild
           </button>
         </div>

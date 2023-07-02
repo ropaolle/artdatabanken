@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { SpeciesInfo, ImageInfo } from '../lib/firebase';
 import { Icon } from '@iconify/react';
-import { Dialogs } from '.';
+import { Dialogs } from '../dialogs';
 
 interface ItemInfo extends Omit<SpeciesInfo, 'updatedAt'> {
   all: string;
@@ -18,8 +18,6 @@ export default function SpeciesView({ species, images, show }: Props) {
   const [sort, setSort] = useState({ column: 'species', ascending: false });
   const [filters, setFilter] = useState({ all: '' });
   const [items, setItems] = useState(species);
-
-  // console.log('images', images);
 
   useEffect(() => {
     const filteredSpecies = species.filter((item) => {

@@ -1,4 +1,5 @@
 import { useDebounceEffect } from './useDebounceEffect';
+import { drawImageOnCanvas } from './canvas';
 
 type Options = {
   value: string;
@@ -14,4 +15,4 @@ export const toOptions = (options: Options[]) =>
 
 export const toDatalist = (options: string[]) => options.map((option, i) => <option key={i}>{option}</option>);
 
-export { useDebounceEffect };
+export { useDebounceEffect, drawImageOnCanvas };

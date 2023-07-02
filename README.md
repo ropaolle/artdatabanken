@@ -2,17 +2,26 @@
 
 Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://console.firebase.google.com/).
 
+## Buggar
+
+- [ ] UploadImageDialog <dialog> closes on file input cancelation in Chromiumbased browsers, workaround added in Dialog.tsx.
+  - [Bug 1442824](https://bugs.chromium.org/p/chromium/issues/detail?id=1442824)
+  - [HTML dialog closes automatically when file input is cancelled. How to prevent?](https://stackoverflow.com/questions/76400460/html-dialog-closes-automatically-when-file-input-is-cancelled-how-to-prevent)
+
 ## TODO
 
-- [ ] Filtrera bilder (filnamn, används används ej)
+- [ ] Skapa och ändra arter SpeciesDialog
 - [ ] Radera bild
-
+  - Visa en toast om att bild raderats.
+  - Uppdatera image-view.
+- [ ] Filtrera bilder (filnamn, används används ej)
+- [ ] Global state?
 - [ ] CSS styling on datalists
 - [ ] Importera arter från Excel
 - [ ] Importera bilder från Firebase
-- [ ] Delete image/record and make sure assosiated files also is deleted. Delet images that does not exist in db.
 - [ ] Skriv ut eller spara som pdf.
 - [ ] Security for files and db
+- [x] Delete image/record and make sure assosiated files also is deleted. Delet images that does not exist in db.
 - [x] Art: Lagra länk till bild. INte filnamn.
 - [x] Använd inte filnamn och art som dokumentnamn. Skapa ett unikt id.
 - [x] Radera art
@@ -48,6 +57,7 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
   - [useEffect on objects](https://dev.to/hey_yogini/useeffect-dependency-array-and-object-comparison-45el)
 - CSS
   - [Grid](https://www.w3schools.com/css/css_grid_container.asp)
+  - [Toast notification](https://www.codingnepalweb.com/toast-notification-html-css-javascript/)
 - JavaScript
   - [Create thumbnails on the client](https://codepen.io/mttaked/pen/ZLdEKm)
   - [Create thumbnails in a Firebase cloud function](https://medium.com/@christianrb/how-to-create-an-image-thumbnail-with-firebase-cloud-functions-73d4584290ba)
