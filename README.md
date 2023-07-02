@@ -4,7 +4,9 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## Buggar
 
-- [ ] UploadImageDialog döljs och kan inte visas igen, Ladda upp fil -> Välj fil -> Avbryt.
+- [ ] UploadImageDialog <dialog> closes on file input cancelation in Chromiumbased browsers, workaround added in Dialog.tsx.
+  - [Bug 1442824](https://bugs.chromium.org/p/chromium/issues/detail?id=1442824)
+  - [HTML dialog closes automatically when file input is cancelled. How to prevent?](https://stackoverflow.com/questions/76400460/html-dialog-closes-automatically-when-file-input-is-cancelled-how-to-prevent)
 
 ## TODO
 
@@ -54,7 +56,6 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 - CSS
   - [Grid](https://www.w3schools.com/css/css_grid_container.asp)
   - [Toast notification](https://www.codingnepalweb.com/toast-notification-html-css-javascript/)
-  - [Snackbar/toast](https://www.w3schools.com/howto/howto_js_snackbar.asp)
 - JavaScript
   - [Create thumbnails on the client](https://codepen.io/mttaked/pen/ZLdEKm)
   - [Create thumbnails in a Firebase cloud function](https://medium.com/@christianrb/how-to-create-an-image-thumbnail-with-firebase-cloud-functions-73d4584290ba)

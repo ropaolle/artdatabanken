@@ -101,7 +101,6 @@ export default function SpeciesDialog({ open, close, defaultValues = defaults, i
   };
 
   useEffect(() => {
-    // console.log('reset');
     reset(defaultValues);
     loadPreview(defaultValues.image);
   }, [defaultValues, reset]);
@@ -129,8 +128,6 @@ export default function SpeciesDialog({ open, close, defaultValues = defaults, i
       console.error(error);
     }
   };
-
-  // console.log(watch('example'));
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
     loadPreview(e?.target.value || '');

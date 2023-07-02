@@ -61,7 +61,6 @@ function App() {
   }, []);
 
   const openDialog = (dialog: Dialogs, show = true, data?: SpeciesInfo | ImageInfo | undefined) => {
-    console.log('dialog', dialog, show);
     switch (dialog) {
       case Dialogs.DELETE_IMAGE_DIALOG:
         setSelectedImage(data as ImageInfo);
@@ -72,8 +71,6 @@ function App() {
 
     setShowDialog((prevValue) => ({ ...prevValue, [dialog]: show }));
   };
-
-  // console.log('showDialog', showDialog);
 
   // const showDialog = (dialog: number, show = true, data?: SpeciesInfo) => {
   //   switch (dialog) {

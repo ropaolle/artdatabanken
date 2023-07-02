@@ -173,7 +173,6 @@ export default function ImageDialog({ open, close }: Props) {
     if (file) {
       setSelectedFile(file);
       setImageExists(await checkIfImageExistsInDB(file.name));
-      console.log('file.name', file.name);
     }
   };
 

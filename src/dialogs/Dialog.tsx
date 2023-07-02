@@ -1,4 +1,4 @@
-// import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import './Dialog.css';
 import type { SpeciesInfo, ImageInfo } from '../lib/firebase';
 import type { SubmitHandler, FieldValues } from 'react-hook-form';
@@ -18,29 +18,43 @@ export type DialogProps = {
   show: ShowDialog;
   children?: React.ReactNode;
   onSubmit?: SubmitHandler<FieldValues>;
-  // handleSubmit: any;
 };
 
-/* export const DialogButton = ({ label, className }: { label: string; className: string }) => (
-  <button type="button" role="button" className={className}>
-  {label}
-  </button>
-  ); */
+export default function Dialog({ id, title, open, show, children, onSubmit }: DialogProps) {
+  // BUGG: Chromium bugg that closes dialogs when a file input dialog is canceled, see
+  // https://stackoverflow.com/questions/76400460/html-dialog-closes-automatically-when-file-input-is-cancelled-how-to-prevent.
+  useEffect(() => {
+    let prematurelyClosed = false;
+    const dialog = document.getElementById(id) as HTMLDialogElement;
 
-export default function Dialog({ id, title, open, show, children, onSubmit /* , handleSubmit */ }: DialogProps) {
+    const handleCancel = (e: Event) => {
+      prematurelyClosed = e.target !== dialog;
+    };
+
+    const handleClose = () => {
+      if (prematurelyClosed) {
+        dialog.show();
+        prematurelyClosed = false;
+      }
+    };
+
+    dialog.addEventListener('cancel', handleCancel);
+    dialog.addEventListener('close', handleClose);
+
+    // cleanup this component
+    return () => {
+      window.removeEventListener('cancel', handleCancel);
+      window.removeEventListener('close', handleClose);
+    };
+  });
+
   const handleClose = (e: React.FormEvent) => {
     e.preventDefault();
     show(id, false);
   };
 
-  // console.log('open', open);
-  // console.log('typeof handleSubmit', typeof handleSubmit);
-
-  // if (!handleSubmit) return null;
-
   return (
     <dialog id={id} open={open}>
-      {/* <form onSubmit={handleSubmit(onSubmit)} className="form"> */}
       <form onSubmit={onSubmit} className="form">
         <article>
           <header>

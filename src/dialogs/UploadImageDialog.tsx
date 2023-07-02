@@ -34,7 +34,7 @@ export default function UploadImageDialog({ id, open, show, children }: DialogPr
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitSuccessful, isSubmitting, isDirty },
+    formState: { errors, isSubmitSuccessful, isSubmitting },
   } = useForm<Inputs>();
 
   useEffect(() => {
@@ -125,14 +125,9 @@ export default function UploadImageDialog({ id, open, show, children }: DialogPr
   };
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
-    console.log('e?.target.files', e?.target.files);
-    e.preventDefault();
     const file = e?.target.files?.[0];
     setSelectedFile(file || null);
   };
-
-  // console.log('errors', errors);
-  // console.log('isDirty', isDirty);
 
   return (
     <Dialog {...{ id, show, children }} open={open} onSubmit={handleSubmit(onSubmit)} title="Ladda upp bild">

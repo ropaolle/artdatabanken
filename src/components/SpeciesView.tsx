@@ -19,8 +19,6 @@ export default function SpeciesView({ species, images, show }: Props) {
   const [filters, setFilter] = useState({ all: '' });
   const [items, setItems] = useState(species);
 
-  // console.log('images', images);
-
   useEffect(() => {
     const filteredSpecies = species.filter((item) => {
       // Free text filter
