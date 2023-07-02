@@ -1,67 +1,71 @@
 import { useState, useEffect } from 'react';
 import type { SpeciesInfo, ImageInfo } from '../lib/firebase';
 import { Icon } from '@iconify/react';
-import { Dialogs } from '../dialogs';
+// import { Dialogs } from '../dialogs';
+import { useStoreState, showSpeciesDialog } from '../state';
+// import { DialogTypes } from '../dialogs';
 
-interface ItemInfo extends Omit<SpeciesInfo, 'updatedAt'> {
-  all: string;
-}
+// interface ItemInfo extends Omit<SpeciesInfo, 'updatedAt'> {
+//   all: string;
+// }
 
-type Props = {
-  // species: SpeciesInfo[];
-  species: ItemInfo[];
-  images: ImageInfo[];
-  show: (dialog: number, show?: boolean, data?: SpeciesInfo) => void;
-};
-
-export default function SpeciesView({ species, images, show }: Props) {
+export default function SpeciesView() {
+  const images = useStoreState('images');
+  const species = useStoreState('species');
   const [sort, setSort] = useState({ column: 'species', ascending: false });
   const [filters, setFilter] = useState({ all: '' });
-  const [items, setItems] = useState(species);
+  // const [items, setItems] = useState(value?.species);
 
-  useEffect(() => {
-    const filteredSpecies = species.filter((item) => {
-      // Free text filter
-      if (filters.all && filters.all !== '') {
-        return Object.entries(item).some(([, value]) => {
-          if (typeof value !== 'string') return false;
-          return value.toLowerCase().includes(filters.all);
-        });
-      }
+  // console.log('species', species);
 
-      // Column filter
-      return Object.entries(filters).every(([key, value]) => {
-        if (typeof key !== 'string' || key === '' || key === 'all') return true;
-        const property = item[key as keyof ItemInfo];
-        return property?.includes(value.toLowerCase());
-      });
-    });
+  // TODO: Add filter functionality
+  // useEffect(() => {
+  //   const filteredSpecies = value.species.filter((item) => {
+  //     // Free text filter
+  //     if (filters.all && filters.all !== '') {
+  //       return Object.entries(item).some(([, value]) => {
+  //         if (typeof value !== 'string') return false;
+  //         return value.toLowerCase().includes(filters.all);
+  //       });
+  //     }
 
-    setItems(filteredSpecies);
-  }, [species, filters]);
+  //     // Column filter
+  //     return Object.entries(filters).every(([key, value]) => {
+  //       if (typeof key !== 'string' || key === '' || key === 'all') return true;
+  //       const property = item[key as keyof ItemInfo];
+  //       return property?.includes(value.toLowerCase());
+  //     });
+  //   });
 
-  const localeSort = (a: ItemInfo, b: ItemInfo) => {
-    const itemA = a[sort.column as keyof ItemInfo];
-    const itemB = b[sort.column as keyof ItemInfo];
-    if (!itemA || !itemB) return 0;
+  //   setItems(filteredSpecies);
+  // }, [value.species, filters]);
+
+  if (!images) return null;
+
+  // TODO: Refactor to be cleaner in TypeScript
+  const localeSort = (a: SpeciesInfo, b: SpeciesInfo) => {
+    const itemA = a[sort.column as keyof SpeciesInfo];
+    const itemB = b[sort.column as keyof SpeciesInfo];
+    if (!itemA || typeof itemA !== 'string' || !itemB || typeof itemB !== 'string') return 0;
     const localeCompare = itemA.localeCompare(itemB, 'sv', { sensitivity: 'base' });
     // Set sort order
     return sort.ascending ? -localeCompare : localeCompare;
   };
 
-  const handleRowClick = (e: React.MouseEvent /* <Element, MouseEvent> */) => {
+  const handleRowClick = (e: React.MouseEvent) => {
     const selected = species.find(({ id }) => id === e.currentTarget.id);
     if (selected) {
-      show(Dialogs.ADD_SPECIES_DIALOG, true, selected);
+      showSpeciesDialog(true, selected);
     }
   };
 
   const getImage = (name: string) => images.find((image) => image.filename === name);
 
-  const speciesTable = items
+  const speciesTable = species
     .sort(localeSort)
     .map(({ id, kingdom, order, family, species, sex, speciesLatin, place, county, date, image }) => (
-      <tr key={species} id={id} onClick={handleRowClick}>
+      <tr key={id} id={id} onClick={handleRowClick}>
+        {/* <td>{id}</td> */}
         <td>{kingdom}</td>
         <td>{order}</td>
         <td>{family}</td>
@@ -109,7 +113,8 @@ export default function SpeciesView({ species, images, show }: Props) {
       <div className="grid">
         <h1 id="speices">Arter</h1>
         <div className="header-buttons">
-          <button role="button" onClick={() => show(Dialogs.ADD_SPECIES_DIALOG)}>
+          {/* <button role="button" onClick={() => show(Dialogs.SPECIES_DIALOG, true)}> */}
+          <button role="button" onClick={() => showSpeciesDialog(true)}>
             Ny Art
           </button>
         </div>

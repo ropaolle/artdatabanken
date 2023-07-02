@@ -1,71 +1,67 @@
 import { useState } from 'react';
+import { useStoreState, deleteImage, showDeleteImageDialog } from '../state';
 import { doc, deleteDoc } from 'firebase/firestore';
-import { db, type ImageInfo, deleteFile } from '../lib/firebase';
-import Dialog, { type DialogProps } from './Dialog';
+import { db, deleteFile } from '../lib/firebase';
+import Dialog, { DialogTypes } from './Dialog';
 
-interface Props extends DialogProps {
-  image: ImageInfo | undefined;
-}
-
-export default function DeleteImageDialog({ id, open, show, children, image }: Props) {
+export default function DeleteImageDialog() {
+  const { open, values } = useStoreState('deleteImageDialog');
   const [deletingImage, setDeletingImage] = useState(false);
-  const [imageDeleted, setImageDeleted] = useState(false);
 
-  const deleteImage = async () => {
-    if (!image?.filename) return;
+  if (!values) return;
+
+  const { filename, thumbnail, downloadURL, thumbnailURL, createdAt, updatedAt } = values;
+
+  const handleDeleteImage = async () => {
+    if (!filename || !thumbnail) return;
 
     setDeletingImage(true);
 
-    Promise.all([
-      await deleteFile(image.filename),
-      await deleteFile(image.thumbnail),
-      await deleteDoc(doc(db, 'images', image.filename)),
-    ])
+    Promise.all([await deleteFile(filename), await deleteFile(thumbnail), await deleteDoc(doc(db, 'images', filename))])
       .then(() => {
-        setImageDeleted(true);
+        deleteImage(filename);
       })
       .catch((error) => console.error(error))
       .finally(() => {
         setDeletingImage(false);
-        show(id, false);
+        showDeleteImageDialog(false);
       });
   };
 
+  const hide = () => showDeleteImageDialog(false);
+
   return (
-    <Dialog {...{ id, open, show, children }} title={`Bild: ${image?.filename}`}>
-      {image && (
-        <>
-          <img src={image.downloadURL} alt={image.filename} />
-          <table>
-            <tbody>
-              <tr>
-                <td>Filnamn</td>
-                <td>
-                  <a href={image.downloadURL} target="_blank">
-                    {image.filename}
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>Thumbnail</td>
-                <td>
-                  <a href={image.thumbnailURL} target="_blank">
-                    {image.thumbnail}
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>Skapad</td>
-                <td>{image.createdAt?.toDate().toLocaleString()}</td>
-              </tr>
-              <tr>
-                <td>Uppdaterad</td>
-                <td>{image.updatedAt?.toDate().toLocaleString()}</td>
-              </tr>
-            </tbody>
-          </table>
-        </>
-      )}
+    <Dialog id={DialogTypes.DELETE_IMAGE_DIALOG} open={open} hide={hide} title={`Bild: ${filename}`}>
+      <img src={downloadURL} alt={filename} />
+      <table>
+        <tbody>
+          <tr>
+            <td>Filnamn</td>
+            <td>
+              <a href={downloadURL} target="_blank">
+                {filename}
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Thumbnail</td>
+            <td>
+              <a href={thumbnailURL} target="_blank">
+                {thumbnail}
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Skapad</td>
+            <td>{createdAt?.toDate().toLocaleString()}</td>
+          </tr>
+          <tr>
+            <td>Uppdaterad</td>
+            <td>{updatedAt?.toDate().toLocaleString()}</td>
+          </tr>
+        </tbody>
+      </table>
+
       <footer>
         <div className="grid">
           <div></div>
@@ -73,21 +69,15 @@ export default function DeleteImageDialog({ id, open, show, children, image }: P
             className="contrast"
             type="button"
             role="button"
-            onClick={deleteImage}
+            onClick={handleDeleteImage}
             aria-busy={deletingImage}
-            disabled={imageDeleted}
           >
             Radera
           </button>
-          <button className="secondary" type="button" role="button" onClick={() => show(id, false)}>
+          <button className="secondary" type="button" role="button" onClick={hide}>
             Avbryt
           </button>
         </div>
-        {/* {imageDeleted && (
-          <div className="info">
-            <b>{image?.filename}</b> har raderats.
-          </div>
-        )} */}
       </footer>
     </Dialog>
   );

@@ -119,7 +119,7 @@ export const getImageInfo = async (): Promise<ImageInfo[]> => {
 };
 
 export type SpeciesInfo = {
-  id: string;
+  id?: string;
   kingdom: string;
   order: string;
   family: string;
@@ -131,8 +131,6 @@ export type SpeciesInfo = {
   date: string;
   image: string;
   updatedAt?: Timestamp;
-  // thumbnailURL?: string;
-  // all?: string;
 };
 
 export const getSpeciesInfo = async (): Promise<SpeciesInfo[]> => {

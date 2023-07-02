@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useStoreState, addImage, showUploadImageDialog } from '../state';
 import { db, checkIfImageExistsInDB, uploadFile, normalizeFilename } from '../lib/firebase.ts';
 import { doc, setDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -6,7 +7,7 @@ import ReactCrop, { type PixelCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { useDebounceEffect, drawImageOnCanvas } from '../lib';
 import { Icon } from '@iconify/react';
-import Dialog, { type DialogProps } from './Dialog';
+import Dialog, { DialogTypes } from './Dialog';
 
 type Inputs = {
   imageFile: FileList;
@@ -20,7 +21,9 @@ const defaultCropArea: PixelCrop = {
   y: 250,
 };
 
-export default function UploadImageDialog({ id, open, show, children }: DialogProps) {
+export default function UploadImageDialog() {
+  const { open } = useStoreState('uploadImageDialog');
+
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imageExists, setImageExists] = useState<boolean>(false);
   const [crop, setCrop] = useState<PixelCrop>(defaultCropArea);
@@ -40,7 +43,7 @@ export default function UploadImageDialog({ id, open, show, children }: DialogPr
   useEffect(() => {
     setSelectedFile(null);
     reset();
-    show(id, false);
+    showUploadImageDialog(false);
   }, [isSubmitSuccessful]);
 
   useEffect(() => {
@@ -101,13 +104,16 @@ export default function UploadImageDialog({ id, open, show, children }: DialogPr
         thumbnail,
         downloadURL: await uploadFile(previewCanvasRef.current, path),
         thumbnailURL: await uploadFile(thumbnailCanvasRef.current, thumbnailPath),
-        updatedAt: serverTimestamp(),
+        // updatedAt: serverTimestamp(),
       };
+
       if (imageExists) {
-        await updateDoc(doc(db, 'images', filename), fileInfo);
+        await updateDoc(doc(db, 'images', filename), { ...fileInfo, updatedAt: serverTimestamp() });
       } else {
         await setDoc(doc(db, 'images', filename), { ...fileInfo, createdAt: serverTimestamp() });
       }
+
+      addImage(fileInfo);
     } catch (error) {
       console.error(error);
     }
@@ -118,8 +124,16 @@ export default function UploadImageDialog({ id, open, show, children }: DialogPr
     setSelectedFile(file || null);
   };
 
+  const hide = () => showUploadImageDialog(false);
+
   return (
-    <Dialog {...{ id, show, children }} open={open} onSubmit={handleSubmit(onSubmit)} title="Ladda upp bild">
+    <Dialog
+      id={DialogTypes.UPLOAD_IMAGE_DIALOG}
+      open={open}
+      hide={hide}
+      onSubmit={handleSubmit(onSubmit)}
+      title={'Ladda upp bild'}
+    >
       <p>Ladda upp en ny eller ersätt befintlig bild.</p>
 
       <input type="file" {...register('imageFile', { required: 'This field is required!', onChange: handleChange })} />
