@@ -1,20 +1,27 @@
 import { useEffect } from 'react';
+import { useStoreState, showDialog } from '../state';
 import './Dialog.css';
 import type { SpeciesInfo, ImageInfo } from '../lib/firebase';
 
-export enum Dialogs {
+// export enum Dialogs {
+//   DELETE_IMAGE_DIALOG = 'DELETE_IMAGE_DIALOG',
+//   UPLOAD_IMAGE_DIALOG = 'UPLOAD_IMAGE_DIALOG',
+//   SPECIES_DIALOG = 'SPECIES_DIALOG',
+// }
+
+export enum DialogTypes {
   DELETE_IMAGE_DIALOG = 'DELETE_IMAGE_DIALOG',
   UPLOAD_IMAGE_DIALOG = 'UPLOAD_IMAGE_DIALOG',
-  // ADD_SPECIES_DIALOG,
+  SPECIES_DIALOG = 'SPECIES_DIALOG',
 }
 
-export type ShowDialog = (dialog: Dialogs, show: boolean, data?: SpeciesInfo | ImageInfo) => void;
+export type ShowDialog = (dialog: DialogTypes, show: boolean, data?: SpeciesInfo | ImageInfo) => void;
 
 export type DialogProps = {
-  id: Dialogs;
+  id: DialogTypes;
   title?: string;
-  open: boolean;
-  show: ShowDialog;
+  open?: boolean;
+  show?: ShowDialog;
   children?: React.ReactNode;
   onSubmit?: React.FormEventHandler<HTMLFormElement>;
 };
@@ -49,7 +56,8 @@ export default function Dialog({ id, title, open, show, children, onSubmit }: Di
 
   const handleClose = (e: React.FormEvent) => {
     e.preventDefault();
-    show(id, false);
+    typeof show === 'function' && show(id, false);
+    showDialog(false);
   };
 
   return (

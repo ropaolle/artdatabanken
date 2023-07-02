@@ -1,5 +1,5 @@
 import { useStoreState } from '../state';
-import { Dialogs, type ShowDialog } from '../dialogs';
+import { DialogTypes, type ShowDialog } from '../dialogs';
 
 type Props = {
   show: ShowDialog;
@@ -13,7 +13,11 @@ export default function ImageView({ show }: Props) {
   const imageList = value.images.map((image) => {
     const { filename, thumbnail, downloadURL, thumbnailURL, updatedAt } = image;
     return (
-      <figure className="gallery-image" key={filename} onClick={() => show(Dialogs.DELETE_IMAGE_DIALOG, true, image)}>
+      <figure
+        className="gallery-image"
+        key={filename}
+        onClick={() => show(DialogTypes.DELETE_IMAGE_DIALOG, true, image)}
+      >
         <div className="zoom">
           <img src={thumbnailURL} alt={filename} loading="lazy" />
         </div>
@@ -26,7 +30,7 @@ export default function ImageView({ show }: Props) {
       <div className="grid">
         <h1 id="images">Bilder</h1>
         <div className="header-buttons">
-          <button role="button" onClick={() => show(Dialogs.UPLOAD_IMAGE_DIALOG, true)}>
+          <button role="button" onClick={() => show(DialogTypes.UPLOAD_IMAGE_DIALOG, true)}>
             Ladd upp bild
           </button>
         </div>

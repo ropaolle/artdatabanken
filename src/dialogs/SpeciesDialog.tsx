@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useStoreState, showDialog } from '../state';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { doc, updateDoc, addDoc, serverTimestamp, collection, deleteDoc } from 'firebase/firestore';
-import { db, type ImageInfo } from '../lib/firebase.ts';
+import { db /* , type ImageInfo */ } from '../lib/firebase.ts';
 import { toDatalist, toOptions } from '../lib';
+import Dialog, { type DialogProps, DialogTypes } from './Dialog';
 
 const counties = [
   { value: '', label: 'Ange län…' },
@@ -62,13 +64,6 @@ type Inputs = {
   image: string;
 };
 
-type Props = {
-  open: boolean;
-  close: () => void;
-  defaultValues?: Inputs;
-  images: ImageInfo[];
-};
-
 const defaults = {
   species: '',
   place: '',
@@ -82,35 +77,43 @@ const defaults = {
   image: '',
 };
 
-export default function SpeciesDialog({ open, close, defaultValues = defaults, images }: Props) {
+// interface Props extends DialogProps {
+//   defaultValues?: any;
+// }
+
+const id = DialogTypes.SPECIES_DIALOG;
+
+// export default function SpeciesDialog({ /* id,  */children }: Props) {
+export default function SpeciesDialog() {
+  const value = useStoreState('app');
+  const { open, values } = useStoreState('speciesDialog');
+  // console.log('values', values);
+
   const [previewImage, setPreviewImage] = useState<string>();
 
   const {
     register,
     handleSubmit,
-    // watch,
     reset,
     formState: { errors, isSubmitSuccessful, isSubmitting },
-  } = useForm<Inputs>({
-    // defaultValues: defaultValues,
-  });
+  } = useForm<Inputs>();
 
-  const loadPreview = (filename: string) => {
-    const image = images.find((image) => image.filename === filename);
+  const loadPreview = (filename: string | undefined) => {
+    const image = value.images.find((image) => image.filename === filename);
     setPreviewImage(image?.thumbnailURL);
   };
 
   useEffect(() => {
-    reset(defaultValues);
-    loadPreview(defaultValues.image);
-  }, [defaultValues, reset]);
+    reset(values || defaults);
+    loadPreview(values?.image);
+  }, [values]);
 
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset(defaults);
-      close();
+      showDialog(false);
     }
-  }, [isSubmitSuccessful, reset, close]);
+  }, [isSubmitSuccessful, reset]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
@@ -130,18 +133,13 @@ export default function SpeciesDialog({ open, close, defaultValues = defaults, i
   };
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
-    loadPreview(e?.target.value || '');
-  };
-
-  const handleClose = (e: React.FormEvent) => {
-    e.preventDefault();
-    close();
+    loadPreview(e?.target.value);
   };
 
   const handleDelete = async () => {
-    if (defaultValues.id) {
+    if (values?.id) {
       try {
-        await deleteDoc(doc(db, 'species', defaultValues.id));
+        await deleteDoc(doc(db, 'species', values.id));
         close();
       } catch (error) {
         console.error(error);
@@ -150,107 +148,94 @@ export default function SpeciesDialog({ open, close, defaultValues = defaults, i
   };
 
   return (
-    <dialog open={open}>
-      <div className="species-view">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <article>
-            <a href="#" aria-label="Close" className="close" onClick={handleClose}></a>
+    <Dialog
+      {...{ /* id, */ open /* , show */ /* , children */ }}
+      id={id}
+      onSubmit={handleSubmit(onSubmit)}
+      title={`Lägg till ny art`}
+    >
+      <div className="input-horizontal">
+        <label htmlFor="species">Art*</label>
+        <div>
+          <input {...register('species', { required: true })} />
+          {errors.species && errors.species.type === 'required' && <span className="error">This is required!</span>}
+        </div>
 
-            <h3>Lägg till ny art</h3>
+        <label htmlFor="kingdom">Klass</label>
+        <div>
+          <input list="classes-data" autoComplete="off" {...register('kingdom')} />
+          <datalist id="classes-data">{toDatalist(classes)}</datalist>
+        </div>
 
-            <div className="input-horizontal">
-              <label htmlFor="species">Art*</label>
-              <div>
-                <input {...register('species', { required: true })} />
-                {errors.species && errors.species.type === 'required' && (
-                  <span className="error">This is required!</span>
-                )}
-              </div>
+        <label htmlFor="order">Ordning</label>
+        <div>
+          <input {...register('order')} />
+        </div>
 
-              <label htmlFor="kingdom">Klass</label>
-              <div>
-                <input list="classes-data" autoComplete="off" {...register('kingdom')} />
-                <datalist id="classes-data">{toDatalist(classes)}</datalist>
-              </div>
+        <label htmlFor="family">Familj</label>
+        <div>
+          <input {...register('family')} />
+        </div>
 
-              <label htmlFor="order">Ordning</label>
-              <div>
-                <input {...register('order')} />
-              </div>
+        <label htmlFor="speciesLatin">Latinskt namn</label>
+        <div>
+          <input {...register('speciesLatin')} />
+        </div>
 
-              <label htmlFor="family">Familj</label>
-              <div>
-                <input {...register('family')} />
-              </div>
+        <label htmlFor="place">Lokal</label>
+        <div>
+          <input {...register('place')} />
+        </div>
+      </div>
 
-              <label htmlFor="speciesLatin">Latinskt namn</label>
-              <div>
-                <input {...register('speciesLatin')} />
-              </div>
+      <div className="grid">
+        <label htmlFor="county">
+          Län
+          <select {...register('county')}>{toOptions(counties)}</select>
+        </label>
 
-              <label htmlFor="place">Lokal</label>
-              <div>
-                <input {...register('place')} />
-              </div>
-            </div>
+        <label htmlFor="sex">
+          Kön
+          <select {...register('sex')}>{toOptions(sexes)}</select>
+        </label>
 
-            <div className="grid">
-              <label htmlFor="county">
-                Län
-                <select {...register('county')}>{toOptions(counties)}</select>
-              </label>
+        <label htmlFor="date">
+          Datum
+          <input type="date" {...register('date')} />
+        </label>
+      </div>
 
-              <label htmlFor="sex">
-                Kön
-                <select {...register('sex')}>{toOptions(sexes)}</select>
-              </label>
-
-              <label htmlFor="date">
-                Datum
-                <input type="date" {...register('date')} />
-              </label>
-            </div>
-
-            <div className="grid">
-              <label htmlFor="date">
-                Bild
-                {/* <select {...register('image', { onChange: handleImageChange })}>
+      <div className="grid">
+        <label htmlFor="date">
+          Bild
+          {/* <select {...register('image', { onChange: handleImageChange })}>
                   <option value="">Välj bild…</option>
                   {toOptions(images.map(({ filename }) => ({ value: filename, label: filename })))}
                 </select> */}
-                <input list="images-data" autoComplete="off" {...register('image', { onChange: handleImageChange })} />
-                <datalist id="images-data">{toDatalist(images.map(({ filename }) => filename))}</datalist>
-              </label>
+          <input list="images-data" autoComplete="off" {...register('image', { onChange: handleImageChange })} />
+          {/* <datalist id="images-data">{toDatalist(images.map(({ filename }) => filename))}</datalist> */}
+        </label>
 
-              <div className="info-preview">
-                <label htmlFor="date">Förhandsgranskning</label>
-                {previewImage ? <img src={previewImage} /> : <div>Bild saknas.</div>}
-              </div>
-            </div>
+        <div className="info-preview">
+          <label htmlFor="date">Förhandsgranskning</label>
+          {previewImage ? <img src={previewImage} /> : <div>Bild saknas.</div>}
+        </div>
+      </div>
 
-            <footer>
-              <div className="grid">
-                {/* <button role="button" type="reset">
+      <footer>
+        <div className="grid">
+          {/* <button role="button" type="reset">
                   Rensa
                 </button>     */}
-                <div></div>
-                <button
-                  className="contrast"
-                  role="button"
-                  type="button"
-                  disabled={!defaultValues.id}
-                  onClick={handleDelete}
-                >
-                  Radera
-                </button>
-                <button role="button" type="submit" aria-busy={isSubmitting}>
-                  Spara
-                </button>
-              </div>
-            </footer>
-          </article>
-        </form>
-      </div>
-    </dialog>
+          <div></div>
+          <button className="contrast" role="button" type="button" disabled={!values?.id} onClick={handleDelete}>
+            Radera
+          </button>
+          <button role="button" type="submit" aria-busy={isSubmitting}>
+            Spara
+          </button>
+        </div>
+      </footer>
+    </Dialog>
   );
 }
