@@ -10,12 +10,13 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
+- [ ] Global state?
+  - 
 - [ ] Skapa och ändra arter SpeciesDialog
 - [ ] Radera bild
   - Visa en toast om att bild raderats.
   - Uppdatera image-view.
 - [ ] Filtrera bilder (filnamn, används används ej)
-- [ ] Global state?
 - [ ] CSS styling on datalists
 - [ ] Importera arter från Excel
 - [ ] Importera bilder från Firebase
@@ -55,9 +56,17 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
     - [Modal form](https://codesandbox.io/s/react-hook-form-modal-form-conditional-inputs-c7n0r)
   - [DayJS](https://github.com/iamkun/dayjs)
   - [useEffect on objects](https://dev.to/hey_yogini/useeffect-dependency-array-and-object-comparison-45el)
+  - GLOBAL STATE
+    - [React hooks global state](https://github.com/dai-shi/react-hooks-global-state)
+    - [Understanding and Properly Using React Global State](https://clerk.com/blog/understanding-and-properly-using-react-global-state?utm_source=www.google.com&utm_medium=referral&utm_campaign=none)
+      - [Example](https://github.com/pjcjonas/clerk-dev-global-state-with-context)
+    - [A guide to choosing the right React state management solution](https://blog.logrocket.com/guide-choosing-right-react-state-management-solution/)
+      - [Recoil](https://recoiljs.org/)
 - CSS
   - [Grid](https://www.w3schools.com/css/css_grid_container.asp)
   - [Toast notification](https://www.codingnepalweb.com/toast-notification-html-css-javascript/)
+  - [datalist example](https://codepen.io/SitePoint/pen/JjbXrvE)
+  - [datalist-css](https://github.com/craigbuckler/datalist-css)
 - JavaScript
   - [Create thumbnails on the client](https://codepen.io/mttaked/pen/ZLdEKm)
   - [Create thumbnails in a Firebase cloud function](https://medium.com/@christianrb/how-to-create-an-image-thumbnail-with-firebase-cloud-functions-73d4584290ba)
