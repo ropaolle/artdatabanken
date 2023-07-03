@@ -1,0 +1,8 @@
+.header-cell {
+  text-decoration: none;
+  color: hsl(205, 20%, 32%);
+}
+
+.header-cell:hover {
+  color: hsl(207, 32%, 17%);
+}

@@ -2,24 +2,43 @@
 import classes from './SpeciesView.module.css';
 import { useState /* , useEffect */ } from 'react';
 import type { SpeciesInfo /* , ImageInfo */ } from '../lib/firebase';
-import { Icon } from '@iconify/react';
+// import { Icon } from '@iconify/react';
 // import { Dialogs } from '../dialogs';
 import { useStoreState, showSpeciesDialog } from '../state';
 import Page from './Page';
+import { TableHeader, type SortType, type HeaderCellOnClick } from '../components';
 // import { DialogTypes } from '../dialogs';
 
 // interface ItemInfo extends Omit<SpeciesInfo, 'updatedAt'> {
 //   all: string;
 // }
 
-console.log('classes', classes);
+// console.log('classes', classes);
+
+const headerColumns = [
+  [{ label: 'Klass', id: 'kingdom' }],
+  [{ label: 'Order', id: 'order' }],
+  [{ label: 'Familj som sover så sött', id: 'family' }],
+  [{ label: 'Art', id: 'species' }],
+  [{ label: 'Kön', id: 'sex' }],
+  [{ label: 'Latinskt namn', id: 'speciesLatin' }],
+  [
+    { label: 'Lokal', id: 'place' },
+    { label: 'Län', id: 'county' },
+  ],
+  [{ label: 'Datum', id: 'date' }],
+  [{ label: 'Bild', id: 'image' }],
+];
+
 
 export default function SpeciesView() {
   const images = useStoreState('images');
   const species = useStoreState('species');
   const [sort, setSort] = useState({ column: 'species', ascending: false });
-  const [, /* filters */ setFilter] = useState({ all: '' });
+  const [filters, setFilter] = useState({ all: '' });
   // const [items, setItems] = useState(value?.species);
+
+  console.log('filter', filters);
 
   // console.log('species', species);
 
@@ -75,21 +94,12 @@ export default function SpeciesView() {
     });
   };
 
-  const handleTableSortClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, id: string) => {
+  const handleHeaderClick: HeaderCellOnClick = (e, id) => {
     e.preventDefault();
     setSort({ column: id, ascending: sort.column === id ? !sort.ascending : sort.ascending });
   };
 
-  const HeaderCell = ({ header, id }: { header: string; id: string }) => (
-    <a href="#" className={classes.headerCell} onClick={(e) => handleTableSortClick(e, id)}>
-      {header}
-      {sort.column === id && (
-        <Icon icon={`material-symbols:keyboard-arrow-${sort.ascending ? 'up' : 'down'}-rounded`} />
-      )}
-    </a>
-  );
 
-  // TODO: Generate header from array, allow HeaderCell grouping
 
   const speciesTable = species
     .sort(localeSort)
@@ -124,53 +134,12 @@ export default function SpeciesView() {
             Fritextsökning
             <input id="all" onChange={handleFilterChange} />
           </label>
-          {/* <label htmlFor="species">
-            Art
-            <input id="species" onChange={handleFilterChange} />
-          </label>
-
-          <label htmlFor="speciesLatin">
-            Latinskt namn
-            <input id="speciesLatin" onChange={handleFilterChange} />
-          </label> */}
         </div>
       </form>
 
       <figure>
         <table className="species-table" role="grid">
-          <thead>
-            <tr>
-              <th>
-                <HeaderCell header="Klass" id="kingdom" />
-              </th>
-              <th>
-                <HeaderCell header="Order" id="order" />
-              </th>
-              <th>
-                <HeaderCell header="Familj som sover så sött" id="family" />
-              </th>
-              <th>
-                <HeaderCell header="Art" id="species" />
-              </th>
-              <th>
-                <HeaderCell header="Kön" id="sex" />
-              </th>
-              <th>
-                <HeaderCell header="Latinskt namn" id="speciesLatin" />
-              </th>
-              <th>
-                <HeaderCell header="Lokal" id="place" />
-                <br />
-                <HeaderCell header="Län" id="county" />
-              </th>
-              <th>
-                <HeaderCell header="Datum" id="date" />
-              </th>
-              <th>
-                <HeaderCell header="Bild" id="image" />
-              </th>
-            </tr>
-          </thead>
+          <TableHeader columns={headerColumns} sort={sort} onClick={handleHeaderClick} />
           <tbody>{speciesTable}</tbody>
         </table>
       </figure>
