@@ -1,19 +1,9 @@
-// import './SpeciesView.css';
 import classes from './SpeciesView.module.css';
-import { useState /* , useEffect */ } from 'react';
-import type { SpeciesInfo /* , ImageInfo */ } from '../lib/firebase';
-// import { Icon } from '@iconify/react';
-// import { Dialogs } from '../dialogs';
+import { useState, useEffect } from 'react';
+import type { SpeciesInfo } from '../lib/firebase';
 import { useStoreState, showSpeciesDialog } from '../state';
 import Page from './Page';
-import { TableHeader, type SortType, type HeaderCellOnClick } from '../components';
-// import { DialogTypes } from '../dialogs';
-
-// interface ItemInfo extends Omit<SpeciesInfo, 'updatedAt'> {
-//   all: string;
-// }
-
-// console.log('classes', classes);
+import { TableHeader, type HeaderCellOnClick } from '../components';
 
 const headerColumns = [
   [{ label: 'Klass', id: 'kingdom' }],
@@ -30,68 +20,49 @@ const headerColumns = [
   [{ label: 'Bild', id: 'image' }],
 ];
 
+type SortKeys = Omit<SpeciesInfo, 'id' | 'updatedAt'>;
 
 export default function SpeciesView() {
   const images = useStoreState('images');
   const species = useStoreState('species');
   const [sort, setSort] = useState({ column: 'species', ascending: false });
-  const [filters, setFilter] = useState({ all: '' });
-  // const [items, setItems] = useState(value?.species);
+  const [filter, setFilter] = useState('');
+  const [items, setItems] = useState(species);
 
-  console.log('filter', filters);
+  useEffect(() => {
+    if (filter.length === 0) return setItems(species);
 
-  // console.log('species', species);
+    const filteredSpecies = species.filter((item) =>
+      Object.entries(item).some(([, value]) =>
+        typeof value !== 'string' ? false : value.toLowerCase().includes(filter)
+      )
+    );
 
-  // TODO: Add filter functionality
-  // useEffect(() => {
-  //   const filteredSpecies = value.species.filter((item) => {
-  //     // Free text filter
-  //     if (filters.all && filters.all !== '') {
-  //       return Object.entries(item).some(([, value]) => {
-  //         if (typeof value !== 'string') return false;
-  //         return value.toLowerCase().includes(filters.all);
-  //       });
-  //     }
-
-  //     // Column filter
-  //     return Object.entries(filters).every(([key, value]) => {
-  //       if (typeof key !== 'string' || key === '' || key === 'all') return true;
-  //       const property = item[key as keyof ItemInfo];
-  //       return property?.includes(value.toLowerCase());
-  //     });
-  //   });
-
-  //   setItems(filteredSpecies);
-  // }, [value.species, filters]);
+    setItems(filteredSpecies);
+  }, [species, filter]);
 
   if (!images) return null;
 
-  // TODO: Refactor to be cleaner in TypeScript
-  const localeSort = (a: SpeciesInfo, b: SpeciesInfo) => {
-    const itemA = a[sort.column as keyof SpeciesInfo];
-    const itemB = b[sort.column as keyof SpeciesInfo];
-    if (!itemA || typeof itemA !== 'string' || !itemB || typeof itemB !== 'string') return 0;
-    const localeCompare = itemA.localeCompare(itemB, 'sv', { sensitivity: 'base' });
-    // Set sort order
-    return sort.ascending ? -localeCompare : localeCompare;
+  const localeSort = (a: SortKeys, b: SortKeys) => {
+    if (!sort) return 0;
+    const itemA = a[sort.column as keyof SortKeys];
+    const itemB = b[sort.column as keyof SortKeys];
+    const order = sort.ascending ? -1 : 1;
+
+    return itemA.localeCompare(itemB, 'sv', { sensitivity: 'base' }) * order;
   };
+
+  const getImage = (name: string) => images.find((image) => image.filename === name)?.thumbnailURL;
 
   const handleRowClick = (e: React.MouseEvent) => {
-    const selected = species.find(({ id }) => id === e.currentTarget.id);
-    if (selected) {
-      showSpeciesDialog(true, selected);
-    }
+    showSpeciesDialog(
+      true,
+      species.find(({ id }) => id === e.currentTarget.id)
+    );
   };
 
-  const getImage = (name: string) => images.find((image) => image.filename === name);
-
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
-    setFilter((prevValues) => {
-      const id = e?.target.id;
-      const value = e?.target.value || '';
-
-      return typeof id === 'string' ? { ...prevValues, [id]: value.toLowerCase() } : prevValues;
-    });
+    setFilter(e?.target.value || '');
   };
 
   const handleHeaderClick: HeaderCellOnClick = (e, id) => {
@@ -99,13 +70,10 @@ export default function SpeciesView() {
     setSort({ column: id, ascending: sort.column === id ? !sort.ascending : sort.ascending });
   };
 
-
-
-  const speciesTable = species
+  const speciesTable = items
     .sort(localeSort)
     .map(({ id, kingdom, order, family, species, sex, speciesLatin, place, county, date, image }) => (
       <tr key={id} id={id} onClick={handleRowClick} className={classes.row}>
-        {/* <td>{id}</td> */}
         <td>{kingdom}</td>
         <td>{order}</td>
         <td>{family}</td>
@@ -116,11 +84,9 @@ export default function SpeciesView() {
           <div>{place}</div>
           <div>{county}</div>
         </td>
-        {/* <td>{place}</td>
-        <td>{county}</td> */}
         <td>{date}</td>
         <td>
-          <img src={getImage(image)?.thumbnailURL} alt={image} title={image} loading="lazy" />
+          <img src={getImage(image)} alt={image} title={image} loading="lazy" />
         </td>
       </tr>
     ));
@@ -129,7 +95,6 @@ export default function SpeciesView() {
     <Page title="Arter" headerButtonTitle="Ny Art" onHeaderButtonClick={() => showSpeciesDialog(true)}>
       <form>
         <div className="grid">
-          {/* INFO: Free text filters overrides column filters. */}
           <label htmlFor="all">
             Fritextsökning
             <input id="all" onChange={handleFilterChange} />

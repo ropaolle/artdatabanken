@@ -5,7 +5,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { doc, updateDoc, addDoc, serverTimestamp, collection, deleteDoc } from 'firebase/firestore';
 import { db, type SpeciesInfo } from '../lib/firebase.ts';
 import { toDatalist, toOptions } from '../lib';
-import Dialog, { DialogInfo, DialogTypes } from './Dialog';
+import Dialog, { DialogTypes } from './Dialog';
 import { classesList, counties, sexes } from '../lib/listData.ts';
 
 type Inputs = Omit<SpeciesInfo, 'updatedAt'>;

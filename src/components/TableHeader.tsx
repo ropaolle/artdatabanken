@@ -29,7 +29,7 @@ export default function TableHeader({ columns, sort, onClick }: Props) {
         {columns.map((column) => (
           <th key={column[0].id}>
             {column.map(({ label, id }) => (
-              <div>
+              <div key={id}>
                 <HeaderCell label={label} id={id} />
               </div>
             ))}

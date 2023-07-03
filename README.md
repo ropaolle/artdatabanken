@@ -10,16 +10,13 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-- [ ] Table component (header, and rows )
-- [ ] Filtrera arter
 - [ ] Filtrera bilder (filnamn, används används ej)
 - [ ] CSS styling on datalists
 - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
 - [ ] Importera arter från Excel
 - [ ] Importera bilder från Firebase
-- [ ] Skriv ut eller spara som pdf.
-- [ ] Security for files and db
-- [ ] Image metadata with size?
+- [ ] Skriv ut
+- [x] Filtrera arter
 - [x] Move CSS to local files, i.e UploadImageDialog.tsx + UploadImageDialog.css.
 - [x] Global state?
 - [x] Skapa och ändra arter SpeciesDialog
@@ -36,6 +33,10 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 - [x] Sida med filter som visar alla poster.
 - [x] Refactor upload to use async/await insted of callbacks
 - [x] Image corp library
+- NICE TO HAVE
+  - [ ] Spara som pdf.
+  - [ ] Security for files and db
+  - [ ] Image metadata with size?
 
 ## Links
 
@@ -77,7 +78,9 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
   - [Create thumbnails in a Firebase cloud function](https://medium.com/@christianrb/how-to-create-an-image-thumbnail-with-firebase-cloud-functions-73d4584290ba)
   - [Get URL Parameters](https://www.sitepoint.com/get-url-parameters-with-javascript/)
 - VITE
-  - [Awesome Vite](https://github.com/vitejs/awesome-vite)
+  - [Awesome Vite](https://reacthustle.com/blog/typescript-sort-array-of-objects-by-property#advanced-implementing-a-dynamic-compare-function)
+- TYPESCRIPT
+  - [Implementing a Dynamic compare function](https://reacthustle.com/blog/typescript-sort-array-of-objects-by-property)
 
 ## SETUP
 
