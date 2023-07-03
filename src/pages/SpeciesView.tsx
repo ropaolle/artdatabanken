@@ -1,19 +1,24 @@
-import { useState, useEffect } from 'react';
-import type { SpeciesInfo, ImageInfo } from '../lib/firebase';
+// import './SpeciesView.css';
+import classes from './SpeciesView.module.css';
+import { useState /* , useEffect */ } from 'react';
+import type { SpeciesInfo /* , ImageInfo */ } from '../lib/firebase';
 import { Icon } from '@iconify/react';
 // import { Dialogs } from '../dialogs';
 import { useStoreState, showSpeciesDialog } from '../state';
+import Page from './Page';
 // import { DialogTypes } from '../dialogs';
 
 // interface ItemInfo extends Omit<SpeciesInfo, 'updatedAt'> {
 //   all: string;
 // }
 
+console.log('classes', classes);
+
 export default function SpeciesView() {
   const images = useStoreState('images');
   const species = useStoreState('species');
   const [sort, setSort] = useState({ column: 'species', ascending: false });
-  const [filters, setFilter] = useState({ all: '' });
+  const [, /* filters */ setFilter] = useState({ all: '' });
   // const [items, setItems] = useState(value?.species);
 
   // console.log('species', species);
@@ -61,30 +66,6 @@ export default function SpeciesView() {
 
   const getImage = (name: string) => images.find((image) => image.filename === name);
 
-  const speciesTable = species
-    .sort(localeSort)
-    .map(({ id, kingdom, order, family, species, sex, speciesLatin, place, county, date, image }) => (
-      <tr key={id} id={id} onClick={handleRowClick}>
-        {/* <td>{id}</td> */}
-        <td>{kingdom}</td>
-        <td>{order}</td>
-        <td>{family}</td>
-        <td>{species}</td>
-        <td>{sex}</td>
-        <td>{speciesLatin}</td>
-        <td>
-          <div>{place}</div>
-          <div>{county}</div>
-        </td>
-        {/* <td>{place}</td>
-          <td>{county}</td> */}
-        <td>{date}</td>
-        <td>
-          <img src={getImage(image)?.thumbnailURL} alt={image} title={image} loading="lazy" />
-        </td>
-      </tr>
-    ));
-
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
     setFilter((prevValues) => {
       const id = e?.target.id;
@@ -100,7 +81,7 @@ export default function SpeciesView() {
   };
 
   const HeaderCell = ({ header, id }: { header: string; id: string }) => (
-    <a href="#" onClick={(e) => handleTableSortClick(e, id)}>
+    <a href="#" className={classes.headerCell} onClick={(e) => handleTableSortClick(e, id)}>
       {header}
       {sort.column === id && (
         <Icon icon={`material-symbols:keyboard-arrow-${sort.ascending ? 'up' : 'down'}-rounded`} />
@@ -108,17 +89,34 @@ export default function SpeciesView() {
     </a>
   );
 
+  // TODO: Generate header from array, allow HeaderCell grouping
+
+  const speciesTable = species
+    .sort(localeSort)
+    .map(({ id, kingdom, order, family, species, sex, speciesLatin, place, county, date, image }) => (
+      <tr key={id} id={id} onClick={handleRowClick} className={classes.row}>
+        {/* <td>{id}</td> */}
+        <td>{kingdom}</td>
+        <td>{order}</td>
+        <td>{family}</td>
+        <td>{species}</td>
+        <td>{sex}</td>
+        <td>{speciesLatin}</td>
+        <td>
+          <div>{place}</div>
+          <div>{county}</div>
+        </td>
+        {/* <td>{place}</td>
+        <td>{county}</td> */}
+        <td>{date}</td>
+        <td>
+          <img src={getImage(image)?.thumbnailURL} alt={image} title={image} loading="lazy" />
+        </td>
+      </tr>
+    ));
+
   return (
-    <div className="species-view">
-      <div className="grid">
-        <h1 id="speices">Arter</h1>
-        <div className="header-buttons">
-          {/* <button role="button" onClick={() => show(Dialogs.SPECIES_DIALOG, true)}> */}
-          <button role="button" onClick={() => showSpeciesDialog(true)}>
-            Ny Art
-          </button>
-        </div>
-      </div>
+    <Page title="Arter" headerButtonTitle="Ny Art" onHeaderButtonClick={() => showSpeciesDialog(true)}>
       <form>
         <div className="grid">
           {/* INFO: Free text filters overrides column filters. */}
@@ -126,7 +124,6 @@ export default function SpeciesView() {
             Fritextsökning
             <input id="all" onChange={handleFilterChange} />
           </label>
-
           {/* <label htmlFor="species">
             Art
             <input id="species" onChange={handleFilterChange} />
@@ -150,7 +147,7 @@ export default function SpeciesView() {
                 <HeaderCell header="Order" id="order" />
               </th>
               <th>
-                <HeaderCell header="Familj" id="family" />
+                <HeaderCell header="Familj som sover så sött" id="family" />
               </th>
               <th>
                 <HeaderCell header="Art" id="species" />
@@ -177,6 +174,6 @@ export default function SpeciesView() {
           <tbody>{speciesTable}</tbody>
         </table>
       </figure>
-    </div>
+    </Page>
   );
 }

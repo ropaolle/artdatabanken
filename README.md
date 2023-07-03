@@ -10,14 +10,16 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
+- [ ] Move CSS to App.css
 - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
-- [ ] Move CSS to local files, i.e UploadImageDialog.tsx + UploadImageDialog.css.
 - [ ] Filtrera bilder (filnamn, används används ej)
 - [ ] CSS styling on datalists
 - [ ] Importera arter från Excel
 - [ ] Importera bilder från Firebase
 - [ ] Skriv ut eller spara som pdf.
 - [ ] Security for files and db
+- [ ] Image metadata with size?
+- [x] Move CSS to local files, i.e UploadImageDialog.tsx + UploadImageDialog.css.
 - [x] Global state?
 - [x] Skapa och ändra arter SpeciesDialog
 - [x] Radera bild
@@ -63,14 +65,18 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
     - [A guide to choosing the right React state management solution](https://blog.logrocket.com/guide-choosing-right-react-state-management-solution/)
       - [Recoil](https://recoiljs.org/)
 - CSS
+  - [CSS Modules](https://www.javascriptstuff.com/css-modules-by-example/)
   - [Grid](https://www.w3schools.com/css/css_grid_container.asp)
   - [Toast notification](https://www.codingnepalweb.com/toast-notification-html-css-javascript/)
   - [datalist example](https://codepen.io/SitePoint/pen/JjbXrvE)
   - [datalist-css](https://github.com/craigbuckler/datalist-css)
+  - [Iconify attributes](https://iconify.design/docs/iconify-icon/inline.html)
 - JavaScript
   - [Create thumbnails on the client](https://codepen.io/mttaked/pen/ZLdEKm)
   - [Create thumbnails in a Firebase cloud function](https://medium.com/@christianrb/how-to-create-an-image-thumbnail-with-firebase-cloud-functions-73d4584290ba)
   - [Get URL Parameters](https://www.sitepoint.com/get-url-parameters-with-javascript/)
+- VITE
+  - [Awesome Vite](https://github.com/vitejs/awesome-vite)
 
 ## SETUP
 

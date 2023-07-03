@@ -1,12 +1,13 @@
+import './App.css';
 import { useState, useEffect } from 'react';
 import { initStore } from './state';
-import './App.css';
-import { Navigation, ImageView, Footer, PageGenerator, SpeciesView } from './components';
+import { ImageView, SpeciesView, PageGenerator } from './pages';
+import { Navigation, Footer } from './components';
 import { DeleteImageDialog, UploadImageDialog, SpeciesDialog } from './dialogs';
 import { getImageInfo, getSpeciesInfo } from './lib/firebase.ts';
 
 function App() {
-  const [page, setPage] = useState<string>();
+  const [page, setPage] = useState('species');
 
   // TODO: Move this outside react? Maybe to state.ts.
   useEffect(() => {
@@ -38,8 +39,9 @@ function App() {
 
         {page === 'species' && <SpeciesView />}
         {page === 'images' && <ImageView />}
-        {page === 'generator' && <PageGenerator />}
       </main>
+
+      {page === 'generator' && <PageGenerator />}
       <Footer />
     </>
   );

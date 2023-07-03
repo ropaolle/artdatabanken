@@ -3,7 +3,7 @@ import { Link /* , Dialogs */ } from '.';
 
 type Props = {
   // show?: (dialog: number, show?: boolean) => void;  
-  setPage: (page: React.SetStateAction<string | undefined>) => void;
+  setPage: (page: React.SetStateAction<string>) => void;
 };
 
 export default function Navigation({ /* show,  */setPage }: Props) {

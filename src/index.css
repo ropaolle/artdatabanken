@@ -5,3 +5,10 @@
   --contrast-focus: rgba(216, 27, 96, 0.125);
   --contrast-inverse: #fff;
 }
+
+/* Override Pico styling */
+.ReactCrop__drag-handle[role='button'] {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}

@@ -1,0 +1,25 @@
+.error {
+  color: #c62828;
+  font-size: small;
+}
+
+.horizontal-form {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+@media (max-width: 992px) {
+  .horizontal-form {
+    display: block;
+  }
+}
+
+.thumbnail-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f7f7f7;
+  font-size: 16px;
+  min-height: 120px;
+  border: 1px solid #eee;
+}

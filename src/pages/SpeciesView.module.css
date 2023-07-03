@@ -1,0 +1,13 @@
+.header-cell {
+  text-decoration: none;
+  color: hsl(205, 20%, 32%);
+}
+
+.header-cell:hover {
+  color: hsl(207, 32%, 17%);
+}
+
+.row:hover {
+  background-color: #39638e2e !important ;
+  cursor: pointer;
+}

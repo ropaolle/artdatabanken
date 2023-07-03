@@ -1,5 +1,5 @@
+import classes from './Dialog.module.css';
 import { useEffect } from 'react';
-import './Dialog.css';
 
 export enum DialogTypes {
   DELETE_IMAGE_DIALOG = 'DELETE_IMAGE_DIALOG',
@@ -16,6 +16,10 @@ export type DialogProps = {
   children?: React.ReactNode;
   onSubmit?: React.FormEventHandler<HTMLFormElement>;
 };
+
+export function DialogInfo({ children }: { children: React.ReactNode }) {
+  return <div className={classes.info}>{children}</div>;
+}
 
 export default function Dialog({ id, title, open, hide, children, onSubmit }: DialogProps) {
   // BUGG: Chromium bugg that closes dialogs when a file input dialog is canceled, see
@@ -56,7 +60,7 @@ export default function Dialog({ id, title, open, hide, children, onSubmit }: Di
         <article>
           <header>
             <a href="#" aria-label="Close" className="close" onClick={handleClose} />
-            <div>{title}</div>
+            <div className={classes.title}>{title}</div>
           </header>
           {children}
         </article>

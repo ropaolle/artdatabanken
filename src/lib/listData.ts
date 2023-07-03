@@ -29,7 +29,7 @@ export const sexes = [
   { value: 'female', label: 'Hona' },
 ];
 
-export const classes = [
+export const classesList = [
   'Däggdjur',
   'Fräkenartade växter',
   'Fröväxter',

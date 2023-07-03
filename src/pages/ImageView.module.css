@@ -1,0 +1,19 @@
+.gallery {
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: auto auto auto auto auto;
+  justify-content: space-between;
+}
+
+.image-cell {
+  margin-bottom: 0;
+}
+
+.image {
+  width: 200px;
+}
+
+.image:hover {
+  cursor: pointer;
+  filter: brightness(0.7);
+}

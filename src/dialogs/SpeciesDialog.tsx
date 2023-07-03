@@ -1,11 +1,12 @@
+import classes from './SpeciesDialog.module.css';
 import { useState, useEffect } from 'react';
 import { useStoreState, showSpeciesDialog, deleteSpecies, addSpecies, updateSpecies } from '../state';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { doc, updateDoc, addDoc, serverTimestamp, collection, deleteDoc } from 'firebase/firestore';
 import { db, type SpeciesInfo } from '../lib/firebase.ts';
 import { toDatalist, toOptions } from '../lib';
-import Dialog, { DialogTypes } from './Dialog';
-import { classes, counties, sexes } from '../lib/listData.ts';
+import Dialog, { DialogInfo, DialogTypes } from './Dialog';
+import { classesList, counties, sexes } from '../lib/listData.ts';
 
 type Inputs = Omit<SpeciesInfo, 'updatedAt'>;
 
@@ -94,17 +95,19 @@ export default function SpeciesDialog() {
       onSubmit={handleSubmit(onSubmit)}
       title={`Lägg till ny art`}
     >
-      <div className="input-horizontal">
+      <div className={classes.horizontalForm}>
         <label htmlFor="species">Art*</label>
         <div>
           <input {...register('species', { required: true })} />
-          {errors.species && errors.species.type === 'required' && <span className="error">This is required!</span>}
+          {errors.species && errors.species.type === 'required' && (
+            <span className={classes.error}>This is required!</span>
+          )}
         </div>
 
         <label htmlFor="kingdom">Klass</label>
         <div>
           <input list="classes-data" autoComplete="off" {...register('kingdom')} />
-          <datalist id="classes-data">{toDatalist(classes)}</datalist>
+          <datalist id="classes-data">{toDatalist(classesList)}</datalist>
         </div>
 
         <label htmlFor="order">Ordning</label>
@@ -152,10 +155,12 @@ export default function SpeciesDialog() {
           <datalist id="images-data">{toDatalist(images.map(({ filename }) => filename))}</datalist>
         </label>
 
-        <div className="info-preview">
-          <label htmlFor="date">Förhandsgranskning</label>
-          {previewImage ? <img src={previewImage} /> : <div>Bild saknas.</div>}
-        </div>
+        <label htmlFor="date">
+          Förhandsgranskning
+          <div className={classes.thumbnailPreview}>
+            {previewImage ? <img src={previewImage} /> : "Bild saknas"}
+          </div>
+        </label>
       </div>
 
       <footer>

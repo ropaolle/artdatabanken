@@ -1,13 +1,13 @@
+import 'react-image-crop/dist/ReactCrop.css';
 import { useState, useEffect, useRef } from 'react';
 import { useStoreState, addImage, showUploadImageDialog } from '../state';
 import { db, checkIfImageExistsInDB, uploadFile, normalizeFilename } from '../lib/firebase.ts';
 import { doc, setDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import ReactCrop, { type PixelCrop } from 'react-image-crop';
-import 'react-image-crop/dist/ReactCrop.css';
 import { useDebounceEffect, drawImageOnCanvas } from '../lib';
 import { Icon } from '@iconify/react';
-import Dialog, { DialogTypes } from './Dialog';
+import Dialog, { DialogInfo, DialogTypes } from './Dialog';
 
 type Inputs = {
   imageFile: FileList;
@@ -149,10 +149,10 @@ export default function UploadImageDialog() {
 
       <footer>
         {imageExists && (
-          <div className="info">
-            <Icon icon="material-symbols:info-outline" /> En bild med namnet <b>{selectedFile?.name}</b> existerar
+          <DialogInfo>
+            <Icon inline icon="material-symbols:info-outline" /> En bild med namnet <b>{selectedFile?.name}</b> existerar
             redan. Om du laddar upp en ny bild med samma namn skrivs den befintliga bilden över!
-          </div>
+          </DialogInfo>
         )}
 
         <button
