@@ -4,7 +4,7 @@ import { initStore } from './state';
 import { ImageView, SpeciesView, PageGenerator } from './pages';
 import { Navigation, Footer } from './components';
 import { DeleteImageDialog, UploadImageDialog, SpeciesDialog } from './dialogs';
-import { getImageInfo, getSpeciesInfo } from './lib/firebase.ts';
+import { firestoreFetch, type SpeciesInfo, type ImageInfo } from './lib/firebase.ts';
 
 function App() {
   const [page, setPage] = useState('species');
@@ -12,10 +12,11 @@ function App() {
   // TODO: Move this outside react? Maybe to state.ts.
   useEffect(() => {
     const fetchData = async () => {
-      const images = await getImageInfo();
-      const species = await getSpeciesInfo();
+      const images = await firestoreFetch<ImageInfo>('images');
+      const species = await firestoreFetch<SpeciesInfo>('species');
       initStore(images, species);
     };
+
     fetchData().catch(console.error);
   }, []);
 
