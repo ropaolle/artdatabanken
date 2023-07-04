@@ -1,5 +1,6 @@
 {
   "projects": {
+    "production": "artdatabanken",
     "default": "artdatabanken-2023",
     "dev": "artdatabanken-2023-dev"
   },

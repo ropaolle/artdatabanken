@@ -2,7 +2,7 @@ export const counties = [
   { value: '', label: 'Ange län…' },
   { value: 'stockholm', label: 'Stockholms län' },
   { value: 'uppsala', label: 'Uppsala län' },
-  { value: 'sodermanland', label: 'Södermanlands län' },
+  { value: 'sodermanland', label: 'Södermanlands län', alt: 'Sörmlands' },
   { value: 'ostergotland', label: 'Östergötlands län' },
   { value: 'jonkoping', label: 'Jönköpings län' },
   { value: 'kronoberg', label: 'Kronobergs län' },
@@ -19,7 +19,7 @@ export const counties = [
   { value: 'gavleborg', label: 'Gävleborgs län' },
   { value: 'vasternorrland', label: 'Västernorrlands län' },
   { value: 'jamtland', label: 'Jämtlands län' },
-  { value: 'vasterbotten', label: 'Västerbottens län' },
+  { value: 'vasterbotten', label: 'Västerbottens län', alt: 'Lapplands län' },
   { value: 'norrbotten', label: 'Norrbottens län' },
 ];
 

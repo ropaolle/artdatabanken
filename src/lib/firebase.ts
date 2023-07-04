@@ -31,6 +31,20 @@ const firebaseConfig = {
   appId: '1:544182237871:web:829c6e290800094bdcf25a',
 };
 
+// PAPPA
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAtNXWmXp1afYAGQ51aXdyCR4WRc42ViN4",
+//   authDomain: "artdatabanken.firebaseapp.com",
+//   databaseURL: "https://artdatabanken.firebaseio.com",
+//   projectId: "artdatabanken",
+//   storageBucket: "artdatabanken.appspot.com",
+//   messagingSenderId: "495647184718",
+//   appId: "1:495647184718:web:67ae3c56aeeeacf93af01f",
+//   measurementId: "G-NBMHCY9EPV"
+// };
+
+
+
 export const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
 export const db = getFirestore(app);
@@ -156,55 +170,36 @@ export type SpeciesInfo = {
   updatedAt?: Timestamp;
 };
 
-/* export const getImageInfo = async (): Promise<ImageInfo[]> => {
-  const querySnapshot = await getDocs(collection(db, 'images'));
-  return querySnapshot.docs.map((doc) => doc.data() as ImageInfo);
-};
-
-export const getSpeciesInfo = async (): Promise<SpeciesInfo[]> => {
-  const querySnapshot = await getDocs(collection(db, 'species'));
-  return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id } as SpeciesInfo));
-}; */
-
 export async function firestoreFetch<T>(path: string): Promise<T[]> {
   const querySnapshot = await getDocs(collection(db, path));
+
   return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id } as T));
 }
 
 import { csv } from './data.js';
 
-/* const defaults = {
-  species: '1',
-  place: '',
-  date: new Date().toLocaleDateString(),
-  kingdom: '',
-  order: '',
-  family: '',
-  county: '',
-  speciesLatin: '',
-  sex: '',
-  image: '',
-}; */
-
 export const importData = async () => {
   const data = csv.split('\n').map((row: string) => row.split(';'));
 
   for (const record of data) {
-    const newRec = {
-      kingdom: record[0],
-      order: record[1],
-      family: record[2],
-      species: record[3],
-      sex: record[4],
-      speciesLatin: record[5],
-      place: record[6],
-      county: record[7],
-      date: record[8],
-      image: record[9],
+    const [kingdom, order, family, species, sex, speciesLatin, place, county, date, image] = record;
+
+    const newSpecies = {
+      kingdom,
+      order,
+      family,
+      species,
+      sex,
+      speciesLatin,
+      place,
+      county,
+      date,
+      image,
+      createdAt: serverTimestamp(),
     };
 
-    console.log('data', newRec);
+    console.log('data', newSpecies);
 
-    await addDoc(collection(db, 'species2'), { ...newRec, createdAt: serverTimestamp() });
+    await addDoc(collection(db, 'species2'), newSpecies);
   }
 };

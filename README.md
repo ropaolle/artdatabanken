@@ -10,12 +10,12 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-- [ ] Importera arter från Excel, eller csv.
+- [ ] Importera arter och bilder från Excel, eller csv.
 
 - [ ] CSS styling on datalists
 - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
-- [ ] Importera bilder från Firebase
 - [ ] Skriv ut
+- [x] Importera bilder från Firebase
 - [x] Filtrera bilder (filnamn, används används ej)
 - [x] Filtrera arter
 - [x] Move CSS to local files, i.e UploadImageDialog.tsx + UploadImageDialog.css.
