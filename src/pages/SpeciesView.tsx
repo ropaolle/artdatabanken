@@ -4,11 +4,12 @@ import type { SpeciesInfo } from '../lib/firebase';
 import { useStoreState, showSpeciesDialog } from '../state';
 import Page from './Page';
 import { TableHeader, type HeaderCellOnClick } from '../components';
+import { type Options, toOptions } from '../lib';
 
 const headerColumns = [
   [{ label: 'Klass', id: 'kingdom' }],
   [{ label: 'Order', id: 'order' }],
-  [{ label: 'Familj som sover så sött', id: 'family' }],
+  [{ label: 'Familj', id: 'family' }],
   [{ label: 'Art', id: 'species' }],
   [{ label: 'Kön', id: 'sex' }],
   [{ label: 'Latinskt namn', id: 'speciesLatin' }],
@@ -20,26 +21,54 @@ const headerColumns = [
   [{ label: 'Bild', id: 'image' }],
 ];
 
-type SortKeys = Omit<SpeciesInfo, 'id' | 'updatedAt'>;
+type SortKeys = Omit<SpeciesInfo, 'id' | 'createdAt' | 'updatedAt'>;
 
 export default function SpeciesView() {
   const images = useStoreState('images');
   const species = useStoreState('species');
+  const [speciesOptions, setSpeciesOptions] = useState<Options[]>([]);
   const [sort, setSort] = useState({ column: 'species', ascending: false });
-  const [filter, setFilter] = useState('');
+  const [filters, setFilters] = useState({ all: '', species: '', kingdom: '' });
   const [items, setItems] = useState(species);
 
   useEffect(() => {
-    if (filter.length === 0) return setItems(species);
+    const filtered = filters.kingdom === '' ? species : species.filter(({ kingdom }) => kingdom === filters.kingdom);
+    const options = filtered.map(({ id, species }) => ({ value: id || '', label: species }));
 
-    const filteredSpecies = species.filter((item) =>
-      Object.entries(item).some(([, value]) =>
-        typeof value !== 'string' ? false : value.toLowerCase().includes(filter)
-      )
-    );
+    // Reset species filter
+    if (filters.species && !options.find(({ value }) => filters.species === value)) {
+      setFilters((prevValue) => ({ ...prevValue, species: '' }));
+    }
+
+    setSpeciesOptions(options);
+  }, [species, filters]);
+
+  useEffect(() => {
+    const { kingdom, species: speciesFilter, all } = filters;
+
+    const filteredSpecies = species.filter((item) => {
+      let freeTextSearchHit = false;
+
+      for (const [key, value] of Object.entries(item)) {
+        if (typeof value !== 'string') continue;
+
+        if (
+          (key === 'kingdom' && kingdom && kingdom !== value) ||
+          (key === 'id' && speciesFilter && speciesFilter !== value)
+        ) {
+          return false;
+        }
+
+        if (all && value.toLowerCase().includes(all)) {
+          freeTextSearchHit = true;
+        }
+      }
+
+      return all === '' || freeTextSearchHit;
+    });
 
     setItems(filteredSpecies);
-  }, [species, filter]);
+  }, [species, filters]);
 
   if (!images) return null;
 
@@ -61,9 +90,7 @@ export default function SpeciesView() {
     );
   };
 
-  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
-    setFilter(e?.target.value || '');
-  };
+  const handleFilterChange = (id: string, value: string) => setFilters((prevValue) => ({ ...prevValue, [id]: value }));
 
   const handleHeaderClick: HeaderCellOnClick = (e, id) => {
     e.preventDefault();
@@ -86,7 +113,7 @@ export default function SpeciesView() {
         </td>
         <td>{date}</td>
         <td>
-          <img src={getImage(image)} alt={image} title={image} loading="lazy" />
+          <img src={getImage(image)} alt={'' /* image */} title={image} loading="lazy" />
         </td>
       </tr>
     ));
@@ -95,9 +122,30 @@ export default function SpeciesView() {
     <Page title="Arter" headerButtonTitle="Ny Art" onHeaderButtonClick={() => showSpeciesDialog(true)}>
       <form>
         <div className="grid">
+          <label htmlFor="kingdom">
+            Klass
+            <select id="kingdom" onChange={(e) => handleFilterChange(e.target.id, e.target.value)}>
+              <option value="" defaultValue={filters.kingdom}>
+                Alla…
+              </option>
+              <option>Fåglar</option>
+              <option>Fröväxter</option>
+            </select>
+          </label>
+
+          <label htmlFor="species">
+            Art
+            <select id="species" onChange={(e) => handleFilterChange(e.target.id, e.target.value)}>
+              <option value="" defaultValue={filters.species}>
+                Alla…
+              </option>
+              {toOptions(speciesOptions)}
+            </select>
+          </label>
+
           <label htmlFor="all">
             Fritextsökning
-            <input id="all" onChange={handleFilterChange} />
+            <input id="all" onChange={(e) => handleFilterChange(e.target.id, e.target.value)} />
           </label>
         </div>
       </form>

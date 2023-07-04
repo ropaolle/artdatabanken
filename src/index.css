@@ -12,3 +12,12 @@
   background-color: transparent;
   border: none;
 }
+
+/* 
+img:before {
+  content: " (Image - Right click to reload if not loaded)";
+}
+
+img::before {
+  content: " (Image - Right click to reload if not loaded)";
+} */

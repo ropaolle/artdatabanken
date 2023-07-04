@@ -26,6 +26,8 @@ export const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
 export const db = getFirestore(app);
 
+/* FILES */
+
 export const checkIfFileExists = async (filePath: string): Promise<string | boolean> => {
   const storage = getStorage();
   const storageRef = ref(storage, filePath);
@@ -92,6 +94,20 @@ export const uploadFile = async (
   });
 };
 
+export const deleteFile = async (filename: string, path = 'images'): Promise<void> => {
+  const fileRef = ref(storage, `${path}/${filename}`);
+
+  return new Promise((resolve, reject) => {
+    deleteObject(fileRef)
+      .then(() => {
+        resolve();
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
 // export const getFileList = (filePath: string): Promise<string[]> => {
 //   const listRef = ref(storage, filePath);
 
@@ -104,6 +120,8 @@ export const uploadFile = async (
 //     });
 // };
 
+/* DATABASE */
+
 export type ImageInfo = {
   filename: string;
   thumbnail: string;
@@ -111,11 +129,6 @@ export type ImageInfo = {
   thumbnailURL: string;
   createdAt?: Timestamp;
   updatedAt?: Timestamp;
-};
-
-export const getImageInfo = async (): Promise<ImageInfo[]> => {
-  const querySnapshot = await getDocs(collection(db, 'images'));
-  return querySnapshot.docs.map((doc) => doc.data() as ImageInfo);
 };
 
 export type SpeciesInfo = {
@@ -130,24 +143,21 @@ export type SpeciesInfo = {
   speciesLatin: string;
   date: string;
   image: string;
+  createdAt?: Timestamp;
   updatedAt?: Timestamp;
+};
+
+/* export const getImageInfo = async (): Promise<ImageInfo[]> => {
+  const querySnapshot = await getDocs(collection(db, 'images'));
+  return querySnapshot.docs.map((doc) => doc.data() as ImageInfo);
 };
 
 export const getSpeciesInfo = async (): Promise<SpeciesInfo[]> => {
   const querySnapshot = await getDocs(collection(db, 'species'));
   return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id } as SpeciesInfo));
-};
+}; */
 
-export const deleteFile = async (filename: string, path = 'images'): Promise<void> => {
-  const fileRef = ref(storage, `${path}/${filename}`);
-
-  return new Promise((resolve, reject) => {
-    deleteObject(fileRef)
-      .then(() => {
-        resolve();
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  });
-};
+export async function firestoreFetch<T>(path: string): Promise<T[]> {
+  const querySnapshot = await getDocs(collection(db, path));
+  return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id } as T));
+}

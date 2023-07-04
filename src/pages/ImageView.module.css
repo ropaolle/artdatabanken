@@ -17,3 +17,9 @@
   cursor: pointer;
   filter: brightness(0.7);
 }
+
+.info {
+  color: #39638e;
+  font-size: 16px;
+  margin-bottom: 1rem;
+}

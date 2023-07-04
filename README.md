@@ -10,12 +10,15 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-- [ ] Filtrera bilder (filnamn, används används ej)
+- [ ] Hook to retrieve data from firebase
+  - https://www.benmvp.com/blog/how-to-extract-react-component-logic-custom-hook/
+  -
 - [ ] CSS styling on datalists
 - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
-- [ ] Importera arter från Excel
+- [ ] Importera arter från Excel, eller csv.
 - [ ] Importera bilder från Firebase
 - [ ] Skriv ut
+- [x] Filtrera bilder (filnamn, används används ej)
 - [x] Filtrera arter
 - [x] Move CSS to local files, i.e UploadImageDialog.tsx + UploadImageDialog.css.
 - [x] Global state?
@@ -49,17 +52,14 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
   - [Get data](https://firebase.google.com/docs/firestore/query-data/get-data)
 - REACT
   - [Async in UseEffect](https://devtrium.com/posts/async-functions-useeffect)
-  - [Responsive image grid](https://www.w3schools.com/howto/howto_css_image_grid_responsive.asp)
   - [REACT image corp](https://github.com/DominicTobias/react-image-crop)
-    - [React image cropping libraries](https://blog.logrocket.com/top-react-image-cropping-libraries/#react-image-crop)
-    - [How-to](https://levelup.gitconnected.com/crop-images-on-upload-in-your-react-app-with-react-image-crop-5f3cd0ad2b35)
-    - [How-to 2](https://github.com/DominicTobias/react-image-crop/issues/32)
-    - [Example](https://codesandbox.io/s/react-image-crop-demo-with-react-hooks-forked-8khsjq?file=/src/App.tsx:4265-4277)
-    - [Optimizing canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Optimizing_canvas)
   - [React-hook-form](https://react-hook-form.com/get-started)
     - [Modal form](https://codesandbox.io/s/react-hook-form-modal-form-conditional-inputs-c7n0r)
   - [DayJS](https://github.com/iamkun/dayjs)
-  - [useEffect on objects](https://dev.to/hey_yogini/useeffect-dependency-array-and-object-comparison-45el)
+    - HOOKS
+      - [useEffect on objects](https://dev.to/hey_yogini/useeffect-dependency-array-and-object-comparison-45el)
+      - [usehooks-ts](https://usehooks-ts.com/)
+      - [React Use - Hooks](https://github.com/streamich/react-use)
   - GLOBAL STATE
     - [React hooks global state](https://github.com/dai-shi/react-hooks-global-state)
     - [Understanding and Properly Using React Global State](https://clerk.com/blog/understanding-and-properly-using-react-global-state?utm_source=www.google.com&utm_medium=referral&utm_campaign=none)
@@ -67,12 +67,14 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
     - [A guide to choosing the right React state management solution](https://blog.logrocket.com/guide-choosing-right-react-state-management-solution/)
       - [Recoil](https://recoiljs.org/)
 - CSS
+  - [Responsive image grid](https://www.w3schools.com/howto/howto_css_image_grid_responsive.asp)
   - [CSS Modules](https://www.javascriptstuff.com/css-modules-by-example/)
   - [Grid](https://www.w3schools.com/css/css_grid_container.asp)
   - [Toast notification](https://www.codingnepalweb.com/toast-notification-html-css-javascript/)
   - [datalist example](https://codepen.io/SitePoint/pen/JjbXrvE)
   - [datalist-css](https://github.com/craigbuckler/datalist-css)
   - [Iconify attributes](https://iconify.design/docs/iconify-icon/inline.html)
+  - [Hide broken image link icon](https://stackoverflow.com/questions/22051573/how-to-hide-image-broken-icon-using-only-css-html)
 - JavaScript
   - [Create thumbnails on the client](https://codepen.io/mttaked/pen/ZLdEKm)
   - [Create thumbnails in a Firebase cloud function](https://medium.com/@christianrb/how-to-create-an-image-thumbnail-with-firebase-cloud-functions-73d4584290ba)

@@ -1,7 +1,7 @@
 import { useDebounceEffect } from './useDebounceEffect';
 import { drawImageOnCanvas } from './canvas';
 
-type Options = {
+export type Options = {
   value: string;
   label: string;
 };

@@ -8,10 +8,12 @@ import { toDatalist, toOptions } from '../lib';
 import Dialog, { DialogTypes } from './Dialog';
 import { classesList, counties, sexes } from '../lib/listData.ts';
 
-type Inputs = Omit<SpeciesInfo, 'updatedAt'>;
+import { defaultTatting } from '../lib/data.ts';
 
-const defaults = {
-  species: '',
+type Inputs = Omit<SpeciesInfo, 'updatedAt' | 'createdAt'>;
+
+/* const defaults = {
+  species: '1',
   place: '',
   date: new Date().toLocaleDateString(),
   kingdom: '',
@@ -21,7 +23,9 @@ const defaults = {
   speciesLatin: '',
   sex: '',
   image: '',
-};
+}; */
+
+const defaults = defaultTatting(8)
 
 export default function SpeciesDialog() {
   const images = useStoreState('images');
@@ -157,9 +161,7 @@ export default function SpeciesDialog() {
 
         <label htmlFor="date">
           Förhandsgranskning
-          <div className={classes.thumbnailPreview}>
-            {previewImage ? <img src={previewImage} /> : "Bild saknas"}
-          </div>
+          <div className={classes.thumbnailPreview}>{previewImage ? <img src={previewImage} /> : 'Bild saknas'}</div>
         </label>
       </div>
 

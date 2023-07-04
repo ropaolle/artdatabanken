@@ -71,9 +71,47 @@ const tattingar = [
     '2018-04-28',
     'image301.jpg',
   ],
+
+  [
+    'Fåglar',
+    'Tättingar',
+    'Mesar',
+    'Talgoxe',
+    'Parus major',
+    '',
+    'Källhagen',
+    'Sörmland',
+    '2019-05-07',
+    'image1003.JPG',
+  ],
+
+  [
+    'Fröväxter',
+    'Gömfröiga',
+    'Lövträd',
+    'Oxel',
+    '',
+    'Sorbus intermedia',
+    'Högenäs orde',
+    'Öland',
+    '2017 -08-03',
+    'image409.jpg',
+  ],
+  [
+    'Fröväxter',
+    'Gömfröiga',
+    'Lövträd',
+    'Rönn',
+    '',
+    'Sorbus aucuparia',
+    'Furudal',
+    'Dalarna',
+    '2017 -09-01',
+    'image410.jpg',
+  ],
 ];
 
-const defaultTatting = (id = 0) => ({
+export const defaultTatting = (id = 0) => ({
   species: tattingar[id][3],
   place: tattingar[id][6],
   date: tattingar[id][8],
