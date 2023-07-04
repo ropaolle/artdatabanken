@@ -9,7 +9,7 @@ import { firestoreFetch, type SpeciesInfo, type ImageInfo } from './lib/firebase
 function App() {
   const [page, setPage] = useState('species');
 
-  // TODO: Move this outside react? Maybe to state.ts.
+  // TODO: Move this outside react. Is that better for preformance?
   useEffect(() => {
     const fetchData = async () => {
       const images = await firestoreFetch<ImageInfo>('images');

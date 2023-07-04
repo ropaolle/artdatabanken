@@ -1,6 +1,15 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, /*  listAll, */ getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
-import { getFirestore, collection, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  addDoc,
+  serverTimestamp,
+  type Timestamp,
+} from 'firebase/firestore';
 
 // PROD
 // const firebaseConfig = {
@@ -161,3 +170,41 @@ export async function firestoreFetch<T>(path: string): Promise<T[]> {
   const querySnapshot = await getDocs(collection(db, path));
   return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id } as T));
 }
+
+import { csv } from './data.js';
+
+/* const defaults = {
+  species: '1',
+  place: '',
+  date: new Date().toLocaleDateString(),
+  kingdom: '',
+  order: '',
+  family: '',
+  county: '',
+  speciesLatin: '',
+  sex: '',
+  image: '',
+}; */
+
+export const importData = async () => {
+  const data = csv.split('\n').map((row: string) => row.split(';'));
+
+  for (const record of data) {
+    const newRec = {
+      kingdom: record[0],
+      order: record[1],
+      family: record[2],
+      species: record[3],
+      sex: record[4],
+      speciesLatin: record[5],
+      place: record[6],
+      county: record[7],
+      date: record[8],
+      image: record[9],
+    };
+
+    console.log('data', newRec);
+
+    await addDoc(collection(db, 'species2'), { ...newRec, createdAt: serverTimestamp() });
+  }
+};

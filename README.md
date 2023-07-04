@@ -10,9 +10,10 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
+- [ ] Importera arter från Excel, eller csv.
+
 - [ ] CSS styling on datalists
 - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
-- [ ] Importera arter från Excel, eller csv.
 - [ ] Importera bilder från Firebase
 - [ ] Skriv ut
 - [x] Filtrera bilder (filnamn, används används ej)
