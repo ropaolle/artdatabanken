@@ -10,9 +10,6 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-- [ ] Hook to retrieve data from firebase
-  - https://www.benmvp.com/blog/how-to-extract-react-component-logic-custom-hook/
-  -
 - [ ] CSS styling on datalists
 - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
 - [ ] Importera arter från Excel, eller csv.

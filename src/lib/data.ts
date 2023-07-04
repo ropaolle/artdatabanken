@@ -106,7 +106,7 @@ const tattingar = [
     'Sorbus aucuparia',
     'Furudal',
     'Dalarna',
-    '2017 -09-01',
+    '2017-09-01',
     'image410.jpg',
   ],
 ];

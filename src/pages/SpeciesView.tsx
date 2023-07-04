@@ -1,10 +1,9 @@
 import classes from './SpeciesView.module.css';
 import { useState, useEffect } from 'react';
-import type { SpeciesInfo } from '../lib/firebase';
 import { useStoreState, showSpeciesDialog } from '../state';
 import Page from './Page';
 import { TableHeader, type HeaderCellOnClick } from '../components';
-import { type Options, toOptions } from '../lib';
+import { type Options, toOptions, createSortFunc } from '../lib';
 
 const headerColumns = [
   [{ label: 'Klass', id: 'kingdom' }],
@@ -20,8 +19,6 @@ const headerColumns = [
   [{ label: 'Datum', id: 'date' }],
   [{ label: 'Bild', id: 'image' }],
 ];
-
-type SortKeys = Omit<SpeciesInfo, 'id' | 'createdAt' | 'updatedAt'>;
 
 export default function SpeciesView() {
   const images = useStoreState('images');
@@ -67,19 +64,10 @@ export default function SpeciesView() {
       return all === '' || freeTextSearchHit;
     });
 
-    setItems(filteredSpecies);
-  }, [species, filters]);
+    setItems(filteredSpecies.sort(createSortFunc(sort)));
+  }, [species, filters, sort]);
 
   if (!images) return null;
-
-  const localeSort = (a: SortKeys, b: SortKeys) => {
-    if (!sort) return 0;
-    const itemA = a[sort.column as keyof SortKeys];
-    const itemB = b[sort.column as keyof SortKeys];
-    const order = sort.ascending ? -1 : 1;
-
-    return itemA.localeCompare(itemB, 'sv', { sensitivity: 'base' }) * order;
-  };
 
   const getImage = (name: string) => images.find((image) => image.filename === name)?.thumbnailURL;
 
@@ -97,9 +85,8 @@ export default function SpeciesView() {
     setSort({ column: id, ascending: sort.column === id ? !sort.ascending : sort.ascending });
   };
 
-  const speciesTable = items
-    .sort(localeSort)
-    .map(({ id, kingdom, order, family, species, sex, speciesLatin, place, county, date, image }) => (
+  const speciesTable = items.map(
+    ({ id, kingdom, order, family, species, sex, speciesLatin, place, county, date, image, createdAt }) => (
       <tr key={id} id={id} onClick={handleRowClick} className={classes.row}>
         <td>{kingdom}</td>
         <td>{order}</td>
@@ -116,7 +103,8 @@ export default function SpeciesView() {
           <img src={getImage(image)} alt={'' /* image */} title={image} loading="lazy" />
         </td>
       </tr>
-    ));
+    )
+  );
 
   return (
     <Page title="Arter" headerButtonTitle="Ny Art" onHeaderButtonClick={() => showSpeciesDialog(true)}>

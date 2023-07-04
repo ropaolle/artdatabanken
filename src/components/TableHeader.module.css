@@ -1,6 +1,7 @@
 .header-cell {
   text-decoration: none;
   color: hsl(205, 20%, 32%);
+  white-space: nowrap;
 }
 
 .header-cell:hover {
