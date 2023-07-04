@@ -1,0 +1,38 @@
+"filename", "language", "TypeScript JSX", "TypeScript", "CSS", "XML", "comment", "blank", "total"
+"c:\GitHub\artdatabanken\src\App.css", "CSS", 0, 0, 3, 0, 59, 10, 72
+"c:\GitHub\artdatabanken\src\App.tsx", "TypeScript JSX", 41, 0, 0, 0, 1, 10, 52
+"c:\GitHub\artdatabanken\src\assets\logo.svg", "XML", 0, 0, 0, 1, 0, 0, 1
+"c:\GitHub\artdatabanken\src\assets\react.svg", "XML", 0, 0, 0, 1, 0, 0, 1
+"c:\GitHub\artdatabanken\src\components\Footer.tsx", "TypeScript JSX", 3, 0, 0, 0, 0, 1, 4
+"c:\GitHub\artdatabanken\src\components\Link.tsx", "TypeScript JSX", 17, 0, 0, 0, 4, 3, 24
+"c:\GitHub\artdatabanken\src\components\Navigation.tsx", "TypeScript JSX", 31, 0, 0, 0, 4, 3, 38
+"c:\GitHub\artdatabanken\src\components\TableHeader.module.css", "CSS", 0, 0, 8, 0, 0, 2, 10
+"c:\GitHub\artdatabanken\src\components\TableHeader.tsx", "TypeScript JSX", 36, 0, 0, 0, 0, 6, 42
+"c:\GitHub\artdatabanken\src\components\index.ts", "TypeScript", 0, 5, 0, 0, 0, 2, 7
+"c:\GitHub\artdatabanken\src\dialogs\DeleteImageDialog.tsx", "TypeScript JSX", 75, 0, 0, 0, 0, 10, 85
+"c:\GitHub\artdatabanken\src\dialogs\Dialog.module.css", "CSS", 0, 0, 8, 0, 0, 2, 10
+"c:\GitHub\artdatabanken\src\dialogs\Dialog.tsx", "TypeScript JSX", 56, 0, 0, 0, 4, 11, 71
+"c:\GitHub\artdatabanken\src\dialogs\SpeciesDialog.module.css", "CSS", 0, 0, 22, 0, 0, 4, 26
+"c:\GitHub\artdatabanken\src\dialogs\SpeciesDialog.tsx", "TypeScript JSX", 144, 0, 0, 0, 13, 25, 182
+"c:\GitHub\artdatabanken\src\dialogs\UploadImageDialog.tsx", "TypeScript JSX", 141, 0, 0, 0, 3, 26, 170
+"c:\GitHub\artdatabanken\src\dialogs\index.ts", "TypeScript", 0, 5, 0, 0, 0, 2, 7
+"c:\GitHub\artdatabanken\src\index.css", "CSS", 0, 0, 12, 0, 9, 2, 23
+"c:\GitHub\artdatabanken\src\lib\canvas.ts", "TypeScript", 0, 30, 0, 0, 8, 6, 44
+"c:\GitHub\artdatabanken\src\lib\data.ts", "TypeScript", 0, 122, 0, 0, 0, 4, 126
+"c:\GitHub\artdatabanken\src\lib\firebase.ts", "TypeScript", 0, 111, 0, 0, 31, 22, 164
+"c:\GitHub\artdatabanken\src\lib\index.tsx", "TypeScript JSX", 24, 0, 0, 0, 1, 9, 34
+"c:\GitHub\artdatabanken\src\lib\listData.ts", "TypeScript", 0, 41, 0, 0, 0, 2, 43
+"c:\GitHub\artdatabanken\src\lib\useDebounceEffect.ts", "TypeScript", 0, 11, 0, 0, 23, 4, 38
+"c:\GitHub\artdatabanken\src\main.tsx", "TypeScript JSX", 10, 0, 0, 0, 0, 2, 12
+"c:\GitHub\artdatabanken\src\pages\ImageView.module.css", "CSS", 0, 0, 21, 0, 0, 5, 26
+"c:\GitHub\artdatabanken\src\pages\ImageView.tsx", "TypeScript JSX", 37, 0, 0, 0, 0, 7, 44
+"c:\GitHub\artdatabanken\src\pages\Page.module.css", "CSS", 0, 0, 11, 0, 0, 3, 14
+"c:\GitHub\artdatabanken\src\pages\Page.tsx", "TypeScript JSX", 24, 0, 0, 0, 0, 3, 27
+"c:\GitHub\artdatabanken\src\pages\PageGenerator.tsx", "TypeScript JSX", 9, 0, 0, 0, 0, 2, 11
+"c:\GitHub\artdatabanken\src\pages\SpeciesView\Filters.tsx", "TypeScript JSX", 73, 0, 0, 0, 1, 18, 92
+"c:\GitHub\artdatabanken\src\pages\SpeciesView\SpeciesView.module.css", "CSS", 0, 0, 4, 0, 0, 1, 5
+"c:\GitHub\artdatabanken\src\pages\SpeciesView\SpeciesView.tsx", "TypeScript JSX", 68, 0, 0, 0, 0, 8, 76
+"c:\GitHub\artdatabanken\src\pages\index.ts", "TypeScript", 0, 4, 0, 0, 0, 2, 6
+"c:\GitHub\artdatabanken\src\state.ts", "TypeScript", 0, 151, 0, 0, 2, 24, 177
+"c:\GitHub\artdatabanken\src\vite-env.d.ts", "TypeScript", 0, 0, 0, 0, 1, 1, 2
+"Total", "-", 789, 480, 89, 2, 164, 242, 1766
