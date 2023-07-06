@@ -10,14 +10,17 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
+- [ ] Bildsida: soretera på namn, skapad, uppdaterad
+- [ ] Create datalists (klass, ordning, familj, lokal)
 - [ ] CSS styling on datalists
-- [ ] Create and cache datalists
+- [ ] Pager för arter och bilder
 - [ ] Create page functions
 - [ ] Skriv ut
 - [ ] Spara som pdf.
 - [ ] Protect files and db with Firebase rules
 - NICE TO HAVE
   - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
+  - [ ] cache datalists
 - DONE
   - [x] Importera arter och bilder från Excel, eller csv.
   - [x] Importera bilder från Firebase
