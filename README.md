@@ -10,34 +10,35 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-- [ ] Importera arter och bilder från Excel, eller csv.
-
 - [ ] CSS styling on datalists
-- [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
+- [ ] Create and cache datalists
+- [ ] Create page functions
 - [ ] Skriv ut
-- [x] Importera bilder från Firebase
-- [x] Filtrera bilder (filnamn, används används ej)
-- [x] Filtrera arter
-- [x] Move CSS to local files, i.e UploadImageDialog.tsx + UploadImageDialog.css.
-- [x] Global state?
-- [x] Skapa och ändra arter SpeciesDialog
-- [x] Radera bild
-- [x] Uppdatera image-view.
-- [x] Delete image/record and make sure assosiated files also is deleted. Delet images that does not exist in db.
-- [x] Art: Lagra länk till bild. INte filnamn.
-- [x] Använd inte filnamn och art som dokumentnamn. Skapa ett unikt id.
-- [x] Radera art
-- [x] Normalisera filnamn. Små bokstäver och mellanslag till bindestreck.
-- [x] Uppdatera art
-- [x] Välj bild i art
-- [x] Thumbnails
-- [x] Sida med filter som visar alla poster.
-- [x] Refactor upload to use async/await insted of callbacks
-- [x] Image corp library
+- [ ] Spara som pdf.
+- [ ] Protect files and db with Firebase rules
 - NICE TO HAVE
-  - [ ] Spara som pdf.
-  - [ ] Security for files and db
-  - [ ] Image metadata with size?
+  - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
+- DONE
+  - [x] Importera arter och bilder från Excel, eller csv.
+  - [x] Importera bilder från Firebase
+  - [x] Filtrera bilder (filnamn, används används ej)
+  - [x] Filtrera arter
+  - [x] Move CSS to local files, i.e UploadImageDialog.tsx + UploadImageDialog.css.
+  - [x] Global state?
+  - [x] Skapa och ändra arter SpeciesDialog
+  - [x] Radera bild
+  - [x] Uppdatera image-view.
+  - [x] Delete image/record and make sure assosiated files also is deleted. Delet images that does not exist in db.
+  - [x] Art: Lagra länk till bild. INte filnamn.
+  - [x] Använd inte filnamn och art som dokumentnamn. Skapa ett unikt id.
+  - [x] Radera art
+  - [x] Normalisera filnamn. Små bokstäver och mellanslag till bindestreck.
+  - [x] Uppdatera art
+  - [x] Välj bild i art
+  - [x] Thumbnails
+  - [x] Sida med filter som visar alla poster.
+  - [x] Refactor upload to use async/await insted of callbacks
+  - [x] Image corp library
 
 ## Links
 
