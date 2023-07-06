@@ -1,13 +1,13 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import { initStore } from './state';
-import { ImageView, SpeciesView, PageGenerator } from './pages';
+import { ImageView, SpeciesView, PageGenerator, Settings } from './pages';
 import { Navigation, Footer } from './components';
 import { DeleteImageDialog, UploadImageDialog, SpeciesDialog } from './dialogs';
 import { firestoreFetch, type SpeciesInfo, type ImageInfo } from './lib/firebase.ts';
 
 function App() {
-  const [page, setPage] = useState('species');
+  const [page, setPage] = useState('settings');
 
   // TODO: Move this outside react. Is that better for preformance?
   useEffect(() => {
@@ -40,9 +40,10 @@ function App() {
 
         {page === 'species' && <SpeciesView />}
         {page === 'images' && <ImageView />}
+        {page === 'generator' && <PageGenerator />}
+        {page === 'settings' && <Settings />}
       </main>
 
-      {page === 'generator' && <PageGenerator />}
       <Footer />
     </>
   );

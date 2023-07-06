@@ -1,15 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, /*  listAll, */ getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  doc,
-  getDoc,
-  addDoc,
-  serverTimestamp,
-  type Timestamp,
-} from 'firebase/firestore';
+import { getFirestore, collection, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore';
 
 // PROD
 // const firebaseConfig = {
@@ -42,8 +33,6 @@ const firebaseConfig = {
 //   appId: "1:495647184718:web:67ae3c56aeeeacf93af01f",
 //   measurementId: "G-NBMHCY9EPV"
 // };
-
-
 
 export const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
@@ -175,31 +164,3 @@ export async function firestoreFetch<T>(path: string): Promise<T[]> {
 
   return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id } as T));
 }
-
-import { csv } from './data.js';
-
-export const importData = async () => {
-  const data = csv.split('\n').map((row: string) => row.split(';'));
-
-  for (const record of data) {
-    const [kingdom, order, family, species, sex, speciesLatin, place, county, date, image] = record;
-
-    const newSpecies = {
-      kingdom,
-      order,
-      family,
-      species,
-      sex,
-      speciesLatin,
-      place,
-      county,
-      date,
-      image,
-      createdAt: serverTimestamp(),
-    };
-
-    console.log('data', newSpecies);
-
-    await addDoc(collection(db, 'species2'), newSpecies);
-  }
-};
