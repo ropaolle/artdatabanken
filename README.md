@@ -2,12 +2,6 @@
 
 Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://console.firebase.google.com/).
 
-## Buggar
-
-- [ ] UploadImageDialog <dialog> closes on file input cancelation in Chromiumbased browsers, workaround added in Dialog.tsx.
-  - [Bug 1442824](https://bugs.chromium.org/p/chromium/issues/detail?id=1442824)
-  - [HTML dialog closes automatically when file input is cancelled. How to prevent?](https://stackoverflow.com/questions/76400460/html-dialog-closes-automatically-when-file-input-is-cancelled-how-to-prevent)
-
 ## TODO
 
 - [ ] Bildsida: soretera på namn, skapad, uppdaterad
@@ -42,6 +36,12 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
   - [x] Sida med filter som visar alla poster.
   - [x] Refactor upload to use async/await insted of callbacks
   - [x] Image corp library
+
+## Buggar
+
+- [ ] UploadImageDialog <dialog> closes on file input cancelation in Chromiumbased browsers, workaround added in Dialog.tsx.
+  - [Bug 1442824](https://bugs.chromium.org/p/chromium/issues/detail?id=1442824)
+  - [HTML dialog closes automatically when file input is cancelled. How to prevent?](https://stackoverflow.com/questions/76400460/html-dialog-closes-automatically-when-file-input-is-cancelled-how-to-prevent)
 
 ## Links
 
