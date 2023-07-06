@@ -2,11 +2,11 @@ import logo from '../assets/logo.svg';
 import { Link /* , Dialogs */ } from '.';
 
 type Props = {
-  // show?: (dialog: number, show?: boolean) => void;  
+  // show?: (dialog: number, show?: boolean) => void;
   setPage: (page: React.SetStateAction<string>) => void;
 };
 
-export default function Navigation({ /* show,  */setPage }: Props) {
+export default function Navigation({ /* show,  */ setPage }: Props) {
   return (
     <header className="container">
       <nav>
@@ -26,6 +26,9 @@ export default function Navigation({ /* show,  */setPage }: Props) {
           </li>
           <li>
             <Link onClick={() => setPage('generator')}>Sidgenerator</Link>
+          </li>
+          <li>
+            <Link onClick={() => setPage('settings')}>Inställningar</Link>
           </li>
           {/* <li>
             <Link onClick={() => show(Dialogs.ADD_SPECIES_DIALOG)}>Ny Art</Link>
