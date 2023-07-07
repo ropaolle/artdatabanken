@@ -7,7 +7,7 @@ import { DeleteImageDialog, UploadImageDialog, SpeciesDialog } from './dialogs';
 import { firestoreFetch, type SpeciesInfo, type ImageInfo } from './lib/firebase.ts';
 
 function App() {
-  const [page, setPage] = useState('settings');
+  const [page, setPage] = useState('images');
 
   // TODO: Move this outside react. Is that better for preformance?
   useEffect(() => {
