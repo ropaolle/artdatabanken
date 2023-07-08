@@ -11,7 +11,7 @@ import { counties, sexes } from '../lib/listData.ts';
 type Inputs = Omit<SpeciesInfo, 'updatedAt' | 'createdAt'>;
 
 const defaults = {
-  species: '1',
+  species: '',
   place: '',
   date: new Date().toLocaleDateString(),
   kingdom: '',
@@ -102,8 +102,7 @@ export default function SpeciesDialog() {
       <div>
         <input list={`${id}-data`} autoComplete="off" {...register(id as keyof Inputs, { required })} />
         {dataList && <datalist id={`${id}-data`}>{toDatalistOptions(dataList)}</datalist>}
-        {/* TODO: CSS error styling */}
-        {error && error.type === 'required' && <span className={classes.error}>{error.message}</span>}
+        {error && error.type === 'required' && <div className={classes.error}>{error.message}</div>}
       </div>
     </>
   );
