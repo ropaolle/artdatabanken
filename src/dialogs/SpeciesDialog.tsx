@@ -1,18 +1,16 @@
 import classes from './SpeciesDialog.module.css';
 import { useState, useEffect } from 'react';
 import { useStoreState, showSpeciesDialog, deleteSpecies, addSpecies, updateSpecies } from '../state';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, type FieldError } from 'react-hook-form';
 import { doc, updateDoc, addDoc, serverTimestamp, collection, deleteDoc } from 'firebase/firestore';
 import { db, type SpeciesInfo } from '../lib/firebase.ts';
-import { toDatalist, toOptions } from '../lib';
+import { toDatalistOptions, toOptions } from '../lib';
 import Dialog, { DialogTypes } from './Dialog';
-import { classesList, counties, sexes } from '../lib/listData.ts';
-
-import { defaultTatting } from '../lib/data.ts';
+import { counties, sexes } from '../lib/listData.ts';
 
 type Inputs = Omit<SpeciesInfo, 'updatedAt' | 'createdAt'>;
 
-/* const defaults = {
+const defaults = {
   species: '1',
   place: '',
   date: new Date().toLocaleDateString(),
@@ -23,12 +21,11 @@ type Inputs = Omit<SpeciesInfo, 'updatedAt' | 'createdAt'>;
   speciesLatin: '',
   sex: '',
   image: '',
-}; */
-
-const defaults = defaultTatting(8)
+};
 
 export default function SpeciesDialog() {
   const images = useStoreState('images');
+  const dataLists = useStoreState('dataLists');
   const { open, values } = useStoreState('speciesDialog');
   const [previewImage, setPreviewImage] = useState<string>();
   const {
@@ -91,6 +88,26 @@ export default function SpeciesDialog() {
 
   const hide = () => showSpeciesDialog(false);
 
+  type HorizontalInputType = {
+    id: string;
+    label: string;
+    dataList?: Set<string> | string[];
+    error?: FieldError;
+    required?: boolean | string;
+  };
+
+  const HorizontalInput = ({ id, label, dataList, error, required = false }: HorizontalInputType) => (
+    <>
+      <label htmlFor={id}>{label}</label>
+      <div>
+        <input list={`${id}-data`} autoComplete="off" {...register(id as keyof Inputs, { required })} />
+        {dataList && <datalist id={`${id}-data`}>{toDatalistOptions(dataList)}</datalist>}
+        {/* TODO: CSS error styling */}
+        {error && error.type === 'required' && <span className={classes.error}>{error.message}</span>}
+      </div>
+    </>
+  );
+
   return (
     <Dialog
       id={DialogTypes.SPECIES_DIALOG}
@@ -100,39 +117,18 @@ export default function SpeciesDialog() {
       title={`Lägg till ny art`}
     >
       <div className={classes.horizontalForm}>
-        <label htmlFor="species">Art*</label>
-        <div>
-          <input {...register('species', { required: true })} />
-          {errors.species && errors.species.type === 'required' && (
-            <span className={classes.error}>This is required!</span>
-          )}
-        </div>
-
-        <label htmlFor="kingdom">Klass</label>
-        <div>
-          <input list="classes-data" autoComplete="off" {...register('kingdom')} />
-          <datalist id="classes-data">{toDatalist(classesList)}</datalist>
-        </div>
-
-        <label htmlFor="order">Ordning</label>
-        <div>
-          <input {...register('order')} />
-        </div>
-
-        <label htmlFor="family">Familj</label>
-        <div>
-          <input {...register('family')} />
-        </div>
-
-        <label htmlFor="speciesLatin">Latinskt namn</label>
-        <div>
-          <input {...register('speciesLatin')} />
-        </div>
-
-        <label htmlFor="place">Lokal</label>
-        <div>
-          <input {...register('place')} />
-        </div>
+        <HorizontalInput
+          id="species"
+          label="Art*"
+          dataList={dataLists.species}
+          error={errors.species}
+          required="This is required."
+        />
+        <HorizontalInput id="kingdom" label="Klass" dataList={dataLists.kingdoms} />
+        <HorizontalInput id="order" label="Ordning" dataList={dataLists.orders} />
+        <HorizontalInput id="family" label="Familj" dataList={dataLists.families} />
+        <HorizontalInput id="speciesLatin" label="Latinskt namn" />
+        <HorizontalInput id="place" label="Lokal" dataList={dataLists.places} />
       </div>
 
       <div className="grid">
@@ -156,7 +152,7 @@ export default function SpeciesDialog() {
         <label htmlFor="date">
           Bild
           <input list="images-data" autoComplete="off" {...register('image', { onChange: handleImageChange })} />
-          <datalist id="images-data">{toDatalist(images.map(({ filename }) => filename))}</datalist>
+          <datalist id="images-data">{toDatalistOptions(images.map(({ filename }) => filename))}</datalist>
         </label>
 
         <label htmlFor="date">

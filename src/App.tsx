@@ -7,14 +7,31 @@ import { DeleteImageDialog, UploadImageDialog, SpeciesDialog } from './dialogs';
 import { firestoreFetch, type SpeciesInfo, type ImageInfo } from './lib/firebase.ts';
 
 function App() {
-  const [page, setPage] = useState('images');
+  const [page, setPage] = useState('species');
 
-  // TODO: Move this outside react. Is that better for preformance?
+  // TODO: Should fetch be moved outside react? Is that better for preformance?
   useEffect(() => {
     const fetchData = async () => {
       const images = await firestoreFetch<ImageInfo>('images');
       const species = await firestoreFetch<SpeciesInfo>('species');
-      initStore(images, species);
+
+      const dataLists = {
+        kingdoms: new Set<string>(),
+        orders: new Set<string>(),
+        families: new Set<string>(),
+        species: new Set<string>(),
+        places: new Set<string>(),
+      };
+
+      for (const { kingdom, order, family, species: speciesName, place } of species) {
+        dataLists.kingdoms.add(kingdom);
+        dataLists.orders.add(order);
+        dataLists.families.add(family);
+        dataLists.species.add(speciesName);
+        dataLists.places.add(place);
+      }
+
+      initStore(images, species, dataLists);
     };
 
     fetchData().catch(console.error);

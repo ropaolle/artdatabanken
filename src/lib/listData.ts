@@ -28,16 +28,3 @@ export const sexes = [
   { value: 'male', label: 'Hane' },
   { value: 'female', label: 'Hona' },
 ];
-
-export const classesList = [
-  'Däggdjur',
-  'Fräkenartade växter',
-  'Fröväxter',
-  'Fåglar',
-  'Groddjur',
-  'Insekter',
-  'Kräldjur',
-  'Ormbunksartade växter',
-  'Snäckor',
-  'Spindeldjur',
-];

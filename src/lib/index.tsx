@@ -13,7 +13,8 @@ export const toOptions = (options: Options[]) =>
     </option>
   ));
 
-export const toDatalist = (options: string[]) => options.map((option, i) => <option key={i}>{option}</option>);
+export const toDatalistOptions = (items: string[] | Set<string>) =>
+  Array.from(items).map((option, i) => <option key={i}>{option}</option>);
 
 // Locale string sort on objects of string values
 export function createSortFunc<T>({ column, ascending = true }: { column: string; ascending: boolean }) {

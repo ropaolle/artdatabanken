@@ -10,20 +10,30 @@ type DialogState = {
 interface DeleteImageDialogState extends DialogState {
   values?: ImageInfo;
 }
+
 interface SpeciesDialogState extends DialogState {
   values?: SpeciesInfo;
 }
 
+type DataLists = {
+  kingdoms: Set<string>;
+  orders: Set<string>;
+  families: Set<string>;
+  species: Set<string>;
+  places: Set<string>;
+};
+
 type GlobalState = {
   images: ImageInfo[];
   species: SpeciesInfo[];
+  dataLists: DataLists;
   speciesDialog: SpeciesDialogState;
   deleteImageDialog: DeleteImageDialogState;
   uploadImageDialog: DialogState;
 };
 
 type Action =
-  | { type: 'initStore'; images: ImageInfo[]; species: SpeciesInfo[] }
+  | { type: 'initStore'; images: ImageInfo[]; species: SpeciesInfo[]; dataLists: DataLists }
   | { type: 'addImage'; image: ImageInfo }
   | { type: 'deleteImage'; filename: string }
   | { type: 'addSpecies'; species: SpeciesInfo }
@@ -33,10 +43,11 @@ type Action =
   | { type: 'showDeleteImageDialog'; state: boolean; values?: ImageInfo }
   | { type: 'showUploadImageDialog'; state: boolean };
 
-export const initStore = (images: ImageInfo[], species: SpeciesInfo[]) =>
+export const initStore = (images: ImageInfo[], species: SpeciesInfo[], dataLists: DataLists) =>
   dispatch({
     images,
     species,
+    dataLists,
     type: 'initStore',
   });
 
@@ -100,6 +111,7 @@ export const { dispatch, useStoreState } = createStore(
           ...state,
           images: action.images,
           species: action.species,
+          dataLists: action.dataLists,
         };
 
       case 'addImage':
@@ -160,6 +172,13 @@ export const { dispatch, useStoreState } = createStore(
   {
     images: [],
     species: [],
+    dataLists: {
+      kingdoms: new Set<string>(),
+      orders: new Set<string>(),
+      families: new Set<string>(),
+      species: new Set<string>(),
+      places: new Set<string>(),
+    },
     speciesDialog: {
       id: DialogTypes.SPECIES_DIALOG,
       open: false,

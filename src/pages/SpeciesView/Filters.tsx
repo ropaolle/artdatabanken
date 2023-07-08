@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useStoreState } from '../../state';
-import { type Options, toOptions, createSortFunc } from '../../lib';
+import { type Options, createSortFunc, toDatalistOptions } from '../../lib';
 import { SpeciesInfo } from '../../lib/firebase';
 
 type Props = {
@@ -11,19 +11,25 @@ type Props = {
 export default function Filters({ sort, setItems }: Props) {
   const images = useStoreState('images');
   const species = useStoreState('species');
-  const [speciesOptions, setSpeciesOptions] = useState<Options[]>([]);
+  const dataLists = useStoreState('dataLists');
+  const [speciesOptions, setSpeciesOptions] = useState<string[]>([]);
   const [filters, setFilters] = useState({ all: '', species: '', kingdom: '' });
 
   useEffect(() => {
-    const filtered = filters.kingdom === '' ? species : species.filter(({ kingdom }) => kingdom === filters.kingdom);
-    const options = filtered.map(({ id, species }) => ({ value: id || '', label: species }));
+    // Filter species on kingdom
+    const filteredSpecies =
+      filters.kingdom === '' ? species : species.filter(({ kingdom }) => kingdom === filters.kingdom);
+    const options = filteredSpecies.map(({ species }) => species);
+    setSpeciesOptions(options);
 
-    // Reset species filter
-    if (filters.species && !options.find(({ value }) => filters.species === value)) {
+    // Reset species filter if no match is found
+    if (
+      filters.kingdom.length > 0 &&
+      filters.species.length > 0 &&
+      !options.find((option) => filters.species === option)
+    ) {
       setFilters((prevValue) => ({ ...prevValue, species: '' }));
     }
-
-    setSpeciesOptions(options);
   }, [species, filters]);
 
   useEffect(() => {
@@ -37,7 +43,7 @@ export default function Filters({ sort, setItems }: Props) {
 
         if (
           (key === 'kingdom' && kingdom && kingdom !== value) ||
-          (key === 'id' && speciesFilter && speciesFilter !== value)
+          (key === 'species' && speciesFilter && speciesFilter !== value)
         ) {
           return false;
         }
@@ -55,30 +61,35 @@ export default function Filters({ sort, setItems }: Props) {
 
   if (!images) return null;
 
-  const handleFilterChange = (id: string, value: string) => setFilters((prevValue) => ({ ...prevValue, [id]: value }));
+  const handleFilterChange = (id: string, value: string) => {
+    setFilters((prevValue) => ({ ...prevValue, [id]: value }));
+  };
 
   return (
     <form>
       <div className="grid">
         <label htmlFor="kingdom">
           Klass
-          <select id="kingdom" onChange={(e) => handleFilterChange(e.target.id, e.target.value)}>
-            <option value="" defaultValue={filters.kingdom}>
-              Alla…
-            </option>
-            <option>Fåglar</option>
-            <option>Fröväxter</option>
-          </select>
+          <input
+            id="kingdom"
+            value={filters.kingdom || ''}
+            list="kingdomss-data"
+            autoComplete="off"
+            onChange={(e) => handleFilterChange(e.target.id, e.target.value)}
+          />
+          <datalist id="kingdomss-data">{toDatalistOptions(dataLists.kingdoms)}</datalist>
         </label>
 
         <label htmlFor="species">
           Art
-          <select id="species" onChange={(e) => handleFilterChange(e.target.id, e.target.value)}>
-            <option value="" defaultValue={filters.species}>
-              Alla…
-            </option>
-            {toOptions(speciesOptions)}
-          </select>
+          <input
+            id="species"
+            value={filters.species || ''}
+            list="species-data"
+            autoComplete="off"
+            onChange={(e) => handleFilterChange(e.target.id, e.target.value)}
+          />
+          <datalist id="species-data">{toDatalistOptions(speciesOptions)}</datalist>
         </label>
 
         <label htmlFor="all">

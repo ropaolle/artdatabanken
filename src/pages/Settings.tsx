@@ -6,7 +6,7 @@ import { db, type SpeciesInfo } from '../lib/firebase';
 
 const IMAGES_COLLECTION = 'images2';
 const IMAGES_PATH = 'images2022';
-const SPEICES_COLLECTION = 'speices2';
+const SPECIES_COLLECTION = 'speCIes2';
 
 const readUploadedFileAsText = (file: File): Promise<string> => {
   const fileReader = new FileReader();
@@ -36,8 +36,8 @@ export default function Settings() {
   const [uploadingImages, setUploadingImages] = useState<States>(States.IDLE);
   const [importingSpecies, setImportingSpecies] = useState<States>(States.IDLE);
 
-  const [speices, setSpeices] = useState<SpeciesInfo[]>();
-  const [speicesMessage, setSpeicesMessage] = useState('');
+  const [species, setSpecies] = useState<SpeciesInfo[]>();
+  const [speciesMessage, setSpeciesMessage] = useState('');
 
   const onHandleImageImportChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUploadingImages(States.IDLE);
@@ -91,7 +91,7 @@ export default function Settings() {
 
   const onHandleSpeciesImportChange = async (file: File | undefined) => {
     setImportingSpecies(States.IDLE);
-    setSpeicesMessage('');
+    setSpeciesMessage('');
 
     if (!file) return;
 
@@ -119,20 +119,20 @@ export default function Settings() {
       console.error(error);
     }
 
-    setSpeices(speciesCollection);
+    setSpecies(speciesCollection);
   };
 
-  const handleSpeicesImport = async () => {
-    if (!speices) return;
+  const handleSpeciesImport = async () => {
+    if (!species) return;
 
     setImportingSpecies(States.UPLOADING);
 
-    for await (const record of speices) {
-      addDoc(collection(db, SPEICES_COLLECTION), { ...record, createdAt: serverTimestamp() });
-      setSpeicesMessage(`importing ${record.species}`);
+    for await (const record of species) {
+      addDoc(collection(db, SPECIES_COLLECTION), { ...record, createdAt: serverTimestamp() });
+      setSpeciesMessage(`importing ${record.species}`);
     }
 
-    setSpeicesMessage(`Done! ${speices.length} speices imported.`);
+    setSpeciesMessage(`Done! ${species.length} species imported.`);
 
     setImportingSpecies(States.DONE);
   };
@@ -151,15 +151,15 @@ export default function Settings() {
         </div>
 
         <div>
-          <label htmlFor="importspeices">
+          <label htmlFor="importspecies">
             <input
               type="file"
               accept=".csv"
               onChange={(e) => onHandleSpeciesImportChange(e.currentTarget.files?.[0])}
             />
-            {speicesMessage && <small>{speicesMessage}</small>}
+            {speciesMessage && <small>{speciesMessage}</small>}
           </label>
-          <button onClick={handleSpeicesImport} aria-busy={importingSpecies === States.UPLOADING}>
+          <button onClick={handleSpeciesImport} aria-busy={importingSpecies === States.UPLOADING}>
             Importera arter
           </button>
         </div>
