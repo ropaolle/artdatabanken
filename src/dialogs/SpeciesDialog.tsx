@@ -101,7 +101,11 @@ export default function SpeciesDialog() {
       <label htmlFor={id}>{label}</label>
       <div>
         <input list={`${id}-data`} autoComplete="off" {...register(id as keyof Inputs, { required })} />
-        {dataList && <datalist id={`${id}-data`}>{toDatalistOptions(dataList)}</datalist>}
+        {dataList && (
+          <datalist id={`${id}-data`} className={classes.dataList}>
+            {toDatalistOptions(dataList)}
+          </datalist>
+        )}
         {error && error.type === 'required' && <div className={classes.error}>{error.message}</div>}
       </div>
     </>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useStoreState } from '../../state';
-import { type Options, createSortFunc, toDatalistOptions } from '../../lib';
+import { createSortFunc, toDatalistOptions } from '../../lib';
 import { SpeciesInfo } from '../../lib/firebase';
 
 type Props = {
@@ -66,18 +66,19 @@ export default function Filters({ sort, setItems }: Props) {
   };
 
   return (
-    <form>
+    <form id="autoform">
       <div className="grid">
         <label htmlFor="kingdom">
           Klass
           <input
             id="kingdom"
             value={filters.kingdom || ''}
-            list="kingdomss-data"
+            list="kingdoms-data"
             autoComplete="off"
+            size={2}
             onChange={(e) => handleFilterChange(e.target.id, e.target.value)}
           />
-          <datalist id="kingdomss-data">{toDatalistOptions(dataLists.kingdoms)}</datalist>
+          <datalist id="kingdoms-data">{toDatalistOptions(dataLists.kingdoms)}</datalist>
         </label>
 
         <label htmlFor="species">

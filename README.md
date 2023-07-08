@@ -4,7 +4,6 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-- [ ] CSS styling on datalists
 - [ ] Pager för arter och bilder
 - [ ] Create page functions
 - [ ] Skriv ut
@@ -69,10 +68,10 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
     - [A guide to choosing the right React state management solution](https://blog.logrocket.com/guide-choosing-right-react-state-management-solution/)
       - [Recoil](https://recoiljs.org/)
 - CSS
-  - [Responsive image grid](https://www.w3schools.com/howto/howto_css_image_grid_responsive.asp)
   - [CSS Modules](https://www.javascriptstuff.com/css-modules-by-example/)
   - [Grid](https://www.w3schools.com/css/css_grid_container.asp)
   - [Toast notification](https://www.codingnepalweb.com/toast-notification-html-css-javascript/)
+  - [Customise Datalist](https://dev.to/siddev/customise-datalist-45p0)
   - [datalist example](https://codepen.io/SitePoint/pen/JjbXrvE)
   - [datalist-css](https://github.com/craigbuckler/datalist-css)
   - [Iconify attributes](https://iconify.design/docs/iconify-icon/inline.html)

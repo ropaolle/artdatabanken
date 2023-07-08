@@ -1,7 +1,7 @@
 .error {
   color: #c62828;
   font-size: small;
-  margin-top: calc(var(--spacing) * -.75);
+  margin-top: calc(var(--spacing) * -0.75);
   margin-bottom: var(--spacing);
 }
 

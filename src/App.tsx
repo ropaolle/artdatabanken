@@ -6,6 +6,8 @@ import { Navigation, Footer } from './components';
 import { DeleteImageDialog, UploadImageDialog, SpeciesDialog } from './dialogs';
 import { firestoreFetch, type SpeciesInfo, type ImageInfo } from './lib/firebase.ts';
 
+
+
 function App() {
   const [page, setPage] = useState('species');
 
