@@ -25,7 +25,7 @@ export default function Navigation({ /* show,  */ setPage }: Props) {
             <Link onClick={() => setPage('images')}>Bilder</Link>
           </li>
           <li>
-            <Link onClick={() => setPage('generator')}>Sidgenerator</Link>
+            <Link onClick={() => setPage('collections')}>Samlingar</Link>
           </li>
           <li>
             <Link onClick={() => setPage('settings')}>Inställningar</Link>

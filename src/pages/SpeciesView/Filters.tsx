@@ -66,7 +66,7 @@ export default function Filters({ sort, setItems }: Props) {
   };
 
   return (
-    <form id="autoform">
+    <form>
       <div className="grid">
         <label htmlFor="kingdom">
           Klass

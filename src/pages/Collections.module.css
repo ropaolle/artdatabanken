@@ -1,0 +1,73 @@
+.collection {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  min-height: 1470px;
+}
+
+.sub-header {
+  font-size: 18px;
+  font-weight: 700;
+  color: #777;
+  margin-top: 8px;
+  margin-bottom: 18px;
+}
+
+.value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #212529;
+  margin-right: 0.5rem;
+  font-style: italic;
+}
+
+.value-inverse {
+  font-size: 22px;
+  font-weight: 700;
+  color: #eee;
+  background-color: #212529;
+  margin-right: 0.5rem;
+  font-style: italic;
+  padding: 5px;
+  /* Forces Chrome print to display background colors. */
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+.grid {
+  display: grid;
+  row-gap: 1.8rem;
+  column-gap: 1.8rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: #e7e7e7;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+.footer-body {
+  padding: 8px;
+  /* font-size: 14px; */
+  font-size: 18px;
+  background-color: white;
+  min-height: 58px;
+}
+
+.footer-inverse {
+  padding: 6px 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  /* font-size: 12px; */
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+}
