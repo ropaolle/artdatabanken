@@ -1,6 +1,7 @@
+import Home from './Home';
 import ImageView from './ImageView';
 import SpeciesView from './SpeciesView/SpeciesView';
-import PageGenerator from './PageGenerator';
+import Collections from './Collections';
 import Settings from './Settings';
 
-export { ImageView, SpeciesView, PageGenerator, Settings };
+export { Home, ImageView, SpeciesView, Collections, Settings };

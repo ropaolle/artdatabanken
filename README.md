@@ -5,14 +5,13 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 ## TODO
 
 - [ ] Pager för arter och bilder
-- [ ] Create page functions
-- [ ] Skriv ut
-- [ ] Spara som pdf.
 - [ ] Protect files and db with Firebase rules
 - NICE TO HAVE
   - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
   - [ ] cache datalists
 - DONE
+  - [x] Create page functions
+  - [x] Skriv ut och spara som pdf.
   - [x] Create datalists (klass, ordning, familj, lokal)
   - [x] Bildsida: soretera på namn, skapad, uppdaterad
   - [x] Importera arter och bilder från Excel, eller csv.

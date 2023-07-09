@@ -12,3 +12,40 @@
   background-color: transparent;
   border: none;
 }
+
+@media print {
+  header,
+  main .grid,
+  .collection-filter,
+  footer {
+    display: none !important;
+  }
+
+  html,
+  body,
+  #root,
+  main.container {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    max-width: unset;
+    border: none;
+  }
+
+  #collection {
+    padding: 0;
+    margin: 0;
+    /* Magic invisible border. If this is removed the print won't fit on one page (one blank page is added). Not sure why.  */
+    border: 1px solid white;
+    min-height: unset;
+  }
+
+  .collection-footer div:nth-child(1) {
+    font-size: 14px;
+  }
+
+  .collection-footer div:nth-child(2) {
+    font-size: 12px;
+  }
+}
