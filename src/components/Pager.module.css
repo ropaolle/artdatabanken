@@ -1,0 +1,24 @@
+.pager {
+  display: flex;
+  justify-content: center;
+}
+
+.page {
+  padding: 0.2rem 1rem;
+  color: #555;
+  font-weight: 500;
+}
+
+.page:hover,
+.page:focus {
+  text-decoration: none;
+}
+
+a.page:focus {
+  text-decoration: none;
+  background-color: inherit;
+}
+
+.active {
+  background-color: lightblue;
+}

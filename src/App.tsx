@@ -7,7 +7,7 @@ import { DeleteImageDialog, UploadImageDialog, SpeciesDialog } from './dialogs';
 import { firestoreFetch, type SpeciesInfo, type ImageInfo } from './lib/firebase.ts';
 
 function App() {
-  const [page, setPage] = useState('collections');
+  const [page, setPage] = useState('species');
 
   // TODO: Should fetch be moved outside react? Is that better for preformance?
   useEffect(() => {

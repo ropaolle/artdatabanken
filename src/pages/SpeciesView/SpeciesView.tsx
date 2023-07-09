@@ -1,8 +1,8 @@
 import classes from './SpeciesView.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useStoreState, showSpeciesDialog } from '../../state';
 import Page from './../Page';
-import { TableHeader, type HeaderCellOnClick } from '../../components';
+import { TableHeader, type HeaderCellOnClick, Pager } from '../../components';
 import Filters from './Filters';
 
 const headerColumns = [
@@ -25,6 +25,11 @@ export default function SpeciesView() {
   const species = useStoreState('species');
   const [sort, setSort] = useState({ column: 'species', ascending: false });
   const [items, setItems] = useState(species);
+  const [page, setPage] = useState(0);
+
+  // useEffect(() => {
+  //   setPageCount(Math.ceil(count / pageSize));
+  // }, [count, pageSize]);
 
   const getImage = (name: string) => images.find((image) => image.filename === name)?.thumbnailURL;
 
@@ -70,6 +75,7 @@ export default function SpeciesView() {
           <tbody>{speciesTable}</tbody>
         </table>
       </figure>
+      <Pager active={page} count={items.length} pageSize={3} onClick={setPage}/>
     </Page>
   );
 }
