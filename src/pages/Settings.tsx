@@ -83,7 +83,6 @@ export default function Settings() {
     Promise.all(promises)
       .then((x) => {
         setImagesMessage(`Done. ${images.length} files uploaded.`);
-        console.log(x);
       })
       .catch((err) => console.log(err))
       .finally(() => setUploadingImages(States.DONE));

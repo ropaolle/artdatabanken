@@ -10,7 +10,6 @@ type Props = {
 
 ``;
 export default function Pager({ active, count, pageSize, onClick }: Props) {
-  const [page, setPage] = useState(0);
   const [pageCount, setPageCount] = useState(0);
 
   useEffect(() => {
@@ -19,23 +18,22 @@ export default function Pager({ active, count, pageSize, onClick }: Props) {
 
   if (pageCount < 1) return null;
 
-  const handleClick = (id: string) => {
-    onClick(Number(id));
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    onClick(Number(e.currentTarget.id));
   };
 
   const Pager = () =>
     [...Array(pageCount).keys()].map((page) => (
-      // <div key={page} className={classes.page2}>
       <a
         href="#"
         key={page}
         id={String(page)}
         className={`${classes.page} ${page === active ? classes.active : ''}`}
-        onClick={(e) => handleClick(e.currentTarget.id)}
+        onClick={handleClick}
       >
         {page}
       </a>
-      // </div>
     ));
 
   return (

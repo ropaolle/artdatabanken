@@ -20,16 +20,19 @@ const headerColumns = [
   [{ label: 'Bild', id: 'image' }],
 ];
 
+const pageSize = 3;
+
 export default function SpeciesView() {
   const images = useStoreState('images');
   const species = useStoreState('species');
   const [sort, setSort] = useState({ column: 'species', ascending: false });
   const [items, setItems] = useState(species);
   const [page, setPage] = useState(0);
+  const [pagedItems, setPagedItems] = useState(items);
 
-  // useEffect(() => {
-  //   setPageCount(Math.ceil(count / pageSize));
-  // }, [count, pageSize]);
+  useEffect(() => {
+    setPagedItems(items.slice(page * pageSize, (page + 1) * pageSize));
+  }, [items, page]);
 
   const getImage = (name: string) => images.find((image) => image.filename === name)?.thumbnailURL;
 
@@ -45,25 +48,27 @@ export default function SpeciesView() {
     setSort({ column: id, ascending: sort.column === id ? !sort.ascending : sort.ascending });
   };
 
-  const speciesTable = items.map(
-    ({ id, kingdom, order, family, species, sex, speciesLatin, place, county, date, image }) => (
-      <tr key={id} id={id} onClick={handleRowClick} className={classes.row}>
-        <td>{kingdom}</td>
-        <td>{order}</td>
-        <td>{family}</td>
-        <td>{species}</td>
-        <td>{sex}</td>
-        <td>{speciesLatin}</td>
-        <td>
-          <div>{place}</div>
-          <div>{county}</div>
-        </td>
-        <td>{date}</td>
-        <td>
-          <img src={getImage(image)} alt={'' /* image */} title={image} loading="lazy" />
-        </td>
-      </tr>
-    )
+  const TableBody = () => (
+    <tbody>
+      {pagedItems.map(({ id, kingdom, order, family, species, sex, speciesLatin, place, county, date, image }) => (
+        <tr key={id} id={id} onClick={handleRowClick} className={classes.row}>
+          <td>{kingdom}</td>
+          <td>{order}</td>
+          <td>{family}</td>
+          <td>{species}</td>
+          <td>{sex}</td>
+          <td>{speciesLatin}</td>
+          <td>
+            <div>{place}</div>
+            <div>{county}</div>
+          </td>
+          <td>{date}</td>
+          <td>
+            <img src={getImage(image)} alt={'' /* image */} title={image} loading="lazy" />
+          </td>
+        </tr>
+      ))}
+    </tbody>
   );
 
   return (
@@ -72,10 +77,10 @@ export default function SpeciesView() {
       <figure>
         <table className="species-table" role="grid">
           <TableHeader columns={headerColumns} sort={sort} onClick={handleHeaderClick} />
-          <tbody>{speciesTable}</tbody>
+          <TableBody />
         </table>
       </figure>
-      <Pager active={page} count={items.length} pageSize={3} onClick={setPage}/>
+      <Pager active={page} count={items.length} pageSize={pageSize} onClick={setPage} />
     </Page>
   );
 }

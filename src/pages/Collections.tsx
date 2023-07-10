@@ -4,8 +4,12 @@ import { useStoreState } from '../state';
 import { /* ImageInfo,  */ SpeciesInfo } from '../lib/firebase';
 import placeholder from '../assets/placeholder.svg';
 import Page from './Page';
+import { collection } from 'firebase/firestore';
 // import { toOptions2 } from '../lib';
 // import { sexes } from '../lib/listData.ts';
+
+// Combine multiple CSS module selectors
+const css = (...selectors: string[]) => selectors.map(selector => classes[selector]).join(' ')
 
 export default function Collections() {
   const species = useStoreState('species');
@@ -32,14 +36,14 @@ export default function Collections() {
   const Cards = ({ species }: { species: SpeciesInfo[] }) =>
     species.map((item) => (
       <div key={item.id} className={classes.card}>
-        <img className={classes.image} src={getImage(item.image)} alt={item.image} />
+        <img src={getImage(item.image)} alt={item.image} />
         <div className={`collection-footer ${classes.footer}`}>
-          <div className={classes.footerBody}>
+          <div className={classes.body}>
             <b>{item.species}</b>
             {item.speciesLatin && <> ({item.speciesLatin})</>}
           </div>
 
-          <div className={classes.footerInverse}>
+          <div className={classes.bottom}>
             <span>
               {item.place} ({item.county})
             </span>
@@ -50,8 +54,8 @@ export default function Collections() {
     ));
 
   return (
-    <Page title="Samlingar" headerButtonTitle="Skriv ut" onHeaderButtonClick={() => print()}>
-      <div className="collection-filter">
+    <Page id='collections' title="Samlingar" headerButtonTitle="Skriv ut" onHeaderButtonClick={() => print()}>
+      <div id='filter' className={classes.filter}>
         <label htmlFor="sex">
           Familj
           <select onChange={(e) => setFamily(e.target.value)}>
@@ -61,12 +65,13 @@ export default function Collections() {
         </label>
         <h3>Förhandsvisning</h3>
       </div>
+
       {items && items.length > 0 && (
         <div className={classes.collection} id="collection">
-          <div className={classes.subHeader}>
-            Klass: <span className={classes.valueInverse}>{items[0].kingdom}</span>
-            Ordning: <span className={classes.value}>{items[0].order}</span>
-            Familj: <span className={classes.value}>{items[0].family}</span>
+          <div className={classes.header}>
+            Klass: <span className={css('option', 'inverse')}>{items[0].kingdom}</span>
+            Ordning: <span className={classes.option}>{items[0].order}</span>
+            Familj: <span className={classes.option}>{items[0].family}</span>
           </div>
           <div className={classes.grid}>
             <Cards species={items} />

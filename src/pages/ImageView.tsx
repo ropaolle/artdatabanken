@@ -4,6 +4,7 @@ import { useStoreState, showDeleteImageDialog, showUploadImageDialog } from '../
 import { type ImageInfo } from '../lib/firebase';
 import Page from './Page';
 import { toOptions, createSortFunc } from '../lib';
+import { Pager } from '../components';
 
 const sortStates = [
   { label: 'Filnamn (stigande)', value: 'filename-ascending' },
@@ -12,11 +13,15 @@ const sortStates = [
   { label: 'Datum (fallande)', value: 'date-descending' },
 ];
 
+const pageSize = 3;
+
 export default function ImageView() {
   const images = useStoreState('images');
-  const [filter, setFilter] = useState('');
   const [items, setItems] = useState(images);
+  const [filter, setFilter] = useState('');
   const [sort, setSort] = useState({ column: 'filename', ascending: false });
+  const [page, setPage] = useState(0);
+  const [list, setList] = useState(items);
 
   // Add a date field used by sort
   useEffect(() => {
@@ -29,20 +34,20 @@ export default function ImageView() {
   }, [images]);
 
   useEffect(() => {
-    setItems((prevValues) => {
-      return prevValues
-        .filter((item) => item.filename.toLowerCase().includes(filter))
-        .sort(createSortFunc<ImageInfo>(sort));
-    });
-  }, [filter, sort]);
+    const filtered = items.filter((item) => item.filename.toLowerCase().includes(filter));
+    const sorted = filtered.sort(createSortFunc<ImageInfo>(sort));
+    const paged = sorted.slice(page * pageSize, (page + 1) * pageSize);
+
+    setList(paged);
+  }, [items, filter, sort, page]);
 
   if (!images) return null;
 
-  const imageList = items.map((image) => {
+  const imageList = list.map((image) => {
     const { filename, /* thumbnail, downloadURL, */ thumbnailURL, updatedAt, createdAt } = image;
     return (
       <figure className={classes.imageCell} key={filename} onClick={() => showDeleteImageDialog(true, image)}>
-        <img className={classes.image} src={thumbnailURL} alt={filename} loading="lazy" />
+        <img className={classes.image} src={thumbnailURL} alt={filename} /* loading="lazy" */ />
         <div className={classes.info}>
           {filename}
           <br />
@@ -52,7 +57,9 @@ export default function ImageView() {
     );
   });
 
-  const handleFilterChange = (value: string) => setFilter(value);
+  const handleFilterChange = (value: string) => {
+    setFilter(value);
+  };
 
   const handleSortChange = (value: string) => {
     const [column, direction] = value.split('-');
@@ -77,6 +84,7 @@ export default function ImageView() {
         </div>
       </form>
       <div className={classes.gallery}>{imageList}</div>
+      <Pager active={page} count={items.length} pageSize={pageSize} onClick={setPage} />
     </Page>
   );
 }

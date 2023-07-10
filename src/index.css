@@ -13,10 +13,11 @@
   border: none;
 }
 
+/* Used by the collection page to print family collections. */
 @media print {
   header,
   main .grid,
-  .collection-filter,
+  #filter,
   footer {
     display: none !important;
   }
@@ -41,11 +42,11 @@
     min-height: unset;
   }
 
-  .collection-footer div:nth-child(1) {
+  #collection .collection-footer div:nth-child(1) {
     font-size: 14px;
   }
 
-  .collection-footer div:nth-child(2) {
+  #collection .collection-footer div:nth-child(2) {
     font-size: 12px;
   }
 }
