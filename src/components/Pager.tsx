@@ -8,7 +8,6 @@ type Props = {
   onClick: (next: number) => void;
 };
 
-``;
 export default function Pager({ active, count, pageSize, onClick }: Props) {
   const [pageCount, setPageCount] = useState(0);
 
