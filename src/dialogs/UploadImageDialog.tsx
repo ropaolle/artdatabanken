@@ -102,7 +102,7 @@ export default function UploadImageDialog() {
       const fileInfo = {
         filename,
         thumbnail,
-        downloadURL: await uploadFile(previewCanvasRef.current, path),
+        URL: await uploadFile(previewCanvasRef.current, path),
         thumbnailURL: await uploadFile(thumbnailCanvasRef.current, thumbnailPath),
         // updatedAt: serverTimestamp(),
       };

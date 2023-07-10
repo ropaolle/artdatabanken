@@ -137,7 +137,7 @@ export const deleteFile = async (filename: string, path = 'images'): Promise<voi
 export type ImageInfo = {
   filename: string;
   thumbnail: string;
-  downloadURL: string;
+  URL: string;
   thumbnailURL: string;
   createdAt?: Timestamp;
   updatedAt?: Timestamp;

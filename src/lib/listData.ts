@@ -1,12 +1,19 @@
 export const counties = [
   { value: '', label: 'Ange län…' },
+
+  { value: 'uppland', label: 'Uppland' },
+
+  // { value: 'sormland' },
+  // { value: 'oland' },
+  // { value: 'lappland' },
+
   { value: 'stockholm', label: 'Stockholms län' },
   { value: 'uppsala', label: 'Uppsala län' },
-  { value: 'sodermanland', label: 'Södermanlands län', alt: 'Sörmlands' },
+  { value: 'sodermanland', label: 'Södermanlands län', alt: 'Sörmlands län' },
   { value: 'ostergotland', label: 'Östergötlands län' },
   { value: 'jonkoping', label: 'Jönköpings län' },
   { value: 'kronoberg', label: 'Kronobergs län' },
-  { value: 'kalmar', label: 'Kalmar län' },
+  { value: 'kalmar', label: 'Kalmar län', alt: 'Ölands län' },
   { value: 'gotland', label: 'Gotlands län' },
   { value: 'blekinge', label: 'Blekinge län' },
   { value: 'skane', label: 'skane län' },
@@ -27,4 +34,5 @@ export const sexes = [
   { value: '', label: 'Ange kön…' },
   { value: 'male', label: 'Hane' },
   { value: 'female', label: 'Hona' },
+  { value: 'maleAndFemale', label: 'Hane/Hona' },
 ];

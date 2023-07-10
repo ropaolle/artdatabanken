@@ -13,15 +13,15 @@ const sortStates = [
   { label: 'Datum (fallande)', value: 'date-descending' },
 ];
 
-const pageSize = 3;
+const pageSize = 50;
 
 export default function ImageView() {
   const images = useStoreState('images');
-  const [items, setItems] = useState(images);
+  const [items, setItems] = useState<ImageInfo[]>();
   const [filter, setFilter] = useState('');
   const [sort, setSort] = useState({ column: 'filename', ascending: false });
   const [page, setPage] = useState(0);
-  const [list, setList] = useState(items);
+  const [list, setList] = useState<ImageInfo[]>();
 
   // Add a date field used by sort
   useEffect(() => {
@@ -34,6 +34,8 @@ export default function ImageView() {
   }, [images]);
 
   useEffect(() => {
+    if (!items) return;
+
     const filtered = items.filter((item) => item.filename.toLowerCase().includes(filter));
     const sorted = filtered.sort(createSortFunc<ImageInfo>(sort));
     const paged = sorted.slice(page * pageSize, (page + 1) * pageSize);
@@ -43,19 +45,21 @@ export default function ImageView() {
 
   if (!images) return null;
 
-  const imageList = list.map((image) => {
-    const { filename, /* thumbnail, downloadURL, */ thumbnailURL, updatedAt, createdAt } = image;
-    return (
-      <figure className={classes.imageCell} key={filename} onClick={() => showDeleteImageDialog(true, image)}>
-        <img className={classes.image} src={thumbnailURL} alt={filename} /* loading="lazy" */ />
-        <div className={classes.info}>
-          {filename}
-          <br />
-          {updatedAt?.toDate().toLocaleDateString() || createdAt?.toDate().toLocaleDateString()}
-        </div>
-      </figure>
-    );
-  });
+  const imageList =
+    list &&
+    list.map((image) => {
+      const { filename, /* thumbnail, URL, */ thumbnailURL, updatedAt, createdAt } = image;
+      return (
+        <figure className={classes.imageCell} key={filename} onClick={() => showDeleteImageDialog(true, image)}>
+          <img className={classes.image} src={thumbnailURL} alt={filename} /* loading="lazy" */ />
+          <div className={classes.info}>
+            {filename}
+            <br />
+            {updatedAt?.toDate().toLocaleDateString() || createdAt?.toDate().toLocaleDateString()}
+          </div>
+        </figure>
+      );
+    });
 
   const handleFilterChange = (value: string) => {
     setFilter(value);
@@ -84,7 +88,7 @@ export default function ImageView() {
         </div>
       </form>
       <div className={classes.gallery}>{imageList}</div>
-      <Pager active={page} count={items.length} pageSize={pageSize} onClick={setPage} />
+      <Pager active={page} count={items?.length || 0} pageSize={pageSize} onClick={setPage} />
     </Page>
   );
 }

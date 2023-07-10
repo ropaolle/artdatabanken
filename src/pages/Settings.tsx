@@ -3,10 +3,11 @@ import { getStorage, ref, getDownloadURL, uploadBytes } from 'firebase/storage';
 import { collection, addDoc, setDoc, doc, serverTimestamp, Timestamp } from 'firebase/firestore';
 import Page from './Page';
 import { db, type SpeciesInfo } from '../lib/firebase';
+// import { counties } from '../lib/listData';
 
-const IMAGES_COLLECTION = 'images2';
-const IMAGES_PATH = 'images2022';
-const SPECIES_COLLECTION = 'speCIes2';
+const IMAGES_PATH = 'images';
+const IMAGES_COLLECTION = 'images';
+const SPECIES_COLLECTION = 'species';
 
 const readUploadedFileAsText = (file: File): Promise<string> => {
   const fileReader = new FileReader();
@@ -62,10 +63,10 @@ export default function Settings() {
       const job = uploadBytes(storageRef, file)
         .then((snapshot) => {
           return getDownloadURL(snapshot.ref)
-            .then((downloadURL) => {
+            .then((URL) => {
               const newDoc = !file.name.includes('_thumbnail')
-                ? { filename: file.name, URL: downloadURL, createdAt: Timestamp.fromDate(new Date()) }
-                : { thumbnail: file.name, thumbnailURL: downloadURL, createdAt: Timestamp.fromDate(new Date()) };
+                ? { filename: file.name, URL: URL, createdAt: Timestamp.fromDate(new Date()) }
+                : { thumbnail: file.name, thumbnailURL: URL, createdAt: Timestamp.fromDate(new Date()) };
 
               return setDoc(doc(db, IMAGES_COLLECTION, file.name.replace('_thumbnail', '')), newDoc, { merge: true })
                 .then(() => {
@@ -111,7 +112,7 @@ export default function Settings() {
           place,
           county,
           date,
-          image,
+          image: image.trim(),
         });
       }
     } catch (error) {

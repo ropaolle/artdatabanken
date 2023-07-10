@@ -31,7 +31,7 @@ export default function Collections() {
       </option>
     ));
 
-  const getImage = (name: string) => images.find((image) => image.filename === name)?.downloadURL || placeholder;
+  const getImage = (name: string) => images.find((image) => image.filename === name)?.URL || placeholder;
 
   const Cards = ({ species }: { species: SpeciesInfo[] }) =>
     species.map((item) => (

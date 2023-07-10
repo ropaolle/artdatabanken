@@ -10,7 +10,7 @@ export default function DeleteImageDialog() {
 
   if (!values) return;
 
-  const { filename, thumbnail, downloadURL, thumbnailURL, createdAt, updatedAt } = values;
+  const { filename, thumbnail, URL, thumbnailURL, createdAt, updatedAt } = values;
 
   const handleDeleteImage = async () => {
     if (!filename || !thumbnail) return;
@@ -32,13 +32,13 @@ export default function DeleteImageDialog() {
 
   return (
     <Dialog id={DialogTypes.DELETE_IMAGE_DIALOG} open={open} hide={hide} title={`Bild: ${filename}`}>
-      <img src={downloadURL} alt={filename} />
+      <img src={URL} alt={filename} />
       <table>
         <tbody>
           <tr>
             <td>Filnamn</td>
             <td>
-              <a href={downloadURL} target="_blank">
+              <a href={URL} target="_blank">
                 {filename}
               </a>
             </td>
