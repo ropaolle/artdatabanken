@@ -4,9 +4,8 @@ import { useStoreState, showSpeciesDialog, deleteSpecies, addSpecies, updateSpec
 import { useForm, SubmitHandler, type FieldError } from 'react-hook-form';
 import { doc, updateDoc, addDoc, serverTimestamp, collection, deleteDoc } from 'firebase/firestore';
 import { db, type SpeciesInfo } from '../lib/firebase.ts';
-import { toDatalistOptions, toOptions } from '../lib';
+import { toDatalistOptions, toOptions, counties, sexes } from '../lib/options';
 import Dialog, { DialogTypes } from './Dialog';
-import { counties, sexes } from '../lib/listData.ts';
 
 type Inputs = Omit<SpeciesInfo, 'updatedAt' | 'createdAt'>;
 
@@ -54,7 +53,6 @@ export default function SpeciesDialog() {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      // console.log('Add species', data);
       if (data.id) {
         await updateDoc(doc(db, 'species', data.id), {
           ...data,

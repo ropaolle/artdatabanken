@@ -1,21 +1,6 @@
 import { useDebounceEffect } from './useDebounceEffect';
 import { drawImageOnCanvas } from './canvas';
 
-export type Options = {
-  value: string;
-  label: string;
-};
-
-export const toOptions = (options: Options[]) =>
-  options.map(({ value, label }) => (
-    <option key={value} value={value}>
-      {label}
-    </option>
-  ));
-
-export const toDatalistOptions = (items: string[] | Set<string>) =>
-  Array.from(items).map((option, i) => <option key={i}>{option}</option>);
-
 // Locale string sort on objects of string values
 export function createSortFunc<T>({ column, ascending = true }: { column: string; ascending: boolean }) {
   const localeSort = (a: T, b: T) => {

@@ -103,8 +103,6 @@ export const showUploadImageDialog = (state: boolean) =>
 
 export const { dispatch, useStoreState } = createStore(
   (state: GlobalState, action: Action) => {
-    // console.log('state', state);
-    // console.log('action', action);
     switch (action.type) {
       case 'initStore':
         return {

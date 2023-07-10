@@ -42,11 +42,20 @@
     min-height: unset;
   }
 
+  #header {
+    position: fixed;
+    top: 0;
+  }
+
+  #grid {
+    margin-top: 60px;
+  }
+
   #collection .collection-footer div:nth-child(1) {
     font-size: 14px;
   }
 
   #collection .collection-footer div:nth-child(2) {
-    font-size: 12px;
+    font-size: 11px;
   }
 }

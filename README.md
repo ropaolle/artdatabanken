@@ -4,12 +4,23 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-- [ ] Import all images and species.
-- [ ] Protect files and db with Firebase rules
+- [ ] Store all docs in one combined doc to prevent qouta limits!
+
+
+- [ ] Header on all printed pages
+- [ ] Sidnummer printed pages
+- [ ] CSS on the species view
+- [ ] Delete unused code and console.log statements
+- PRODUCTION
+  - [ ] Deploy, not sure to what.
+  - [ ] Protect files and db with Firebase rules
 - NICE TO HAVE
   - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
   - [ ] cache datalists
 - DONE
+  - [x] Re-import hane/hona to male/female
+  - [x] Sex and place to string in the species view
+  - [x] Import all images and species.
   - [x] Pager för arter och bilder
   - [x] Create page functions
   - [x] Skriv ut och spara som pdf.

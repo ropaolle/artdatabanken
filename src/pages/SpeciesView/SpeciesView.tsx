@@ -5,6 +5,7 @@ import Page from './../Page';
 import { TableHeader, type HeaderCellOnClick, Pager } from '../../components';
 import Filters from './Filters';
 import { type SpeciesInfo } from '../../lib/firebase';
+import { sexesMap, countiesMap } from '../../lib/options';
 
 const headerColumns = [
   [
@@ -37,10 +38,7 @@ export default function SpeciesView() {
   const [page, setPage] = useState(0);
   const [pagedItems, setPagedItems] = useState<SpeciesInfo[]>();
 
-  // console.log('images', images);
-
   useEffect(() => {
-    // if (!items) return;
     setThumbnails((prevValue) => {
       for (const { filename, thumbnailURL } of images) {
         prevValue.set(filename, thumbnailURL);
@@ -55,14 +53,6 @@ export default function SpeciesView() {
 
     setPagedItems(items.slice(page * pageSize, (page + 1) * pageSize));
   }, [items, page]);
-
-  // const getImage = (name: string) =>
-  //   images.find((image) => {
-  //     if (image.filename === name) {
-  //       console.log('image, name', image.filename, name, image.filename === name);
-  //     }
-  //     return image.filename === name;
-  //   })?.thumbnail;
 
   const handleRowClick = (e: React.MouseEvent) => {
     showSpeciesDialog(
@@ -84,19 +74,18 @@ export default function SpeciesView() {
             <td>
               <div>{kingdom}</div>
               <div>{order}</div>
-              <div>{family}</div>
+              <div><ins>{family}</ins></div>
             </td>
-            <td>{species}</td>
+            <td><b>{species}</b></td>
             <td>
               <div>{speciesLatin}</div>
-              <div>{sex}</div>
+              <div><i>{sexesMap.get(sex) || sex}</i></div>
             </td>
             <td>
               <div>{place}</div>
-              <div>{county}</div>
+              <div><ins>{countiesMap.get(county)}</ins></div>
               <div>{date}</div>
             </td>
-            {/* <td>{thumbnails.get(image.trim())}</td> */}
             <td>
               <img src={thumbnails.get(image.trim())} alt={'' /* image */} title={image} /* loading="lazy" */ />
             </td>

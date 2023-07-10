@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import { useStoreState, showDeleteImageDialog, showUploadImageDialog } from '../state';
 import { type ImageInfo } from '../lib/firebase';
 import Page from './Page';
-import { toOptions, createSortFunc } from '../lib';
+import { createSortFunc } from '../lib';
+import { toOptions } from '../lib/options';
 import { Pager } from '../components';
 
 const sortStates = [

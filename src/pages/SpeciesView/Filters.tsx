@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useStoreState } from '../../state';
-import { createSortFunc, toDatalistOptions } from '../../lib';
+import { createSortFunc } from '../../lib';
+import { toDatalistOptions } from '../../lib/options';
 import { SpeciesInfo } from '../../lib/firebase';
 
 type Props = {

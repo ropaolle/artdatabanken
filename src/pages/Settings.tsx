@@ -72,11 +72,11 @@ export default function Settings() {
                 .then(() => {
                   setImagesMessage(`${file.name} uploaded.`);
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => console.error(err));
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.error(err));
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
 
       promises.push(job);
     }
@@ -85,7 +85,7 @@ export default function Settings() {
       .then((x) => {
         setImagesMessage(`Done. ${images.length} files uploaded.`);
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.error(err))
       .finally(() => setUploadingImages(States.DONE));
   };
 
