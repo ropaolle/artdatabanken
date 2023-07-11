@@ -4,9 +4,9 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-- [ ] Store all docs in one combined doc to prevent qouta limits!
-
-
+- [ ] Firestore qouta hits the limit of 50k reads per day.
+  - Locale storage, indexedDB
+  - Store all species in one doc
 - [ ] Header on all printed pages
 - [ ] Sidnummer printed pages
 - [ ] CSS on the species view
@@ -49,50 +49,13 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## Buggar
 
-- [ ] UploadImageDialog <dialog> closes on file input cancelation in Chromiumbased browsers, workaround added in Dialog.tsx.
+- [ ] UploadImageDialog `<dialog>` closes on file input cancelation in Chromiumbased browsers, workaround added in Dialog.tsx.
   - [Bug 1442824](https://bugs.chromium.org/p/chromium/issues/detail?id=1442824)
   - [HTML dialog closes automatically when file input is cancelled. How to prevent?](https://stackoverflow.com/questions/76400460/html-dialog-closes-automatically-when-file-input-is-cancelled-how-to-prevent)
 
-## Links
-
-- [Artdatabanken 2018](https://artdatabanken.firebaseapp.com/generator)
-- [Favicon](https://medium.com/swlh/are-you-using-svg-favicons-yet-a-guide-for-modern-browsers-836a6aace3df)
-- FIREBASE
-  - [Deploy to Firebase](https://vitejs.dev/guide/static-deploy.html#google-firebase)
-  - [Upload files](https://firebase.google.com/docs/storage/web/upload-files)
-  - [Add, set and update data](https://firebase.google.com/docs/firestore/manage-data/add-data)
-  - [Get data](https://firebase.google.com/docs/firestore/query-data/get-data)
-- REACT
-  - [Async in UseEffect](https://devtrium.com/posts/async-functions-useeffect)
-  - [React-hook-form](https://react-hook-form.com/get-started)
-    - [Modal form](https://codesandbox.io/s/react-hook-form-modal-form-conditional-inputs-c7n0r)
-  - [DayJS](https://github.com/iamkun/dayjs)
-    - HOOKS
-      - [useEffect on objects](https://dev.to/hey_yogini/useeffect-dependency-array-and-object-comparison-45el)
-      - [usehooks-ts](https://usehooks-ts.com/)
-      - [React Use - Hooks](https://github.com/streamich/react-use)
-  - GLOBAL STATE
-    - [React hooks global state](https://github.com/dai-shi/react-hooks-global-state)
-    - [Understanding and Properly Using React Global State](https://clerk.com/blog/understanding-and-properly-using-react-global-state?utm_source=www.google.com&utm_medium=referral&utm_campaign=none)
-      - [Example](https://github.com/pjcjonas/clerk-dev-global-state-with-context)
-    - [A guide to choosing the right React state management solution](https://blog.logrocket.com/guide-choosing-right-react-state-management-solution/)
-      - [Recoil](https://recoiljs.org/)
-- CSS
-  - [CSS Modules](https://www.javascriptstuff.com/css-modules-by-example/)
-  - [Toast notification](https://www.codingnepalweb.com/toast-notification-html-css-javascript/)
-  - [Customise Datalist](https://dev.to/siddev/customise-datalist-45p0)
-  - [datalist example](https://codepen.io/SitePoint/pen/JjbXrvE)
-  - [datalist-css](https://github.com/craigbuckler/datalist-css)
-- JavaScript
-  - [Create thumbnails in a Firebase cloud function](https://medium.com/@christianrb/how-to-create-an-image-thumbnail-with-firebase-cloud-functions-73d4584290ba)
-- VITE
-  - [Awesome Vite](https://reacthustle.com/blog/typescript-sort-array-of-objects-by-property#advanced-implementing-a-dynamic-compare-function)
-- TYPESCRIPT
-  - [Implementing a Dynamic compare function](https://reacthustle.com/blog/typescript-sort-array-of-objects-by-property)
-
 ## SETUP
 
-```
+```sh
 yarn create vite artdatabanken --template react-swc-ts
 npm install -g firebase-tools
 npm run build
@@ -100,33 +63,56 @@ firebase login
 firebase deploy
 ```
 
-### Storage rules
+## Links
 
-```js
+- [Artdatabanken 2018](https://artdatabanken.firebaseapp.com/generator)
 
-rules_version = '2';
+- FIREBASE
 
-service firebase.storage {
-  match /b/{bucket}/o {
-    match /{allPaths=**} {
-      // allow read, write: if request.auth != null;
-      allow  read, write;
-    }
-  }
-}
+  - [Deploy](https://vitejs.dev/guide/static-deploy.html#google-firebase)
+  - [Upload files](https://firebase.google.com/docs/storage/web/upload-files)
+  - [Add data](https://firebase.google.com/docs/firestore/manage-data/add-data)
+  - [Get data](https://firebase.google.com/docs/firestore/query-data/get-data)
 
-// BLOCK
+- REACT
 
-rules_version = '2';
+  - [Async in UseEffect](https://devtrium.com/posts/async-functions-useeffect)
+  - Hooks
+    - [Usehooks TS](https://usehooks-ts.com/)
+    - [React Use](https://github.com/streamich/react-use)
+    - [useEffect on objects](https://dev.to/hey_yogini/useeffect-dependency-array-and-object-comparison-45el)
+  - Globale state
+    - [Understanding and Properly Using React Global State](https://clerk.com/blog/understanding-and-properly-using-react-global-state?utm_source=www.google.com&utm_medium=referral&utm_campaign=none)
+    - [A guide to choosing the right React state management solution](https://blog.logrocket.com/guide-choosing-right-react-state-management-solution/)
+      - [Recoil](https://recoiljs.org/)
 
-// Craft rules based on data in your Firestore database
-// allow write: if firestore.get(
-//    /databases/(default)/documents/users/$(request.auth.uid)).data.isAdmin;
-service firebase.storage {
-  match /b/{bucket}/o {
-    match /{allPaths=**} {
-      allow read, write: if false;
-    }
-  }
-}
-```
+- CSS
+
+  - [CSS Modules](https://www.javascriptstuff.com/css-modules-by-example/)
+  - [Toast notification](https://www.codingnepalweb.com/toast-notification-html-css-javascript/)
+  - Datalists
+    - [Customise Datalist](https://dev.to/siddev/customise-datalist-45p0)
+    - [datalist example](https://codepen.io/SitePoint/pen/JjbXrvE)
+    - [datalist-css](https://github.com/craigbuckler/datalist-css)
+
+- JavaScript
+
+  - [MSDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+
+- VITE
+
+  - [Awesome Vite](https://reacthustle.com/blog/typescript-sort-array-of-objects-by-property#advanced-implementing-a-dynamic-compare-function)
+
+- TYPESCRIPT
+
+  - [Implementing a Dynamic compare function](https://reacthustle.com/blog/typescript-sort-array-of-objects-by-property)
+
+- BROWSER
+
+  - [Favicon](https://medium.com/swlh/are-you-using-svg-favicons-yet-a-guide-for-modern-browsers-836a6aace3df)
+  - [PouchDB](https://github.com/pouchdb/pouchdb)
+  - [indexedDB](https://github.com/dexie/Dexie.js)
+
+- PACKAGES
+
+  - [DayJS](https://github.com/iamkun/dayjs)

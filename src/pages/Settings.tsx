@@ -82,7 +82,7 @@ export default function Settings() {
     }
 
     Promise.all(promises)
-      .then((x) => {
+      .then(() => {
         setImagesMessage(`Done. ${images.length} files uploaded.`);
       })
       .catch((err) => console.error(err))
@@ -141,8 +141,8 @@ export default function Settings() {
     <Page title="Inställningar">
       <div className="grid">
         <div>
-          <label htmlFor="">
-            <input type="file" onChange={onHandleImageImportChange} multiple />
+          <label htmlFor="importimages">
+            <input id="importimages" type="file" onChange={onHandleImageImportChange} multiple />
             {imagesMessage && <small>{imagesMessage}</small>}
           </label>
           <button onClick={handleImageImport} aria-busy={uploadingImages === States.UPLOADING}>
@@ -153,6 +153,22 @@ export default function Settings() {
         <div>
           <label htmlFor="importspecies">
             <input
+              id="importspecies"
+              type="file"
+              accept=".csv"
+              onChange={(e) => onHandleSpeciesImportChange(e.currentTarget.files?.[0])}
+            />
+            {speciesMessage && <small>{speciesMessage}</small>}
+          </label>
+          <button onClick={handleSpeciesImport} aria-busy={importingSpecies === States.UPLOADING}>
+            Importera arter
+          </button>
+        </div>
+
+        <div>
+          <label htmlFor="importlocalstorage">
+            <input
+              id="importlocalstorage"
               type="file"
               accept=".csv"
               onChange={(e) => onHandleSpeciesImportChange(e.currentTarget.files?.[0])}
