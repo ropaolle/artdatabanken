@@ -3,6 +3,7 @@ import { useStoreState, deleteImage, showDeleteImageDialog } from '../state';
 import { doc, deleteDoc } from 'firebase/firestore';
 import { db, deleteFile } from '../lib/firebase';
 import Dialog, { DialogTypes } from './Dialog';
+import { timestampToString } from '../lib/';
 
 export default function DeleteImageDialog() {
   const { open, values } = useStoreState('deleteImageDialog');
@@ -53,11 +54,11 @@ export default function DeleteImageDialog() {
           </tr>
           <tr>
             <td>Skapad</td>
-            <td>{createdAt?.toDate().toLocaleString()}</td>
+            <td>{timestampToString(createdAt)}</td>
           </tr>
           <tr>
             <td>Uppdaterad</td>
-            <td>{updatedAt?.toDate().toLocaleString()}</td>
+            <td>{timestampToString(updatedAt)}</td>
           </tr>
         </tbody>
       </table>

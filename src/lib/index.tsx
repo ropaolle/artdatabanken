@@ -1,5 +1,9 @@
+import { Timestamp } from 'firebase/firestore';
 import { useDebounceEffect } from './useDebounceEffect';
 import { drawImageOnCanvas } from './canvas';
+
+export const timestampToString = (timestamp: Timestamp | undefined) =>
+  timestamp ? new Timestamp(timestamp.seconds, timestamp.nanoseconds).toDate().toLocaleDateString() : '';
 
 // Locale string sort on objects of string values
 export function createSortFunc<T>({ column, ascending = true }: { column: string; ascending: boolean }) {

@@ -1,0 +1,2102 @@
+{
+    "image384.jpg": {
+        "filename": "image384.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage384.jpg?alt=media&token=fb1a3c4e-9cc4-4e02-9b05-dcf44447fe64",
+        "thumbnail": "image384_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage384_thumbnail.jpg?alt=media&token=e96b342c-a40a-454d-943e-2fa519caa362",
+        "date": "2023-07-11"
+    },
+    "image506.jpg": {
+        "filename": "image506.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage506.jpg?alt=media&token=49cff2df-6922-4833-9faa-9bcfba1b5e4d",
+        "thumbnail": "image506_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage506_thumbnail.jpg?alt=media&token=0aa17176-e9bd-4a5d-8db3-445471bd32df",
+        "date": "2023-07-11"
+    },
+    "image303.jpg": {
+        "filename": "image303.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage303.jpg?alt=media&token=e580ddde-e66f-44d9-a07d-b08f34cb5aa1",
+        "thumbnail": "image303_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage303_thumbnail.jpg?alt=media&token=496b9f54-94e9-4611-a6ce-26ee258c7d14",
+        "date": "2023-07-11"
+    },
+    "image115.jpg": {
+        "filename": "image115.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage115.jpg?alt=media&token=4327cb04-e268-47f4-8de4-08f53f1d8a8b",
+        "thumbnail": "image115_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage115_thumbnail.jpg?alt=media&token=3be37365-4865-4fd4-8618-1cc2485b78fc",
+        "date": "2023-07-11"
+    },
+    "image421.jpg": {
+        "filename": "image421.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage421.jpg?alt=media&token=7f3a1781-f29f-4215-bf25-8f0b97d1cb98",
+        "thumbnail": "image421_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage421_thumbnail.jpg?alt=media&token=f40f20db-a4ee-4d3d-abf3-20a708bbd17d",
+        "date": "2023-07-11"
+    },
+    "image035.jpg": {
+        "filename": "image035.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage035.jpg?alt=media&token=a079e486-a773-458a-ba24-7758315efe48",
+        "thumbnail": "image035_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage035_thumbnail.jpg?alt=media&token=8ea75499-df2f-40c8-bd13-fa6f16027afe",
+        "date": "2023-07-11"
+    },
+    "image461.jpg": {
+        "filename": "image461.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage461.jpg?alt=media&token=2f208a32-fa23-45f3-aa33-f95a8baf5725",
+        "thumbnail": "image461_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage461_thumbnail.jpg?alt=media&token=0605c3ab-9c5f-45ca-ad0e-b1c51b8f9424",
+        "date": "2023-07-11"
+    },
+    "image027.jpg": {
+        "filename": "image027.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage027.jpg?alt=media&token=319e3857-ee79-4c7a-898c-44692d438964",
+        "thumbnail": "image027_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage027_thumbnail.jpg?alt=media&token=a1bae788-29cd-4859-8bdf-8472b05681ec",
+        "date": "2023-07-11"
+    },
+    "image383.jpg": {
+        "filename": "image383.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage383.jpg?alt=media&token=14a939e3-b51d-4dca-a410-c806bf30af79",
+        "thumbnail": "image383_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage383_thumbnail.jpg?alt=media&token=82fa1804-d718-40e8-8545-a7b8aee3aeeb",
+        "date": "2023-07-11"
+    },
+    "image342.jpg": {
+        "filename": "image342.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage342.jpg?alt=media&token=55d4a357-4f39-40c0-8d4b-4f0d92922f36",
+        "thumbnail": "image342_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage342_thumbnail.jpg?alt=media&token=c242965d-b922-487b-bdce-a55cf46d5b6a",
+        "date": "2023-07-11"
+    },
+    "image505.jpg": {
+        "filename": "image505.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage505.jpg?alt=media&token=12c3e852-8032-4893-9440-8d6a2285f0f8",
+        "thumbnail": "image505_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage505_thumbnail.jpg?alt=media&token=7c4e07f7-f10c-4cb2-bbe1-f43ee75fba69",
+        "date": "2023-07-11"
+    },
+    "image420.jpg": {
+        "filename": "image420.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage420.jpg?alt=media&token=7bc8ec42-4c59-429d-9f8d-0214bf38740a",
+        "thumbnail": "image420_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage420_thumbnail.jpg?alt=media&token=da0cc9d5-8ba7-4d33-87d2-3b084c97dc89",
+        "date": "2023-07-11"
+    },
+    "image382.jpg": {
+        "filename": "image382.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage382.jpg?alt=media&token=f5c6c387-6f2d-401f-a629-7967ddec1683",
+        "thumbnail": "image382_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage382_thumbnail.jpg?alt=media&token=428dd857-bc32-4c46-9b15-802be2201b10",
+        "date": "2023-07-11"
+    },
+    "image302.jpg": {
+        "filename": "image302.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage302.jpg?alt=media&token=1de1234a-5f63-40cb-a7b0-712bd7fced9e",
+        "thumbnail": "image302_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage302_thumbnail.jpg?alt=media&token=c477413e-e65f-40fe-b514-0af0f1decedf",
+        "date": "2023-07-11"
+    },
+    "image460.jpg": {
+        "filename": "image460.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage460.jpg?alt=media&token=873e4930-869c-40f0-87ac-76bafca8845a",
+        "thumbnail": "image460_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage460_thumbnail.jpg?alt=media&token=6f9d0a7c-20b5-40c4-9f4a-1eff996ddc2a",
+        "date": "2023-07-11"
+    },
+    "image025.jpg": {
+        "filename": "image025.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage025.jpg?alt=media&token=33448b7e-e11c-4f23-a639-8554c3042c94",
+        "thumbnail": "image025_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage025_thumbnail.jpg?alt=media&token=d8516533-587e-4fbb-b522-c89ccaddf6c3",
+        "date": "2023-07-11"
+    },
+    "image111.jpg": {
+        "filename": "image111.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage111.jpg?alt=media&token=63100749-eb00-4fa1-ae30-0590f66ff6e4",
+        "thumbnail": "image111_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage111_thumbnail.jpg?alt=media&token=d7f7d474-be25-42e7-b9f3-b5f639781b30",
+        "date": "2023-07-11"
+    },
+    "image504.jpg": {
+        "filename": "image504.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage504.jpg?alt=media&token=102ec718-222c-4de2-a674-47fa6196aef6",
+        "thumbnail": "image504_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage504_thumbnail.jpg?alt=media&token=5e665672-5b2a-44b2-9ec8-2df958f8270f",
+        "date": "2023-07-11"
+    },
+    "image341.jpg": {
+        "filename": "image341.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage341.jpg?alt=media&token=d9e872f7-437d-438d-b9ef-ea6d9afb645b",
+        "thumbnail": "image341_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage341_thumbnail.jpg?alt=media&token=d39ea716-a45a-426f-912d-4cfc2eb7793e",
+        "date": "2023-07-11"
+    },
+    "image459.jpg": {
+        "filename": "image459.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage459.jpg?alt=media&token=4b7bd2bf-8cd2-42f5-804d-d63eb21b9a1d",
+        "thumbnail": "image459_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage459_thumbnail.jpg?alt=media&token=4a568c0f-7aec-46f1-81bb-9567a11de23f",
+        "date": "2023-07-11"
+    },
+    "image301.jpg": {
+        "filename": "image301.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage301.jpg?alt=media&token=0dd178f1-6c7d-4c92-921f-53a16af16ab8",
+        "thumbnail": "image301_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage301_thumbnail.jpg?alt=media&token=b11fce01-a14c-4122-8404-bb073c6f6d22",
+        "date": "2023-07-11"
+    },
+    "image381.jpg": {
+        "filename": "image381.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage381.jpg?alt=media&token=2108e382-62ea-4268-8213-7c441b2448c3",
+        "thumbnail": "image381_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage381_thumbnail.jpg?alt=media&token=126fa98a-a72f-4621-98fc-c415d48b17c6",
+        "date": "2023-07-11"
+    },
+    "image106.jpg": {
+        "filename": "image106.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage106.jpg?alt=media&token=8c7aed6e-e082-42f1-b93f-fffa926bc723",
+        "thumbnail": "image106_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage106_thumbnail.jpg?alt=media&token=eaf49990-0138-4854-8e2d-20e5a505b428",
+        "date": "2023-07-11"
+    },
+    "image419.jpg": {
+        "filename": "image419.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage419.jpg?alt=media&token=10c58823-d40c-402e-a0d6-ad35308b83ba",
+        "thumbnail": "image419_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage419_thumbnail.jpg?alt=media&token=db177ebe-dde9-4506-982a-5af3e0c31824",
+        "date": "2023-07-11"
+    },
+    "image023.jpg": {
+        "filename": "image023.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage023.jpg?alt=media&token=5415040c-6761-470d-9865-12b2b3fc4f50",
+        "thumbnail": "image023_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage023_thumbnail.jpg?alt=media&token=0b883b69-76c3-475e-b346-ba6e62962107",
+        "date": "2023-07-11"
+    },
+    "image340.jpg": {
+        "filename": "image340.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage340.jpg?alt=media&token=056b400a-3223-42c0-b1c2-ef25f27626b8",
+        "thumbnail": "image340_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage340_thumbnail.jpg?alt=media&token=ee4b2a01-3526-4005-83b7-47add5e03f17",
+        "date": "2023-07-11"
+    },
+    "image503.jpg": {
+        "filename": "image503.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage503.jpg?alt=media&token=26f1345b-cfd9-4527-9b61-995461d5980e",
+        "thumbnail": "image503_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage503_thumbnail.jpg?alt=media&token=e41d90fd-8cfa-4ef8-80be-9b61735cc8df",
+        "date": "2023-07-11"
+    },
+    "image300.jpg": {
+        "filename": "image300.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage300.jpg?alt=media&token=e406b98d-4816-48a8-9762-6d040e8057ce",
+        "thumbnail": "image300_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage300_thumbnail.jpg?alt=media&token=702006d1-a22c-44c5-8b0f-b1f9c21b3793",
+        "date": "2023-07-11"
+    },
+    "image458.jpg": {
+        "filename": "image458.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage458.jpg?alt=media&token=79d14ee7-b2e0-4d16-9d8a-f72f2966fb12",
+        "thumbnail": "image458_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage458_thumbnail.jpg?alt=media&token=7a6eed60-5dfc-4b58-9867-91caa93338b8",
+        "date": "2023-07-11"
+    },
+    "image105.jpg": {
+        "filename": "image105.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage105.jpg?alt=media&token=1c36912b-fbff-4284-aa46-f2d6efe2bf14",
+        "thumbnail": "image105_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage105_thumbnail.jpg?alt=media&token=e5dc42ec-b096-4d35-a73b-8f88fa892c05",
+        "date": "2023-07-11"
+    },
+    "image380.jpg": {
+        "filename": "image380.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage380.jpg?alt=media&token=86246dad-70db-4a2a-9e07-3c96d5d21a5a",
+        "thumbnail": "image380_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage380_thumbnail.jpg?alt=media&token=2830c91c-74ea-49e7-8311-1d99b0b12335",
+        "date": "2023-07-11"
+    },
+    "image017.jpg": {
+        "filename": "image017.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage017.jpg?alt=media&token=f84bfd4d-3bc3-4f46-a709-415810f55f1e",
+        "thumbnail": "image017_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage017_thumbnail.jpg?alt=media&token=4a8890b6-610b-451a-96a0-2346bce31a5e",
+        "date": "2023-07-11"
+    },
+    "image418.jpg": {
+        "filename": "image418.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage418.jpg?alt=media&token=c01dede9-ea14-4de3-88a3-d504cb52baa9",
+        "thumbnail": "image418_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage418_thumbnail.jpg?alt=media&token=72351c72-efea-4d37-a0ca-58c4965578d0",
+        "date": "2023-07-11"
+    },
+    "image502.jpg": {
+        "filename": "image502.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage502.jpg?alt=media&token=e45e7a80-dab3-4cea-960a-8534c76d3d2b",
+        "thumbnail": "image502_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage502_thumbnail.jpg?alt=media&token=1bf6354c-909a-40b5-b260-b4933fe3b921",
+        "date": "2023-07-11"
+    },
+    "image457.jpg": {
+        "filename": "image457.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage457.jpg?alt=media&token=4be726fe-c8ae-4868-aeb3-3839b7889fa5",
+        "thumbnail": "image457_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage457_thumbnail.jpg?alt=media&token=ab7c4e5e-770a-48b1-b405-1593bbc50126",
+        "date": "2023-07-11"
+    },
+    "image339.jpg": {
+        "filename": "image339.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage339.jpg?alt=media&token=aa777f82-bbb4-43a9-af0c-b21c9f1e0b71",
+        "thumbnail": "image339_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage339_thumbnail.jpg?alt=media&token=af03632e-acae-4114-9a45-e0c73248e9b2",
+        "date": "2023-07-11"
+    },
+    "image293.jpg": {
+        "filename": "image293.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage293.jpg?alt=media&token=9a58d7d8-e492-42bb-931b-59a0bab17443",
+        "thumbnail": "image293_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage293_thumbnail.jpg?alt=media&token=143958c4-3dcb-4578-ba1f-e12ef24a3db2",
+        "date": "2023-07-11"
+    },
+    "image097.jpg": {
+        "filename": "image097.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage097.jpg?alt=media&token=1e8a49f6-4d01-47cd-98e2-e5adc5a5deed",
+        "thumbnail": "image097_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage097_thumbnail.jpg?alt=media&token=1ff10d05-cf54-4324-8265-88061d13b2cf",
+        "date": "2023-07-11"
+    },
+    "image379.jpg": {
+        "filename": "image379.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage379.jpg?alt=media&token=a0dcb2f4-57c3-4403-a183-915f5f5573c7",
+        "thumbnail": "image379_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage379_thumbnail.jpg?alt=media&token=d472fc4c-cbea-487b-b55c-98a7769d39a0",
+        "date": "2023-07-11"
+    },
+    "image015.jpg": {
+        "filename": "image015.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage015.jpg?alt=media&token=44832459-0df5-4674-a6e7-2dd756f7ca41",
+        "thumbnail": "image015_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage015_thumbnail.jpg?alt=media&token=43995298-f3dc-4337-8cbb-fe77d504925e",
+        "date": "2023-07-11"
+    },
+    "image338.jpg": {
+        "filename": "image338.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage338.jpg?alt=media&token=be48a9f0-a35b-485c-ab10-9fdadd078dc0",
+        "thumbnail": "image338_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage338_thumbnail.jpg?alt=media&token=a650de8d-30c1-455b-98d1-07b3856bdda3",
+        "date": "2023-07-11"
+    },
+    "image501.jpg": {
+        "filename": "image501.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage501.jpg?alt=media&token=e2c62c80-dd68-43c8-983b-8ae8e9e896a8",
+        "thumbnail": "image501_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage501_thumbnail.jpg?alt=media&token=87620cf5-830d-48a2-abb7-6a89c5b80fb7",
+        "date": "2023-07-11"
+    },
+    "image417.jpg": {
+        "filename": "image417.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage417.jpg?alt=media&token=5de03b43-5ff7-40f0-b68b-97ea1db17f7e",
+        "thumbnail": "image417_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage417_thumbnail.jpg?alt=media&token=e15cbd7f-c0f9-4723-a0f3-c0da74320b00",
+        "date": "2023-07-11"
+    },
+    "image456.jpg": {
+        "filename": "image456.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage456.jpg?alt=media&token=c911b4b5-dc7e-4bee-8d1e-1c44998d5278",
+        "thumbnail": "image456_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage456_thumbnail.jpg?alt=media&token=0b05368c-f42c-485c-a5d9-fe278f491d26",
+        "date": "2023-07-11"
+    },
+    "image234.jpg": {
+        "filename": "image234.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage234.jpg?alt=media&token=eeff84fa-f62d-4aea-945e-d0e93d4f9ec2",
+        "thumbnail": "image234_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage234_thumbnail.jpg?alt=media&token=2264e405-21e8-4848-883d-322095683159",
+        "date": "2023-07-11"
+    },
+    "image092.jpg": {
+        "filename": "image092.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage092.jpg?alt=media&token=4c68367b-63cf-4262-9cae-9c92c78a30e5",
+        "thumbnail": "image092_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage092_thumbnail.jpg?alt=media&token=9c34a1a5-f368-4062-bda2-34adb1015bac",
+        "date": "2023-07-11"
+    },
+    "image.jpg": {
+        "filename": "image.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage.jpg?alt=media&token=9c8a75e4-a807-4034-8e58-78c498630385",
+        "thumbnail": "image_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage_thumbnail.jpg?alt=media&token=e46f294c-e941-4401-85dd-f2beb49b4483",
+        "date": "2023-07-11"
+    },
+    "image378.jpg": {
+        "filename": "image378.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage378.jpg?alt=media&token=bb28464c-992f-4322-8fc1-eb519e070fe2",
+        "thumbnail": "image378_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage378_thumbnail.jpg?alt=media&token=b2b4c4b6-c29d-44f5-9072-833d09135dbd",
+        "date": "2023-07-11"
+    },
+    "image500.jpg": {
+        "filename": "image500.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage500.jpg?alt=media&token=cc56ec28-fa6e-487a-8cfc-472bbe6bf82d",
+        "thumbnail": "image500_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage500_thumbnail.jpg?alt=media&token=d6dd9919-49b9-472e-94d9-fc7818055c44",
+        "date": "2023-07-11"
+    },
+    "image455.jpg": {
+        "filename": "image455.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage455.jpg?alt=media&token=533f2ba8-870c-40bd-a25b-418677fcddc9",
+        "thumbnail": "image455_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage455_thumbnail.jpg?alt=media&token=39885cec-dae3-4671-b165-9b959d539db3",
+        "date": "2023-07-11"
+    },
+    "image091.jpg": {
+        "filename": "image091.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage091.jpg?alt=media&token=c15ef3c6-1a43-4561-9681-1f76b40d0d74",
+        "thumbnail": "image091_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage091_thumbnail.jpg?alt=media&token=849c865f-815c-4ed5-ad67-e984c007bc08",
+        "date": "2023-07-11"
+    },
+    "bild100.jpg": {
+        "filename": "bild100.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fbild100.jpg?alt=media&token=d312ee3e-9b93-4a0c-b0d1-37bb378124e7",
+        "thumbnail": "bild100_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fbild100_thumbnail.jpg?alt=media&token=bfaa3d7c-0ccd-4815-a72c-bb7dd3fc5894",
+        "date": "2023-07-11"
+    },
+    "image416.jpg": {
+        "filename": "image416.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage416.jpg?alt=media&token=b810febd-adbd-4dfb-af31-bccaa003d639",
+        "thumbnail": "image416_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage416_thumbnail.jpg?alt=media&token=3575f542-3d0c-48dc-b768-073670ae4b5e",
+        "date": "2023-07-11"
+    },
+    "image337.jpg": {
+        "filename": "image337.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage337.jpg?alt=media&token=f2c37b7a-62c9-4f0d-b82f-5b47cc3e3608",
+        "thumbnail": "image337_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage337_thumbnail.jpg?alt=media&token=60bb4bea-778a-4880-b747-0f133092920f",
+        "date": "2023-07-11"
+    },
+    "image377.jpg": {
+        "filename": "image377.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage377.jpg?alt=media&token=3c4f433d-b8fc-4c09-88f0-8da87d9cf003",
+        "thumbnail": "image377_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage377_thumbnail.jpg?alt=media&token=878f1c41-50ec-459b-9e6b-e89588956709",
+        "date": "2023-07-11"
+    },
+    "image415.jpg": {
+        "filename": "image415.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage415.jpg?alt=media&token=7d778631-f00b-4d74-9b13-0580ad48d419",
+        "thumbnail": "image415_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage415_thumbnail.jpg?alt=media&token=fed0a7ae-ce0a-4ea4-8d26-681e788dbae5",
+        "date": "2023-07-11"
+    },
+    "image233.jpg": {
+        "filename": "image233.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage233.jpg?alt=media&token=9de54389-f6d3-4d88-82b9-787dc41482b0",
+        "thumbnail": "image233_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage233_thumbnail.jpg?alt=media&token=29d580b7-4578-4f69-a4db-d0f0891e7e57",
+        "date": "2023-07-11"
+    },
+    "image336.jpg": {
+        "filename": "image336.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage336.jpg?alt=media&token=72c96761-cd80-474d-892a-1bef1ea6c4e3",
+        "thumbnail": "image336_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage336_thumbnail.jpg?alt=media&token=c72e4ae3-33f3-46fa-82de-fd3a4497d8ef",
+        "date": "2023-07-11"
+    },
+    "image090.jpg": {
+        "filename": "image090.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage090.jpg?alt=media&token=72d98428-567c-495c-9b25-0287d1e984b9",
+        "thumbnail": "image090_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage090_thumbnail.jpg?alt=media&token=1f5a886a-05a5-4892-b5e5-d6893bb4c308",
+        "date": "2023-07-11"
+    },
+    "image454.jpg": {
+        "filename": "image454.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage454.jpg?alt=media&token=8536c3e2-7bf0-419c-b62f-be493011c458",
+        "thumbnail": "image454_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage454_thumbnail.jpg?alt=media&token=485da66b-6366-454a-b8f1-95375b10c647",
+        "date": "2023-07-11"
+    },
+    "image492.jpg": {
+        "filename": "image492.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage492.jpg?alt=media&token=25637348-7dcd-4599-b285-91ed551c2e21",
+        "thumbnail": "image492_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage492_thumbnail.jpg?alt=media&token=3bad8b15-d044-4536-8361-e9c45ff0ead4",
+        "date": "2023-07-11"
+    },
+    "image376.jpg": {
+        "filename": "image376.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage376.jpg?alt=media&token=c45a9d7b-d538-4675-a408-f7378d42d2ae",
+        "thumbnail": "image376_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage376_thumbnail.jpg?alt=media&token=2d6ff2ab-68e3-4017-a739-03769c59dfdf",
+        "date": "2023-07-11"
+    },
+    "bild096.jpg": {
+        "filename": "bild096.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fbild096.jpg?alt=media&token=333d1670-3baf-48f3-976a-b31b13772f7c",
+        "thumbnail": "bild096_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fbild096_thumbnail.jpg?alt=media&token=a6880cdd-ce5a-430e-a0ab-8027ec4435c1",
+        "date": "2023-07-11"
+    },
+    "image491.jpg": {
+        "filename": "image491.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage491.jpg?alt=media&token=34eb032d-9bbc-4965-949c-2ba0af780173",
+        "thumbnail": "image491_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage491_thumbnail.jpg?alt=media&token=a1463520-9721-4de4-91bf-d7453bccc9dc",
+        "date": "2023-07-11"
+    },
+    "image335.jpg": {
+        "filename": "image335.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage335.jpg?alt=media&token=85275891-caa0-442e-88be-f9c8d082a692",
+        "thumbnail": "image335_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage335_thumbnail.jpg?alt=media&token=1cded74c-2630-42c0-98fc-956ea3dac6b0",
+        "date": "2023-07-11"
+    },
+    "image089.jpg": {
+        "filename": "image089.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage089.jpg?alt=media&token=d0dc1218-6a16-42f3-8f73-5381af208f5f",
+        "thumbnail": "image089_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage089_thumbnail.jpg?alt=media&token=8abe38f0-6b16-49d3-890a-dbb0dd928df1",
+        "date": "2023-07-11"
+    },
+    "image232.jpg": {
+        "filename": "image232.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage232.jpg?alt=media&token=1e30f273-03b7-4753-a1f2-e9f41346b9fb",
+        "thumbnail": "image232_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage232_thumbnail.jpg?alt=media&token=68147e34-7fda-48af-9d58-467792e5290d",
+        "date": "2023-07-11"
+    },
+    "image414.jpg": {
+        "filename": "image414.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage414.jpg?alt=media&token=193cbb92-df0f-4a10-96cc-63d01e8897a7",
+        "thumbnail": "image414_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage414_thumbnail.jpg?alt=media&token=6b4e043c-6bf8-4fa8-9085-e20e5c4d1cb8",
+        "date": "2023-07-11"
+    },
+    "image453.jpg": {
+        "filename": "image453.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage453.jpg?alt=media&token=bc9b0c8c-1452-4827-9de0-fd06f4cbfcbd",
+        "thumbnail": "image453_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage453_thumbnail.jpg?alt=media&token=167d41cb-9bd2-4e07-92a9-bc6d12ef84b3",
+        "date": "2023-07-11"
+    },
+    "image375.jpg": {
+        "filename": "image375.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage375.jpg?alt=media&token=bede3b41-e2c8-4e8f-91cd-cf1d64e44ff8",
+        "thumbnail": "image375_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage375_thumbnail.jpg?alt=media&token=e54247fd-8d29-42ad-9e3c-1008c720553c",
+        "date": "2023-07-11"
+    },
+    "image490.jpg": {
+        "filename": "image490.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage490.jpg?alt=media&token=79dea9c5-f010-411f-a8b2-7cea7b209be9",
+        "thumbnail": "image490_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage490_thumbnail.jpg?alt=media&token=793fdc63-9022-4129-b73a-fd0b52db0a6a",
+        "date": "2023-07-11"
+    },
+    "image452.jpg": {
+        "filename": "image452.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage452.jpg?alt=media&token=64e3ae27-06a0-45b6-9b77-23f416cfb0da",
+        "thumbnail": "image452_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage452_thumbnail.jpg?alt=media&token=a2014aa1-d12d-4237-8f38-f0313791b3be",
+        "date": "2023-07-11"
+    },
+    "image413.jpg": {
+        "filename": "image413.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage413.jpg?alt=media&token=2d58a2ff-224f-42e0-b30e-f303db28af35",
+        "thumbnail": "image413_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage413_thumbnail.jpg?alt=media&token=75ef9083-de5f-42a7-9b5e-9d27c90162ad",
+        "date": "2023-07-11"
+    },
+    "image088.jpg": {
+        "filename": "image088.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage088.jpg?alt=media&token=d2ee95fa-aca3-479f-849c-ba1039bf6b21",
+        "thumbnail": "image088_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage088_thumbnail.jpg?alt=media&token=929412cd-fc60-46dd-8069-778eab751d09",
+        "date": "2023-07-11"
+    },
+    "image334.jpg": {
+        "filename": "image334.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage334.jpg?alt=media&token=c0900f98-cb91-4c31-a205-f6c36b53aaca",
+        "thumbnail": "image334_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage334_thumbnail.jpg?alt=media&token=6f66c9e5-4e0b-47be-88ba-4400704e4cfb",
+        "date": "2023-07-11"
+    },
+    "image374.jpg": {
+        "filename": "image374.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage374.jpg?alt=media&token=0cde9f34-c15f-4d7d-922c-a6123de915c9",
+        "thumbnail": "image374_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage374_thumbnail.jpg?alt=media&token=c7bbd2c7-aa8e-482b-b2ad-a6a5224c1102",
+        "date": "2023-07-11"
+    },
+    "image1032.jpg": {
+        "filename": "image1032.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1032.jpg?alt=media&token=cf4dc61f-61c7-4bb4-ac9b-fe5718b48480",
+        "thumbnail": "image1032_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1032_thumbnail.jpg?alt=media&token=819a93d3-5917-4f4d-a71d-00b6862f6ff2",
+        "date": "2023-07-11"
+    },
+    "image231.jpg": {
+        "filename": "image231.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage231.jpg?alt=media&token=f9e65353-f18c-4df2-8457-b74a042a6764",
+        "thumbnail": "image231_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage231_thumbnail.jpg?alt=media&token=8e3295ea-85a7-48db-89a1-4ec8d0cf304b",
+        "date": "2023-07-11"
+    },
+    "image489.jpg": {
+        "filename": "image489.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage489.jpg?alt=media&token=c0791ac8-f1c5-4afd-a1bd-3d39fb3ca2ce",
+        "thumbnail": "image489_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage489_thumbnail.jpg?alt=media&token=d2677610-428d-4ad3-9357-c5fe90f197b4",
+        "date": "2023-07-11"
+    },
+    "image333.jpg": {
+        "filename": "image333.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage333.jpg?alt=media&token=a119cdcf-f598-41d2-9748-f06be23c6bcc",
+        "thumbnail": "image333_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage333_thumbnail.jpg?alt=media&token=1a834dbc-66c5-4f21-964a-d80ee27bb64f",
+        "date": "2023-07-11"
+    },
+    "image086.jpg": {
+        "filename": "image086.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage086.jpg?alt=media&token=3d92410a-97b9-4e03-a83f-ded16ccc7ad8",
+        "thumbnail": "image086_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage086_thumbnail.jpg?alt=media&token=d92e9fae-5363-4215-a4ca-ceebe5837a71",
+        "date": "2023-07-11"
+    },
+    "image230.jpg": {
+        "filename": "image230.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage230.jpg?alt=media&token=a72e34f1-8313-4732-8123-3fe58a9a38d4",
+        "thumbnail": "image230_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage230_thumbnail.jpg?alt=media&token=9dc9b219-958f-4666-bb15-a7851f56e5a0",
+        "date": "2023-07-11"
+    },
+    "image373.jpg": {
+        "filename": "image373.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage373.jpg?alt=media&token=3e46eaa2-03c3-4f9d-acd2-dcb62bcdc7b8",
+        "thumbnail": "image373_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage373_thumbnail.jpg?alt=media&token=617a4d8e-67c5-4de1-9b70-6d65818660c5",
+        "date": "2023-07-11"
+    },
+    "image451.jpg": {
+        "filename": "image451.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage451.jpg?alt=media&token=4fecbe77-5677-4220-974d-84fc7fbc2f56",
+        "thumbnail": "image451_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage451_thumbnail.jpg?alt=media&token=b0e58996-62b4-44a4-a317-ecf2763891dc",
+        "date": "2023-07-11"
+    },
+    "image412.jpg": {
+        "filename": "image412.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage412.jpg?alt=media&token=60e7b686-7737-47c3-87f0-650b3a6474e6",
+        "thumbnail": "image412_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage412_thumbnail.jpg?alt=media&token=e384c76e-80a0-460a-aa65-0cf87541b745",
+        "date": "2023-07-11"
+    },
+    "image1029.jpg": {
+        "filename": "image1029.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1029.jpg?alt=media&token=526423ae-e831-4d18-9345-6477f1cd8b1d",
+        "thumbnail": "image1029_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1029_thumbnail.jpg?alt=media&token=48cf6ba8-21f5-46c3-b1f0-e7ace0c58522",
+        "date": "2023-07-11"
+    },
+    "image331.jpg": {
+        "filename": "image331.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage331.jpg?alt=media&token=527c8dd5-705d-49cb-be9a-ed231f4a35f0",
+        "thumbnail": "image331_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage331_thumbnail.jpg?alt=media&token=79e2d4f2-d758-431a-bf9d-60164f94db37",
+        "date": "2023-07-11"
+    },
+    "image488.jpg": {
+        "filename": "image488.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage488.jpg?alt=media&token=013e383c-2340-44be-a777-e14ef01c6a27",
+        "thumbnail": "image488_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage488_thumbnail.jpg?alt=media&token=8f06c694-bf44-456f-b9a3-7da91b762baa",
+        "date": "2023-07-11"
+    },
+    "image085.jpg": {
+        "filename": "image085.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage085.jpg?alt=media&token=769e1861-4645-411c-b183-125c7bb2b73f",
+        "thumbnail": "image085_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage085_thumbnail.jpg?alt=media&token=475169dc-791c-40f8-a074-3bc851113cf5",
+        "date": "2023-07-11"
+    },
+    "image1028.jpg": {
+        "filename": "image1028.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1028.jpg?alt=media&token=f40ce7a7-4469-4b31-9281-52002e530463",
+        "thumbnail": "image1028_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1028_thumbnail.jpg?alt=media&token=cfea5967-d9c3-4d11-8165-e37ef77f61a6",
+        "date": "2023-07-11"
+    },
+    "image372.jpg": {
+        "filename": "image372.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage372.jpg?alt=media&token=8c066f55-f762-44ef-a131-2f258e6e2115",
+        "thumbnail": "image372_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage372_thumbnail.jpg?alt=media&token=57e06c57-4077-47d2-a25b-67d13813c137",
+        "date": "2023-07-11"
+    },
+    "image450.jpg": {
+        "filename": "image450.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage450.jpg?alt=media&token=03ac5730-41d4-4c9f-8ecc-e4208d4307f4",
+        "thumbnail": "image450_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage450_thumbnail.jpg?alt=media&token=681226b7-0c01-4948-bc55-228402f392dd",
+        "date": "2023-07-11"
+    },
+    "image229.jpg": {
+        "filename": "image229.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage229.jpg?alt=media&token=3656a688-c836-4848-b92f-46def42d9f45",
+        "thumbnail": "image229_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage229_thumbnail.jpg?alt=media&token=9495b13b-c2f4-4bbd-8225-a793397eb074",
+        "date": "2023-07-11"
+    },
+    "image411.jpg": {
+        "filename": "image411.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage411.jpg?alt=media&token=e462d5ef-4a40-45aa-95d9-6cf5d9a30118",
+        "thumbnail": "image411_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage411_thumbnail.jpg?alt=media&token=f6252ac4-7166-4659-ade9-9aa21fccf002",
+        "date": "2023-07-11"
+    },
+    "image084.jpg": {
+        "filename": "image084.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage084.jpg?alt=media&token=07d03164-2a30-4922-be88-990d852bacc7",
+        "thumbnail": "image084_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage084_thumbnail.jpg?alt=media&token=edc8693a-1631-43f9-802a-6abb24d707ca",
+        "date": "2023-07-11"
+    },
+    "image371.jpg": {
+        "filename": "image371.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage371.jpg?alt=media&token=5d2ac7d3-5d99-4db6-b917-ce47f4e89028",
+        "thumbnail": "image371_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage371_thumbnail.jpg?alt=media&token=3bb5d8f5-756f-4757-bce9-eb759ee52a96",
+        "date": "2023-07-11"
+    },
+    "image449.jpg": {
+        "filename": "image449.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage449.jpg?alt=media&token=f8d594c6-2c9f-4684-97c8-aeea50407d55",
+        "thumbnail": "image449_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage449_thumbnail.jpg?alt=media&token=acf56039-64b6-4b94-9417-ac43dba7f8f3",
+        "date": "2023-07-11"
+    },
+    "image1027.jpg": {
+        "filename": "image1027.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1027.jpg?alt=media&token=552a9525-4e1b-48f1-acc0-32c41578a041",
+        "thumbnail": "image1027_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1027_thumbnail.jpg?alt=media&token=48957325-929f-43e1-a058-d23050bd0be4",
+        "date": "2023-07-11"
+    },
+    "image487.jpg": {
+        "filename": "image487.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage487.jpg?alt=media&token=a369118e-00ca-4b68-86c3-0d5b12deda9b",
+        "thumbnail": "image487_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage487_thumbnail.jpg?alt=media&token=a1c16e72-d88e-4dda-bbda-753408b0635f",
+        "date": "2023-07-11"
+    },
+    "image228.jpg": {
+        "filename": "image228.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage228.jpg?alt=media&token=e3420c58-132e-417e-adbb-39cb16eb6f30",
+        "thumbnail": "image228_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage228_thumbnail.jpg?alt=media&token=64c292e1-a12c-49c7-8539-38ba761c3cfe",
+        "date": "2023-07-11"
+    },
+    "image410.jpg": {
+        "filename": "image410.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage410.jpg?alt=media&token=004a713c-180d-4757-9717-ce75cdb8d076",
+        "thumbnail": "image410_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage410_thumbnail.jpg?alt=media&token=afb9be30-1c81-4ad2-b520-3f747810bdd5",
+        "date": "2023-07-11"
+    },
+    "image330.jpg": {
+        "filename": "image330.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage330.jpg?alt=media&token=2dace96d-af4c-41cc-a2fb-60dafffb62f8",
+        "thumbnail": "image330_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage330_thumbnail.jpg?alt=media&token=6bba159b-66ef-4493-a4f0-a573f9fc3da5",
+        "date": "2023-07-11"
+    },
+    "image409.jpg": {
+        "filename": "image409.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage409.jpg?alt=media&token=2e924c4f-6c01-4d58-bcfe-6ede33057720",
+        "thumbnail": "image409_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage409_thumbnail.jpg?alt=media&token=0ae2f3ef-dce0-4ff1-86b5-a413b7eefd54",
+        "date": "2023-07-11"
+    },
+    "image083.jpg": {
+        "filename": "image083.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage083.jpg?alt=media&token=a8766032-a456-44a5-8ec6-8a8861ef1389",
+        "thumbnail": "image083_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage083_thumbnail.jpg?alt=media&token=7a2f2280-52d2-4baf-9dfe-9dda0fb041e1",
+        "date": "2023-07-11"
+    },
+    "image329.jpg": {
+        "filename": "image329.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage329.jpg?alt=media&token=947c240b-f44b-42d2-9f57-6c11b282dd5f",
+        "thumbnail": "image329_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage329_thumbnail.jpg?alt=media&token=24c978fe-decc-4d50-aac2-67d98820d0a7",
+        "date": "2023-07-11"
+    },
+    "image448.jpg": {
+        "filename": "image448.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage448.jpg?alt=media&token=8ba7bb23-758d-43d9-9b8a-1fe06f37a3e9",
+        "thumbnail": "image448_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage448_thumbnail.jpg?alt=media&token=0ce169b3-220e-4f23-9d80-4df8178581a6",
+        "date": "2023-07-11"
+    },
+    "image485.jpg": {
+        "filename": "image485.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage485.jpg?alt=media&token=738a6d70-654f-4ad0-aae5-1caef7dfd083",
+        "thumbnail": "image485_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage485_thumbnail.jpg?alt=media&token=328da279-8a10-415c-b18c-d85530bc878a",
+        "date": "2023-07-11"
+    },
+    "image226.jpg": {
+        "filename": "image226.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage226.jpg?alt=media&token=763d0126-8f85-4467-a0f2-cd0166887633",
+        "thumbnail": "image226_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage226_thumbnail.jpg?alt=media&token=72d2f554-71c2-4e24-8494-ce8cae53a380",
+        "date": "2023-07-11"
+    },
+    "image1026.jpg": {
+        "filename": "image1026.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1026.jpg?alt=media&token=dde5cc77-e200-430a-8e14-b618ef64769b",
+        "thumbnail": "image1026_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1026_thumbnail.jpg?alt=media&token=de9c4029-8057-4b5b-8e39-011df146dda7",
+        "date": "2023-07-11"
+    },
+    "image370.jpg": {
+        "filename": "image370.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage370.jpg?alt=media&token=a6719f0c-486a-40c2-99b0-9409e0e573e8",
+        "thumbnail": "image370_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage370_thumbnail.jpg?alt=media&token=9966aabf-2f8a-4cbe-b409-2ab3b0c13d9e",
+        "date": "2023-07-11"
+    },
+    "image082.jpg": {
+        "filename": "image082.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage082.jpg?alt=media&token=4fe84701-55ad-482c-b27f-c5cd35c61378",
+        "thumbnail": "image082_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage082_thumbnail.jpg?alt=media&token=04f12f07-2f26-42b1-94c4-1fdbdd6bce51",
+        "date": "2023-07-11"
+    },
+    "image484.jpg": {
+        "filename": "image484.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage484.jpg?alt=media&token=ba9adde4-8b34-4d35-b5b8-268e9956a078",
+        "thumbnail": "image484_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage484_thumbnail.jpg?alt=media&token=fae4833a-c84d-4b0f-91e2-1e2b86477bed",
+        "date": "2023-07-11"
+    },
+    "image328.jpg": {
+        "filename": "image328.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage328.jpg?alt=media&token=3859426e-d0fb-4cba-9779-5e27bf801cde",
+        "thumbnail": "image328_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage328_thumbnail.jpg?alt=media&token=0bb80574-09a0-40d5-8d79-7fb50a43cd6c",
+        "date": "2023-07-11"
+    },
+    "image408.jpg": {
+        "filename": "image408.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage408.jpg?alt=media&token=b863d37e-79be-4cd8-8801-1d54951f919b",
+        "thumbnail": "image408_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage408_thumbnail.jpg?alt=media&token=df79ea99-dc77-45e2-80a2-a9190287900a",
+        "date": "2023-07-11"
+    },
+    "image225.jpg": {
+        "filename": "image225.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage225.jpg?alt=media&token=696c1527-5801-4600-a012-bbef2fcd049d",
+        "thumbnail": "image225_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage225_thumbnail.jpg?alt=media&token=a09fcb32-6b9f-49da-b2ca-2e4fc9e8466b",
+        "date": "2023-07-11"
+    },
+    "image447.jpg": {
+        "filename": "image447.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage447.jpg?alt=media&token=5c276f48-22cc-4728-94e4-dbb46f48f309",
+        "thumbnail": "image447_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage447_thumbnail.jpg?alt=media&token=034c8f62-4251-4a38-a027-ab640b440eb1",
+        "date": "2023-07-11"
+    },
+    "image1023.jpg": {
+        "filename": "image1023.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1023.jpg?alt=media&token=536a8a47-c85a-4056-ace7-b4a0b947f06a",
+        "thumbnail": "image1023_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1023_thumbnail.jpg?alt=media&token=e84b5bee-a127-4858-91ac-cde6e5d37c1b",
+        "date": "2023-07-11"
+    },
+    "image369.jpg": {
+        "filename": "image369.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage369.jpg?alt=media&token=e1e787eb-bc7b-4c3b-abd4-f98e9d86955b",
+        "thumbnail": "image369_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage369_thumbnail.jpg?alt=media&token=48115074-369c-455e-98e9-5c1cfc9aa9c0",
+        "date": "2023-07-11"
+    },
+    "image446.jpg": {
+        "filename": "image446.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage446.jpg?alt=media&token=0c564492-1e6e-42ee-95d8-ab19312abfcf",
+        "thumbnail": "image446_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage446_thumbnail.jpg?alt=media&token=bcbb36fc-f975-4c61-8bae-d5d3af106f0c",
+        "date": "2023-07-11"
+    },
+    "image1021.jpg": {
+        "filename": "image1021.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1021.jpg?alt=media&token=6cef8740-00f8-462d-b155-ca46653e725e",
+        "thumbnail": "image1021_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1021_thumbnail.jpg?alt=media&token=6bd416b1-3515-4217-b031-6b092285299f",
+        "date": "2023-07-11"
+    },
+    "image326.jpg": {
+        "filename": "image326.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage326.jpg?alt=media&token=e4da4c12-368c-4079-a393-9524ff93da28",
+        "thumbnail": "image326_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage326_thumbnail.jpg?alt=media&token=be8f2ba6-c012-4052-a29a-919415f461c6",
+        "date": "2023-07-11"
+    },
+    "image224.jpg": {
+        "filename": "image224.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage224.jpg?alt=media&token=fa3c625f-3f53-4b14-b99e-f26e326440c8",
+        "thumbnail": "image224_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage224_thumbnail.jpg?alt=media&token=1dfc1ba1-e9ad-41cf-8d11-8976ca902dcf",
+        "date": "2023-07-11"
+    },
+    "image407.jpg": {
+        "filename": "image407.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage407.jpg?alt=media&token=400858ee-29c2-4196-99ae-cf1a6bfc684b",
+        "thumbnail": "image407_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage407_thumbnail.jpg?alt=media&token=04d8e7e3-fc8d-4db8-9e3b-78120fdd1ae9",
+        "date": "2023-07-11"
+    },
+    "image081.jpg": {
+        "filename": "image081.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage081.jpg?alt=media&token=dd829c35-1adc-49dc-9f7c-0a04df430641",
+        "thumbnail": "image081_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage081_thumbnail.jpg?alt=media&token=62643cbc-6f1d-47c7-ae91-8a00e09a3893",
+        "date": "2023-07-11"
+    },
+    "image368.jpg": {
+        "filename": "image368.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage368.jpg?alt=media&token=68020a46-a3fc-4f46-97f6-67908e922438",
+        "thumbnail": "image368_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage368_thumbnail.jpg?alt=media&token=093d2a05-5682-4e66-a199-f7c1e7fd36c5",
+        "date": "2023-07-11"
+    },
+    "image483.jpg": {
+        "filename": "image483.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage483.jpg?alt=media&token=6e63d4ef-b841-46ed-859d-fefb78e92bf9",
+        "thumbnail": "image483_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage483_thumbnail.jpg?alt=media&token=7acd0bc3-8aa3-429e-bf01-1c955a0fd9fc",
+        "date": "2023-07-11"
+    },
+    "image325.jpg": {
+        "filename": "image325.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage325.jpg?alt=media&token=e817374d-78f4-4910-8ef0-774311d93c06",
+        "thumbnail": "image325_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage325_thumbnail.jpg?alt=media&token=d83139b0-6c79-4b27-8b66-f2716fe18e13",
+        "date": "2023-07-11"
+    },
+    "image222.jpg": {
+        "filename": "image222.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage222.jpg?alt=media&token=4f0fa115-61d2-4df2-85c5-72198a4a8ce9",
+        "thumbnail": "image222_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage222_thumbnail.jpg?alt=media&token=4551cbff-aeca-4d0f-8361-e795092b7da4",
+        "date": "2023-07-11"
+    },
+    "image367.jpg": {
+        "filename": "image367.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage367.jpg?alt=media&token=33c1b11b-74a2-4afc-93aa-bac0a8a71d67",
+        "thumbnail": "image367_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage367_thumbnail.jpg?alt=media&token=d8ed3d10-db39-497c-b758-a666bf4798be",
+        "date": "2023-07-11"
+    },
+    "image406.jpg": {
+        "filename": "image406.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage406.jpg?alt=media&token=3bcfdc00-8c46-4789-9d76-658b44c3db7e",
+        "thumbnail": "image406_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage406_thumbnail.jpg?alt=media&token=12489292-3c76-4332-89f2-538d6202f82d",
+        "date": "2023-07-11"
+    },
+    "image324.jpg": {
+        "filename": "image324.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage324.jpg?alt=media&token=afcb5eb9-cde7-4c26-a252-5a6d03c9c1b5",
+        "thumbnail": "image324_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage324_thumbnail.jpg?alt=media&token=d3647180-102a-46fb-8615-6de7116ddb48",
+        "date": "2023-07-11"
+    },
+    "image482.jpg": {
+        "filename": "image482.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage482.jpg?alt=media&token=ce01b54e-01b3-4ee0-bbf1-51857bd96ab3",
+        "thumbnail": "image482_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage482_thumbnail.jpg?alt=media&token=6d824c66-ce37-443c-a404-1d6c0ff8b876",
+        "date": "2023-07-11"
+    },
+    "image445.jpg": {
+        "filename": "image445.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage445.jpg?alt=media&token=590e9393-8336-4b55-89d7-2adfc4e30634",
+        "thumbnail": "image445_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage445_thumbnail.jpg?alt=media&token=1605ef3a-3e54-4f70-ac06-ea631b5118c6",
+        "date": "2023-07-11"
+    },
+    "image080.jpg": {
+        "filename": "image080.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage080.jpg?alt=media&token=1f00f4e0-7cb2-45ff-9b09-38d189be14db",
+        "thumbnail": "image080_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage080_thumbnail.jpg?alt=media&token=b78b6049-e29a-4f66-a9a3-ff980313d996",
+        "date": "2023-07-11"
+    },
+    "image1017.jpg": {
+        "filename": "image1017.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1017.jpg?alt=media&token=d18f7775-de39-4c9b-ab92-49464daf96c6",
+        "thumbnail": "image1017_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1017_thumbnail.jpg?alt=media&token=788dc132-6087-4887-b376-ce95f906274b",
+        "date": "2023-07-11"
+    },
+    "image221.jpg": {
+        "filename": "image221.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage221.jpg?alt=media&token=e5c329f3-1003-41d3-a88f-fc6f74c66480",
+        "thumbnail": "image221_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage221_thumbnail.jpg?alt=media&token=bbf6e4da-da5e-46f7-8b09-e1556133f795",
+        "date": "2023-07-11"
+    },
+    "image481.jpg": {
+        "filename": "image481.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage481.jpg?alt=media&token=453c6286-17f9-424b-926d-8fdf63abf0af",
+        "thumbnail": "image481_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage481_thumbnail.jpg?alt=media&token=4eb433de-2373-4ef1-96ae-806ee6639061",
+        "date": "2023-07-11"
+    },
+    "image366.jpg": {
+        "filename": "image366.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage366.jpg?alt=media&token=103196d5-8456-43d2-8600-e4d0a829953c",
+        "thumbnail": "image366_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage366_thumbnail.jpg?alt=media&token=6a00fc21-651e-4f99-9f6c-8ca4defa2d9b",
+        "date": "2023-07-11"
+    },
+    "image444.jpg": {
+        "filename": "image444.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage444.jpg?alt=media&token=b809f426-54c4-4e1f-a0b0-5a8ed3b38b03",
+        "thumbnail": "image444_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage444_thumbnail.jpg?alt=media&token=1113f589-f364-4a40-b64a-9f3e4d085f16",
+        "date": "2023-07-11"
+    },
+    "image323.jpg": {
+        "filename": "image323.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage323.jpg?alt=media&token=daa70308-514d-4ceb-82f1-f794702846a7",
+        "thumbnail": "image323_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage323_thumbnail.jpg?alt=media&token=87c7b9f3-3b29-4e55-bbff-99ad11f2ff62",
+        "date": "2023-07-11"
+    },
+    "image405.jpg": {
+        "filename": "image405.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage405.jpg?alt=media&token=e70b8043-7e66-449e-9197-47e9649258ea",
+        "thumbnail": "image405_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage405_thumbnail.jpg?alt=media&token=7b3022af-6a0b-4f46-8b37-bc01a8a6759e",
+        "date": "2023-07-11"
+    },
+    "image078.jpg": {
+        "filename": "image078.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage078.jpg?alt=media&token=2bc41c1e-4be1-4973-85e5-fe0d7d6b5930",
+        "thumbnail": "image078_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage078_thumbnail.jpg?alt=media&token=c5022b79-91e1-4a63-a5d6-ab32eff81bda",
+        "date": "2023-07-11"
+    },
+    "image1016.jpg": {
+        "filename": "image1016.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1016.jpg?alt=media&token=36b0f98e-42eb-4864-9430-a152ecd51622",
+        "thumbnail": "image1016_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1016_thumbnail.jpg?alt=media&token=89853e49-80c9-4b2a-bc36-b54e7c28afe3",
+        "date": "2023-07-11"
+    },
+    "image220.jpg": {
+        "filename": "image220.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage220.jpg?alt=media&token=01a4cb4d-b4ce-4088-8e8a-a2e9fedccb40",
+        "thumbnail": "image220_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage220_thumbnail.jpg?alt=media&token=9b53b30e-3c4a-446a-b074-3d32ac538356",
+        "date": "2023-07-11"
+    },
+    "image480.jpg": {
+        "filename": "image480.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage480.jpg?alt=media&token=f07837fe-61d2-4c3a-8a82-b996209443c8",
+        "thumbnail": "image480_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage480_thumbnail.jpg?alt=media&token=3a023f12-0b97-4df9-b7e1-465e50bc4250",
+        "date": "2023-07-11"
+    },
+    "image365.jpg": {
+        "filename": "image365.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage365.jpg?alt=media&token=80beb752-8526-4fc3-b93f-729166f49c1e",
+        "thumbnail": "image365_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage365_thumbnail.jpg?alt=media&token=75714c78-5455-4d00-b0f4-196c21e82728",
+        "date": "2023-07-11"
+    },
+    "image443.jpg": {
+        "filename": "image443.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage443.jpg?alt=media&token=d0776648-b1f1-4e14-b79f-599c3479f100",
+        "thumbnail": "image443_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage443_thumbnail.jpg?alt=media&token=7ba27480-c1a3-43c6-8314-15d301b72720",
+        "date": "2023-07-11"
+    },
+    "image404.jpg": {
+        "filename": "image404.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage404.jpg?alt=media&token=4ef75cfe-ebb2-4dd6-8949-89334ceda5a9",
+        "thumbnail": "image404_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage404_thumbnail.jpg?alt=media&token=6ef530a5-4e2c-4498-ac6c-f3c05bfa22d1",
+        "date": "2023-07-11"
+    },
+    "image322.jpg": {
+        "filename": "image322.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage322.jpg?alt=media&token=bd99d0b7-f7e6-45c0-8c73-fc0aea089462",
+        "thumbnail": "image322_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage322_thumbnail.jpg?alt=media&token=0878d225-c702-4ad5-b1c3-eed0d9f4b969",
+        "date": "2023-07-11"
+    },
+    "image077.jpg": {
+        "filename": "image077.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage077.jpg?alt=media&token=74576a3b-2a6f-45eb-85ba-fddb5ba03d06",
+        "thumbnail": "image077_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage077_thumbnail.jpg?alt=media&token=8dcf3bcd-ac9b-4ec7-815f-e66100b1fee9",
+        "date": "2023-07-11"
+    },
+    "image219.jpg": {
+        "filename": "image219.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage219.jpg?alt=media&token=c1c8e394-7699-49d1-8080-925f4bb606d6",
+        "thumbnail": "image219_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage219_thumbnail.jpg?alt=media&token=20c64710-384f-43ee-9635-b79ba8a58952",
+        "date": "2023-07-11"
+    },
+    "image1014.jpg": {
+        "filename": "image1014.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1014.jpg?alt=media&token=6714f529-6cbe-4992-8313-fa11a7eb6e2a",
+        "thumbnail": "image1014_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1014_thumbnail.jpg?alt=media&token=4cc81c59-10de-457f-9343-460082b28460",
+        "date": "2023-07-11"
+    },
+    "image364.jpg": {
+        "filename": "image364.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage364.jpg?alt=media&token=78a1fb1c-d047-4dc4-b2ab-adafe9c0413b",
+        "thumbnail": "image364_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage364_thumbnail.jpg?alt=media&token=d7d861d6-ec5b-4aaa-9b0c-bd8163ecb1d8",
+        "date": "2023-07-11"
+    },
+    "image321.jpg": {
+        "filename": "image321.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage321.jpg?alt=media&token=f3f99cd1-f604-4122-97ae-69f02fc62e7c",
+        "thumbnail": "image321_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage321_thumbnail.jpg?alt=media&token=75d4c8d5-3b5d-44af-bc15-74d1a6691e06",
+        "date": "2023-07-11"
+    },
+    "image1012.jpg": {
+        "filename": "image1012.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1012.jpg?alt=media&token=d5e14d04-f305-46bd-abd4-9cd11e038385",
+        "thumbnail": "image1012_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1012_thumbnail.jpg?alt=media&token=53cff6a0-5f33-460a-833f-7e3f76b4962f",
+        "date": "2023-07-11"
+    },
+    "image442.jpg": {
+        "filename": "image442.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage442.jpg?alt=media&token=567e4991-6f43-4de2-8a86-c7a7e6fd617a",
+        "thumbnail": "image442_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage442_thumbnail.jpg?alt=media&token=b55f0cf1-b3a2-4697-a7d8-663ca44b7941",
+        "date": "2023-07-11"
+    },
+    "image218.jpg": {
+        "filename": "image218.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage218.jpg?alt=media&token=b6121bea-e377-42fe-b1c6-8fd21bd779a7",
+        "thumbnail": "image218_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage218_thumbnail.jpg?alt=media&token=7d4eaf40-d111-4b09-b78f-c7720a66ea79",
+        "date": "2023-07-11"
+    },
+    "image479.jpg": {
+        "filename": "image479.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage479.jpg?alt=media&token=162537a9-b65a-4bb4-9bea-8048069d581a",
+        "thumbnail": "image479_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage479_thumbnail.jpg?alt=media&token=cabbcb9c-f634-4b95-ba2e-5786af84e857",
+        "date": "2023-07-11"
+    },
+    "image403.jpg": {
+        "filename": "image403.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage403.jpg?alt=media&token=722915e2-d43d-4a2a-80c9-98e79d942851",
+        "thumbnail": "image403_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage403_thumbnail.jpg?alt=media&token=867481ea-171f-4aaa-82dd-46c34081f67d",
+        "date": "2023-07-11"
+    },
+    "image076.jpg": {
+        "filename": "image076.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage076.jpg?alt=media&token=1f0e1a09-7726-4d34-b37a-d130b6fd70ee",
+        "thumbnail": "image076_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage076_thumbnail.jpg?alt=media&token=d21e6505-c4fb-4935-a9e8-a5d0432c1e7a",
+        "date": "2023-07-11"
+    },
+    "image1009.jpg": {
+        "filename": "image1009.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1009.jpg?alt=media&token=91b02381-59a8-431a-a429-1f4aa7eed892",
+        "thumbnail": "image1009_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1009_thumbnail.jpg?alt=media&token=70f6d9c4-272b-4904-896a-c0ec79c6a785",
+        "date": "2023-07-11"
+    },
+    "image217.jpg": {
+        "filename": "image217.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage217.jpg?alt=media&token=63bde9d0-3d61-418a-a8d2-9c378e6104db",
+        "thumbnail": "image217_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage217_thumbnail.jpg?alt=media&token=26d3d4df-476f-4500-b5f6-55aac68a9de0",
+        "date": "2023-07-11"
+    },
+    "image320.jpg": {
+        "filename": "image320.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage320.jpg?alt=media&token=d042b1f5-6189-4b24-858b-79f46e0be78c",
+        "thumbnail": "image320_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage320_thumbnail.jpg?alt=media&token=c5b6f958-73df-4102-b248-195427fdd75c",
+        "date": "2023-07-11"
+    },
+    "image441.jpg": {
+        "filename": "image441.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage441.jpg?alt=media&token=46f18f30-434a-4ec2-8012-f507b875066e",
+        "thumbnail": "image441_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage441_thumbnail.jpg?alt=media&token=317e31ca-c8d7-4cbb-bd22-77268c3ab464",
+        "date": "2023-07-11"
+    },
+    "image075.jpg": {
+        "filename": "image075.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage075.jpg?alt=media&token=139f7703-74a9-4760-bbaa-5d9ec4368276",
+        "thumbnail": "image075_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage075_thumbnail.jpg?alt=media&token=f8057bf8-31ac-4f8b-b687-c070ae1787e5",
+        "date": "2023-07-11"
+    },
+    "image402.jpg": {
+        "filename": "image402.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage402.jpg?alt=media&token=dfc8d094-7c9b-43ce-bc6c-bbfd79a2942c",
+        "thumbnail": "image402_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage402_thumbnail.jpg?alt=media&token=fc087350-126c-48c1-aa0d-ca85db8d0653",
+        "date": "2023-07-11"
+    },
+    "image363.jpg": {
+        "filename": "image363.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage363.jpg?alt=media&token=76f08ccd-42f8-48bd-a189-4604d7055d6a",
+        "thumbnail": "image363_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage363_thumbnail.jpg?alt=media&token=9757fa68-ce75-4e10-8e0b-69b3a0333a15",
+        "date": "2023-07-11"
+    },
+    "image478.jpg": {
+        "filename": "image478.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage478.jpg?alt=media&token=a6d70175-a6d0-4f2f-abd3-9f3940fb91a3",
+        "thumbnail": "image478_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage478_thumbnail.jpg?alt=media&token=b467d059-daba-4e88-b26c-b6beeca3ebac",
+        "date": "2023-07-11"
+    },
+    "image074.jpg": {
+        "filename": "image074.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage074.jpg?alt=media&token=755ef018-7f3e-4c56-9711-bb1cb5c5cb3d",
+        "thumbnail": "image074_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage074_thumbnail.jpg?alt=media&token=27170fb8-0b06-4355-8cdb-cf3542d8cf71",
+        "date": "2023-07-11"
+    },
+    "image1008.jpg": {
+        "filename": "image1008.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1008.jpg?alt=media&token=18dbb2f6-6cc7-4605-8823-27828bf5bde3",
+        "thumbnail": "image1008_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1008_thumbnail.jpg?alt=media&token=0101f908-7583-4670-9401-7f3bd8ba7a40",
+        "date": "2023-07-11"
+    },
+    "image440.jpg": {
+        "filename": "image440.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage440.jpg?alt=media&token=bf423057-8193-4241-810e-431a2b425c97",
+        "thumbnail": "image440_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage440_thumbnail.jpg?alt=media&token=9fb42788-366c-4152-aceb-319740d2e1c7",
+        "date": "2023-07-11"
+    },
+    "image401.jpg": {
+        "filename": "image401.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage401.jpg?alt=media&token=0105920d-6f61-4485-8ac4-41297821dfba",
+        "thumbnail": "image401_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage401_thumbnail.jpg?alt=media&token=68d4094f-823a-40ca-b5d2-a1a83012f8bf",
+        "date": "2023-07-11"
+    },
+    "image215.jpg": {
+        "filename": "image215.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage215.jpg?alt=media&token=537cb55e-4189-4b68-81f0-40c6e8c07fa0",
+        "thumbnail": "image215_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage215_thumbnail.jpg?alt=media&token=210b1299-6ed7-4953-a08c-8b1f0722975d",
+        "date": "2023-07-11"
+    },
+    "image319.jpg": {
+        "filename": "image319.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage319.jpg?alt=media&token=1ca21fd0-a2e4-4cdb-b57c-d2d8ac630edb",
+        "thumbnail": "image319_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage319_thumbnail.jpg?alt=media&token=685ce643-f2f0-47f3-b9be-cc11e5a2a34f",
+        "date": "2023-07-11"
+    },
+    "image477.jpg": {
+        "filename": "image477.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage477.jpg?alt=media&token=4c79385d-11ef-45e1-821d-887184d569af",
+        "thumbnail": "image477_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage477_thumbnail.jpg?alt=media&token=4ba7b6ce-5fa7-459a-8685-3624e8d2d026",
+        "date": "2023-07-11"
+    },
+    "image362.jpg": {
+        "filename": "image362.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage362.jpg?alt=media&token=55301d0d-cc06-4790-8959-1e468fc6887b",
+        "thumbnail": "image362_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage362_thumbnail.jpg?alt=media&token=45d89b53-443c-46bf-8216-fbdcdca39dde",
+        "date": "2023-07-11"
+    },
+    "image438.jpg": {
+        "filename": "image438.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage438.jpg?alt=media&token=021da08a-5b8f-428d-9762-4d27eac308dc",
+        "thumbnail": "image438_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage438_thumbnail.jpg?alt=media&token=344bf746-6856-4880-bc19-0d0cc71a508c",
+        "date": "2023-07-11"
+    },
+    "image318..jpg": {
+        "filename": "image318..jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage318..jpg?alt=media&token=bc5ad148-d018-4ab8-bfcc-517425ed538d",
+        "thumbnail": "image318._thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage318._thumbnail.jpg?alt=media&token=43f3bd87-8563-4af9-80e4-a02403eea0a6",
+        "date": "2023-07-11"
+    },
+    "image73.jpg": {
+        "filename": "image73.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage73.jpg?alt=media&token=a284a180-4a8e-4713-ae22-5f869894c73e",
+        "thumbnail": "image73_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage73_thumbnail.jpg?alt=media&token=8918a280-b8f1-42de-a0b9-0cec50953108",
+        "date": "2023-07-11"
+    },
+    "image360.jpg": {
+        "filename": "image360.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage360.jpg?alt=media&token=c137d131-a9ca-41bb-a831-50c348d8f985",
+        "thumbnail": "image360_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage360_thumbnail.jpg?alt=media&token=3d747f5c-4e8f-4861-84ff-64ac0b648278",
+        "date": "2023-07-11"
+    },
+    "image400.jpg": {
+        "filename": "image400.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage400.jpg?alt=media&token=d04fec35-85ee-4b9d-b992-3612de62ff6d",
+        "thumbnail": "image400_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage400_thumbnail.jpg?alt=media&token=3612bbc9-7ce3-4cbd-bbc1-bb426935ede1",
+        "date": "2023-07-11"
+    },
+    "image1007.jpg": {
+        "filename": "image1007.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1007.jpg?alt=media&token=e8109bf4-dd0d-43a0-97b8-65f62627954a",
+        "thumbnail": "image1007_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1007_thumbnail.jpg?alt=media&token=715d4674-d992-4711-87f9-242124dac583",
+        "date": "2023-07-11"
+    },
+    "image476.jpg": {
+        "filename": "image476.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage476.jpg?alt=media&token=1259f4ba-1654-40f6-890d-cca29615aff2",
+        "thumbnail": "image476_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage476_thumbnail.jpg?alt=media&token=bf81d59f-f871-4e6b-8057-1c542ce27666",
+        "date": "2023-07-11"
+    },
+    "image214.jpg": {
+        "filename": "image214.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage214.jpg?alt=media&token=1818c9b0-ec09-46be-8db6-9e9a537c744c",
+        "thumbnail": "image214_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage214_thumbnail.jpg?alt=media&token=35897e38-325c-4e90-bf5b-fc115125f5d7",
+        "date": "2023-07-11"
+    },
+    "image317.jpg": {
+        "filename": "image317.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage317.jpg?alt=media&token=589ebdd7-c8e0-4172-b831-69de6a069ac9",
+        "thumbnail": "image317_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage317_thumbnail.jpg?alt=media&token=3bb20933-8646-4982-a30b-27a0781e52a5",
+        "date": "2023-07-11"
+    },
+    "image399.jpg": {
+        "filename": "image399.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage399.jpg?alt=media&token=8ffd1200-a48e-4fa8-8526-e10ebf525418",
+        "thumbnail": "image399_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage399_thumbnail.jpg?alt=media&token=33feccfc-f96a-4a8d-b745-e44f24c21733",
+        "date": "2023-07-11"
+    },
+    "image072.jpg": {
+        "filename": "image072.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage072.jpg?alt=media&token=c1f5e87c-8a58-41b7-8715-709a5bc49efd",
+        "thumbnail": "image072_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage072_thumbnail.jpg?alt=media&token=c4c2d03b-e2d6-45ad-a582-75049ff27cd3",
+        "date": "2023-07-11"
+    },
+    "image1006.jpg": {
+        "filename": "image1006.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1006.jpg?alt=media&token=f1d5e0a5-3150-469f-bf8c-637fe66299f6",
+        "thumbnail": "image1006_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1006_thumbnail.jpg?alt=media&token=5888020f-4534-4a7a-934f-4511db0c5a61",
+        "date": "2023-07-11"
+    },
+    "image437.jpg": {
+        "filename": "image437.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage437.jpg?alt=media&token=e03bb839-e35a-43da-85ce-390682c5d40c",
+        "thumbnail": "image437_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage437_thumbnail.jpg?alt=media&token=0ec43330-df01-4f2c-81df-2e59ff7bd301",
+        "date": "2023-07-11"
+    },
+    "image213.jpg": {
+        "filename": "image213.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage213.jpg?alt=media&token=ec97abc2-5f72-4d4f-b48c-9c88b519c970",
+        "thumbnail": "image213_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage213_thumbnail.jpg?alt=media&token=b16f14ac-45f2-4976-9ee9-549bfc6585ce",
+        "date": "2023-07-11"
+    },
+    "image475.jpg": {
+        "filename": "image475.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage475.jpg?alt=media&token=71712600-7f6c-4446-ab21-20b45b8b91f7",
+        "thumbnail": "image475_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage475_thumbnail.jpg?alt=media&token=91159555-e612-4cd4-8192-7c13c8469533",
+        "date": "2023-07-11"
+    },
+    "image359.jpg": {
+        "filename": "image359.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage359.jpg?alt=media&token=d191683d-6447-48ab-91c8-628a82637379",
+        "thumbnail": "image359_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage359_thumbnail.jpg?alt=media&token=f2da7791-82da-4af9-b6b8-c0d8df8189f6",
+        "date": "2023-07-11"
+    },
+    "image316.jpg": {
+        "filename": "image316.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage316.jpg?alt=media&token=eca32a2a-1757-40f3-befb-84ac72fc3354",
+        "thumbnail": "image316_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage316_thumbnail.jpg?alt=media&token=b0ce6dec-90ce-446a-b4de-9fa2127883a8",
+        "date": "2023-07-11"
+    },
+    "image398.jpg": {
+        "filename": "image398.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage398.jpg?alt=media&token=82e74d45-1322-4822-af30-f6c0d77c9673",
+        "thumbnail": "image398_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage398_thumbnail.jpg?alt=media&token=3dd7fdfd-8576-4efc-a08a-5ff6a02a8e73",
+        "date": "2023-07-11"
+    },
+    "image071.jpg": {
+        "filename": "image071.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage071.jpg?alt=media&token=00455150-207f-4725-80a8-c87e937c7d4b",
+        "thumbnail": "image071_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage071_thumbnail.jpg?alt=media&token=9e0505a5-89b3-4a38-9584-57a4df1312f2",
+        "date": "2023-07-11"
+    },
+    "image211.jpg": {
+        "filename": "image211.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage211.jpg?alt=media&token=91aa02d4-f8f5-46af-8811-b8f0e31afb89",
+        "thumbnail": "image211_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage211_thumbnail.jpg?alt=media&token=a57cd11f-fb3f-477f-8c3a-45d458aafd30",
+        "date": "2023-07-11"
+    },
+    "image436.jpg": {
+        "filename": "image436.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage436.jpg?alt=media&token=1e492a33-f977-40e7-85d4-33e27742e640",
+        "thumbnail": "image436_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage436_thumbnail.jpg?alt=media&token=3a502c2e-87c3-4cca-9cd0-7fc29d89cc01",
+        "date": "2023-07-11"
+    },
+    "image1004.jpg": {
+        "filename": "image1004.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1004.jpg?alt=media&token=61b615a6-9d8a-4201-bcfa-8584f5fb3265",
+        "thumbnail": "image1004_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1004_thumbnail.jpg?alt=media&token=ea6296e6-faf4-4998-8cc1-917f63c9c7e1",
+        "date": "2023-07-11"
+    },
+    "image358.jpg": {
+        "filename": "image358.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage358.jpg?alt=media&token=aa6c2def-80be-45cd-a207-2e271a3f6686",
+        "thumbnail": "image358_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage358_thumbnail.jpg?alt=media&token=875a4061-a175-48f9-8ce9-1cd9e4a4eb48",
+        "date": "2023-07-11"
+    },
+    "image210.jpg": {
+        "filename": "image210.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage210.jpg?alt=media&token=103995ad-e6f3-4c87-8728-f24f604a56c2",
+        "thumbnail": "image210_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage210_thumbnail.jpg?alt=media&token=d6682ef2-6a1e-4224-a4bc-cfa9699eb163",
+        "date": "2023-07-11"
+    },
+    "image070.jpg": {
+        "filename": "image070.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage070.jpg?alt=media&token=b9d66777-2218-42ce-ad7b-ea4273ad98b2",
+        "thumbnail": "image070_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage070_thumbnail.jpg?alt=media&token=182dae4c-0890-4e67-9e12-f4e7886b4633",
+        "date": "2023-07-11"
+    },
+    "image315.jpg": {
+        "filename": "image315.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage315.jpg?alt=media&token=f6e72cda-7652-47e1-a7f9-2327e38436ea",
+        "thumbnail": "image315_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage315_thumbnail.jpg?alt=media&token=f6d28529-c62f-404c-84d8-bcb8244bdc03",
+        "date": "2023-07-11"
+    },
+    "image473.jpg": {
+        "filename": "image473.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage473.jpg?alt=media&token=caf96fa2-1087-4dbd-922f-727734b1b6d8",
+        "thumbnail": "image473_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage473_thumbnail.jpg?alt=media&token=1ef9dcbf-24a3-4d66-9eb7-9ecf89ed346f",
+        "date": "2023-07-11"
+    },
+    "image435.jpg": {
+        "filename": "image435.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage435.jpg?alt=media&token=82e7d929-042d-42d8-aff0-084468d250ef",
+        "thumbnail": "image435_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage435_thumbnail.jpg?alt=media&token=6fcdeb40-4843-4960-a419-c5078bca23ce",
+        "date": "2023-07-11"
+    },
+    "image397.jpg": {
+        "filename": "image397.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage397.jpg?alt=media&token=a2e50e7a-bf73-4c4f-a68f-e96f774ec980",
+        "thumbnail": "image397_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage397_thumbnail.jpg?alt=media&token=eb4d406c-becf-44c2-9cef-2db07b7d4682",
+        "date": "2023-07-11"
+    },
+    "image1003.jpg": {
+        "filename": "image1003.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1003.jpg?alt=media&token=7a7e299a-5f36-4fd2-b7ed-610dc4f6c682",
+        "thumbnail": "image1003_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1003_thumbnail.jpg?alt=media&token=71dd8ab9-519a-48d6-9ff6-e1420876fce1",
+        "date": "2023-07-11"
+    },
+    "image1001.jpg": {
+        "filename": "image1001.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1001.jpg?alt=media&token=c4b9a229-5194-4e8f-bb36-0e54369e2400",
+        "thumbnail": "image1001_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage1001_thumbnail.jpg?alt=media&token=fa200245-a746-42f6-adea-97c9d6613943",
+        "date": "2023-07-11"
+    },
+    "image069.jpg": {
+        "filename": "image069.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage069.jpg?alt=media&token=9771d042-f529-4cce-bd58-f67048fe3c98",
+        "thumbnail": "image069_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage069_thumbnail.jpg?alt=media&token=a6725dfa-f6d7-44c7-879a-a1f4f34eec93",
+        "date": "2023-07-11"
+    },
+    "image357.jpg": {
+        "filename": "image357.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage357.jpg?alt=media&token=09dba894-68c0-432a-872e-faedb7e0a32b",
+        "thumbnail": "image357_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage357_thumbnail.jpg?alt=media&token=41ae449b-adb6-488b-809f-c33173ac1e57",
+        "date": "2023-07-11"
+    },
+    "image472.jpg": {
+        "filename": "image472.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage472.jpg?alt=media&token=acaedde5-95cf-4396-bd1f-9d4aa4898faf",
+        "thumbnail": "image472_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage472_thumbnail.jpg?alt=media&token=f2ed5182-03a0-4e5e-bbc1-09b4f4c6fbde",
+        "date": "2023-07-11"
+    },
+    "image314.jpg": {
+        "filename": "image314.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage314.jpg?alt=media&token=57e1b428-72c9-4d59-b355-e17373c3809c",
+        "thumbnail": "image314_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage314_thumbnail.jpg?alt=media&token=c5ba1005-f27f-421a-a286-e544b3aaafec",
+        "date": "2023-07-11"
+    },
+    "image395.jpg": {
+        "filename": "image395.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage395.jpg?alt=media&token=e124c34b-b72e-4697-aed6-280802f820b1",
+        "thumbnail": "image395_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage395_thumbnail.jpg?alt=media&token=097043be-595b-4577-b4b5-bfc0c31060fd",
+        "date": "2023-07-11"
+    },
+    "image434.jpg": {
+        "filename": "image434.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage434.jpg?alt=media&token=e748b1e8-5913-47cb-987c-3a7dda8bcb0e",
+        "thumbnail": "image434_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage434_thumbnail.jpg?alt=media&token=ba990503-97c0-4f10-9673-65d4771484a0",
+        "date": "2023-07-11"
+    },
+    "image209.jpg": {
+        "filename": "image209.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage209.jpg?alt=media&token=c6d396c5-dda3-419f-a8df-d70ec4728918",
+        "thumbnail": "image209_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage209_thumbnail.jpg?alt=media&token=64c9eb4a-181e-47f6-977a-aaaed54dc040",
+        "date": "2023-07-11"
+    },
+    "image313.jpg": {
+        "filename": "image313.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage313.jpg?alt=media&token=57cc48f5-4856-4ea1-9d5a-0f86e7f0f075",
+        "thumbnail": "image313_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage313_thumbnail.jpg?alt=media&token=11294182-47a8-4b95-8a40-23a7186c04e3",
+        "date": "2023-07-11"
+    },
+    "image433.jpg": {
+        "filename": "image433.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage433.jpg?alt=media&token=f80b2e35-2e42-42b6-8ca9-731e76624993",
+        "thumbnail": "image433_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage433_thumbnail.jpg?alt=media&token=eff1592c-a63f-4998-ad56-8985be67da1f",
+        "date": "2023-07-11"
+    },
+    "image394.jpg": {
+        "filename": "image394.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage394.jpg?alt=media&token=36c53782-df92-43a2-b08a-9fd24b01b8d8",
+        "thumbnail": "image394_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage394_thumbnail.jpg?alt=media&token=96ae401e-ed2b-4b83-829d-bc46693d48d0",
+        "date": "2023-07-11"
+    },
+    "image471.jpg": {
+        "filename": "image471.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage471.jpg?alt=media&token=5a6be7b5-97b8-41f6-9ff6-3745b95f2a45",
+        "thumbnail": "image471_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage471_thumbnail.jpg?alt=media&token=3b8a771d-8257-4b4b-8282-f1b598ec2336",
+        "date": "2023-07-11"
+    },
+    "image356.jpg": {
+        "filename": "image356.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage356.jpg?alt=media&token=1718ede3-03ec-4b83-bcf1-9b8759ab8b77",
+        "thumbnail": "image356_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage356_thumbnail.jpg?alt=media&token=ee2ae4f1-e5db-4efa-a497-83f7685588a1",
+        "date": "2023-07-11"
+    },
+    "image068.jpg": {
+        "filename": "image068.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage068.jpg?alt=media&token=2c9153c6-b1d8-46fc-a4c4-35b859beec06",
+        "thumbnail": "image068_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage068_thumbnail.jpg?alt=media&token=f9c797fe-65ad-41ef-8f06-bcf70e746b26",
+        "date": "2023-07-11"
+    },
+    "image208.jpg": {
+        "filename": "image208.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage208.jpg?alt=media&token=418f3e37-fd06-4253-86ea-bdb2f922496c",
+        "thumbnail": "image208_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage208_thumbnail.jpg?alt=media&token=ec68275e-4e29-4269-adab-9aabcb4d8775",
+        "date": "2023-07-11"
+    },
+    "image518.jpg": {
+        "filename": "image518.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage518.jpg?alt=media&token=c3828b07-6f15-4e89-aa73-0a201237ba51",
+        "thumbnail": "image518_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage518_thumbnail.jpg?alt=media&token=24aba3f9-a67b-40c6-b7ac-d428eb27d84f",
+        "date": "2023-07-11"
+    },
+    "image393.jpg": {
+        "filename": "image393.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage393.jpg?alt=media&token=87b9c0d4-ee90-400b-ad70-9c55faeee1d5",
+        "thumbnail": "image393_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage393_thumbnail.jpg?alt=media&token=20f783d3-5c85-43d1-a5df-df1e73a3c531",
+        "date": "2023-07-11"
+    },
+    "image470.jpg": {
+        "filename": "image470.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage470.jpg?alt=media&token=4bfdae2d-84a2-4f6c-9745-d072dd12d86b",
+        "thumbnail": "image470_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage470_thumbnail.jpg?alt=media&token=f9e16650-8b74-4085-a6f5-36e2ce56100e",
+        "date": "2023-07-11"
+    },
+    "image312.jpg": {
+        "filename": "image312.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage312.jpg?alt=media&token=63798a97-ff7f-4841-a2d3-3cdd0383a860",
+        "thumbnail": "image312_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage312_thumbnail.jpg?alt=media&token=c52d96d7-1eb1-4423-b69b-bacd72174663",
+        "date": "2023-07-11"
+    },
+    "image354.jpg": {
+        "filename": "image354.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage354.jpg?alt=media&token=d42ae38b-7701-444d-a301-8aeb977c9d87",
+        "thumbnail": "image354_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage354_thumbnail.jpg?alt=media&token=5093c545-d66a-44be-afcf-a32ad0ffa816",
+        "date": "2023-07-11"
+    },
+    "image205.jpg": {
+        "filename": "image205.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage205.jpg?alt=media&token=fc3862c6-8f56-4c2a-aa31-8b0fdf7d8a76",
+        "thumbnail": "image205_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage205_thumbnail.jpg?alt=media&token=21c7840d-ab39-43cc-84e0-73b8de14c7f2",
+        "date": "2023-07-11"
+    },
+    "image432.jpg": {
+        "filename": "image432.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage432.jpg?alt=media&token=9e0e79cf-6628-4447-bb49-d23660edf776",
+        "thumbnail": "image432_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage432_thumbnail.jpg?alt=media&token=290d2b4d-5917-42ac-9ed0-a9fe312553eb",
+        "date": "2023-07-11"
+    },
+    "image067.jpg": {
+        "filename": "image067.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage067.jpg?alt=media&token=a07bf783-1d6f-4316-a424-372bd2d20663",
+        "thumbnail": "image067_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage067_thumbnail.jpg?alt=media&token=a51dc52c-7ab2-43a2-9256-6e88d72cadd5",
+        "date": "2023-07-11"
+    },
+    "image392.jpg": {
+        "filename": "image392.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage392.jpg?alt=media&token=145555f9-9d14-4a7c-b1ba-4cf56a9c8458",
+        "thumbnail": "image392_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage392_thumbnail.jpg?alt=media&token=25725fc9-c537-408c-b468-0f625b621210",
+        "date": "2023-07-11"
+    },
+    "image352.jpg": {
+        "filename": "image352.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage352.jpg?alt=media&token=eb2883a6-1de5-441f-b8c5-b04773732bf1",
+        "thumbnail": "image352_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage352_thumbnail.jpg?alt=media&token=6757c504-d3a0-4a2e-a0b2-0851798ec9fb",
+        "date": "2023-07-11"
+    },
+    "image516.jpg": {
+        "filename": "image516.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage516.jpg?alt=media&token=09a76740-0366-4882-af10-f0b4168e76f3",
+        "thumbnail": "image516_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage516_thumbnail.jpg?alt=media&token=240b4481-714c-4cc9-b4b6-f063539aae25",
+        "date": "2023-07-11"
+    },
+    "image204.jpg": {
+        "filename": "image204.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage204.jpg?alt=media&token=ec458000-4c56-4bb0-92fb-c8ab8a9b91d7",
+        "thumbnail": "image204_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage204_thumbnail.jpg?alt=media&token=bc0047b6-38b8-4b5d-8f25-7ae25816f6b7",
+        "date": "2023-07-11"
+    },
+    "image311.jpg": {
+        "filename": "image311.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage311.jpg?alt=media&token=e831400f-2c9c-4223-b639-690e85b86983",
+        "thumbnail": "image311_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage311_thumbnail.jpg?alt=media&token=58a61c3b-9a93-41cd-bdf3-f9640f2ecf2d",
+        "date": "2023-07-11"
+    },
+    "image469.jpg": {
+        "filename": "image469.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage469.jpg?alt=media&token=d2b6b6a4-cd09-4591-857e-4013a5764670",
+        "thumbnail": "image469_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage469_thumbnail.jpg?alt=media&token=a8f4b91c-fac1-41ef-9266-5c0518bd378a",
+        "date": "2023-07-11"
+    },
+    "image431.jpg": {
+        "filename": "image431.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage431.jpg?alt=media&token=ace3e1e2-53f2-429d-8a2a-a1e736dc87ac",
+        "thumbnail": "image431_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage431_thumbnail.jpg?alt=media&token=1dbe178b-9a7e-411f-a39e-bffd791f8435",
+        "date": "2023-07-11"
+    },
+    "image310.jpg": {
+        "filename": "image310.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage310.jpg?alt=media&token=fff63ebf-c9fd-4164-b1d8-b084ff42a186",
+        "thumbnail": "image310_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage310_thumbnail.jpg?alt=media&token=3114e626-4e22-41ec-9e02-221cb752a0b7",
+        "date": "2023-07-11"
+    },
+    "image468.jpg": {
+        "filename": "image468.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage468.jpg?alt=media&token=d26c2ce9-5803-42a1-a808-c1dc81ae9cf2",
+        "thumbnail": "image468_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage468_thumbnail.jpg?alt=media&token=dcc3c6d9-4874-49af-85a6-a2fd1540a2d2",
+        "date": "2023-07-11"
+    },
+    "image430.jpg": {
+        "filename": "image430.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage430.jpg?alt=media&token=aec12303-b9bd-4fe5-9ed7-6ad8c8978f76",
+        "thumbnail": "image430_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage430_thumbnail.jpg?alt=media&token=6cdd82bf-d055-4b06-984c-17ff12f57359",
+        "date": "2023-07-11"
+    },
+    "image066.jpg": {
+        "filename": "image066.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage066.jpg?alt=media&token=4bb05df9-a81d-4e1c-91f9-78d9562ddc4e",
+        "thumbnail": "image066_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage066_thumbnail.jpg?alt=media&token=f9730688-01cb-4138-b8eb-381bec0ce736",
+        "date": "2023-07-11"
+    },
+    "image515.jpg": {
+        "filename": "image515.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage515.jpg?alt=media&token=865ccd06-9fcc-4a20-9c71-698fc474b2e6",
+        "thumbnail": "image515_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage515_thumbnail.jpg?alt=media&token=77926487-a602-49a8-916d-8950bd577ebe",
+        "date": "2023-07-11"
+    },
+    "image351.jpg": {
+        "filename": "image351.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage351.jpg?alt=media&token=96929682-ae2c-4cde-82f6-26bddf18d50e",
+        "thumbnail": "image351_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage351_thumbnail.jpg?alt=media&token=f97da129-a5ad-4e6c-a9a0-a3ce594c02cc",
+        "date": "2023-07-11"
+    },
+    "image202.jpg": {
+        "filename": "image202.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage202.jpg?alt=media&token=6cd604ba-77d2-4d62-8996-ed3eca804c32",
+        "thumbnail": "image202_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage202_thumbnail.jpg?alt=media&token=82677ab0-9186-4762-b0de-3f449072cbfe",
+        "date": "2023-07-11"
+    },
+    "image391.jpg": {
+        "filename": "image391.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage391.jpg?alt=media&token=d076794f-bb86-4841-b345-7b64228eba59",
+        "thumbnail": "image391_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage391_thumbnail.jpg?alt=media&token=ae9c7046-fe31-4845-a169-4c9cdccc199b",
+        "date": "2023-07-11"
+    },
+    "image309.jpg": {
+        "filename": "image309.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage309.jpg?alt=media&token=57a7b2dc-d237-4a43-ad4e-a0a4efa693a1",
+        "thumbnail": "image309_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage309_thumbnail.jpg?alt=media&token=c5cbf678-a28a-46e4-bb90-d4136c79b96a",
+        "date": "2023-07-11"
+    },
+    "image467.jpg": {
+        "filename": "image467.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage467.jpg?alt=media&token=f92171f2-5396-4914-ab77-e95f554dffd4",
+        "thumbnail": "image467_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage467_thumbnail.jpg?alt=media&token=8539ed60-f1b7-42e4-97f6-ecb5ecb8d1e7",
+        "date": "2023-07-11"
+    },
+    "image350.jpg": {
+        "filename": "image350.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage350.jpg?alt=media&token=3c776a29-79c3-495b-9925-b2d5683dfad1",
+        "thumbnail": "image350_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage350_thumbnail.jpg?alt=media&token=ec517c46-bb17-405b-9736-7495bd20b9fa",
+        "date": "2023-07-11"
+    },
+    "image429.jpg": {
+        "filename": "image429.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage429.jpg?alt=media&token=03953bd5-79c2-43e3-a6a1-d9d4b414f335",
+        "thumbnail": "image429_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage429_thumbnail.jpg?alt=media&token=0294e7b0-a3fb-4efa-8374-8181c8fc1eb7",
+        "date": "2023-07-11"
+    },
+    "image065.jpg": {
+        "filename": "image065.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage065.jpg?alt=media&token=510149de-d08a-4d59-9d22-ffc456f9a6dc",
+        "thumbnail": "image065_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage065_thumbnail.jpg?alt=media&token=b6be3db9-84a1-470b-a31c-3237dcecda97",
+        "date": "2023-07-11"
+    },
+    "image201.jpg": {
+        "filename": "image201.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage201.jpg?alt=media&token=3422c0e5-5d2a-45c7-b80a-eaf356899b68",
+        "thumbnail": "image201_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage201_thumbnail.jpg?alt=media&token=09ec50f4-f9d2-49ea-b057-d5100041f5c2",
+        "date": "2023-07-11"
+    },
+    "image514.jpg": {
+        "filename": "image514.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage514.jpg?alt=media&token=fe17e674-21c7-4036-bdf2-a56ec438eeb2",
+        "thumbnail": "image514_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage514_thumbnail.jpg?alt=media&token=49494e4a-c2b0-43c6-8ef0-51d9aeead2be",
+        "date": "2023-07-11"
+    },
+    "image390.jpg": {
+        "filename": "image390.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage390.jpg?alt=media&token=f3914e5f-fbac-4ac1-be07-25b8fb3a7c06",
+        "thumbnail": "image390_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage390_thumbnail.jpg?alt=media&token=6514d523-7660-45ff-a798-469be197d1f4",
+        "date": "2023-07-11"
+    },
+    "image064.jpg": {
+        "filename": "image064.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage064.jpg?alt=media&token=bbae3e8e-c228-40de-95eb-dc83795acb93",
+        "thumbnail": "image064_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage064_thumbnail.jpg?alt=media&token=ff69a3af-0d1e-4044-ad23-f4d1e2f61653",
+        "date": "2023-07-11"
+    },
+    "image349.jpg": {
+        "filename": "image349.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage349.jpg?alt=media&token=85b15ec0-754f-4834-8f66-da7752c28726",
+        "thumbnail": "image349_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage349_thumbnail.jpg?alt=media&token=52b85f6f-7df4-4789-a93b-309166d99a04",
+        "date": "2023-07-11"
+    },
+    "image466.jpg": {
+        "filename": "image466.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage466.jpg?alt=media&token=91c937c1-e599-4abe-bcc7-c8a2c23ca826",
+        "thumbnail": "image466_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage466_thumbnail.jpg?alt=media&token=d54ed53a-2507-4cbf-8899-ab245af4f36a",
+        "date": "2023-07-11"
+    },
+    "image428.jpg": {
+        "filename": "image428.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage428.jpg?alt=media&token=df2f587f-c942-464e-9bfd-2876a0ba0f80",
+        "thumbnail": "image428_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage428_thumbnail.jpg?alt=media&token=6e03b1a5-1b37-438b-98db-b53da4e05889",
+        "date": "2023-07-11"
+    },
+    "image308.jpg": {
+        "filename": "image308.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage308.jpg?alt=media&token=c710829c-a91a-4526-bbc0-a01cbf4b6302",
+        "thumbnail": "image308_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage308_thumbnail.jpg?alt=media&token=1cf97b4a-5751-47a0-9834-b035d8eb8c6b",
+        "date": "2023-07-11"
+    },
+    "image063.jpg": {
+        "filename": "image063.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage063.jpg?alt=media&token=8c39fa95-618c-4e36-a812-b345418da76c",
+        "thumbnail": "image063_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage063_thumbnail.jpg?alt=media&token=bafe9c27-3970-4a1f-8a62-6d284d4dfac4",
+        "date": "2023-07-11"
+    },
+    "image200.jpg": {
+        "filename": "image200.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage200.jpg?alt=media&token=de0b0c81-7247-4da7-8604-f454de755d96",
+        "thumbnail": "image200_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage200_thumbnail.jpg?alt=media&token=90a4a88d-b800-44ea-9fa3-152dd2fd5b42",
+        "date": "2023-07-11"
+    },
+    "image389.jpg": {
+        "filename": "image389.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage389.jpg?alt=media&token=d35c7261-ebf1-4d60-9d0e-559cbeb83f55",
+        "thumbnail": "image389_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage389_thumbnail.jpg?alt=media&token=5a9d1e4f-1e88-4623-b0a3-fceabec87dbb",
+        "date": "2023-07-11"
+    },
+    "image348.jpg": {
+        "filename": "image348.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage348.jpg?alt=media&token=7ce6de7d-9502-43ec-93f8-ea311f4d3af3",
+        "thumbnail": "image348_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage348_thumbnail.jpg?alt=media&token=8095967b-96f3-412e-9789-c2483579bd2b",
+        "date": "2023-07-11"
+    },
+    "image307.jpg": {
+        "filename": "image307.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage307.jpg?alt=media&token=fe084f32-5219-40b3-85a6-c226ac01880f",
+        "thumbnail": "image307_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage307_thumbnail.jpg?alt=media&token=bb995431-8063-482a-9b3e-ebb83459e473",
+        "date": "2023-07-11"
+    },
+    "image388.jpg": {
+        "filename": "image388.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage388.jpg?alt=media&token=22823c13-95ed-4008-b3c4-db59903d0a2c",
+        "thumbnail": "image388_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage388_thumbnail.jpg?alt=media&token=bf05e298-94a3-4246-828f-43c2c8015386",
+        "date": "2023-07-11"
+    },
+    "image513.jpg": {
+        "filename": "image513.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage513.jpg?alt=media&token=b9322670-152e-4d67-aa06-9e3b520a82e4",
+        "thumbnail": "image513_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage513_thumbnail.jpg?alt=media&token=74e51d2d-d8cc-48e5-9ad5-8fbd91e9977f",
+        "date": "2023-07-11"
+    },
+    "image465.jpg": {
+        "filename": "image465.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage465.jpg?alt=media&token=ef4274c9-15d5-42e9-b5cb-fc490aeb6b09",
+        "thumbnail": "image465_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage465_thumbnail.jpg?alt=media&token=d379567a-22e5-4ca8-8e64-249d7eb197a8",
+        "date": "2023-07-11"
+    },
+    "image427.jpg": {
+        "filename": "image427.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage427.jpg?alt=media&token=f168f70d-6f57-4150-9ca1-8979f7cb912c",
+        "thumbnail": "image427_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage427_thumbnail.jpg?alt=media&token=53f6ceee-dea8-4168-a876-dbeb43df7137",
+        "date": "2023-07-11"
+    },
+    "image062.jpg": {
+        "filename": "image062.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage062.jpg?alt=media&token=c4685af8-3cf8-4aee-af57-52621a961836",
+        "thumbnail": "image062_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage062_thumbnail.jpg?alt=media&token=7aeb8c7f-652f-4221-bd0c-18ebbbbd7730",
+        "date": "2023-07-11"
+    },
+    "image123.jpg": {
+        "filename": "image123.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage123.jpg?alt=media&token=46900495-f208-403c-ad4e-aad5d269a96d",
+        "thumbnail": "image123_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage123_thumbnail.jpg?alt=media&token=347611e6-b1a1-4999-a1c6-acc994e965f3",
+        "date": "2023-07-11"
+    },
+    "image512.jpg": {
+        "filename": "image512.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage512.jpg?alt=media&token=d6dedb7d-d2a1-4f66-b24e-50c1ff080445",
+        "thumbnail": "image512_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage512_thumbnail.jpg?alt=media&token=01de3098-c6a6-4818-b9ed-5aed17f2d49a",
+        "date": "2023-07-11"
+    },
+    "image345.jpg": {
+        "filename": "image345.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage345.jpg?alt=media&token=186fb031-461f-4b77-92a8-9a56d965b982",
+        "thumbnail": "image345_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage345_thumbnail.jpg?alt=media&token=c9a09f9f-82db-41b8-8c6c-0664a93cd1d4",
+        "date": "2023-07-11"
+    },
+    "image387.jpg": {
+        "filename": "image387.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage387.jpg?alt=media&token=31996f9c-8265-4538-af79-72fb7c5f785d",
+        "thumbnail": "image387_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage387_thumbnail.jpg?alt=media&token=4160cc0b-8d20-4e0a-9702-92a087678558",
+        "date": "2023-07-11"
+    },
+    "image306.jpg": {
+        "filename": "image306.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage306.jpg?alt=media&token=e0629857-886a-4f6b-b86b-304484223c1d",
+        "thumbnail": "image306_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage306_thumbnail.jpg?alt=media&token=eb55fb49-f988-4474-8087-30741be4c3ed",
+        "date": "2023-07-11"
+    },
+    "image425.jpg": {
+        "filename": "image425.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage425.jpg?alt=media&token=db4387a2-4da0-42df-89a7-cf73f5398686",
+        "thumbnail": "image425_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage425_thumbnail.jpg?alt=media&token=7e73c93d-2367-4ac1-87b9-32350f57fa65",
+        "date": "2023-07-11"
+    },
+    "image464.jpg": {
+        "filename": "image464.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage464.jpg?alt=media&token=8f390a96-2966-4153-9d60-256787a569c7",
+        "thumbnail": "image464_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage464_thumbnail.jpg?alt=media&token=0b9f94c4-9b6e-457c-9805-a2c56610b59f",
+        "date": "2023-07-11"
+    },
+    "image121.jpg": {
+        "filename": "image121.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage121.jpg?alt=media&token=086b3181-577f-44ae-a1c2-fa7d729e18c8",
+        "thumbnail": "image121_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage121_thumbnail.jpg?alt=media&token=7335f864-0add-4c67-9d37-8f72b0700c22",
+        "date": "2023-07-11"
+    },
+    "image061.jpg": {
+        "filename": "image061.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage061.jpg?alt=media&token=1c1601d7-af60-4b0c-803f-590eaff1407a",
+        "thumbnail": "image061_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage061_thumbnail.jpg?alt=media&token=e5096d84-eee3-452a-91e2-82c5fa378a27",
+        "date": "2023-07-11"
+    },
+    "image424.jpg": {
+        "filename": "image424.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage424.jpg?alt=media&token=d8a09e9d-5d19-4d54-9958-de84c86e8ec7",
+        "thumbnail": "image424_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage424_thumbnail.jpg?alt=media&token=4ccde617-8b23-47e1-ae9c-4ff79bc93be0",
+        "date": "2023-07-11"
+    },
+    "image510.jpg": {
+        "filename": "image510.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage510.jpg?alt=media&token=7b03aab8-46d9-4126-9fc2-710005fb9fc2",
+        "thumbnail": "image510_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage510_thumbnail.jpg?alt=media&token=637ad1c1-2750-44f8-8dc8-05a2ea89f861",
+        "date": "2023-07-11"
+    },
+    "image305.jpg": {
+        "filename": "image305.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage305.jpg?alt=media&token=5ffb73e1-f523-446b-bc88-5830625a137c",
+        "thumbnail": "image305_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage305_thumbnail.jpg?alt=media&token=5407437d-4dc3-40f4-9c0d-ba2f58910ec6",
+        "date": "2023-07-11"
+    },
+    "image386.jpg": {
+        "filename": "image386.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage386.jpg?alt=media&token=304fd5a2-1d35-443a-9ff2-3f1b95e83449",
+        "thumbnail": "image386_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage386_thumbnail.jpg?alt=media&token=23189af7-a2ea-4731-bb12-6b6076147adc",
+        "date": "2023-07-11"
+    },
+    "image344.jpg": {
+        "filename": "image344.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage344.jpg?alt=media&token=f5349529-c3df-4d3a-a5d5-89947cae0580",
+        "thumbnail": "image344_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage344_thumbnail.jpg?alt=media&token=aa811aa9-f56d-4d29-9a5a-768a798a2480",
+        "date": "2023-07-11"
+    },
+    "image119.jpg": {
+        "filename": "image119.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage119.jpg?alt=media&token=a9da0c73-3e12-43da-93cd-7464365f5959",
+        "thumbnail": "image119_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage119_thumbnail.jpg?alt=media&token=da9e0b05-669f-490d-989a-aac706c46144",
+        "date": "2023-07-11"
+    },
+    "image463.jpg": {
+        "filename": "image463.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage463.jpg?alt=media&token=f687ef40-2a43-4001-bb6f-cd57f71a6147",
+        "thumbnail": "image463_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage463_thumbnail.jpg?alt=media&token=df84ab19-5d38-4f33-a590-70338ed22266",
+        "date": "2023-07-11"
+    },
+    "image060.jpg": {
+        "filename": "image060.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage060.jpg?alt=media&token=58361708-7ac4-49a8-bf1b-9106250b5005",
+        "thumbnail": "image060_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage060_thumbnail.jpg?alt=media&token=5cbb7606-9a6c-4274-bfd1-297079492ecd",
+        "date": "2023-07-11"
+    },
+    "image509.jpg": {
+        "filename": "image509.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage509.jpg?alt=media&token=06df62c2-e82a-4fc9-a59b-d798da225f8d",
+        "thumbnail": "image509_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage509_thumbnail.jpg?alt=media&token=3bbdfa5d-bd8c-4967-b6ef-6bd6fca31eba",
+        "date": "2023-07-11"
+    },
+    "image385.jpg": {
+        "filename": "image385.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage385.jpg?alt=media&token=c5dac08a-da6a-45ed-87e4-f9e19df75ecc",
+        "thumbnail": "image385_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage385_thumbnail.jpg?alt=media&token=119d5d3d-8ca2-4842-910f-e3403f9b7137",
+        "date": "2023-07-11"
+    },
+    "image304.jpg": {
+        "filename": "image304.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage304.jpg?alt=media&token=0e2e1f8a-6c44-420b-85b1-c35dcf202fac",
+        "thumbnail": "image304_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage304_thumbnail.jpg?alt=media&token=26c11f92-bcfd-4038-9c89-888db62c6d42",
+        "date": "2023-07-11"
+    },
+    "image059.jpg": {
+        "filename": "image059.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage059.jpg?alt=media&token=35325825-6066-4b26-9cd4-e0ba48256703",
+        "thumbnail": "image059_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage059_thumbnail.jpg?alt=media&token=08f0b587-4193-47f2-8ff0-d0dc41a14b16",
+        "date": "2023-07-11"
+    },
+    "image117.jpg": {
+        "filename": "image117.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage117.jpg?alt=media&token=5d8c6e09-0044-4bf2-99df-aaa168aacbaf",
+        "thumbnail": "image117_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage117_thumbnail.jpg?alt=media&token=e9f548d7-3019-4c00-a4c2-2e7ad7b0e08b",
+        "date": "2023-07-11"
+    },
+    "image343.jpg": {
+        "filename": "image343.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage343.jpg?alt=media&token=7dfb5c50-3ba2-42ba-8679-c7b0bb41ed09",
+        "thumbnail": "image343_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage343_thumbnail.jpg?alt=media&token=2f63c1b7-f50c-4505-be43-cdee50437eb4",
+        "date": "2023-07-11"
+    },
+    "image423.jpg": {
+        "filename": "image423.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage423.jpg?alt=media&token=e17acb24-bd2c-489a-88d8-de55a6063671",
+        "thumbnail": "image423_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage423_thumbnail.jpg?alt=media&token=10ada17a-cb69-44bf-ace9-35ac606fee34",
+        "date": "2023-07-11"
+    },
+    "image462.jpg": {
+        "filename": "image462.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage462.jpg?alt=media&token=417f0cbf-21a9-4f7a-a603-2c8ac7b9374b",
+        "thumbnail": "image462_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage462_thumbnail.jpg?alt=media&token=cdcc1348-388d-47e9-b16e-047b9af921f2",
+        "date": "2023-07-11"
+    },
+    "image058.jpg": {
+        "filename": "image058.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage058.jpg?alt=media&token=2259d82e-08d9-4865-bb3c-ba242e881217",
+        "thumbnail": "image058_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage058_thumbnail.jpg?alt=media&token=fbf64578-948f-4c38-a624-9cb635501e26",
+        "date": "2023-07-11"
+    },
+    "image057.jpg": {
+        "filename": "image057.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage057.jpg?alt=media&token=18222bb8-4eb4-42f7-9902-5839a089e261",
+        "thumbnail": "image057_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage057_thumbnail.jpg?alt=media&token=551f647d-80b6-4585-ad67-bda0050ff243",
+        "date": "2023-07-11"
+    },
+    "image039.jpg": {
+        "filename": "image039.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage039.jpg?alt=media&token=35067f82-e3b2-4c10-8225-18f60dd0dce5",
+        "thumbnail": "image039_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage039_thumbnail.jpg?alt=media&token=6dedc15d-4730-4d47-a361-9474af407699",
+        "date": "2023-07-11"
+    },
+    "image033.jpg": {
+        "filename": "image033.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage033.jpg?alt=media&token=65420570-b39f-4fd2-9f76-09823fd3d06d",
+        "thumbnail": "image033_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage033_thumbnail.jpg?alt=media&token=db758519-8851-4724-9a66-a508d7439800",
+        "date": "2023-07-11"
+    },
+    "image508.jpg": {
+        "filename": "image508.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage508.jpg?alt=media&token=7bacf996-2597-4a7c-a15f-ee745cbed1dd",
+        "thumbnail": "image508_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage508_thumbnail.jpg?alt=media&token=b030c26c-a121-4f94-83ec-2c25aafb29c3",
+        "date": "2023-07-11"
+    },
+    "image422.jpg": {
+        "filename": "image422.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage422.jpg?alt=media&token=c8ff00a3-b24f-4f48-b649-f114d8b05006",
+        "thumbnail": "image422_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage422_thumbnail.jpg?alt=media&token=a39f3da4-194c-45a9-b497-ef34dd78701d",
+        "date": "2023-07-11"
+    },
+    "image031.jpg": {
+        "filename": "image031.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage031.jpg?alt=media&token=f9d0e2fc-323e-45e1-82f3-a0560dae94e5",
+        "thumbnail": "image031_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage031_thumbnail.jpg?alt=media&token=61535f41-5df6-4f45-adf5-d0d11d6e8f96",
+        "date": "2023-07-11"
+    },
+    "image037.jpg": {
+        "filename": "image037.jpg",
+        "URL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage037.jpg?alt=media&token=07be7e86-7a45-4d4d-bcd8-9c0cb4cb97f8",
+        "thumbnail": "image037_thumbnail.jpg",
+        "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fimage037_thumbnail.jpg?alt=media&token=d981381a-7e8f-475b-ad25-126b082e1cd0",
+        "date": "2023-07-11"
+    }
+}

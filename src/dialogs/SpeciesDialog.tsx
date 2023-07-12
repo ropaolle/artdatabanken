@@ -162,7 +162,7 @@ export default function SpeciesDialog() {
             autoComplete="off"
             {...register('image', { onChange: handleImageChange })}
           />
-          <datalist id="images-data">{toDatalistOptions(images.map(({ filename }) => filename))}</datalist>
+          {images && <datalist id="images-data">{toDatalistOptions(images.map(({ filename }) => filename))}</datalist>}
         </label>
 
         <label>
