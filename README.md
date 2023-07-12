@@ -7,15 +7,16 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 - [ ] Firestore qouta hits the limit of 50k reads per day.
   - Locale storage, indexedDB
   - Store all species in one doc
-- [ ] Header on all printed pages
-- [ ] Sidnummer printed pages
 - PRODUCTION
   - [ ] Deploy (not sure to where/what) and delete unused code and console.log statements.
   - [ ] Protect files and db with Firebase rules
 - NICE TO HAVE
+  - [ ] CSS styling of the Datalists.
   - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
   - [ ] cache datalists
 - DONE
+  - [x] Header on all printed pages
+  - [x] Sidnummer printed pages
   - [x] Remove nested CSS, not supported
   - [x] CSS on the species view
   - [x] Re-import hane/hona to male/female

@@ -37,25 +37,18 @@
   #collection {
     padding: 0;
     margin: 0;
-    /* Magic invisible border. If this is removed the print won't fit on one page (one blank page is added). Not sure why.  */
+    /* Magic invisible border. If this is removed the print won't fit on 
+    one page (one blank page is added). Not sure why.  */
     border: 1px solid white;
     min-height: unset;
   }
 
-  #header {
-    position: fixed;
-    top: 0;
-  }
-
-  #grid {
-    margin-top: 60px;
-  }
-
-  #collection .collection-footer div:nth-child(1) {
+  #collection .collection-body {
     font-size: 14px;
+    flex: 1 1 58px;
   }
 
-  #collection .collection-footer div:nth-child(2) {
+  #collection .collection-footer {
     font-size: 11px;
   }
 }

@@ -6,6 +6,8 @@
   border: 1px solid #ccc;
   padding: 1rem;
   min-height: 1470px;
+  margin-bottom: 2rem;
+  page-break-after: always;
 }
 
 .nowrap {
@@ -16,7 +18,7 @@
   font-size: 18px;
   font-weight: 700;
   color: #777;
-  margin-top: 0px;
+  margin-top: 2px;
   margin-bottom: 18px;
 }
 
@@ -30,7 +32,7 @@
 .header-inverse {
   color: #eee;
   background-color: #212529;
-  padding: 5px;
+  padding: 3px 8px;
   -webkit-print-color-adjust: exact !important;
   print-color-adjust: exact !important;
 }
@@ -46,21 +48,19 @@
 .card {
   border: 1px solid #ccc;
   border-radius: 5px;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+.body {
+  padding: 8px;
+  font-size: 20px;
+  /* min-height: 58px; */
+  flex: 1 1 80px;
 }
 
 .footer {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-}
-
-.footer-body {
-  padding: 8px;
-  font-size: 20px;
-  min-height: 58px;
-}
-
-.footer-bottom {
   padding: 6px 8px;
   border-top: 1px solid rgba(0, 0, 0, 0.125);
   font-size: 15px;
