@@ -36,7 +36,13 @@ export default function Collections() {
     items && items.map((species, i) => <A4Page key={i} page={i} items={species} />);
 
   return (
-    <Page id="collections" title="Samlingar" headerButtonTitle="Skriv ut" onHeaderButtonClick={() => print()}>
+    <Page
+      id="collections"
+      title="Samlingar"
+      headerButtonTitle="Skriv ut"
+      onHeaderButtonClick={() => print()}
+      headerButtonDisabled={!family}
+    >
       <div id="filter" className={classes.filter}>
         <label htmlFor="family">
           Familj

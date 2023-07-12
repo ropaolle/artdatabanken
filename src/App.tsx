@@ -10,8 +10,8 @@ import { localStorageImagesOptions, localStorageSpeciesOptions } from './lib';
 
 function App() {
   const [page, setPage] = useState('');
-  const [images] = useLocalStorage<ImageInfo[]>('imageList', [], localStorageImagesOptions);
-  const [species] = useLocalStorage<SpeciesInfo[]>('speciesList', [], localStorageSpeciesOptions);
+  const [images] = useLocalStorage<ImageInfo[]>('images', [], localStorageImagesOptions);
+  const [species] = useLocalStorage<SpeciesInfo[]>('species', [], localStorageSpeciesOptions);
 
   useEffectOnce(() => {
     const fetchData = async () => {
