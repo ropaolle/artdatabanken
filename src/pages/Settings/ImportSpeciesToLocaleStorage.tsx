@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { db, type SpeciesInfo } from '../../lib/firebase';
+import { useLocalStorage } from 'react-use';
+import { Timestamp } from 'firebase/firestore';
+import { type SpeciesInfo } from '../../lib/firebase';
 import { readUploadedFileAsText, ImportStates } from '.';
 
-const SPECIES_COLLECTION = 'species';
+export default function ImportSpeciesToLocaleStorage() {
+  const [, /* speciesList */ setSpeciesList /* , remove */] = useLocalStorage<SpeciesInfo[]>('speciesList', []);
 
-export default function ImportSpeciesToFirebase() {
   const [importingSpecies, setImportingSpecies] = useState<ImportStates>(ImportStates.IDLE);
   const [species, setSpecies] = useState<SpeciesInfo[]>();
   const [speciesMessage, setSpeciesMessage] = useState('');
@@ -22,8 +23,11 @@ export default function ImportSpeciesToFirebase() {
       const content = await readUploadedFileAsText(file);
       const records = content.split('\n').map((row: string) => row.split(';'));
 
+      // TODO: Use real id from Firebase,
+      let i = 0;
       for (const [kingdom, order, family, species, sex, speciesLatin, place, county, date, image] of records) {
         speciesCollection.push({
+          id: String(i),
           kingdom,
           order,
           family,
@@ -34,7 +38,9 @@ export default function ImportSpeciesToFirebase() {
           county,
           date,
           image: image.trim(),
+          createdAt: Timestamp.now(),
         });
+        i++;
       }
     } catch (error) {
       console.error(error);
@@ -48,13 +54,14 @@ export default function ImportSpeciesToFirebase() {
 
     setImportingSpecies(ImportStates.UPLOADING);
 
-    for await (const record of species) {
-      addDoc(collection(db, SPECIES_COLLECTION), { ...record, createdAt: serverTimestamp() });
+    const data: SpeciesInfo[] = [];
+    for (const record of species) {
+      data.push(record);
       setSpeciesMessage(`importing ${record.species}`);
     }
+    setSpeciesList(data);
 
     setSpeciesMessage(`Done! ${species.length} species imported.`);
-
     setImportingSpecies(ImportStates.DONE);
   };
 

@@ -30,7 +30,7 @@ export default function ImageView() {
     setItems(
       images.map((image) => ({
         ...image,
-        date: timestampToString(image.updatedAt) || timestampToString(image.createdAt),
+        date: timestampToString(image.updatedAt || image.createdAt),
       }))
     );
   }, [images]);
@@ -55,9 +55,10 @@ export default function ImageView() {
         <figure className={classes.imageCell} key={filename} onClick={() => showDeleteImageDialog(true, image)}>
           <img className={classes.image} src={thumbnailURL} alt={filename} /* loading="lazy" */ />
           <div className={classes.info}>
-            {filename}
-            <br />
-            {timestampToString(updatedAt) || timestampToString(createdAt)}
+            <div>{filename}</div>
+            <div>
+              <small>({timestampToString(updatedAt || createdAt)})</small>
+            </div>
           </div>
         </figure>
       );

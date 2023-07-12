@@ -35,9 +35,5 @@ export default function Pager({ active, count, pageSize, onClick }: Props) {
       </a>
     ));
 
-  return (
-    <div className={classes.pager}>
-      <Pager />
-    </div>
-  );
+  return <div className={classes.pager}>{pageCount > 1 && <Pager />}</div>;
 }

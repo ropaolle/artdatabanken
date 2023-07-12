@@ -38,12 +38,12 @@ export default function Collections() {
       <div key={id} className={classes.card}>
         <img src={getImage(image)} alt={image} />
         <div className={`collection-footer ${classes.footer}`}>
-          <div className={classes.body}>
+          <div className={classes.footerBody}>
             <b>{species}</b>
             {speciesLatin && <> ({speciesLatin})</>}
           </div>
 
-          <div className={classes.bottom}>
+          <div className={classes.footerBottom}>
             <span>
               {place} ({countiesMap.get(county).replace('s län', '').replace(' län', '')})
             </span>
@@ -69,9 +69,9 @@ export default function Collections() {
       {items && items.length > 0 && (
         <div className={classes.collection} id="collection">
           <div className={classes.header} id="header">
-            Klass: <span className={css('option', 'inverse')}>{items[0].kingdom}</span>
-            Ordning: <span className={classes.option}>{items[0].order}</span>
-            Familj: <span className={classes.option}>{items[0].family}</span>
+            Klass: <span className={css('headerOption', 'headerInverse')}>{items[0].kingdom}</span>
+            Ordning: <span className={classes.headerOption}>{items[0].order}</span>
+            Familj: <span className={classes.headerOption}>{items[0].family}</span>
           </div>
           <div className={classes.grid} id="grid">
             <Cards />

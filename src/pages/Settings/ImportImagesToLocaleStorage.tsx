@@ -1,11 +1,11 @@
 import { useState } from 'react';
+import { useLocalStorage } from 'react-use';
 import { Timestamp } from 'firebase/firestore';
 import { getURL, type ImageInfo } from '../../lib/firebase';
-import { useLocalStorage } from 'usehooks-ts';
 import { readUploadedFileAsText, ImportStates } from '.';
 
 export default function ImportImagesToLocaleStorage() {
-  const [imageList, setImageList] = useLocalStorage<ImageInfo[]>('imageList', []);
+  const [, /* imageList  */ setImageList /* , remove */] = useLocalStorage<ImageInfo[]>('imageList', []);
 
   const [importingLocaleStorage, setImportingLocaleStorage] = useState<ImportStates>(ImportStates.IDLE);
   const [localeStorage, setLocaleStorage] = useState<string[]>();
@@ -44,7 +44,7 @@ export default function ImportImagesToLocaleStorage() {
   return (
     <div>
       <label htmlFor="importlocalstorage">
-        <b>Locale storage</b>
+        <b>Bilder</b>
         <input
           id="importlocalstorage"
           type="file"
@@ -54,7 +54,7 @@ export default function ImportImagesToLocaleStorage() {
         {localeStorageMessage && <small>{localeStorageMessage}</small>}
       </label>
       <button onClick={handleLocaleStorageImport} aria-busy={importingLocaleStorage === ImportStates.UPLOADING}>
-        Importera till 'locale storage'
+        Importera bilder'
       </button>
     </div>
   );

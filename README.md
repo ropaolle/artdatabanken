@@ -9,15 +9,15 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
   - Store all species in one doc
 - [ ] Header on all printed pages
 - [ ] Sidnummer printed pages
-- [ ] CSS on the species view
-- [ ] Delete unused code and console.log statements
 - PRODUCTION
-  - [ ] Deploy, not sure to what.
+  - [ ] Deploy (not sure to where/what) and delete unused code and console.log statements.
   - [ ] Protect files and db with Firebase rules
 - NICE TO HAVE
   - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
   - [ ] cache datalists
 - DONE
+  - [x] Remove nested CSS, not supported
+  - [x] CSS on the species view
   - [x] Re-import hane/hona to male/female
   - [x] Sex and place to string in the species view
   - [x] Import all images and species.
@@ -78,8 +78,8 @@ firebase deploy
 
   - [Async in UseEffect](https://devtrium.com/posts/async-functions-useeffect)
   - Hooks
-    - [Usehooks TS](https://usehooks-ts.com/)
     - [React Use](https://github.com/streamich/react-use)
+    - [Usehooks TS](https://usehooks-ts.com/)
     - [useEffect on objects](https://dev.to/hey_yogini/useeffect-dependency-array-and-object-comparison-45el)
   - Globale state
     - [Understanding and Properly Using React Global State](https://clerk.com/blog/understanding-and-properly-using-react-global-state?utm_source=www.google.com&utm_medium=referral&utm_campaign=none)

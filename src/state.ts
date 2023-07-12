@@ -33,7 +33,7 @@ type GlobalState = {
 };
 
 type Action =
-  | { type: 'initStore'; images: ImageInfo[]; species: SpeciesInfo[]; dataLists: DataLists }
+  | { type: 'initStore'; images: ImageInfo[]; species: SpeciesInfo[] /* ; dataLists: DataLists */ }
   | { type: 'addImage'; image: ImageInfo }
   | { type: 'deleteImage'; filename: string }
   | { type: 'addSpecies'; species: SpeciesInfo }
@@ -43,11 +43,11 @@ type Action =
   | { type: 'showDeleteImageDialog'; state: boolean; values?: ImageInfo }
   | { type: 'showUploadImageDialog'; state: boolean };
 
-export const initStore = (images: ImageInfo[], species: SpeciesInfo[], dataLists: DataLists) =>
+export const initStore = (images: ImageInfo[], species: SpeciesInfo[] /* , dataLists: DataLists */) =>
   dispatch({
     images,
     species,
-    dataLists,
+    // dataLists,
     type: 'initStore',
   });
 
@@ -101,6 +101,18 @@ export const showUploadImageDialog = (state: boolean) =>
     type: 'showUploadImageDialog',
   });
 
+const getDataLists = (lists: DataLists, species: SpeciesInfo[]) => {
+  for (const { kingdom, order, family, species: speciesName, place } of species) {
+    lists.kingdoms.add(kingdom);
+    lists.orders.add(order);
+    lists.families.add(family);
+    lists.species.add(speciesName);
+    lists.places.add(place);
+  }
+
+  return lists;
+};
+
 export const { dispatch, useStoreState } = createStore(
   (state: GlobalState, action: Action) => {
     switch (action.type) {
@@ -109,7 +121,7 @@ export const { dispatch, useStoreState } = createStore(
           ...state,
           images: action.images,
           species: action.species,
-          dataLists: action.dataLists,
+          dataLists: getDataLists(state.dataLists, action.species),
         };
 
       case 'addImage':
