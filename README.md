@@ -5,11 +5,11 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 ## TODO
 
 - [ ] Firestore qouta hits the limit of 50k reads per day.
-  - Locale storage, indexedDB
-  - Store all species in one doc
+  - App init: load from local storage + d/l all new/changed items from Firebase.
+  - Use local state like `Zustand` that is synced to locale storage.
 - PRODUCTION
   - [ ] Deploy (not sure to where/what) and delete unused code and console.log statements.
-  - [ ] Protect files and db with Firebase rules
+  - [ ] Protect files and db with [Firebase rules](https://firebase.google.com/docs/firestore/security/get-started).
 - NICE TO HAVE
   - [ ] CSS styling of the Datalists.
   - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
@@ -83,6 +83,7 @@ firebase deploy
     - [Usehooks TS](https://usehooks-ts.com/)
     - [useEffect on objects](https://dev.to/hey_yogini/useeffect-dependency-array-and-object-comparison-45el)
   - Globale state
+    - [Zustand](https://github.com/pmndrs/zustand)
     - [Understanding and Properly Using React Global State](https://clerk.com/blog/understanding-and-properly-using-react-global-state?utm_source=www.google.com&utm_medium=referral&utm_campaign=none)
     - [A guide to choosing the right React state management solution](https://blog.logrocket.com/guide-choosing-right-react-state-management-solution/)
       - [Recoil](https://recoiljs.org/)
