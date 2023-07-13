@@ -1,12 +1,12 @@
 import classes from './SpeciesView.module.css';
 import { useState, useEffect } from 'react';
-import { useStoreState } from '../../state';
 import Page from './../Page';
 import { TableHeader, type HeaderCellOnClick, Pager } from '../../components';
 import Filters from './Filters';
 import { type SpeciesInfo } from '../../lib/firebase';
 import { sexesMap, countiesMap } from '../../lib/options';
 import { SpeciesDialog } from '../../dialogs';
+import { useAppStore } from '../../lib/zustand.ts';
 
 const pageSize = 50;
 
@@ -31,8 +31,9 @@ const headerColumns = [
 ];
 
 export default function SpeciesView() {
-  const images = useStoreState('images');
-  const species = useStoreState('species');
+  const { images, species } = useAppStore();
+
+
   const [dialog, showDialog] = useState(false);
   const [dialogValues, setDialogValues] = useState<SpeciesInfo>();
   const [thumbnails, setThumbnails] = useState<Map<string, string>>(new Map());

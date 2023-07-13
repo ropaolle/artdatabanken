@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useStoreState } from '../../state';
 import { createSortFunc } from '../../lib';
 import { toDatalistOptions } from '../../lib/options';
 import { SpeciesInfo } from '../../lib/firebase';
+import { useAppStore } from '../../lib/zustand.ts';
 
 type Props = {
   setItems: React.Dispatch<SpeciesInfo[]>;
@@ -10,9 +10,8 @@ type Props = {
 };
 
 export default function Filters({ sort, setItems }: Props) {
-  const images = useStoreState('images');
-  const species = useStoreState('species');
-  const dataLists = useStoreState('dataLists');
+  const { images, species } = useAppStore();
+
   const [speciesOptions, setSpeciesOptions] = useState<string[]>([]);
   const [filters, setFilters] = useState({ all: '', species: '', kingdom: '' });
 
@@ -79,7 +78,7 @@ export default function Filters({ sort, setItems }: Props) {
             size={2}
             onChange={(e) => handleFilterChange(e.target.id, e.target.value)}
           />
-          <datalist id="kingdoms-data">{toDatalistOptions(dataLists.kingdoms)}</datalist>
+          <datalist id="kingdoms-data">{toDatalistOptions(species.map(({ kingdom }) => kingdom))}</datalist>
         </label>
 
         <label htmlFor="species">

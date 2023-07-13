@@ -1,11 +1,11 @@
 import classes from './SpeciesDialog.module.css';
 import { useState, useEffect } from 'react';
-import { useStoreState, deleteSpecies, addSpecies, updateSpecies } from '../state';
 import { useForm, SubmitHandler, type FieldError } from 'react-hook-form';
 import { doc, updateDoc, addDoc, serverTimestamp, collection, deleteDoc } from 'firebase/firestore';
 import { db, type SpeciesInfo } from '../lib/firebase.ts';
 import { toDatalistOptions, toOptions, counties, sexes } from '../lib/options';
 import Dialog from './Dialog';
+import { useAppStore } from '../lib/zustand.ts';
 
 type Inputs = Omit<SpeciesInfo, 'updatedAt' | 'createdAt'>;
 
@@ -29,8 +29,8 @@ type Props = {
 };
 
 export default function SpeciesDialog({ open, show, values }: Props) {
-  const images = useStoreState('images');
-  const dataLists = useStoreState('dataLists');
+  const { addSpecies, updateSpecies, deleteSpecies, images, species } = useAppStore();
+
   const [previewImage, setPreviewImage] = useState<string>();
   const {
     register,
@@ -123,15 +123,15 @@ export default function SpeciesDialog({ open, show, values }: Props) {
         <HorizontalInput
           id="species"
           label="Art*"
-          dataList={dataLists.species}
+          dataList={species.map(({ species }) => species)}
           error={errors.species}
           required="This is required."
         />
-        <HorizontalInput id="kingdom" label="Klass" dataList={dataLists.kingdoms} />
-        <HorizontalInput id="order" label="Ordning" dataList={dataLists.orders} />
-        <HorizontalInput id="family" label="Familj" dataList={dataLists.families} />
+        <HorizontalInput id="kingdom" label="Klass" dataList={species.map(({ kingdom }) => kingdom)} />
+        <HorizontalInput id="order" label="Ordning" dataList={species.map(({ order }) => order)} />
+        <HorizontalInput id="family" label="Familj" dataList={species.map(({ family }) => family)} />
         <HorizontalInput id="speciesLatin" label="Latinskt namn" />
-        <HorizontalInput id="place" label="Lokal" dataList={dataLists.places} />
+        <HorizontalInput id="place" label="Lokal" dataList={species.map(({ place }) => place)} />
       </div>
 
       <div className="grid">

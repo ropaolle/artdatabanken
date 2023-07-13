@@ -5,7 +5,7 @@ import { getURL, type ImageInfo } from '../../lib/firebase';
 import { readUploadedFileAsText, ImportStates } from '.';
 
 export default function ImportImagesToLocaleStorage() {
-  const [, /* imageList  */ setImageList /* , remove */] = useLocalStorage<ImageInfo[]>('imageList', []);
+  const [, /* imageList  */ setImageList /* , remove */] = useLocalStorage<ImageInfo[]>('images', []);
 
   const [importingLocaleStorage, setImportingLocaleStorage] = useState<ImportStates>(ImportStates.IDLE);
   const [localeStorage, setLocaleStorage] = useState<string[]>();

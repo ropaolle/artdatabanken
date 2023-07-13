@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { deleteImage } from '../state';
 import { doc, deleteDoc } from 'firebase/firestore';
 import { db, deleteFile, type ImageInfo } from '../lib/firebase';
 import Dialog from './Dialog';
 import { timestampToString } from '../lib/';
+import { useAppStore } from '../lib/zustand.ts';
 
 type Props = {
   open: boolean;
@@ -12,6 +12,7 @@ type Props = {
 };
 
 export default function DeleteImageDialog({ open, show, values }: Props) {
+  const { deleteImage } = useAppStore();
   const [deletingImage, setDeletingImage] = useState(false);
 
   if (!values) return;

@@ -1,12 +1,12 @@
 import classes from './ImageView.module.css';
 import { useState, useEffect } from 'react';
-import { useStoreState } from '../state';
 import { type ImageInfo } from '../lib/firebase';
 import Page from './Page';
 import { createSortFunc, timestampToString } from '../lib';
 import { toOptions } from '../lib/options';
 import { Pager } from '../components';
 import { UploadImageDialog, DeleteImageDialog } from '../dialogs';
+import { useAppStore } from '../lib/zustand.ts';
 
 const sortStates = [
   { label: 'Filnamn (stigande)', value: 'filename-ascending' },
@@ -18,7 +18,8 @@ const sortStates = [
 const pageSize = 50;
 
 export default function ImageView() {
-  const images = useStoreState('images');
+  const { images } = useAppStore();
+
   const [uploadDialog, showUploadDialog] = useState(false);
   const [deleteDialog, showDeleteDialog] = useState(false);
   const [dialogValues, setDialogValues] = useState<ImageInfo>();

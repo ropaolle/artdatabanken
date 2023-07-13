@@ -1,6 +1,5 @@
 import 'react-image-crop/dist/ReactCrop.css';
 import { useState, useEffect, useRef } from 'react';
-import { addImage } from '../state';
 import { db, checkIfImageExistsInDB, uploadFile, normalizeFilename } from '../lib/firebase.ts';
 import { doc, setDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -8,6 +7,7 @@ import ReactCrop, { type PixelCrop } from 'react-image-crop';
 import { useDebounceEffect, drawImageOnCanvas } from '../lib';
 import { Icon } from '@iconify/react';
 import Dialog, { DialogInfo } from './Dialog';
+import { useAppStore } from '../lib/zustand.ts';
 
 type Inputs = {
   imageFile: FileList;
@@ -27,6 +27,7 @@ type Props = {
 };
 
 export default function UploadImageDialog({ open, show }: Props) {
+  const { addImage } = useAppStore();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imageExists, setImageExists] = useState<boolean>(false);
   const [crop, setCrop] = useState<PixelCrop>(defaultCropArea);

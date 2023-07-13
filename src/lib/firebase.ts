@@ -159,7 +159,7 @@ export type ImageInfo = {
 };
 
 export type SpeciesInfo = {
-  id?: string;
+  id: string;
   kingdom: string;
   order: string;
   family: string;

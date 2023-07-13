@@ -5,7 +5,7 @@ import { type SpeciesInfo } from '../../lib/firebase';
 import { readUploadedFileAsText, ImportStates } from '.';
 
 export default function ImportSpeciesToLocaleStorage() {
-  const [, /* speciesList */ setSpeciesList /* , remove */] = useLocalStorage<SpeciesInfo[]>('speciesList', []);
+  const [, /* speciesList */ setSpeciesList /* , remove */] = useLocalStorage<SpeciesInfo[]>('species', []);
 
   const [importingSpecies, setImportingSpecies] = useState<ImportStates>(ImportStates.IDLE);
   const [species, setSpecies] = useState<SpeciesInfo[]>();
