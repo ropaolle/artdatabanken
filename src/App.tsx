@@ -1,10 +1,9 @@
 import './App.css';
-import { useState /* , useEffect */ } from 'react';
+import { useState } from 'react';
 import { useLocalStorage, useEffectOnce } from 'react-use';
 import { initStore } from './state';
 import { Home, ImageView, SpeciesView, Collections, Settings } from './pages';
 import { Navigation, Footer } from './components';
-import { DeleteImageDialog, UploadImageDialog, SpeciesDialog } from './dialogs';
 import { /* firestoreFetch, */ type SpeciesInfo, type ImageInfo } from './lib/firebase';
 import { localStorageImagesOptions, localStorageSpeciesOptions } from './lib';
 
@@ -28,10 +27,6 @@ function App() {
   return (
     <>
       <Navigation setPage={setPage} />
-
-      <SpeciesDialog />
-      <DeleteImageDialog />
-      <UploadImageDialog />
 
       {!page && <Home />}
       {page === 'species' && <SpeciesView />}

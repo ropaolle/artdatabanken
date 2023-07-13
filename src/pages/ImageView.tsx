@@ -6,7 +6,7 @@ import Page from './Page';
 import { createSortFunc, timestampToString } from '../lib';
 import { toOptions } from '../lib/options';
 import { Pager } from '../components';
-import { useAppStore } from '../lib/zustand';
+import { UploadImageDialog, DeleteImageDialog } from '../dialogs';
 
 const sortStates = [
   { label: 'Filnamn (stigande)', value: 'filename-ascending' },
@@ -19,11 +19,9 @@ const pageSize = 50;
 
 export default function ImageView() {
   const images = useStoreState('images');
-  const {
-    deleteImageDialog: { show: showDeleteImageDialog },
-    uploadImageDialog: { show: showUploadImageDialog },
-  } = useAppStore();
-
+  const [uploadDialog, showUploadDialog] = useState(false);
+  const [deleteDialog, showDeleteDialog] = useState(false);
+  const [dialogValues, setDialogValues] = useState<ImageInfo>();
   const [items, setItems] = useState<ImageInfo[]>();
   const [filter, setFilter] = useState('');
   const [sort, setSort] = useState({ column: 'filename', ascending: false });
@@ -52,12 +50,17 @@ export default function ImageView() {
 
   if (!images) return null;
 
+  const handleImageClick = (image: ImageInfo) => {
+    setDialogValues(image);
+    showDeleteDialog(true);
+  };
+
   const imageList =
     list &&
     list.map((image) => {
       const { filename, /* thumbnail, URL, */ thumbnailURL, updatedAt, createdAt } = image;
       return (
-        <figure className={classes.imageCell} key={filename} onClick={() => showDeleteImageDialog(true, image)}>
+        <figure className={classes.imageCell} key={filename} onClick={() => handleImageClick(image)}>
           <img className={classes.image} src={thumbnailURL} alt={filename} /* loading="lazy" */ />
           <div className={classes.info}>
             <div>{filename}</div>
@@ -79,7 +82,10 @@ export default function ImageView() {
   };
 
   return (
-    <Page title="Bilder" headerButtonTitle="Ladda upp bild" onHeaderButtonClick={() => showUploadImageDialog(true)}>
+    <Page title="Bilder" headerButtonTitle="Ladda upp bild" onHeaderButtonClick={() => showUploadDialog(true)}>
+      <UploadImageDialog open={uploadDialog} show={showUploadDialog} />
+      <DeleteImageDialog open={deleteDialog} show={showDeleteDialog} values={dialogValues} />
+
       <form>
         <div className="grid">
           <label htmlFor="all">

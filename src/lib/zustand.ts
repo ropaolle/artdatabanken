@@ -1,8 +1,8 @@
-import { create } from 'zustand';
-import { devtools /* , persist */ } from 'zustand/middleware';
-import { type SpeciesInfo, type ImageInfo } from './firebase';
+// import { create } from 'zustand';
+// import { devtools /* , persist */ } from 'zustand/middleware';
+// import { type SpeciesInfo, type ImageInfo } from './firebase';
 
-type DialogState<T = void> = { open: boolean; values?: T };
+/* type DialogState<T = void> = { open: boolean; values?: T };
 type ShowDialog<T = void> = (open: boolean, values?: T) => void;
 
 type DialogType<T = void> = {
@@ -45,3 +45,4 @@ export const useAppStore = create<AppState>()(
     // )
   )
 );
+ */

@@ -6,7 +6,6 @@ import { doc, updateDoc, addDoc, serverTimestamp, collection, deleteDoc } from '
 import { db, type SpeciesInfo } from '../lib/firebase.ts';
 import { toDatalistOptions, toOptions, counties, sexes } from '../lib/options';
 import Dialog from './Dialog';
-import { useAppStore } from '../lib/zustand';
 
 type Inputs = Omit<SpeciesInfo, 'updatedAt' | 'createdAt'>;
 
@@ -23,14 +22,15 @@ const defaults = {
   image: '',
 };
 
-export default function SpeciesDialog() {
+type Props = {
+  open: boolean;
+  show: React.Dispatch<boolean>;
+  values: SpeciesInfo | undefined;
+};
+
+export default function SpeciesDialog({ open, show, values }: Props) {
   const images = useStoreState('images');
   const dataLists = useStoreState('dataLists');
-  const {
-    state: { open, values },
-    show,
-  } = useAppStore((state) => state.speciesDialog);
-
   const [previewImage, setPreviewImage] = useState<string>();
   const {
     register,
@@ -47,14 +47,14 @@ export default function SpeciesDialog() {
   useEffect(() => {
     reset(values || defaults);
     loadPreview(values?.image);
-  }, [values]);
+  }, [values, reset]);
 
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset(defaults);
       show(false);
     }
-  }, [isSubmitSuccessful, reset]);
+  }, [isSubmitSuccessful, reset, show]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
@@ -89,7 +89,10 @@ export default function SpeciesDialog() {
     }
   };
 
-  const hide = () => show(false);
+  const hide = () => {
+    reset(defaults);
+    show(false);
+  };
 
   type HorizontalInputType = {
     id: string;

@@ -1,12 +1,11 @@
 import logo from '../assets/logo.svg';
-import { Link /* , Dialogs */ } from '.';
+import { Link } from '.';
 
 type Props = {
-  // show?: (dialog: number, show?: boolean) => void;
   setPage: (page: React.SetStateAction<string>) => void;
 };
 
-export default function Navigation({ /* show,  */ setPage }: Props) {
+export default function Navigation({ setPage }: Props) {
   return (
     <header className="container">
       <nav>
@@ -30,9 +29,6 @@ export default function Navigation({ /* show,  */ setPage }: Props) {
           <li>
             <Link onClick={() => setPage('settings')}>Inställningar</Link>
           </li>
-          {/* <li>
-            <Link onClick={() => show(Dialogs.ADD_SPECIES_DIALOG)}>Ny Art</Link>
-          </li> */}
         </ul>
       </nav>
     </header>

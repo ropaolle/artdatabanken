@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { deleteImage } from '../state';
 import { doc, deleteDoc } from 'firebase/firestore';
-import { db, deleteFile } from '../lib/firebase';
+import { db, deleteFile, type ImageInfo } from '../lib/firebase';
 import Dialog from './Dialog';
 import { timestampToString } from '../lib/';
-import { useAppStore } from '../lib/zustand';
 
-export default function DeleteImageDialog() {
-  const {
-    state: { open, values },
-    show,
-  } = useAppStore((state) => state.deleteImageDialog);
+type Props = {
+  open: boolean;
+  show: React.Dispatch<boolean>;
+  values: ImageInfo | undefined;
+};
+
+export default function DeleteImageDialog({ open, show, values }: Props) {
   const [deletingImage, setDeletingImage] = useState(false);
 
   if (!values) return;

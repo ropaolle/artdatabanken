@@ -8,7 +8,6 @@ import ReactCrop, { type PixelCrop } from 'react-image-crop';
 import { useDebounceEffect, drawImageOnCanvas } from '../lib';
 import { Icon } from '@iconify/react';
 import Dialog, { DialogInfo } from './Dialog';
-import { useAppStore } from '../lib/zustand';
 
 type Inputs = {
   imageFile: FileList;
@@ -22,12 +21,12 @@ const defaultCropArea: PixelCrop = {
   y: 250,
 };
 
-export default function UploadImageDialog() {
-  const {
-    state: { open },
-    show,
-  } = useAppStore((state) => state.uploadImageDialog);
+type Props = {
+  open: boolean;
+  show: React.Dispatch<boolean>;
+};
 
+export default function UploadImageDialog({ open, show }: Props) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imageExists, setImageExists] = useState<boolean>(false);
   const [crop, setCrop] = useState<PixelCrop>(defaultCropArea);
