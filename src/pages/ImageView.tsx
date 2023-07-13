@@ -1,9 +1,10 @@
 import classes from './ImageView.module.css';
 import { useState, useEffect } from 'react';
+// import { collection, addDoc, setDoc, doc, serverTimestamp, Timestamp } from 'firebase/firestore';
 import { useStoreState, showDeleteImageDialog, showUploadImageDialog } from '../state';
 import { type ImageInfo } from '../lib/firebase';
 import Page from './Page';
-import { createSortFunc } from '../lib';
+import { createSortFunc, timestampToString } from '../lib';
 import { toOptions } from '../lib/options';
 import { Pager } from '../components';
 
@@ -29,7 +30,7 @@ export default function ImageView() {
     setItems(
       images.map((image) => ({
         ...image,
-        date: image.updatedAt?.toDate().toLocaleDateString() || image.createdAt?.toDate().toLocaleDateString(),
+        date: timestampToString(image.updatedAt || image.createdAt),
       }))
     );
   }, [images]);
@@ -54,9 +55,10 @@ export default function ImageView() {
         <figure className={classes.imageCell} key={filename} onClick={() => showDeleteImageDialog(true, image)}>
           <img className={classes.image} src={thumbnailURL} alt={filename} /* loading="lazy" */ />
           <div className={classes.info}>
-            {filename}
-            <br />
-            {updatedAt?.toDate().toLocaleDateString() || createdAt?.toDate().toLocaleDateString()}
+            <div>{filename}</div>
+            <div>
+              <small>({timestampToString(updatedAt || createdAt)})</small>
+            </div>
           </div>
         </figure>
       );

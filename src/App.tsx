@@ -1,41 +1,29 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState /* , useEffect */ } from 'react';
+import { useLocalStorage, useEffectOnce } from 'react-use';
 import { initStore } from './state';
 import { Home, ImageView, SpeciesView, Collections, Settings } from './pages';
 import { Navigation, Footer } from './components';
 import { DeleteImageDialog, UploadImageDialog, SpeciesDialog } from './dialogs';
-import { firestoreFetch, type SpeciesInfo, type ImageInfo } from './lib/firebase.ts';
+import { /* firestoreFetch, */ type SpeciesInfo, type ImageInfo } from './lib/firebase';
+import { localStorageImagesOptions, localStorageSpeciesOptions } from './lib';
 
 function App() {
-  const [page, setPage] = useState('species');
+  const [page, setPage] = useState('');
+  const [images] = useLocalStorage<ImageInfo[]>('images', [], localStorageImagesOptions);
+  const [species] = useLocalStorage<SpeciesInfo[]>('species', [], localStorageSpeciesOptions);
 
-  // TODO: Should fetch be moved outside react? Is that better for preformance?
-  useEffect(() => {
+  useEffectOnce(() => {
     const fetchData = async () => {
-      const images = await firestoreFetch<ImageInfo>('images');
-      const species = await firestoreFetch<SpeciesInfo>('species');
-
-      const dataLists = {
-        kingdoms: new Set<string>(),
-        orders: new Set<string>(),
-        families: new Set<string>(),
-        species: new Set<string>(),
-        places: new Set<string>(),
-      };
-
-      for (const { kingdom, order, family, species: speciesName, place } of species) {
-        dataLists.kingdoms.add(kingdom);
-        dataLists.orders.add(order);
-        dataLists.families.add(family);
-        dataLists.species.add(speciesName);
-        dataLists.places.add(place);
-      }
-
-      initStore(images, species, dataLists);
+      // TODO: Sync locale storage with  Firebase.
+      // const images = await firestoreFetch<ImageInfo>('images');
+      // const species = await firestoreFetch<SpeciesInfo>('species');
+      // initStore(images, species, dataLists);
+      initStore(images || [], species || []);
     };
 
     fetchData().catch(console.error);
-  }, []);
+  });
 
   return (
     <>

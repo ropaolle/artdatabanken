@@ -98,7 +98,7 @@ export default function SpeciesDialog() {
     <>
       <label htmlFor={id}>{label}</label>
       <div>
-        <input list={`${id}-data`} autoComplete="off" {...register(id as keyof Inputs, { required })} />
+        <input id={id} list={`${id}-data`} autoComplete="off" {...register(id as keyof Inputs, { required })} />
         {dataList && (
           <datalist id={`${id}-data`} className={classes.dataList}>
             {toDatalistOptions(dataList)}
@@ -135,28 +135,37 @@ export default function SpeciesDialog() {
       <div className="grid">
         <label htmlFor="county">
           Län
-          <select {...register('county')}>{toOptions(counties)}</select>
+          <select id="county" {...register('county')}>
+            {toOptions(counties)}
+          </select>
         </label>
 
         <label htmlFor="sex">
           Kön
-          <select {...register('sex')}>{toOptions(sexes)}</select>
+          <select id="sex" {...register('sex')}>
+            {toOptions(sexes)}
+          </select>
         </label>
 
         <label htmlFor="date">
           Datum
-          <input type="date" {...register('date')} />
+          <input id="sex" type="date" {...register('date')} />
         </label>
       </div>
 
       <div className="grid">
         <label htmlFor="date">
           Bild
-          <input list="images-data" autoComplete="off" {...register('image', { onChange: handleImageChange })} />
-          <datalist id="images-data">{toDatalistOptions(images.map(({ filename }) => filename))}</datalist>
+          <input
+            id="date"
+            list="images-data"
+            autoComplete="off"
+            {...register('image', { onChange: handleImageChange })}
+          />
+          {images && <datalist id="images-data">{toDatalistOptions(images.map(({ filename }) => filename))}</datalist>}
         </label>
 
-        <label htmlFor="date">
+        <label>
           Förhandsgranskning
           <div className={classes.thumbnailPreview}>{previewImage ? <img src={previewImage} /> : 'Bild saknas'}</div>
         </label>

@@ -12,7 +12,6 @@ export type DialogProps = {
   title?: string;
   open: boolean;
   hide: () => void;
-  // show?: ShowDialog;
   children?: React.ReactNode;
   onSubmit?: React.FormEventHandler<HTMLFormElement>;
 };

@@ -38,6 +38,21 @@ export const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
 export const db = getFirestore(app);
 
+export const getURL = async (filePath: string): Promise<string> => {
+  const storage = getStorage();
+  const storageRef = ref(storage, filePath);
+
+  return new Promise((resolve, reject) => {
+    getDownloadURL(storageRef)
+      .then((url) => {
+        resolve(url);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
 /* FILES */
 
 export const checkIfFileExists = async (filePath: string): Promise<string | boolean> => {

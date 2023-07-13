@@ -1,0 +1,72 @@
+.filter {
+  display: inline-block;
+}
+
+.collection {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  min-height: 1470px;
+  margin-bottom: 2rem;
+  page-break-after: always;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.header {
+  font-size: 18px;
+  font-weight: 700;
+  color: #777;
+  margin-top: 2px;
+  margin-bottom: 18px;
+}
+
+.header-option {
+  font-size: 22px;
+  color: #212529;
+  margin-right: 0.5rem;
+  font-style: italic;
+}
+
+.header-inverse {
+  color: #eee;
+  background-color: #212529;
+  padding: 3px 8px;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+.grid {
+  display: grid;
+  row-gap: 1.8rem;
+  column-gap: 1.8rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+.body {
+  padding: 8px;
+  font-size: 20px;
+  /* min-height: 58px; */
+  flex: 1 1 80px;
+}
+
+.footer {
+  padding: 6px 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #e7e7e7;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
