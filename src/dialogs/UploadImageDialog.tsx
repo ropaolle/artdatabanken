@@ -1,13 +1,14 @@
 import 'react-image-crop/dist/ReactCrop.css';
 import { useState, useEffect, useRef } from 'react';
-import { useStoreState, addImage, showUploadImageDialog } from '../state';
+import { addImage } from '../state';
 import { db, checkIfImageExistsInDB, uploadFile, normalizeFilename } from '../lib/firebase.ts';
 import { doc, setDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import ReactCrop, { type PixelCrop } from 'react-image-crop';
 import { useDebounceEffect, drawImageOnCanvas } from '../lib';
 import { Icon } from '@iconify/react';
-import Dialog, { DialogInfo, DialogTypes } from './Dialog';
+import Dialog, { DialogInfo } from './Dialog';
+import { useAppStore } from '../lib/zustand';
 
 type Inputs = {
   imageFile: FileList;
@@ -22,7 +23,10 @@ const defaultCropArea: PixelCrop = {
 };
 
 export default function UploadImageDialog() {
-  const { open } = useStoreState('uploadImageDialog');
+  const {
+    state: { open },
+    show,
+  } = useAppStore((state) => state.uploadImageDialog);
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imageExists, setImageExists] = useState<boolean>(false);
@@ -43,7 +47,7 @@ export default function UploadImageDialog() {
   useEffect(() => {
     setSelectedFile(null);
     reset();
-    showUploadImageDialog(false);
+    show(false);
   }, [isSubmitSuccessful]);
 
   useEffect(() => {
@@ -124,11 +128,11 @@ export default function UploadImageDialog() {
     setSelectedFile(file || null);
   };
 
-  const hide = () => showUploadImageDialog(false);
+  const hide = () => show(false);
 
   return (
     <Dialog
-      id={DialogTypes.UPLOAD_IMAGE_DIALOG}
+      id="upload-image-dialog-fix"
       open={open}
       hide={hide}
       onSubmit={handleSubmit(onSubmit)}
@@ -150,8 +154,8 @@ export default function UploadImageDialog() {
       <footer>
         {imageExists && (
           <DialogInfo>
-            <Icon inline icon="material-symbols:info-outline" /> En bild med namnet <b>{selectedFile?.name}</b> existerar
-            redan. Om du laddar upp en ny bild med samma namn skrivs den befintliga bilden över!
+            <Icon inline icon="material-symbols:info-outline" /> En bild med namnet <b>{selectedFile?.name}</b>{' '}
+            existerar redan. Om du laddar upp en ny bild med samma namn skrivs den befintliga bilden över!
           </DialogInfo>
         )}
 

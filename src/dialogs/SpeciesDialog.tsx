@@ -1,11 +1,12 @@
 import classes from './SpeciesDialog.module.css';
 import { useState, useEffect } from 'react';
-import { useStoreState, showSpeciesDialog, deleteSpecies, addSpecies, updateSpecies } from '../state';
+import { useStoreState, deleteSpecies, addSpecies, updateSpecies } from '../state';
 import { useForm, SubmitHandler, type FieldError } from 'react-hook-form';
 import { doc, updateDoc, addDoc, serverTimestamp, collection, deleteDoc } from 'firebase/firestore';
 import { db, type SpeciesInfo } from '../lib/firebase.ts';
 import { toDatalistOptions, toOptions, counties, sexes } from '../lib/options';
-import Dialog, { DialogTypes } from './Dialog';
+import Dialog from './Dialog';
+import { useAppStore } from '../lib/zustand';
 
 type Inputs = Omit<SpeciesInfo, 'updatedAt' | 'createdAt'>;
 
@@ -25,7 +26,11 @@ const defaults = {
 export default function SpeciesDialog() {
   const images = useStoreState('images');
   const dataLists = useStoreState('dataLists');
-  const { open, values } = useStoreState('speciesDialog');
+  const {
+    state: { open, values },
+    show,
+  } = useAppStore((state) => state.speciesDialog);
+
   const [previewImage, setPreviewImage] = useState<string>();
   const {
     register,
@@ -47,7 +52,7 @@ export default function SpeciesDialog() {
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset(defaults);
-      showSpeciesDialog(false);
+      show(false);
     }
   }, [isSubmitSuccessful, reset]);
 
@@ -76,7 +81,7 @@ export default function SpeciesDialog() {
     if (values?.id) {
       try {
         await deleteDoc(doc(db, 'species', values.id));
-        showSpeciesDialog(false);
+        show(false);
         deleteSpecies(values.id);
       } catch (error) {
         console.error(error);
@@ -84,7 +89,7 @@ export default function SpeciesDialog() {
     }
   };
 
-  const hide = () => showSpeciesDialog(false);
+  const hide = () => show(false);
 
   type HorizontalInputType = {
     id: string;
@@ -110,13 +115,7 @@ export default function SpeciesDialog() {
   );
 
   return (
-    <Dialog
-      id={DialogTypes.SPECIES_DIALOG}
-      open={open}
-      hide={hide}
-      onSubmit={handleSubmit(onSubmit)}
-      title={`Lägg till ny art`}
-    >
+    <Dialog open={open} hide={hide} onSubmit={handleSubmit(onSubmit)} title={`Lägg till ny art`}>
       <div className={classes.horizontalForm}>
         <HorizontalInput
           id="species"

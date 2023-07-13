@@ -1,12 +1,16 @@
 import { useState } from 'react';
-import { useStoreState, deleteImage, showDeleteImageDialog } from '../state';
+import { deleteImage } from '../state';
 import { doc, deleteDoc } from 'firebase/firestore';
 import { db, deleteFile } from '../lib/firebase';
-import Dialog, { DialogTypes } from './Dialog';
+import Dialog from './Dialog';
 import { timestampToString } from '../lib/';
+import { useAppStore } from '../lib/zustand';
 
 export default function DeleteImageDialog() {
-  const { open, values } = useStoreState('deleteImageDialog');
+  const {
+    state: { open, values },
+    show,
+  } = useAppStore((state) => state.deleteImageDialog);
   const [deletingImage, setDeletingImage] = useState(false);
 
   if (!values) return;
@@ -25,14 +29,14 @@ export default function DeleteImageDialog() {
       .catch((error) => console.error(error))
       .finally(() => {
         setDeletingImage(false);
-        showDeleteImageDialog(false);
+        show(false);
       });
   };
 
-  const hide = () => showDeleteImageDialog(false);
+  const hide = () => show(false);
 
   return (
-    <Dialog id={DialogTypes.DELETE_IMAGE_DIALOG} open={open} hide={hide} title={`Bild: ${filename}`}>
+    <Dialog open={open} hide={hide} title={`Bild: ${filename}`}>
       <img src={URL} alt={filename} />
       <table>
         <tbody>

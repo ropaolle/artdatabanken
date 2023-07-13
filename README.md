@@ -107,6 +107,7 @@ firebase deploy
 
 - TYPESCRIPT
 
+  - [Type vs Interface](https://blog.logrocket.com/types-vs-interfaces-typescript/)
   - [Implementing a Dynamic compare function](https://reacthustle.com/blog/typescript-sort-array-of-objects-by-property)
 
 - BROWSER

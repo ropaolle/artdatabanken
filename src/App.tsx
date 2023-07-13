@@ -9,7 +9,7 @@ import { /* firestoreFetch, */ type SpeciesInfo, type ImageInfo } from './lib/fi
 import { localStorageImagesOptions, localStorageSpeciesOptions } from './lib';
 
 function App() {
-  const [page, setPage] = useState('');
+  const [page, setPage] = useState('species');
   const [images] = useLocalStorage<ImageInfo[]>('images', [], localStorageImagesOptions);
   const [species] = useLocalStorage<SpeciesInfo[]>('species', [], localStorageSpeciesOptions);
 
