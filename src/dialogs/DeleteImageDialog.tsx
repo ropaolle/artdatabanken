@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { doc, deleteDoc } from 'firebase/firestore';
-import { db, deleteFile, type ImageInfo } from '../lib/firebase';
+import { db, deleteFile, type ImageInfo, IMAGE_COLLECTION } from '../lib/firebase';
 import Dialog from './Dialog';
 import { timestampToString } from '../lib/';
 import { useAppStore } from '../lib/zustand.ts';
@@ -24,7 +24,11 @@ export default function DeleteImageDialog({ open, show, values }: Props) {
 
     setDeletingImage(true);
 
-    Promise.all([await deleteFile(filename), await deleteFile(thumbnail), await deleteDoc(doc(db, 'images', filename))])
+    Promise.all([
+      await deleteFile(filename),
+      await deleteFile(thumbnail),
+      await deleteDoc(doc(db, IMAGE_COLLECTION, filename)),
+    ])
       .then(() => {
         deleteImage(filename);
       })

@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { useLocalStorage } from 'react-use';
+// import { useLocalStorage } from 'react-use';
 import { Timestamp } from 'firebase/firestore';
-import { type SpeciesInfo } from '../../lib/firebase';
+import { type SpeciesInfo/* , SPECIES_COLLECTION */ } from '../../lib/firebase';
 import { readUploadedFileAsText, ImportStates } from '.';
 
 export default function ImportSpeciesToLocaleStorage() {
-  const [, /* speciesList */ setSpeciesList /* , remove */] = useLocalStorage<SpeciesInfo[]>('species', []);
+  // const [, setSpeciesList ] = useLocalStorage<SpeciesInfo[]>(SPECIES_COLLECTION, []);
 
   const [importingSpecies, setImportingSpecies] = useState<ImportStates>(ImportStates.IDLE);
   const [species, setSpecies] = useState<SpeciesInfo[]>();
@@ -59,7 +59,7 @@ export default function ImportSpeciesToLocaleStorage() {
       data.push(record);
       setSpeciesMessage(`importing ${record.species}`);
     }
-    setSpeciesList(data);
+    // setSpeciesList(data);
 
     setSpeciesMessage(`Done! ${species.length} species imported.`);
     setImportingSpecies(ImportStates.DONE);

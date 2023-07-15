@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getStorage, ref, /*  listAll, */ getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
+import { getStorage, ref, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
 import { getFirestore, collection, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore';
 
 // PROD
@@ -35,6 +35,7 @@ const firebaseConfig = {
 // };
 
 export const IMAGE_COLLECTION = 'bilder';
+export const SPECIES_COLLECTION = 'arter';
 
 export const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
@@ -56,25 +57,6 @@ export const getURL = async (filePath: string): Promise<string> => {
 };
 
 /* FILES */
-
-export const checkIfFileExists = async (filePath: string): Promise<string | boolean> => {
-  const storage = getStorage();
-  const storageRef = ref(storage, filePath);
-
-  return new Promise((resolve, reject) => {
-    getDownloadURL(storageRef)
-      .then((/* url */) => {
-        resolve(true);
-      })
-      .catch((error) => {
-        if (error.code === 'storage/object-not-found') {
-          resolve(false);
-        } else {
-          reject(error);
-        }
-      });
-  });
-};
 
 export const normalizeFilename = (filename: string) => filename.replaceAll(' ', '-').toLowerCase();
 
@@ -137,18 +119,6 @@ export const deleteFile = async (filename: string, path = IMAGE_COLLECTION): Pro
   });
 };
 
-// export const getFileList = (filePath: string): Promise<string[]> => {
-//   const listRef = ref(storage, filePath);
-
-//   return listAll(listRef)
-//     .then((res) => {
-//       return Promise.resolve(res.items.map(({ name }) => name));
-//     })
-//     .catch((error) => {
-//       return Promise.reject(error);
-//     });
-// };
-
 /* DATABASE */
 
 export type ImageInfo = {
@@ -161,7 +131,7 @@ export type ImageInfo = {
 };
 
 export type SpeciesInfo = {
-  id: string;
+  id?: string;
   kingdom: string;
   order: string;
   family: string;
@@ -175,10 +145,6 @@ export type SpeciesInfo = {
   createdAt?: Timestamp;
   updatedAt?: Timestamp;
 };
-
-// export async function createOrUpdateDoc(docRef: DocumentReference, data: ImageInfo | SpeciesInfo, update = false) {
-//   update ? setDoc(docRef, data) : updateDoc(docRef, data);
-// }
 
 export async function firestoreFetch<T>(path: string): Promise<T[]> {
   const querySnapshot = await getDocs(collection(db, path));

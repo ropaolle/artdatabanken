@@ -1,8 +1,9 @@
 import logo from '../assets/logo.svg';
+import { type PAGES } from '../pages';
 import { Link } from '.';
 
 type Props = {
-  setPage: (page: React.SetStateAction<string>) => void;
+  setPage: (page: React.SetStateAction<PAGES>) => void;
 };
 
 export default function Navigation({ setPage }: Props) {
@@ -11,23 +12,23 @@ export default function Navigation({ setPage }: Props) {
       <nav>
         <ul>
           <li>
-            <Link onClick={() => setPage('')}>
+            <Link onClick={() => setPage('HOME')}>
               <img src={logo} className="logo" alt="Logo" height={24} width={24} /> Artdatabanken
             </Link>
           </li>
         </ul>
         <ul>
           <li>
-            <Link onClick={() => setPage('species')}>Arter</Link>
+            <Link onClick={() => setPage('SPECIES')}>Arter</Link>
           </li>
           <li>
-            <Link onClick={() => setPage('images')}>Bilder</Link>
+            <Link onClick={() => setPage('IMAGES')}>Bilder</Link>
           </li>
           <li>
-            <Link onClick={() => setPage('collections')}>Samlingar</Link>
+            <Link onClick={() => setPage('COLLECTIONS')}>Samlingar</Link>
           </li>
           <li>
-            <Link onClick={() => setPage('settings')}>Inställningar</Link>
+            <Link onClick={() => setPage('SETTINGS')}>Inställningar</Link>
           </li>
         </ul>
       </nav>

@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { useLocalStorage } from 'react-use';
+// import { useLocalStorage } from 'react-use';
 import { Timestamp } from 'firebase/firestore';
 import { getURL, type ImageInfo } from '../../lib/firebase';
 import { readUploadedFileAsText, ImportStates } from '.';
 
 export default function ImportImagesToLocaleStorage() {
-  const [, /* imageList  */ setImageList /* , remove */] = useLocalStorage<ImageInfo[]>('images', []);
+  // const [, setImageList] = useLocalStorage<ImageInfo[]>('images', []);
 
   const [importingLocaleStorage, setImportingLocaleStorage] = useState<ImportStates>(ImportStates.IDLE);
   const [localeStorage, setLocaleStorage] = useState<string[]>();
@@ -36,7 +36,7 @@ export default function ImportImagesToLocaleStorage() {
       });
     }
 
-    setImageList(data);
+    // setImageList(data);
     setlocaleStorageMessage(`Done! ${Object.keys(data).length} images imported.`);
     setImportingLocaleStorage(ImportStates.DONE);
   };

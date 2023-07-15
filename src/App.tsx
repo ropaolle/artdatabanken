@@ -1,8 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-// import { useLocalStorage, useEffectOnce } from 'react-use';
 // import { initStore } from './state';
-import { Home, ImageView, SpeciesView, Collections, Settings } from './pages';
+import { Home, ImageView, SpeciesView, Collections, Settings, type PAGES } from './pages';
 import { Navigation, Footer } from './components';
 // import { /* firestoreFetch, */ type SpeciesInfo, type ImageInfo } from './lib/firebase';
 // import { localStorageImagesOptions, localStorageSpeciesOptions } from './lib';
@@ -18,7 +17,7 @@ function App() {
   // const { initGlobalState, ...rest } = useAppStore();
   // const appStore = useAppStore();
   // console.log('appStore', appStore);
-  const [page, setPage] = useState('images');
+  const [page, setPage] = useState<PAGES>('HOME');
 
 /*   const t = useStore();
   console.log('t', t); */
@@ -40,11 +39,11 @@ function App() {
     <>
       <Navigation setPage={setPage} />
 
-      {!page && <Home />}
-      {page === 'species' && <SpeciesView />}
-      {page === 'images' && <ImageView />}
-      {page === 'collections' && <Collections />}
-      {page === 'settings' && <Settings />}
+      {page === 'HOME' && <Home />}
+      {page === 'SPECIES' && <SpeciesView />}
+      {page === 'IMAGES' && <ImageView />}
+      {page === 'COLLECTIONS' && <Collections />}
+      {page === 'SETTINGS' && <Settings />}
 
       <Footer />
     </>

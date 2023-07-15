@@ -1,8 +1,8 @@
 import classes from './SpeciesDialog.module.css';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler, type FieldError } from 'react-hook-form';
-import { doc, updateDoc, addDoc, serverTimestamp, collection, deleteDoc } from 'firebase/firestore';
-import { db, type SpeciesInfo } from '../lib/firebase.ts';
+import { doc, updateDoc, addDoc, Timestamp, collection, deleteDoc } from 'firebase/firestore';
+import { db, type SpeciesInfo, SPECIES_COLLECTION } from '../lib/firebase.ts';
 import { toDatalistOptions, toOptions, counties, sexes } from '../lib/options';
 import Dialog from './Dialog';
 import { useAppStore } from '../lib/zustand.ts';
@@ -58,15 +58,20 @@ export default function SpeciesDialog({ open, show, values }: Props) {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      if (data.id) {
-        await updateDoc(doc(db, 'species', data.id), {
-          ...data,
-          updatedAt: serverTimestamp(),
+      const species: SpeciesInfo = {
+        ...data,
+        updatedAt: Timestamp.fromDate(new Date()),
+      };
+
+      if (!data.id) {
+        const doc = await addDoc(collection(db, SPECIES_COLLECTION), {
+          ...species,
+          createdAt: Timestamp.fromDate(new Date()),
         });
-        updateSpecies(data);
-      } else {
-        const doc = await addDoc(collection(db, 'species'), { ...data, createdAt: serverTimestamp() });
         addSpecies({ ...data, id: doc.id });
+      } else {
+        await updateDoc(doc(db, SPECIES_COLLECTION, data.id), species);
+        updateSpecies(data);
       }
     } catch (error) {
       console.error(error);
@@ -80,7 +85,7 @@ export default function SpeciesDialog({ open, show, values }: Props) {
   const handleDelete = async () => {
     if (values?.id) {
       try {
-        await deleteDoc(doc(db, 'species', values.id));
+        await deleteDoc(doc(db, SPECIES_COLLECTION, values.id));
         show(false);
         deleteSpecies(values.id);
       } catch (error) {

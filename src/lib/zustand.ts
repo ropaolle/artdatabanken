@@ -82,14 +82,14 @@ export const useAppStore = create<GlobalState>()(
       addSpecies: (species) => set((state) => ({ ...state, species: [...state.species, species] })),
       updateSpecies: (species) =>
         set((state) => {
-          // TODO: See updateImage
-          const index = state.species.findIndex(({ id }) => species.id === id);
-          // if (index !== -1) state.species[index] = species;
-          // return {
-          //   ...state,
-          //   species: [...state.species],
-          // };
-          state.species.splice(index, 1, species);
+          // Update species without mutation
+          const speciesIndex = state.species.findIndex(({ id }) => species.id === id);
+          if (speciesIndex !== -1) {
+            const newSpecies = [...state.species];
+            newSpecies[speciesIndex] = { ...newSpecies[speciesIndex], ...species };
+            return { ...state, species: newSpecies };
+          }
+
           return { ...state };
         }),
       deleteSpecies: (id) =>

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { /* collection, addDoc, serverTimestamp, */ setDoc, doc } from 'firebase/firestore';
-import { db, type SpeciesInfo } from '../../lib/firebase';
+import { db, type SpeciesInfo, SPECIES_COLLECTION } from '../../lib/firebase';
 import { readUploadedFileAsText, ImportStates } from '.';
 
-const SPECIES_COLLECTION = 'species';
+
 
 export default function ImportBigDoc() {
   const [importingSpecies, setImportingSpecies] = useState<ImportStates>(ImportStates.IDLE);
