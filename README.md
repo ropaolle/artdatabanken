@@ -4,6 +4,7 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
+- [ ] Remove react-use
 - [ ] Firestore qouta hits the limit of 50k reads per day.
   - App init: load from local storage + d/l all new/changed items from Firebase.
   - Use local state like `Zustand` that is synced to locale storage.

@@ -1,11 +1,18 @@
 import 'react-image-crop/dist/ReactCrop.css';
 import { useState, useEffect, useRef } from 'react';
-import { db, checkIfImageExistsInDB, uploadFile, normalizeFilename } from '../lib/firebase.ts';
-import { doc, setDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
+import { doc, setDoc, Timestamp } from 'firebase/firestore';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import ReactCrop, { type PixelCrop } from 'react-image-crop';
-import { useDebounceEffect, drawImageOnCanvas } from '../lib';
 import { Icon } from '@iconify/react';
+import {
+  db,
+  checkIfImageExistsInDB,
+  uploadFile,
+  normalizeFilename,
+  IMAGE_COLLECTION,
+  type ImageInfo,
+} from '../lib/firebase.ts';
+import { useDebounceEffect, drawImageOnCanvas } from '../lib';
 import Dialog, { DialogInfo } from './Dialog';
 import { useAppStore } from '../lib/zustand.ts';
 
@@ -27,7 +34,7 @@ type Props = {
 };
 
 export default function UploadImageDialog({ open, show }: Props) {
-  const { addImage } = useAppStore();
+  const { addImage, updateImage } = useAppStore();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imageExists, setImageExists] = useState<boolean>(false);
   const [crop, setCrop] = useState<PixelCrop>(defaultCropArea);
@@ -97,27 +104,28 @@ export default function UploadImageDialog({ open, show }: Props) {
     }
 
     const filename = normalizeFilename(imageFile[0].name);
-    const path = `images/${filename}`;
+    const path = `${IMAGE_COLLECTION}/${filename}`;
     const [name, ext] = filename.split('.');
     const thumbnail = `${name}_thumb.${ext}`;
-    const thumbnailPath = `images/${thumbnail}`;
+    const thumbnailPath = `${IMAGE_COLLECTION}/${thumbnail}`;
 
     try {
-      const fileInfo = {
+      const image: ImageInfo = {
         filename,
         thumbnail,
         URL: await uploadFile(previewCanvasRef.current, path),
         thumbnailURL: await uploadFile(thumbnailCanvasRef.current, thumbnailPath),
-        // updatedAt: serverTimestamp(),
+        updatedAt: Timestamp.fromDate(new Date()),
       };
 
-      if (imageExists) {
-        await updateDoc(doc(db, 'images', filename), { ...fileInfo, updatedAt: serverTimestamp() });
+      if (!imageExists) {
+        image.createdAt = Timestamp.fromDate(new Date());
+        await setDoc(doc(db, IMAGE_COLLECTION, filename), image);
+        addImage(image);
       } else {
-        await setDoc(doc(db, 'images', filename), { ...fileInfo, createdAt: serverTimestamp() });
+        await setDoc(doc(db, IMAGE_COLLECTION, filename), image, { merge: true });
+        updateImage(image);
       }
-
-      addImage(fileInfo);
     } catch (error) {
       console.error(error);
     }

@@ -19,7 +19,7 @@ const pageSize = 50;
 
 export default function ImageView() {
   const { images } = useAppStore();
-
+  
   const [uploadDialog, showUploadDialog] = useState(false);
   const [deleteDialog, showDeleteDialog] = useState(false);
   const [dialogValues, setDialogValues] = useState<ImageInfo>();
@@ -65,9 +65,7 @@ export default function ImageView() {
           <img className={classes.image} src={thumbnailURL} alt={filename} /* loading="lazy" */ />
           <div className={classes.info}>
             <div>{filename}</div>
-            <div>
-              <small>({timestampToString(updatedAt || createdAt)})</small>
-            </div>
+            <div>{<small>({timestampToString(updatedAt || createdAt)})</small>}</div>
           </div>
         </figure>
       );

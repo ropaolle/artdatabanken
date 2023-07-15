@@ -34,6 +34,8 @@ const firebaseConfig = {
 //   measurementId: "G-NBMHCY9EPV"
 // };
 
+export const IMAGE_COLLECTION = 'bilder';
+
 export const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
 export const db = getFirestore(app);
@@ -77,7 +79,7 @@ export const checkIfFileExists = async (filePath: string): Promise<string | bool
 export const normalizeFilename = (filename: string) => filename.replaceAll(' ', '-').toLowerCase();
 
 export const checkIfImageExistsInDB = async (name: string): Promise<boolean> => {
-  const docRef = doc(db, 'images', normalizeFilename(name));
+  const docRef = doc(db, IMAGE_COLLECTION, normalizeFilename(name));
   const docSnap = await getDoc(docRef);
 
   return docSnap.exists();
@@ -121,7 +123,7 @@ export const uploadFile = async (
   });
 };
 
-export const deleteFile = async (filename: string, path = 'images'): Promise<void> => {
+export const deleteFile = async (filename: string, path = IMAGE_COLLECTION): Promise<void> => {
   const fileRef = ref(storage, `${path}/${filename}`);
 
   return new Promise((resolve, reject) => {
@@ -173,6 +175,10 @@ export type SpeciesInfo = {
   createdAt?: Timestamp;
   updatedAt?: Timestamp;
 };
+
+// export async function createOrUpdateDoc(docRef: DocumentReference, data: ImageInfo | SpeciesInfo, update = false) {
+//   update ? setDoc(docRef, data) : updateDoc(docRef, data);
+// }
 
 export async function firestoreFetch<T>(path: string): Promise<T[]> {
   const querySnapshot = await getDocs(collection(db, path));
