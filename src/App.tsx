@@ -5,7 +5,7 @@ import { Home, ImageView, SpeciesView, Collections, Settings, type PAGES } from 
 import { Navigation, Footer } from './components';
 // import { /* firestoreFetch, */ type SpeciesInfo, type ImageInfo } from './lib/firebase';
 // import { localStorageImagesOptions, localStorageSpeciesOptions } from './lib';
-// import { useAppStore, useStore } from './lib/zustand';
+import { useAppStore } from './lib/zustand';
 
 function App() {
   // TODO:
@@ -15,21 +15,24 @@ function App() {
   // const [images] = useLocalStorage<ImageInfo[]>('images', [], localStorageImagesOptions);
   // const [species] = useLocalStorage<SpeciesInfo[]>('species', [], localStorageSpeciesOptions);
   // const { initGlobalState, ...rest } = useAppStore();
-  // const appStore = useAppStore();
+  const { initGlobalState, updatedAt } = useAppStore();
   // console.log('appStore', appStore);
   const [page, setPage] = useState<PAGES>('HOME');
 
-/*   const t = useStore();
+  console.log('updatedAt', updatedAt);
+
+  /*   const t = useStore();
   console.log('t', t); */
 
   useEffect(() => {
     const fetchData = async () => {
       // TODO: Sync locale storage with  Firebase.
-      // const images = await firestoreFetch<ImageInfo>('images');
-      // const species = await firestoreFetch<SpeciesInfo>('species');
-      // initStore(images, species, dataLists);
-      // initGlobalState(images || [], species || []);
-      // initStore(images || [], species || []);
+      if (!updatedAt) {
+        // Fetch all items from Firebase
+        initGlobalState([], [], new Date());
+      } else {
+        // Fetch all items newer then updatedAt from Firebase
+      }
     };
 
     fetchData().catch(console.error);
