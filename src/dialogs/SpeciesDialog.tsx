@@ -1,8 +1,8 @@
 import classes from './SpeciesDialog.module.css';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler, type FieldError } from 'react-hook-form';
-import { doc, updateDoc, addDoc, Timestamp, collection, deleteDoc } from 'firebase/firestore';
-import { db, type SpeciesInfo, SPECIES_COLLECTION } from '../lib/firebase.ts';
+import { doc, addDoc, setDoc, Timestamp, collection, deleteDoc } from 'firebase/firestore';
+import { db, type SpeciesInfo, COLLECTIONS } from '../lib/firebase.ts';
 import { toDatalistOptions, toOptions, counties, sexes } from '../lib/options';
 import Dialog from './Dialog';
 import { useAppStore } from '../lib/zustand.ts';
@@ -29,7 +29,7 @@ type Props = {
 };
 
 export default function SpeciesDialog({ open, show, values }: Props) {
-  const { addSpecies, updateSpecies, deleteSpecies, images, species } = useAppStore();
+  const { setSpecies, deleteSpecies, images, species } = useAppStore();
 
   const [previewImage, setPreviewImage] = useState<string>();
   const {
@@ -60,18 +60,18 @@ export default function SpeciesDialog({ open, show, values }: Props) {
     try {
       const species: SpeciesInfo = {
         ...data,
-        updatedAt: Timestamp.fromDate(new Date()),
+        updatedAt: Timestamp.now(),
       };
 
       if (!data.id) {
-        const doc = await addDoc(collection(db, SPECIES_COLLECTION), {
+        const doc = await addDoc(collection(db, COLLECTIONS.SPECIES), {
           ...species,
-          createdAt: Timestamp.fromDate(new Date()),
+          createdAt: Timestamp.now(),
         });
-        addSpecies({ ...data, id: doc.id });
+        setSpecies({ ...data, id: doc.id });
       } else {
-        await updateDoc(doc(db, SPECIES_COLLECTION, data.id), species);
-        updateSpecies(data);
+        await setDoc(doc(db, COLLECTIONS.SPECIES, data.id), species);
+        setSpecies(data);
       }
     } catch (error) {
       console.error(error);
@@ -85,7 +85,7 @@ export default function SpeciesDialog({ open, show, values }: Props) {
   const handleDelete = async () => {
     if (values?.id) {
       try {
-        await deleteDoc(doc(db, SPECIES_COLLECTION, values.id));
+        await deleteDoc(doc(db, COLLECTIONS.SPECIES, values.id));
         show(false);
         deleteSpecies(values.id);
       } catch (error) {

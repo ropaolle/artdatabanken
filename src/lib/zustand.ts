@@ -4,15 +4,14 @@ import { Timestamp } from 'firebase/firestore';
 import { type SpeciesInfo, type ImageInfo } from './firebase';
 
 type GlobalState = {
-  initGlobalState: (images: ImageInfo[], species: SpeciesInfo[]) => void;
+  initGlobalState: (images: ImageInfo[], species: SpeciesInfo[], updatedAt: Timestamp) => void;
   images: ImageInfo[];
-  addImage: (image: ImageInfo) => void;
-  updateImage: (image: ImageInfo) => void;
+  setImage: (images: ImageInfo) => void;
   deleteImage: (filename: string) => void;
   species: SpeciesInfo[];
-  addSpecies: (species: SpeciesInfo) => void;
-  updateSpecies: (species: SpeciesInfo) => void;
+  setSpecies: (species: SpeciesInfo) => void;
   deleteSpecies: (id: string) => void;
+  updatedAt?: Timestamp;
 };
 
 const customStorage = {
@@ -50,47 +49,46 @@ const customStorage = {
 
 export const useAppStore = create<GlobalState>()(
   // devtools(
-  persist(
+  persist<GlobalState>(
     (set) => ({
-      // Init state
-      initGlobalState: (images, species) =>
+      // Init state, replace all existing data
+      initGlobalState: (images, species, updatedAt) =>
         set(() => ({
           images,
           species,
+          updatedAt,
         })),
 
       // Images
       images: [],
-      addImage: (image) => set((state) => ({ ...state, images: [...state.images, image] })),
-      updateImage: (image) =>
+      setImage: (image) =>
         set((state) => {
-          // Update image without mutation
+          // Add
           const imageIndex = state.images.findIndex(({ filename }) => image.filename === filename);
-          if (imageIndex !== -1) {
-            const newImages = [...state.images];
-            newImages[imageIndex] = { ...newImages[imageIndex], ...image };
-            return { ...state, images: newImages };
+          if (imageIndex === -1) {
+            return { ...state, images: [...state.images, image] };
           }
-
-          return { ...state };
+          // Update
+          const newImages = [...state.images];
+          newImages[imageIndex] = { ...newImages[imageIndex], ...image };
+          return { ...state, images: newImages };
         }),
       deleteImage: (filename) =>
         set((state) => ({ ...state, images: state.images.filter((image) => image.filename !== filename) })),
 
       //Species
       species: [],
-      addSpecies: (species) => set((state) => ({ ...state, species: [...state.species, species] })),
-      updateSpecies: (species) =>
+      setSpecies: (species) =>
         set((state) => {
-          // Update species without mutation
+          // Add
           const speciesIndex = state.species.findIndex(({ id }) => species.id === id);
-          if (speciesIndex !== -1) {
-            const newSpecies = [...state.species];
-            newSpecies[speciesIndex] = { ...newSpecies[speciesIndex], ...species };
-            return { ...state, species: newSpecies };
+          if (speciesIndex === -1) {
+            return { ...state, species: [...state.species, species] };
           }
-
-          return { ...state };
+          // Update
+          const newSpecies = [...state.species];
+          newSpecies[speciesIndex] = { ...newSpecies[speciesIndex], ...species };
+          return { ...state, species: newSpecies };
         }),
       deleteSpecies: (id) =>
         set((state) => ({ ...state, species: state.species.filter((species) => species.id !== id) })),

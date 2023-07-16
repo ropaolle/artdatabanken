@@ -4,17 +4,15 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-- [ ] Firestore qouta hits the limit of 50k reads per day.
-  - App init: load from local storage + d/l all new/changed items from Firebase.
-  - Use local state like `Zustand` that is synced to locale storage.
+- [ ] ?
 - PRODUCTION
   - [ ] Deploy (not sure to where/what) and delete unused code and console.log statements.
   - [ ] Protect files and db with [Firebase rules](https://firebase.google.com/docs/firestore/security/get-started).
 - NICE TO HAVE
   - [ ] CSS styling of the Datalists.
   - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
-  - [ ] cache datalists
 - DONE
+  - [x] Firestore qouta hits the limit of 50k reads per day. Use bundles to cache old data.
   - [x] Remove react-use and replace with Zustand.
   - [x] Header on all printed pages
   - [x] Sidnummer printed pages
@@ -75,6 +73,7 @@ firebase deploy
   - [Upload files](https://firebase.google.com/docs/storage/web/upload-files)
   - [Add data](https://firebase.google.com/docs/firestore/manage-data/add-data)
   - [Get data](https://firebase.google.com/docs/firestore/query-data/get-data)
+  - [Bundles](https://firebase.google.com/docs/firestore/bundles)
 
 - REACT
 
@@ -85,6 +84,7 @@ firebase deploy
     - [useEffect on objects](https://dev.to/hey_yogini/useeffect-dependency-array-and-object-comparison-45el)
   - Globale state
     - [Zustand](https://github.com/pmndrs/zustand)
+    - [Zustand doc](https://docs.pmnd.rs/zustand/migrations/migrating-to-v4)
     - [Understanding and Properly Using React Global State](https://clerk.com/blog/understanding-and-properly-using-react-global-state?utm_source=www.google.com&utm_medium=referral&utm_campaign=none)
     - [A guide to choosing the right React state management solution](https://blog.logrocket.com/guide-choosing-right-react-state-management-solution/)
       - [Recoil](https://recoiljs.org/)

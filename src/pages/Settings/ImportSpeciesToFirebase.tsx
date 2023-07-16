@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { db, type SpeciesInfo } from '../../lib/firebase';
+import { collection, addDoc, doc, setDoc, Timestamp } from 'firebase/firestore';
+import { db, type SpeciesInfo, COLLECTIONS } from '../../lib/firebase';
 import { readUploadedFileAsText, ImportStates } from '.';
-
-const SPECIES_COLLECTION = 'species';
 
 export default function ImportSpeciesToFirebase() {
   const [importingSpecies, setImportingSpecies] = useState<ImportStates>(ImportStates.IDLE);
@@ -34,6 +32,8 @@ export default function ImportSpeciesToFirebase() {
           county,
           date,
           image: image.trim(),
+          updatedAt: Timestamp.now(),
+          createdAt: Timestamp.now(),
         });
       }
     } catch (error) {
@@ -45,16 +45,24 @@ export default function ImportSpeciesToFirebase() {
 
   const handleSpeciesImport = async () => {
     if (!species) return;
-
     setImportingSpecies(ImportStates.UPLOADING);
 
     for await (const record of species) {
-      addDoc(collection(db, SPECIES_COLLECTION), { ...record, createdAt: serverTimestamp() });
-      setSpeciesMessage(`importing ${record.species}`);
+      // Upload to Firebase
+      const doc = await addDoc(collection(db, COLLECTIONS.SPECIES), record);
+
+      // Add id to the bundle
+      record.id = doc.id;
+      console.log('record', record);
+      setSpeciesMessage(`importing ${record.species}: ${doc.id}`);
     }
 
-    setSpeciesMessage(`Done! ${species.length} species imported.`);
+    console.log('species', species);
 
+    // Create custom bundle
+    await setDoc(doc(db, COLLECTIONS.BUNDLES, COLLECTIONS.SPECIES), { items: species, updatedAt: Timestamp.now() });
+
+    setSpeciesMessage(`Done! ${species.length} species imported.`);
     setImportingSpecies(ImportStates.DONE);
   };
 

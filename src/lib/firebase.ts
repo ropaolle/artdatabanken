@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getStorage, ref, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
+import { getStorage, ref, getDownloadURL, uploadBytesResumable, deleteObject /* pö */ } from 'firebase/storage';
 import { getFirestore, collection, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore';
 
 // PROD
@@ -34,8 +34,15 @@ const firebaseConfig = {
 //   measurementId: "G-NBMHCY9EPV"
 // };
 
-export const IMAGE_COLLECTION = 'bilder';
-export const SPECIES_COLLECTION = 'arter';
+export enum COLLECTIONS {
+  'IMAGES' = 'images',
+  'SPECIES' = 'species',
+  'BUNDLES' = 'bundles',
+}
+
+export enum PATHS {
+  'IMAGES' = 'images',
+}
 
 export const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
@@ -61,7 +68,7 @@ export const getURL = async (filePath: string): Promise<string> => {
 export const normalizeFilename = (filename: string) => filename.replaceAll(' ', '-').toLowerCase();
 
 export const checkIfImageExistsInDB = async (name: string): Promise<boolean> => {
-  const docRef = doc(db, IMAGE_COLLECTION, normalizeFilename(name));
+  const docRef = doc(db, COLLECTIONS.IMAGES, normalizeFilename(name));
   const docSnap = await getDoc(docRef);
 
   return docSnap.exists();
@@ -85,6 +92,7 @@ export const uploadFile = async (
   onProgress?: (progress: number) => void
 ): Promise<string> => {
   const blob = await canvasToBlob(canvasRef);
+  // Image size is stored in blob.size
   const storageRef = ref(storage, path);
   const uploadTask = uploadBytesResumable(storageRef, blob);
 
@@ -99,13 +107,15 @@ export const uploadFile = async (
         reject(error);
       },
       async () => {
-        resolve(await getDownloadURL(uploadTask.snapshot.ref));
+        // const metadata = await getMetadata(uploadTask.snapshot.ref)
+        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+        resolve(downloadURL);
       }
     );
   });
 };
 
-export const deleteFile = async (filename: string, path = IMAGE_COLLECTION): Promise<void> => {
+export const deleteFile = async (filename: string, path = COLLECTIONS.IMAGES): Promise<void> => {
   const fileRef = ref(storage, `${path}/${filename}`);
 
   return new Promise((resolve, reject) => {
@@ -145,6 +155,18 @@ export type SpeciesInfo = {
   createdAt?: Timestamp;
   updatedAt?: Timestamp;
 };
+
+
+export type Bundles = {
+  id: string;
+  items: ImageInfo[] | SpeciesInfo[];
+  updatedAt: Timestamp;
+}
+
+// export type Bundles = {
+//   species: { id?: string; items: SpeciesInfo[]; updatedAt: Timestamp };
+//   images: { id?: string; items: SpeciesInfo[]; updatedAt: Timestamp };
+// };
 
 export async function firestoreFetch<T>(path: string): Promise<T[]> {
   const querySnapshot = await getDocs(collection(db, path));

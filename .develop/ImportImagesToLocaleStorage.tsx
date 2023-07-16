@@ -32,7 +32,7 @@ export default function ImportImagesToLocaleStorage() {
         URL: await getURL(`images/${image}`),
         thumbnail,
         thumbnailURL: await getURL(`images/${thumbnail}`),
-        createdAt: Timestamp.fromDate(new Date()),
+        createdAt: Timestamp.now(),
       });
     }
 

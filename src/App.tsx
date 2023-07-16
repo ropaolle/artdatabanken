@@ -1,37 +1,33 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-// import { initStore } from './state';
+import { Timestamp } from 'firebase/firestore';
 import { Home, ImageView, SpeciesView, Collections, Settings, type PAGES } from './pages';
 import { Navigation, Footer } from './components';
-// import { /* firestoreFetch, */ type SpeciesInfo, type ImageInfo } from './lib/firebase';
-// import { localStorageImagesOptions, localStorageSpeciesOptions } from './lib';
+import { firestoreFetch, type Bundles, type ImageInfo, type SpeciesInfo } from './lib/firebase';
 import { useAppStore } from './lib/zustand';
 
 function App() {
-  // TODO:
-  // 1. Load from local storage
-  // 2. Load from Firebase
-  // 3. Merge results into global state
-  // const [images] = useLocalStorage<ImageInfo[]>('images', [], localStorageImagesOptions);
-  // const [species] = useLocalStorage<SpeciesInfo[]>('species', [], localStorageSpeciesOptions);
-  // const { initGlobalState, ...rest } = useAppStore();
-  const { initGlobalState, updatedAt } = useAppStore();
-  // console.log('appStore', appStore);
+  const { initGlobalState, updatedAt, setImage, setSpecies } = useAppStore();
   const [page, setPage] = useState<PAGES>('HOME');
-
-  console.log('updatedAt', updatedAt);
-
-  /*   const t = useStore();
-  console.log('t', t); */
 
   useEffect(() => {
     const fetchData = async () => {
-      // TODO: Sync locale storage with  Firebase.
       if (!updatedAt) {
-        // Fetch all items from Firebase
-        initGlobalState([], [], new Date());
-      } else {
-        // Fetch all items newer then updatedAt from Firebase
+        // Fetch all bundles
+        const bundles = await firestoreFetch<Bundles>('bundles');
+        const images = bundles.find(({ id }) => id === 'images');
+        const species = bundles.find(({ id }) => id === 'species');
+        initGlobalState(images?.items as ImageInfo[], species?.items as SpeciesInfo[], Timestamp.now());
+      }
+
+      // Fetch all new items
+      const images = await firestoreFetch<ImageInfo>('images');
+      for (const image of images) {
+        setImage(image);
+      }
+      const species = await firestoreFetch<SpeciesInfo>('species');
+      for (const item of species) {
+        setSpecies(item);
       }
     };
 

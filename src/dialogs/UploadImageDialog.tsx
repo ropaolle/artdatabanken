@@ -9,7 +9,8 @@ import {
   checkIfImageExistsInDB,
   uploadFile,
   normalizeFilename,
-  IMAGE_COLLECTION,
+  COLLECTIONS,
+  PATHS,
   type ImageInfo,
 } from '../lib/firebase.ts';
 import { useDebounceEffect, drawImageOnCanvas } from '../lib';
@@ -34,7 +35,7 @@ type Props = {
 };
 
 export default function UploadImageDialog({ open, show }: Props) {
-  const { addImage, updateImage } = useAppStore();
+  const { setImage } = useAppStore();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imageExists, setImageExists] = useState<boolean>(false);
   const [crop, setCrop] = useState<PixelCrop>(defaultCropArea);
@@ -104,10 +105,10 @@ export default function UploadImageDialog({ open, show }: Props) {
     }
 
     const filename = normalizeFilename(imageFile[0].name);
-    const path = `${IMAGE_COLLECTION}/${filename}`;
+    const path = `${PATHS.IMAGES}/${filename}`;
     const [name, ext] = filename.split('.');
     const thumbnail = `${name}_thumb.${ext}`;
-    const thumbnailPath = `${IMAGE_COLLECTION}/${thumbnail}`;
+    const thumbnailPath = `${PATHS.IMAGES}/${thumbnail}`;
 
     try {
       const image: ImageInfo = {
@@ -115,17 +116,17 @@ export default function UploadImageDialog({ open, show }: Props) {
         thumbnail,
         URL: await uploadFile(previewCanvasRef.current, path),
         thumbnailURL: await uploadFile(thumbnailCanvasRef.current, thumbnailPath),
-        updatedAt: Timestamp.fromDate(new Date()),
+        updatedAt: Timestamp.now(),
       };
 
       if (!imageExists) {
-        image.createdAt = Timestamp.fromDate(new Date());
-        await setDoc(doc(db, IMAGE_COLLECTION, filename), image);
-        addImage(image);
+        image.createdAt = Timestamp.now();
+        await setDoc(doc(db, COLLECTIONS.IMAGES, filename), image);
       } else {
-        await setDoc(doc(db, IMAGE_COLLECTION, filename), image, { merge: true });
-        updateImage(image);
+        await setDoc(doc(db, COLLECTIONS.IMAGES, filename), image, { merge: true });
       }
+
+      setImage(image);
     } catch (error) {
       console.error(error);
     }
