@@ -1,43 +1,48 @@
 import './App.css';
-import { useState /* , useEffect */ } from 'react';
-import { useLocalStorage, useEffectOnce } from 'react-use';
-import { initStore } from './state';
-import { Home, ImageView, SpeciesView, Collections, Settings } from './pages';
+import { useState, useEffect } from 'react';
+import { Timestamp } from 'firebase/firestore';
+import { Home, ImageView, SpeciesView, Collections, Settings, type PAGES } from './pages';
 import { Navigation, Footer } from './components';
-import { DeleteImageDialog, UploadImageDialog, SpeciesDialog } from './dialogs';
-import { /* firestoreFetch, */ type SpeciesInfo, type ImageInfo } from './lib/firebase';
-import { localStorageImagesOptions, localStorageSpeciesOptions } from './lib';
+import { firestoreFetch, type Bundles, type ImageInfo, type SpeciesInfo } from './lib/firebase';
+import { useAppStore } from './lib/zustand';
 
 function App() {
-  const [page, setPage] = useState('');
-  const [images] = useLocalStorage<ImageInfo[]>('images', [], localStorageImagesOptions);
-  const [species] = useLocalStorage<SpeciesInfo[]>('species', [], localStorageSpeciesOptions);
+  const { initGlobalState, updatedAt, setImage, setSpecies } = useAppStore();
+  const [page, setPage] = useState<PAGES>('HOME');
 
-  useEffectOnce(() => {
+  useEffect(() => {
     const fetchData = async () => {
-      // TODO: Sync locale storage with  Firebase.
-      // const images = await firestoreFetch<ImageInfo>('images');
-      // const species = await firestoreFetch<SpeciesInfo>('species');
-      // initStore(images, species, dataLists);
-      initStore(images || [], species || []);
+      if (!updatedAt) {
+        // Fetch all bundles
+        const bundles = await firestoreFetch<Bundles>('bundles');
+        const images = bundles.find(({ id }) => id === 'images');
+        const species = bundles.find(({ id }) => id === 'species');
+        initGlobalState((images?.items as ImageInfo[]) || [], (species?.items as SpeciesInfo[]) || [], Timestamp.now());
+      }
+
+      // Fetch all new items
+      const images = await firestoreFetch<ImageInfo>('images');
+      for (const image of images) {
+        setImage(image);
+      }
+      const species = await firestoreFetch<SpeciesInfo>('species');
+      for (const item of species) {
+        setSpecies(item);
+      }
     };
 
     fetchData().catch(console.error);
-  });
+  }, []);
 
   return (
     <>
       <Navigation setPage={setPage} />
 
-      <SpeciesDialog />
-      <DeleteImageDialog />
-      <UploadImageDialog />
-
-      {!page && <Home />}
-      {page === 'species' && <SpeciesView />}
-      {page === 'images' && <ImageView />}
-      {page === 'collections' && <Collections />}
-      {page === 'settings' && <Settings />}
+      {page === 'HOME' && <Home setPage={setPage} />}
+      {page === 'SPECIES' && <SpeciesView />}
+      {page === 'IMAGES' && <ImageView />}
+      {page === 'COLLECTIONS' && <Collections />}
+      {page === 'SETTINGS' && <Settings />}
 
       <Footer />
     </>

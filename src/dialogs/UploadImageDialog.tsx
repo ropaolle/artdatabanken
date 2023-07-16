@@ -1,13 +1,21 @@
 import 'react-image-crop/dist/ReactCrop.css';
 import { useState, useEffect, useRef } from 'react';
-import { useStoreState, addImage, showUploadImageDialog } from '../state';
-import { db, checkIfImageExistsInDB, uploadFile, normalizeFilename } from '../lib/firebase.ts';
-import { doc, setDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
+import { doc, setDoc, Timestamp } from 'firebase/firestore';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import ReactCrop, { type PixelCrop } from 'react-image-crop';
-import { useDebounceEffect, drawImageOnCanvas } from '../lib';
 import { Icon } from '@iconify/react';
-import Dialog, { DialogInfo, DialogTypes } from './Dialog';
+import {
+  db,
+  checkIfImageExistsInDB,
+  uploadFile,
+  normalizeFilename,
+  COLLECTIONS,
+  PATHS,
+  type ImageInfo,
+} from '../lib/firebase.ts';
+import { useDebounceEffect, drawImageOnCanvas } from '../lib';
+import Dialog, { DialogInfo } from './Dialog';
+import { useAppStore } from '../lib/zustand.ts';
 
 type Inputs = {
   imageFile: FileList;
@@ -21,9 +29,13 @@ const defaultCropArea: PixelCrop = {
   y: 250,
 };
 
-export default function UploadImageDialog() {
-  const { open } = useStoreState('uploadImageDialog');
+type Props = {
+  open: boolean;
+  show: React.Dispatch<boolean>;
+};
 
+export default function UploadImageDialog({ open, show }: Props) {
+  const { setImage } = useAppStore();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imageExists, setImageExists] = useState<boolean>(false);
   const [crop, setCrop] = useState<PixelCrop>(defaultCropArea);
@@ -43,7 +55,7 @@ export default function UploadImageDialog() {
   useEffect(() => {
     setSelectedFile(null);
     reset();
-    showUploadImageDialog(false);
+    show(false);
   }, [isSubmitSuccessful]);
 
   useEffect(() => {
@@ -93,27 +105,28 @@ export default function UploadImageDialog() {
     }
 
     const filename = normalizeFilename(imageFile[0].name);
-    const path = `images/${filename}`;
+    const path = `${PATHS.IMAGES}/${filename}`;
     const [name, ext] = filename.split('.');
     const thumbnail = `${name}_thumb.${ext}`;
-    const thumbnailPath = `images/${thumbnail}`;
+    const thumbnailPath = `${PATHS.IMAGES}/${thumbnail}`;
 
     try {
-      const fileInfo = {
+      const image: ImageInfo = {
         filename,
         thumbnail,
         URL: await uploadFile(previewCanvasRef.current, path),
         thumbnailURL: await uploadFile(thumbnailCanvasRef.current, thumbnailPath),
-        // updatedAt: serverTimestamp(),
+        updatedAt: Timestamp.now(),
       };
 
-      if (imageExists) {
-        await updateDoc(doc(db, 'images', filename), { ...fileInfo, updatedAt: serverTimestamp() });
+      if (!imageExists) {
+        image.createdAt = Timestamp.now();
+        await setDoc(doc(db, COLLECTIONS.IMAGES, filename), image);
       } else {
-        await setDoc(doc(db, 'images', filename), { ...fileInfo, createdAt: serverTimestamp() });
+        await setDoc(doc(db, COLLECTIONS.IMAGES, filename), image, { merge: true });
       }
 
-      addImage(fileInfo);
+      setImage(image);
     } catch (error) {
       console.error(error);
     }
@@ -124,11 +137,11 @@ export default function UploadImageDialog() {
     setSelectedFile(file || null);
   };
 
-  const hide = () => showUploadImageDialog(false);
+  const hide = () => show(false);
 
   return (
     <Dialog
-      id={DialogTypes.UPLOAD_IMAGE_DIALOG}
+      id="upload-image-dialog-fix"
       open={open}
       hide={hide}
       onSubmit={handleSubmit(onSubmit)}
@@ -150,8 +163,8 @@ export default function UploadImageDialog() {
       <footer>
         {imageExists && (
           <DialogInfo>
-            <Icon inline icon="material-symbols:info-outline" /> En bild med namnet <b>{selectedFile?.name}</b> existerar
-            redan. Om du laddar upp en ny bild med samma namn skrivs den befintliga bilden över!
+            <Icon inline icon="material-symbols:info-outline" /> En bild med namnet <b>{selectedFile?.name}</b>{' '}
+            existerar redan. Om du laddar upp en ny bild med samma namn skrivs den befintliga bilden över!
           </DialogInfo>
         )}
 

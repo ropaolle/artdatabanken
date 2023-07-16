@@ -1,38 +1,35 @@
 import logo from '../assets/logo.svg';
-import { Link /* , Dialogs */ } from '.';
+import { type PAGES } from '../pages';
+import { Link } from '.';
 
 type Props = {
-  // show?: (dialog: number, show?: boolean) => void;
-  setPage: (page: React.SetStateAction<string>) => void;
+  setPage: (page: React.SetStateAction<PAGES>) => void;
 };
 
-export default function Navigation({ /* show,  */ setPage }: Props) {
+export default function Navigation({ setPage }: Props) {
   return (
     <header className="container">
       <nav>
         <ul>
           <li>
-            <Link onClick={() => setPage('')}>
+            <Link onClick={() => setPage('HOME')}>
               <img src={logo} className="logo" alt="Logo" height={24} width={24} /> Artdatabanken
             </Link>
           </li>
         </ul>
         <ul>
           <li>
-            <Link onClick={() => setPage('species')}>Arter</Link>
+            <Link onClick={() => setPage('SPECIES')}>Arter</Link>
           </li>
           <li>
-            <Link onClick={() => setPage('images')}>Bilder</Link>
+            <Link onClick={() => setPage('IMAGES')}>Bilder</Link>
           </li>
           <li>
-            <Link onClick={() => setPage('collections')}>Samlingar</Link>
+            <Link onClick={() => setPage('COLLECTIONS')}>Samlingar</Link>
           </li>
           <li>
-            <Link onClick={() => setPage('settings')}>Inställningar</Link>
+            <Link onClick={() => setPage('SETTINGS')}>Inställningar</Link>
           </li>
-          {/* <li>
-            <Link onClick={() => show(Dialogs.ADD_SPECIES_DIALOG)}>Ny Art</Link>
-          </li> */}
         </ul>
       </nav>
     </header>

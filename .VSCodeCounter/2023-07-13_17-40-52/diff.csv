@@ -1,0 +1,10 @@
+"filename", "language", "TypeScript", "TypeScript JSX", "comment", "blank", "total"
+"c:\GitHub\artdatabanken\src\dialogs\DeleteImageDialog.tsx", "TypeScript JSX", 0, 4, 0, 0, 4
+"c:\GitHub\artdatabanken\src\dialogs\Dialog.tsx", "TypeScript JSX", 0, -4, 0, 0, -4
+"c:\GitHub\artdatabanken\src\dialogs\SpeciesDialog.tsx", "TypeScript JSX", 0, -2, 0, 1, -1
+"c:\GitHub\artdatabanken\src\dialogs\UploadImageDialog.tsx", "TypeScript JSX", 0, 4, 0, 0, 4
+"c:\GitHub\artdatabanken\src\lib\zustand.ts", "TypeScript", 38, 0, 4, 6, 48
+"c:\GitHub\artdatabanken\src\pages\ImageView.tsx", "TypeScript JSX", 0, 5, -1, 1, 5
+"c:\GitHub\artdatabanken\src\pages\SpeciesView\SpeciesView.tsx", "TypeScript JSX", 0, 10, 0, 0, 10
+"c:\GitHub\artdatabanken\src\state.ts", "TypeScript", -61, 0, 0, -9, -70
+"Total", "-", -23, 17, 3, -1, -4

@@ -1,0 +1,83 @@
+Date : 2023-07-16 12:06:08
+Directory : c:\GitHub\artdatabanken\src
+Total : 46 files,  1798 codes, 88 comments, 331 blanks, all 2217 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| TypeScript JSX |         23 |      1,294 |         21 |        231 |      1,546 |
+| TypeScript     |          9 |        288 |         62 |         57 |        407 |
+| CSS            |         11 |        213 |          5 |         43 |        261 |
+| XML            |          3 |          3 |          0 |          0 |          3 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                   | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                      |         46 |      1,798 |         88 |        331 |      2,217 |
+| . (Files)                                                              |          5 |         99 |          7 |         20 |        126 |
+| assets                                                                 |          3 |          3 |          0 |          0 |          3 |
+| components                                                             |          9 |        166 |          4 |         33 |        203 |
+| dialogs                                                                |          7 |        498 |          5 |         81 |        584 |
+| lib                                                                    |          6 |        337 |         63 |         65 |        465 |
+| pages                                                                  |         16 |        695 |          9 |        132 |        836 |
+| pages (Files)                                                          |          6 |        174 |          1 |         32 |        207 |
+| pages\Collections                                                      |          3 |        158 |          3 |         30 |        191 |
+| pages\Settings                                                         |          4 |        163 |          3 |         34 |        200 |
+| pages\SpeciesView                                                      |          3 |        200 |          2 |         36 |        238 |
++------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                               | language       | code       | comment    | blank      | total      |
++------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| c:\GitHub\artdatabanken\src\App.css                                    | CSS            |          3 |          0 |          1 |          4 |
+| c:\GitHub\artdatabanken\src\App.tsx                                    | TypeScript JSX |         42 |          2 |          9 |         53 |
+| c:\GitHub\artdatabanken\src\assets\logo.svg                            | XML            |          1 |          0 |          0 |          1 |
+| c:\GitHub\artdatabanken\src\assets\placeholder.svg                     | XML            |          1 |          0 |          0 |          1 |
+| c:\GitHub\artdatabanken\src\assets\react.svg                           | XML            |          1 |          0 |          0 |          1 |
+| c:\GitHub\artdatabanken\src\components\Footer.module.css               | CSS            |          4 |          0 |          2 |          6 |
+| c:\GitHub\artdatabanken\src\components\Footer.tsx                      | TypeScript JSX |          8 |          0 |          2 |         10 |
+| c:\GitHub\artdatabanken\src\components\Link.tsx                        | TypeScript JSX |         17 |          4 |          3 |         24 |
+| c:\GitHub\artdatabanken\src\components\Navigation.tsx                  | TypeScript JSX |         35 |          0 |          3 |         38 |
+| c:\GitHub\artdatabanken\src\components\Pager.module.css                | CSS            |         20 |          0 |          5 |         25 |
+| c:\GitHub\artdatabanken\src\components\Pager.tsx                       | TypeScript JSX |         32 |          0 |          8 |         40 |
+| c:\GitHub\artdatabanken\src\components\TableHeader.module.css          | CSS            |          8 |          0 |          2 |         10 |
+| c:\GitHub\artdatabanken\src\components\TableHeader.tsx                 | TypeScript JSX |         36 |          0 |          6 |         42 |
+| c:\GitHub\artdatabanken\src\components\index.ts                        | TypeScript     |          6 |          0 |          2 |          8 |
+| c:\GitHub\artdatabanken\src\dialogs\DeleteImageDialog.tsx              | TypeScript JSX |         85 |          0 |         11 |         96 |
+| c:\GitHub\artdatabanken\src\dialogs\Dialog.module.css                  | CSS            |          8 |          0 |          2 |         10 |
+| c:\GitHub\artdatabanken\src\dialogs\Dialog.tsx                         | TypeScript JSX |         52 |          3 |         11 |         66 |
+| c:\GitHub\artdatabanken\src\dialogs\SpeciesDialog.module.css           | CSS            |         24 |          0 |          4 |         28 |
+| c:\GitHub\artdatabanken\src\dialogs\SpeciesDialog.tsx                  | TypeScript JSX |        169 |          0 |         25 |        194 |
+| c:\GitHub\artdatabanken\src\dialogs\UploadImageDialog.tsx              | TypeScript JSX |        155 |          2 |         26 |        183 |
+| c:\GitHub\artdatabanken\src\dialogs\index.ts                           | TypeScript     |          5 |          0 |          2 |          7 |
+| c:\GitHub\artdatabanken\src\index.css                                  | CSS            |         44 |          4 |          7 |         55 |
+| c:\GitHub\artdatabanken\src\lib\canvas.ts                              | TypeScript     |         30 |          0 |          5 |         35 |
+| c:\GitHub\artdatabanken\src\lib\firebase.ts                            | TypeScript     |        121 |         29 |         26 |        176 |
+| c:\GitHub\artdatabanken\src\lib\index.tsx                              | TypeScript JSX |         32 |          2 |         13 |         47 |
+| c:\GitHub\artdatabanken\src\lib\options.tsx                            | TypeScript JSX |         55 |          0 |          9 |         64 |
+| c:\GitHub\artdatabanken\src\lib\useDebounceEffect.ts                   | TypeScript     |         11 |         23 |          4 |         38 |
+| c:\GitHub\artdatabanken\src\lib\zustand.ts                             | TypeScript     |         88 |          9 |          8 |        105 |
+| c:\GitHub\artdatabanken\src\main.tsx                                   | TypeScript JSX |         10 |          0 |          2 |         12 |
+| c:\GitHub\artdatabanken\src\pages\Collections\A4Page.tsx               | TypeScript JSX |         46 |          2 |         10 |         58 |
+| c:\GitHub\artdatabanken\src\pages\Collections\Collections.module.css   | CSS            |         62 |          1 |         10 |         73 |
+| c:\GitHub\artdatabanken\src\pages\Collections\Collections.tsx          | TypeScript JSX |         50 |          0 |         10 |         60 |
+| c:\GitHub\artdatabanken\src\pages\Home.tsx                             | TypeScript JSX |         11 |          0 |          2 |         13 |
+| c:\GitHub\artdatabanken\src\pages\ImageView.module.css                 | CSS            |         22 |          0 |          5 |         27 |
+| c:\GitHub\artdatabanken\src\pages\ImageView.tsx                        | TypeScript JSX |         90 |          1 |         16 |        107 |
+| c:\GitHub\artdatabanken\src\pages\Page.module.css                      | CSS            |         11 |          0 |          3 |         14 |
+| c:\GitHub\artdatabanken\src\pages\Page.tsx                             | TypeScript JSX |         33 |          0 |          3 |         36 |
+| c:\GitHub\artdatabanken\src\pages\Settings\ImportImagesToFirebase.tsx  | TypeScript JSX |         66 |          2 |         14 |         82 |
+| c:\GitHub\artdatabanken\src\pages\Settings\ImportSpeciesToFirebase.tsx | TypeScript JSX |         63 |          1 |         12 |         76 |
+| c:\GitHub\artdatabanken\src\pages\Settings\Settings.tsx                | TypeScript JSX |         14 |          0 |          2 |         16 |
+| c:\GitHub\artdatabanken\src\pages\Settings\index.ts                    | TypeScript     |         20 |          0 |          6 |         26 |
+| c:\GitHub\artdatabanken\src\pages\SpeciesView\Filters.tsx              | TypeScript JSX |         84 |          2 |         18 |        104 |
+| c:\GitHub\artdatabanken\src\pages\SpeciesView\SpeciesView.module.css   | CSS            |          7 |          0 |          2 |          9 |
+| c:\GitHub\artdatabanken\src\pages\SpeciesView\SpeciesView.tsx          | TypeScript JSX |        109 |          0 |         16 |        125 |
+| c:\GitHub\artdatabanken\src\pages\index.ts                             | TypeScript     |          7 |          0 |          3 |         10 |
+| c:\GitHub\artdatabanken\src\vite-env.d.ts                              | TypeScript     |          0 |          1 |          1 |          2 |
+| Total                                                                  |                |      1,798 |         88 |        331 |      2,217 |
++------------------------------------------------------------------------+----------------+------------+------------+------------+------------+

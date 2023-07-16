@@ -1,8 +1,8 @@
 import classes from './Collections.module.css';
-import { useStoreState } from '../../state';
 import { SpeciesInfo } from '../../lib/firebase';
 import placeholder from '../../assets/placeholder.svg';
 import { countiesMap } from '../../lib/options';
+import { useAppStore } from '../../lib/zustand.ts';
 
 // Combine multiple CSS module selectors
 const css = (...selectors: string[]) => selectors.map((selector) => classes[selector]).join(' ');
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export default function A4Page({ items }: Props) {
-  const images = useStoreState('images');
+  const { images } = useAppStore();
 
   // TODO: is this too slow, i.e. loops all images?
   const getImage = (name: string) => images.find((image) => image.filename === name)?.URL || placeholder;

@@ -1,14 +1,8 @@
 import classes from './Dialog.module.css';
 import { useEffect } from 'react';
 
-export enum DialogTypes {
-  DELETE_IMAGE_DIALOG = 'DELETE_IMAGE_DIALOG',
-  UPLOAD_IMAGE_DIALOG = 'UPLOAD_IMAGE_DIALOG',
-  SPECIES_DIALOG = 'SPECIES_DIALOG',
-}
-
 export type DialogProps = {
-  id: DialogTypes;
+  id?: string;
   title?: string;
   open: boolean;
   hide: () => void;
@@ -24,6 +18,8 @@ export default function Dialog({ id, title, open, hide, children, onSubmit }: Di
   // BUGG: Chromium bugg that closes dialogs when a file input dialog is canceled, see
   // https://stackoverflow.com/questions/76400460/html-dialog-closes-automatically-when-file-input-is-cancelled-how-to-prevent.
   useEffect(() => {
+    if (!id) return;
+
     let prematurelyClosed = false;
     const dialog = document.getElementById(id) as HTMLDialogElement;
 

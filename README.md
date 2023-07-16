@@ -4,17 +4,16 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-- [ ] Firestore qouta hits the limit of 50k reads per day.
-  - App init: load from local storage + d/l all new/changed items from Firebase.
-  - Use local state like `Zustand` that is synced to locale storage.
+- [ ] ?
 - PRODUCTION
   - [ ] Deploy (not sure to where/what) and delete unused code and console.log statements.
   - [ ] Protect files and db with [Firebase rules](https://firebase.google.com/docs/firestore/security/get-started).
 - NICE TO HAVE
   - [ ] CSS styling of the Datalists.
   - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
-  - [ ] cache datalists
 - DONE
+  - [x] Firestore qouta hits the limit of 50k reads per day. Use bundles to cache old data.
+  - [x] Remove react-use and replace with Zustand.
   - [x] Header on all printed pages
   - [x] Sidnummer printed pages
   - [x] Remove nested CSS, not supported
@@ -74,6 +73,7 @@ firebase deploy
   - [Upload files](https://firebase.google.com/docs/storage/web/upload-files)
   - [Add data](https://firebase.google.com/docs/firestore/manage-data/add-data)
   - [Get data](https://firebase.google.com/docs/firestore/query-data/get-data)
+  - [Bundles](https://firebase.google.com/docs/firestore/bundles)
 
 - REACT
 
@@ -84,6 +84,7 @@ firebase deploy
     - [useEffect on objects](https://dev.to/hey_yogini/useeffect-dependency-array-and-object-comparison-45el)
   - Globale state
     - [Zustand](https://github.com/pmndrs/zustand)
+    - [Zustand doc](https://docs.pmnd.rs/zustand/migrations/migrating-to-v4)
     - [Understanding and Properly Using React Global State](https://clerk.com/blog/understanding-and-properly-using-react-global-state?utm_source=www.google.com&utm_medium=referral&utm_campaign=none)
     - [A guide to choosing the right React state management solution](https://blog.logrocket.com/guide-choosing-right-react-state-management-solution/)
       - [Recoil](https://recoiljs.org/)
@@ -107,6 +108,7 @@ firebase deploy
 
 - TYPESCRIPT
 
+  - [Type vs Interface](https://blog.logrocket.com/types-vs-interfaces-typescript/)
   - [Implementing a Dynamic compare function](https://reacthustle.com/blog/typescript-sort-array-of-objects-by-property)
 
 - BROWSER
@@ -118,39 +120,3 @@ firebase deploy
 - PACKAGES
 
   - [DayJS](https://github.com/iamkun/dayjs)
-
-```txt
-county
-"sodermanland"
-createdAt
-10 July 2023 at 19:31:47 UTC+2
-date
-"2018-05-05"
-family
-"Korgblommiga"
-image
-"image314.jpg"
-kingdom
-"Fröväxter"
-order
-"Gömfröiga"
-place
-"Nackareserv"
-sex
-""
-species
-"Hästhovsört"
-speciesLatin
-"Tussilago farfara"
-
-URL
-"https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fbild096.jpg?alt=media&token=333d1670-3baf-48f3-976a-b31b13772f7c"
-createdAt
-10 July 2023 at 16:31:54 UTC+2
-filename
-"bild096.jpg"
-thumbnail
-"bild096_thumbnail.jpg"
-thumbnailURL
-"https://firebasestorage.googleapis.com/v0/b/artdatabanken-2023-dev.appspot.com/o/images%2Fbild096_thumbnail.jpg?alt=media&token=a6880cdd-ce5a-430e-a0ab-8027ec4435c1"
-```

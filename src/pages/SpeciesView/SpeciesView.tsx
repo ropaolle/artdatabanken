@@ -1,11 +1,14 @@
 import classes from './SpeciesView.module.css';
 import { useState, useEffect } from 'react';
-import { useStoreState, showSpeciesDialog } from '../../state';
 import Page from './../Page';
 import { TableHeader, type HeaderCellOnClick, Pager } from '../../components';
 import Filters from './Filters';
 import { type SpeciesInfo } from '../../lib/firebase';
 import { sexesMap, countiesMap } from '../../lib/options';
+import { SpeciesDialog } from '../../dialogs';
+import { useAppStore } from '../../lib/zustand.ts';
+
+const pageSize = 50;
 
 const headerColumns = [
   [
@@ -27,11 +30,12 @@ const headerColumns = [
   [{ label: 'Bild', id: 'image' }],
 ];
 
-const pageSize = 50;
-
 export default function SpeciesView() {
-  const images = useStoreState('images');
-  const species = useStoreState('species');
+  const { images, species } = useAppStore();
+
+
+  const [dialog, showDialog] = useState(false);
+  const [dialogValues, setDialogValues] = useState<SpeciesInfo>();
   const [thumbnails, setThumbnails] = useState<Map<string, string>>(new Map());
   const [sort, setSort] = useState({ column: 'species', ascending: false });
   const [items, setItems] = useState<SpeciesInfo[]>();
@@ -55,10 +59,11 @@ export default function SpeciesView() {
   }, [items, page]);
 
   const handleRowClick = (e: React.MouseEvent) => {
-    showSpeciesDialog(
-      true,
-      species.find(({ id }) => id === e.currentTarget.id)
-    );
+    const currentSpecies = species.find(({ id }) => id === e.currentTarget.id);
+    if (currentSpecies) {
+      setDialogValues(currentSpecies);
+      showDialog(true);
+    }
   };
 
   const handleHeaderClick: HeaderCellOnClick = (e, id) => {
@@ -74,16 +79,24 @@ export default function SpeciesView() {
             <td>
               <div>{kingdom}</div>
               <div>{order}</div>
-              <div><ins>{family}</ins></div>
+              <div>
+                <ins>{family}</ins>
+              </div>
             </td>
-            <td><b>{species}</b></td>
+            <td>
+              <b>{species}</b>
+            </td>
             <td>
               <div>{speciesLatin}</div>
-              <div><i>{sexesMap.get(sex) || sex}</i></div>
+              <div>
+                <i>{sexesMap.get(sex) || sex}</i>
+              </div>
             </td>
             <td>
               <div>{place}</div>
-              <div><ins>{countiesMap.get(county)}</ins></div>
+              <div>
+                <ins>{countiesMap.get(county)}</ins>
+              </div>
               <div>{date}</div>
             </td>
             <td>
@@ -95,7 +108,9 @@ export default function SpeciesView() {
   );
 
   return (
-    <Page title="Arter" headerButtonTitle="Ny Art" onHeaderButtonClick={() => showSpeciesDialog(true)}>
+    <Page title="Arter" headerButtonTitle="Ny Art" onHeaderButtonClick={() => showDialog(true)}>
+      <SpeciesDialog open={dialog} show={showDialog} values={dialogValues} />
+
       <Filters setItems={setItems} sort={sort} />
       <figure>
         <table className="species-table" role="grid">

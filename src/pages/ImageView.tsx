@@ -1,12 +1,12 @@
 import classes from './ImageView.module.css';
 import { useState, useEffect } from 'react';
-// import { collection, addDoc, setDoc, doc, serverTimestamp, Timestamp } from 'firebase/firestore';
-import { useStoreState, showDeleteImageDialog, showUploadImageDialog } from '../state';
 import { type ImageInfo } from '../lib/firebase';
 import Page from './Page';
 import { createSortFunc, timestampToString } from '../lib';
 import { toOptions } from '../lib/options';
 import { Pager } from '../components';
+import { UploadImageDialog, DeleteImageDialog } from '../dialogs';
+import { useAppStore } from '../lib/zustand.ts';
 
 const sortStates = [
   { label: 'Filnamn (stigande)', value: 'filename-ascending' },
@@ -18,7 +18,10 @@ const sortStates = [
 const pageSize = 50;
 
 export default function ImageView() {
-  const images = useStoreState('images');
+  const { images } = useAppStore();
+  const [uploadDialog, showUploadDialog] = useState(false);
+  const [deleteDialog, showDeleteDialog] = useState(false);
+  const [dialogValues, setDialogValues] = useState<ImageInfo>();
   const [items, setItems] = useState<ImageInfo[]>();
   const [filter, setFilter] = useState('');
   const [sort, setSort] = useState({ column: 'filename', ascending: false });
@@ -47,18 +50,21 @@ export default function ImageView() {
 
   if (!images) return null;
 
+  const handleImageClick = (image: ImageInfo) => {
+    setDialogValues(image);
+    showDeleteDialog(true);
+  };
+
   const imageList =
     list &&
     list.map((image) => {
       const { filename, /* thumbnail, URL, */ thumbnailURL, updatedAt, createdAt } = image;
       return (
-        <figure className={classes.imageCell} key={filename} onClick={() => showDeleteImageDialog(true, image)}>
+        <figure className={classes.imageCell} key={filename} onClick={() => handleImageClick(image)}>
           <img className={classes.image} src={thumbnailURL} alt={filename} /* loading="lazy" */ />
           <div className={classes.info}>
             <div>{filename}</div>
-            <div>
-              <small>({timestampToString(updatedAt || createdAt)})</small>
-            </div>
+            <div>{<small>({timestampToString(updatedAt || createdAt)})</small>}</div>
           </div>
         </figure>
       );
@@ -74,7 +80,10 @@ export default function ImageView() {
   };
 
   return (
-    <Page title="Bilder" headerButtonTitle="Ladda upp bild" onHeaderButtonClick={() => showUploadImageDialog(true)}>
+    <Page title="Bilder" headerButtonTitle="Ladda upp bild" onHeaderButtonClick={() => showUploadDialog(true)}>
+      <UploadImageDialog open={uploadDialog} show={showUploadDialog} />
+      <DeleteImageDialog open={deleteDialog} show={showDeleteDialog} values={dialogValues} />
+
       <form>
         <div className="grid">
           <label htmlFor="all">

@@ -1,12 +1,18 @@
 import { useState } from 'react';
-import { useStoreState, deleteImage, showDeleteImageDialog } from '../state';
 import { doc, deleteDoc } from 'firebase/firestore';
-import { db, deleteFile } from '../lib/firebase';
-import Dialog, { DialogTypes } from './Dialog';
+import { db, deleteFile, type ImageInfo, COLLECTIONS } from '../lib/firebase';
+import Dialog from './Dialog';
 import { timestampToString } from '../lib/';
+import { useAppStore } from '../lib/zustand.ts';
 
-export default function DeleteImageDialog() {
-  const { open, values } = useStoreState('deleteImageDialog');
+type Props = {
+  open: boolean;
+  show: React.Dispatch<boolean>;
+  values: ImageInfo | undefined;
+};
+
+export default function DeleteImageDialog({ open, show, values }: Props) {
+  const { deleteImage } = useAppStore();
   const [deletingImage, setDeletingImage] = useState(false);
 
   if (!values) return;
@@ -18,21 +24,25 @@ export default function DeleteImageDialog() {
 
     setDeletingImage(true);
 
-    Promise.all([await deleteFile(filename), await deleteFile(thumbnail), await deleteDoc(doc(db, 'images', filename))])
+    Promise.all([
+      await deleteFile(filename),
+      await deleteFile(thumbnail),
+      await deleteDoc(doc(db, COLLECTIONS.IMAGES, filename)),
+    ])
       .then(() => {
         deleteImage(filename);
       })
       .catch((error) => console.error(error))
       .finally(() => {
         setDeletingImage(false);
-        showDeleteImageDialog(false);
+        show(false);
       });
   };
 
-  const hide = () => showDeleteImageDialog(false);
+  const hide = () => show(false);
 
   return (
-    <Dialog id={DialogTypes.DELETE_IMAGE_DIALOG} open={open} hide={hide} title={`Bild: ${filename}`}>
+    <Dialog open={open} hide={hide} title={`Bild: ${filename}`}>
       <img src={URL} alt={filename} />
       <table>
         <tbody>

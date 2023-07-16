@@ -1,11 +1,11 @@
 import classes from './SpeciesDialog.module.css';
 import { useState, useEffect } from 'react';
-import { useStoreState, showSpeciesDialog, deleteSpecies, addSpecies, updateSpecies } from '../state';
 import { useForm, SubmitHandler, type FieldError } from 'react-hook-form';
-import { doc, updateDoc, addDoc, serverTimestamp, collection, deleteDoc } from 'firebase/firestore';
-import { db, type SpeciesInfo } from '../lib/firebase.ts';
+import { doc, setDoc, Timestamp, deleteDoc } from 'firebase/firestore';
+import { db, type SpeciesInfo, COLLECTIONS } from '../lib/firebase.ts';
 import { toDatalistOptions, toOptions, counties, sexes } from '../lib/options';
-import Dialog, { DialogTypes } from './Dialog';
+import Dialog from './Dialog';
+import { useAppStore } from '../lib/zustand.ts';
 
 type Inputs = Omit<SpeciesInfo, 'updatedAt' | 'createdAt'>;
 
@@ -22,10 +22,15 @@ const defaults = {
   image: '',
 };
 
-export default function SpeciesDialog() {
-  const images = useStoreState('images');
-  const dataLists = useStoreState('dataLists');
-  const { open, values } = useStoreState('speciesDialog');
+type Props = {
+  open: boolean;
+  show: React.Dispatch<boolean>;
+  values: SpeciesInfo | undefined;
+};
+
+export default function SpeciesDialog({ open, show, values }: Props) {
+  const { setSpecies, deleteSpecies, images, species } = useAppStore();
+
   const [previewImage, setPreviewImage] = useState<string>();
   const {
     register,
@@ -42,27 +47,31 @@ export default function SpeciesDialog() {
   useEffect(() => {
     reset(values || defaults);
     loadPreview(values?.image);
-  }, [values]);
+  }, [values, reset]);
 
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset(defaults);
-      showSpeciesDialog(false);
+      show(false);
     }
-  }, [isSubmitSuccessful, reset]);
+  }, [isSubmitSuccessful, reset, show]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      if (data.id) {
-        await updateDoc(doc(db, 'species', data.id), {
-          ...data,
-          updatedAt: serverTimestamp(),
-        });
-        updateSpecies(data);
-      } else {
-        const doc = await addDoc(collection(db, 'species'), { ...data, createdAt: serverTimestamp() });
-        addSpecies({ ...data, id: doc.id });
+      const id = data.id || crypto.randomUUID();
+
+      const species: SpeciesInfo = {
+        ...data,
+        updatedAt: Timestamp.now(),
+      };
+
+      if (!data.id) {
+        species.id = id;
+        species.createdAt = Timestamp.now();
       }
+
+      await setDoc(doc(db, COLLECTIONS.SPECIES, id), species);
+      setSpecies(data);
     } catch (error) {
       console.error(error);
     }
@@ -75,8 +84,8 @@ export default function SpeciesDialog() {
   const handleDelete = async () => {
     if (values?.id) {
       try {
-        await deleteDoc(doc(db, 'species', values.id));
-        showSpeciesDialog(false);
+        await deleteDoc(doc(db, COLLECTIONS.SPECIES, values.id));
+        show(false);
         deleteSpecies(values.id);
       } catch (error) {
         console.error(error);
@@ -84,12 +93,15 @@ export default function SpeciesDialog() {
     }
   };
 
-  const hide = () => showSpeciesDialog(false);
+  const hide = () => {
+    reset(defaults);
+    show(false);
+  };
 
   type HorizontalInputType = {
     id: string;
     label: string;
-    dataList?: Set<string> | string[];
+    dataList?: string[];
     error?: FieldError;
     required?: boolean | string;
   };
@@ -110,26 +122,20 @@ export default function SpeciesDialog() {
   );
 
   return (
-    <Dialog
-      id={DialogTypes.SPECIES_DIALOG}
-      open={open}
-      hide={hide}
-      onSubmit={handleSubmit(onSubmit)}
-      title={`Lägg till ny art`}
-    >
+    <Dialog open={open} hide={hide} onSubmit={handleSubmit(onSubmit)} title={`Lägg till ny art`}>
       <div className={classes.horizontalForm}>
         <HorizontalInput
           id="species"
           label="Art*"
-          dataList={dataLists.species}
+          dataList={species.map(({ species }) => species)}
           error={errors.species}
           required="This is required."
         />
-        <HorizontalInput id="kingdom" label="Klass" dataList={dataLists.kingdoms} />
-        <HorizontalInput id="order" label="Ordning" dataList={dataLists.orders} />
-        <HorizontalInput id="family" label="Familj" dataList={dataLists.families} />
+        <HorizontalInput id="kingdom" label="Klass" dataList={species.map(({ kingdom }) => kingdom)} />
+        <HorizontalInput id="order" label="Ordning" dataList={species.map(({ order }) => order)} />
+        <HorizontalInput id="family" label="Familj" dataList={species.map(({ family }) => family)} />
         <HorizontalInput id="speciesLatin" label="Latinskt namn" />
-        <HorizontalInput id="place" label="Lokal" dataList={dataLists.places} />
+        <HorizontalInput id="place" label="Lokal" dataList={species.map(({ place }) => place)} />
       </div>
 
       <div className="grid">

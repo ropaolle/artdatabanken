@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { getStorage, ref, getDownloadURL, uploadBytes } from 'firebase/storage';
 import { setDoc, doc, Timestamp } from 'firebase/firestore';
-import { db } from '../../lib/firebase';
+import { db, COLLECTIONS, PATHS, type ImageInfo } from '../../lib/firebase';
 import { ImportStates } from '.';
-
-const IMAGES_PATH = 'images';
-const IMAGES_COLLECTION = 'images';
 
 export default function ImportImagesToFirebase() {
   const [images, setImages] = useState<FileList>();
@@ -18,6 +15,10 @@ export default function ImportImagesToFirebase() {
     setImages(e.currentTarget.files || undefined);
   };
 
+  type BundleObject = {
+    [key: string]: ImageInfo;
+  };
+
   // TODO: Rewrite with async/await
   const handleImageImport = async () => {
     if (!images) return;
@@ -27,24 +28,22 @@ export default function ImportImagesToFirebase() {
     const storage = getStorage();
 
     const promises = [];
+    const bundleItems: BundleObject = {};
 
     for (const file of images) {
-      const fullPath = `${IMAGES_PATH}/${file.name.toLocaleLowerCase()}`;
+      const fullPath = `${PATHS.IMAGES}/${file.name.toLocaleLowerCase()}`;
       const storageRef = ref(storage, fullPath);
 
       const job = uploadBytes(storageRef, file)
         .then((snapshot) => {
           return getDownloadURL(snapshot.ref)
             .then((URL) => {
-              const newDoc = !file.name.includes('_thumbnail')
-                ? { filename: file.name, URL: URL, createdAt: Timestamp.fromDate(new Date()) }
-                : { thumbnail: file.name, thumbnailURL: URL, createdAt: Timestamp.fromDate(new Date()) };
-
-              return setDoc(doc(db, IMAGES_COLLECTION, file.name.replace('_thumbnail', '')), newDoc, { merge: true })
-                .then(() => {
-                  setImagesMessage(`${file.name} uploaded.`);
-                })
-                .catch((err) => console.error(err));
+              const fileInfo = !file.name.includes('_thumbnail')
+                ? { filename: file.name, URL: URL }
+                : { thumbnail: file.name, thumbnailURL: URL };
+              const newDoc = { ...fileInfo, createdAt: Timestamp.now(), updatedAt: Timestamp.now() };
+              const filename = file.name.replace('_thumbnail', '');
+              bundleItems[filename] = { ...bundleItems[filename], ...newDoc };
             })
             .catch((err) => console.error(err));
         })
@@ -55,6 +54,12 @@ export default function ImportImagesToFirebase() {
 
     Promise.all(promises)
       .then(() => {
+        // Create custom bundle
+        setDoc(doc(db, COLLECTIONS.BUNDLES, COLLECTIONS.IMAGES), {
+          items: Object.values(bundleItems),
+          updatedAt: Timestamp.now(),
+        });
+
         setImagesMessage(`Done. ${images.length} files uploaded.`);
       })
       .catch((err) => console.error(err))
@@ -65,7 +70,7 @@ export default function ImportImagesToFirebase() {
     <div>
       <label htmlFor="importimages">
         <b>Bilder</b>
-        <input id="importimages" type="file" onChange={onHandleImageImportChange} multiple />
+        <input id="importimages" type="file" accept=".jpg" onChange={onHandleImageImportChange} multiple />
         {imagesMessage && <small>{imagesMessage}</small>}
       </label>
       <button onClick={handleImageImport} aria-busy={uploadingImages === ImportStates.UPLOADING}>
