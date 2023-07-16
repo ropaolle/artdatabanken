@@ -4,6 +4,7 @@ import { SpeciesInfo } from '../../lib/firebase';
 import Page from '../Page';
 import A4Page from './A4Page';
 import { useAppStore } from '../../lib/zustand.ts';
+import { toDatalistOptions } from '../../lib/options.tsx';
 
 const spliceIntoChunks = (items: SpeciesInfo[], chunkSize: number) => {
   const res = [];
@@ -25,13 +26,6 @@ export default function Collections() {
     setItems(spliceIntoChunks(items, 9));
   }, [species, family]);
 
-  const toOptions = (list: string[]) =>
-    Array.from(list).map((value) => (
-      <option key={value} value={value}>
-        {value}
-      </option>
-    ));
-
   const Pages = ({ items }: { items: SpeciesInfo[][] }) =>
     items && items.map((species, i) => <A4Page key={i} page={i} items={species} />);
 
@@ -47,7 +41,7 @@ export default function Collections() {
         <label htmlFor="family">
           Familj
           <input id="family" list="family-data" autoComplete="off" onChange={(e) => setFamily(e.target.value)} />
-          <datalist id="family-data">{toOptions(species.map(({ family }) => family))}</datalist>
+          <datalist id="family-data">{toDatalistOptions(species.map(({ family }) => family))}</datalist>
         </label>
 
         <h3>Förhandsvisning</h3>

@@ -1,19 +1,24 @@
 export type Option = {
   value: string;
-  label: string;
+  label?: string;
   alternativeLabel?: string;
 };
 
 export const toOptions = (options: Option[]) =>
   options.map(({ value, label, alternativeLabel }) => (
     <option key={value} value={value}>
-      {label}
+      {label || value}
       {alternativeLabel && ` (${alternativeLabel})`}
     </option>
   ));
 
-export const toDatalistOptions = (items: string[] | Set<string>) =>
-  Array.from(items).map((option, i) => <option key={i}>{option}</option>);
+export const toDatalistOptions = (items: string[], onlyUnique = true) => {
+  if (onlyUnique) {
+    items = Array.from(new Set(items));
+  }
+
+  return items.map((option, i) => <option key={i}>{option}</option>);
+};
 
 export const counties = [
   { value: '', label: 'Ange län…' },

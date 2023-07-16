@@ -38,7 +38,7 @@ function App() {
     <>
       <Navigation setPage={setPage} />
 
-      {page === 'HOME' && <Home />}
+      {page === 'HOME' && <Home setPage={setPage} />}
       {page === 'SPECIES' && <SpeciesView />}
       {page === 'IMAGES' && <ImageView />}
       {page === 'COLLECTIONS' && <Collections />}

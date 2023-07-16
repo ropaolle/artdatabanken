@@ -101,7 +101,7 @@ export default function SpeciesDialog({ open, show, values }: Props) {
   type HorizontalInputType = {
     id: string;
     label: string;
-    dataList?: Set<string> | string[];
+    dataList?: string[];
     error?: FieldError;
     required?: boolean | string;
   };
