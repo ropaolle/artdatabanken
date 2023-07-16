@@ -44,11 +44,6 @@ export default function ImportImagesToFirebase() {
               const newDoc = { ...fileInfo, createdAt: Timestamp.now(), updatedAt: Timestamp.now() };
               const filename = file.name.replace('_thumbnail', '');
               bundleItems[filename] = { ...bundleItems[filename], ...newDoc };
-              return setDoc(doc(db, COLLECTIONS.IMAGES, filename), newDoc, { merge: true })
-                .then(() => {
-                  setImagesMessage(`${file.name} uploaded.`);
-                })
-                .catch((err) => console.error(err));
             })
             .catch((err) => console.error(err));
         })

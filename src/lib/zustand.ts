@@ -14,23 +14,25 @@ type GlobalState = {
   updatedAt?: Timestamp;
 };
 
+const toTimestamp = (item: ImageInfo | SpeciesInfo) => {
+  if (item.createdAt) {
+    item.createdAt = new Timestamp(item.createdAt.seconds, item.createdAt.nanoseconds);
+  }
+  if (item.updatedAt) {
+    item.updatedAt = new Timestamp(item.updatedAt.seconds, item.updatedAt.nanoseconds);
+  }
+
+  return item;
+};
+
 const customStorage = {
   getItem: (key: string): StorageValue<GlobalState> => {
     const str = localStorage.getItem(key) || '';
     return {
       state: {
         ...JSON.parse(str).state,
-        images: JSON.parse(str).state.images.map((image: ImageInfo) => {
-          if (image.createdAt) {
-            image.createdAt = new Timestamp(image.createdAt.seconds, image.createdAt.nanoseconds);
-          }
-          if (image.updatedAt) {
-            image.updatedAt = new Timestamp(image.updatedAt.seconds, image.updatedAt.nanoseconds);
-          }
-          return image;
-        }),
-
-        // TODO: The same conversion for species
+        images: JSON.parse(str).state.images.map((image: ImageInfo) => toTimestamp(image)),
+        species: JSON.parse(str).state.speces.map((species: SpeciesInfo) => toTimestamp(species)),
       },
     };
   },

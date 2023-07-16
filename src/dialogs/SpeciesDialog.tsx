@@ -1,7 +1,7 @@
 import classes from './SpeciesDialog.module.css';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler, type FieldError } from 'react-hook-form';
-import { doc, addDoc, setDoc, Timestamp, collection, deleteDoc } from 'firebase/firestore';
+import { doc, setDoc, Timestamp, deleteDoc } from 'firebase/firestore';
 import { db, type SpeciesInfo, COLLECTIONS } from '../lib/firebase.ts';
 import { toDatalistOptions, toOptions, counties, sexes } from '../lib/options';
 import Dialog from './Dialog';
@@ -58,21 +58,20 @@ export default function SpeciesDialog({ open, show, values }: Props) {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
+      const id = data.id || crypto.randomUUID();
+
       const species: SpeciesInfo = {
         ...data,
         updatedAt: Timestamp.now(),
       };
 
       if (!data.id) {
-        const doc = await addDoc(collection(db, COLLECTIONS.SPECIES), {
-          ...species,
-          createdAt: Timestamp.now(),
-        });
-        setSpecies({ ...data, id: doc.id });
-      } else {
-        await setDoc(doc(db, COLLECTIONS.SPECIES, data.id), species);
-        setSpecies(data);
+        species.id = id;
+        species.createdAt = Timestamp.now();
       }
+
+      await setDoc(doc(db, COLLECTIONS.SPECIES, id), species);
+      setSpecies(data);
     } catch (error) {
       console.error(error);
     }

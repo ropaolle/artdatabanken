@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { collection, addDoc, doc, setDoc, Timestamp } from 'firebase/firestore';
+import { doc, setDoc, Timestamp } from 'firebase/firestore';
 import { db, type SpeciesInfo, COLLECTIONS } from '../../lib/firebase';
 import { readUploadedFileAsText, ImportStates } from '.';
 
@@ -22,6 +22,7 @@ export default function ImportSpeciesToFirebase() {
 
       for (const [kingdom, order, family, species, sex, speciesLatin, place, county, date, image] of records) {
         speciesCollection.push({
+          id: crypto.randomUUID(),
           kingdom,
           order,
           family,
@@ -46,18 +47,6 @@ export default function ImportSpeciesToFirebase() {
   const handleSpeciesImport = async () => {
     if (!species) return;
     setImportingSpecies(ImportStates.UPLOADING);
-
-    for await (const record of species) {
-      // Upload to Firebase
-      const doc = await addDoc(collection(db, COLLECTIONS.SPECIES), record);
-
-      // Add id to the bundle
-      record.id = doc.id;
-      console.log('record', record);
-      setSpeciesMessage(`importing ${record.species}: ${doc.id}`);
-    }
-
-    console.log('species', species);
 
     // Create custom bundle
     await setDoc(doc(db, COLLECTIONS.BUNDLES, COLLECTIONS.SPECIES), { items: species, updatedAt: Timestamp.now() });

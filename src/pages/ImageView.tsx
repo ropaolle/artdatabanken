@@ -19,8 +19,6 @@ const pageSize = 50;
 
 export default function ImageView() {
   const { images } = useAppStore();
-  
-  
   const [uploadDialog, showUploadDialog] = useState(false);
   const [deleteDialog, showDeleteDialog] = useState(false);
   const [dialogValues, setDialogValues] = useState<ImageInfo>();
@@ -32,7 +30,6 @@ export default function ImageView() {
 
   // Add a date field used by sort
   useEffect(() => {
-    console.log('images', images);
     setItems(
       images.map((image) => ({
         ...image,

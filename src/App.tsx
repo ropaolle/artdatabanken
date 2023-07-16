@@ -17,7 +17,7 @@ function App() {
         const bundles = await firestoreFetch<Bundles>('bundles');
         const images = bundles.find(({ id }) => id === 'images');
         const species = bundles.find(({ id }) => id === 'species');
-        initGlobalState(images?.items as ImageInfo[], species?.items as SpeciesInfo[], Timestamp.now());
+        initGlobalState((images?.items as ImageInfo[]) || [], (species?.items as SpeciesInfo[]) || [], Timestamp.now());
       }
 
       // Fetch all new items
