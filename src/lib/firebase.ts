@@ -1,38 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
 import { getFirestore, collection, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore';
-
-// PROD
-// const firebaseConfig = {
-//   apiKey: 'AIzaSyDG2cSWrnZpiiRI_rtbteXWotkljcDKO-U',
-//   authDomain: 'artdatabanken-2023.firebaseapp.com',
-//   projectId: 'artdatabanken-2023',
-//   storageBucket: 'artdatabanken-2023.appspot.com',
-//   messagingSenderId: '755130876588',
-//   appId: '1:755130876588:web:ff1adae7ec3b17d1c01509',
-// };
-
-// DEV
-const firebaseConfig = {
-  apiKey: 'AIzaSyARGHDdkUk65SPDDSc6tgj5jX9rq7FsUYk',
-  authDomain: 'artdatabanken-2023-dev.firebaseapp.com',
-  projectId: 'artdatabanken-2023-dev',
-  storageBucket: 'artdatabanken-2023-dev.appspot.com',
-  messagingSenderId: '544182237871',
-  appId: '1:544182237871:web:829c6e290800094bdcf25a',
-};
-
-// PAPPA
-// const firebaseConfig = {
-//   apiKey: "AIzaSyAtNXWmXp1afYAGQ51aXdyCR4WRc42ViN4",
-//   authDomain: "artdatabanken.firebaseapp.com",
-//   databaseURL: "https://artdatabanken.firebaseio.com",
-//   projectId: "artdatabanken",
-//   storageBucket: "artdatabanken.appspot.com",
-//   messagingSenderId: "495647184718",
-//   appId: "1:495647184718:web:67ae3c56aeeeacf93af01f",
-//   measurementId: "G-NBMHCY9EPV"
-// };
+import { prod as firebaseConfig } from '../../firebaseauth.ts';
 
 export enum COLLECTIONS {
   'IMAGES' = 'images',
