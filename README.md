@@ -60,7 +60,9 @@ yarn create vite artdatabanken --template react-swc-ts
 npm install -g firebase-tools
 npm run build
 firebase login
-firebase deploy
+firebase use artdatabanken-2023 (https://artdatabanken-2023.web.app)
+firebase use artdatabanken-2023-dev (https://artdatabanken-2023-dev.web.app)
+firebase deploy --only hosting
 ```
 
 ## Links
@@ -73,6 +75,8 @@ firebase deploy
   - [Upload files](https://firebase.google.com/docs/storage/web/upload-files)
   - [Add data](https://firebase.google.com/docs/firestore/manage-data/add-data)
   - [Get data](https://firebase.google.com/docs/firestore/query-data/get-data)
+  - [Authentication](https://firebase.google.com/docs/auth/web/start)
+  - [Rules](https://firebase.google.com/docs/rules/basics)
   - [Bundles](https://firebase.google.com/docs/firestore/bundles)
 
 - REACT

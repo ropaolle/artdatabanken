@@ -1,7 +1,24 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
 import { getFirestore, collection, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore';
-import { prod as firebaseConfig } from '../../firebaseauth.ts';
+
+// const firebaseConfigProd = {
+//   apiKey: 'AIzaSyDG2cSWrnZpiiRI_rtbteXWotkljcDKO-U',
+//   authDomain: 'artdatabanken-2023.firebaseapp.com',
+//   projectId: 'artdatabanken-2023',
+//   storageBucket: 'artdatabanken-2023.appspot.com',
+//   messagingSenderId: '755130876588',
+//   appId: '1:755130876588:web:ff1adae7ec3b17d1c01509',
+// };
+
+const firebaseConfigDev = {
+  apiKey: 'AIzaSyARGHDdkUk65SPDDSc6tgj5jX9rq7FsUYk',
+  authDomain: 'artdatabanken-2023-dev.firebaseapp.com',
+  projectId: 'artdatabanken-2023-dev',
+  storageBucket: 'artdatabanken-2023-dev.appspot.com',
+  messagingSenderId: '544182237871',
+  appId: '1:544182237871:web:829c6e290800094bdcf25a',
+};
 
 export enum COLLECTIONS {
   'IMAGES' = 'images',
@@ -13,7 +30,7 @@ export enum PATHS {
   'IMAGES' = 'images',
 }
 
-export const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfigDev);
 export const storage = getStorage(app);
 export const db = getFirestore(app);
 
