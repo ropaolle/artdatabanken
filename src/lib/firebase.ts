@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getStorage, ref, getDownloadURL, uploadBytesResumable, deleteObject /* pö */ } from 'firebase/storage';
+import { getStorage, ref, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
 import { getFirestore, collection, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore';
 
 // PROD
@@ -156,12 +156,11 @@ export type SpeciesInfo = {
   updatedAt?: Timestamp;
 };
 
-
 export type Bundles = {
   id: string;
   items: ImageInfo[] | SpeciesInfo[];
   updatedAt: Timestamp;
-}
+};
 
 // export type Bundles = {
 //   species: { id?: string; items: SpeciesInfo[]; updatedAt: Timestamp };

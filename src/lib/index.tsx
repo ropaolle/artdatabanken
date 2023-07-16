@@ -1,32 +1,32 @@
 import { Timestamp } from 'firebase/firestore';
 import { useDebounceEffect } from './useDebounceEffect';
 import { drawImageOnCanvas } from './canvas';
-import { type ImageInfo, type SpeciesInfo } from './firebase.ts';
+// import { type ImageInfo, type SpeciesInfo } from './firebase.ts';
 
 export const timestampToString = (timestamp: Timestamp | undefined) =>
   timestamp ? timestamp.toDate().toISOString().substring(0, 19).replace('T', ' ') : '';
 
 // Locale storage
 
-const localStorageOptions = { raw: false, serializer: JSON.stringify, deserializer: JSON.parse };
+// const localStorageOptions = { raw: false, serializer: JSON.stringify, deserializer: JSON.parse };
 
-const firebaseDeserializer = <T,>(value: string): T => {
-  const object = JSON.parse(value);
+// const firebaseDeserializer = <T,>(value: string): T => {
+//   const object = JSON.parse(value);
 
-  for (const record of object) {
-    if (record.createdAt) {
-      record.createdAt = new Timestamp(record.createdAt.seconds, record.createdAt.nanoseconds);
-    }
-    if (record.updatedAt) {
-      record.updatedAt = new Timestamp(record.updatedAt.seconds, record.updatedAt.nanoseconds);
-    }
-  }
+//   for (const record of object) {
+//     if (record.createdAt) {
+//       record.createdAt = new Timestamp(record.createdAt.seconds, record.createdAt.nanoseconds);
+//     }
+//     if (record.updatedAt) {
+//       record.updatedAt = new Timestamp(record.updatedAt.seconds, record.updatedAt.nanoseconds);
+//     }
+//   }
 
-  return object;
-};
+//   return object;
+// };
 
-export const localStorageSpeciesOptions = { ...localStorageOptions, deserializer: firebaseDeserializer<SpeciesInfo[]> };
-export const localStorageImagesOptions = { ...localStorageOptions, deserializer: firebaseDeserializer<ImageInfo[]> };
+// export const localStorageSpeciesOptions = { ...localStorageOptions, deserializer: firebaseDeserializer<SpeciesInfo[]> };
+// export const localStorageImagesOptions = { ...localStorageOptions, deserializer: firebaseDeserializer<ImageInfo[]> };
 
 // Locale string sort on objects of string values
 export function createSortFunc<T>({ column, ascending = true }: { column: string; ascending: boolean }) {
