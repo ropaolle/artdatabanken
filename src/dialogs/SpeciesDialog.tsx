@@ -29,7 +29,7 @@ type Props = {
 };
 
 export default function SpeciesDialog({ open, show, values }: Props) {
-  const { setSpecies, deleteSpecies, images, species } = useAppStore();
+  const { setSpecies, deleteSpecies, images, species, user } = useAppStore();
 
   const [previewImage, setPreviewImage] = useState<string>();
   const {
@@ -57,6 +57,8 @@ export default function SpeciesDialog({ open, show, values }: Props) {
   }, [isSubmitSuccessful, reset, show]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    if (!user) return;
+
     try {
       const id = data.id || crypto.randomUUID();
 
@@ -82,6 +84,8 @@ export default function SpeciesDialog({ open, show, values }: Props) {
   };
 
   const handleDelete = async () => {
+    if (!user) return;
+
     if (values?.id) {
       try {
         await deleteDoc(doc(db, COLLECTIONS.SPECIES, values.id));
@@ -180,10 +184,16 @@ export default function SpeciesDialog({ open, show, values }: Props) {
       <footer>
         <div className="grid">
           <div></div>
-          <button className="contrast" role="button" type="button" disabled={!values?.id} onClick={handleDelete}>
+          <button
+            className="contrast"
+            role="button"
+            type="button"
+            disabled={!user || !values?.id}
+            onClick={handleDelete}
+          >
             Radera
           </button>
-          <button role="button" type="submit" aria-busy={isSubmitting}>
+          <button role="button" type="submit" disabled={!user} aria-busy={isSubmitting}>
             Spara
           </button>
         </div>

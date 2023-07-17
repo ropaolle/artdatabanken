@@ -35,7 +35,7 @@ type Props = {
 };
 
 export default function UploadImageDialog({ open, show }: Props) {
-  const { setImage } = useAppStore();
+  const { setImage, user } = useAppStore();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imageExists, setImageExists] = useState<boolean>(false);
   const [crop, setCrop] = useState<PixelCrop>(defaultCropArea);
@@ -100,6 +100,8 @@ export default function UploadImageDialog({ open, show }: Props) {
   );
 
   const onSubmit: SubmitHandler<Inputs> = async ({ imageFile }) => {
+    if (!user) return;
+
     if (!previewCanvasRef.current || !thumbnailCanvasRef.current) {
       throw new Error('Crop canvas does not exist');
     }

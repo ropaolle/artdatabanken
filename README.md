@@ -4,7 +4,7 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-- [ ] ?
+- [ ] Logga in för att editera och skriva ut...
 - PRODUCTION
   - [ ] Deploy (not sure to where/what) and delete unused code and console.log statements.
   - [ ] Protect files and db with [Firebase rules](https://firebase.google.com/docs/firestore/security/get-started).
@@ -75,7 +75,7 @@ firebase deploy --only hosting
   - [Upload files](https://firebase.google.com/docs/storage/web/upload-files)
   - [Add data](https://firebase.google.com/docs/firestore/manage-data/add-data)
   - [Get data](https://firebase.google.com/docs/firestore/query-data/get-data)
-  - [Authentication](https://firebase.google.com/docs/auth/web/start)
+  - [Authentication](https://firebase.google.com/docs/auth/web/google-signin)
   - [Rules](https://firebase.google.com/docs/rules/basics)
   - [Bundles](https://firebase.google.com/docs/firestore/bundles)
 

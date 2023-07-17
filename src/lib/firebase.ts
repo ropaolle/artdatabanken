@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
 import { getFirestore, collection, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
 // const firebaseConfigProd = {
 //   apiKey: 'AIzaSyDG2cSWrnZpiiRI_rtbteXWotkljcDKO-U',
@@ -33,6 +34,18 @@ export enum PATHS {
 export const app = initializeApp(firebaseConfigDev);
 export const storage = getStorage(app);
 export const db = getFirestore(app);
+export const auth = getAuth(app);
+
+/* AUTH */
+
+export type User = {
+  displayName: string | null;
+  email: string | null;
+  photoURL: string | null;
+  uid: string | null;
+};
+
+/* FILES */
 
 export const getURL = async (filePath: string): Promise<string> => {
   const storage = getStorage();
@@ -48,8 +61,6 @@ export const getURL = async (filePath: string): Promise<string> => {
       });
   });
 };
-
-/* FILES */
 
 export const normalizeFilename = (filename: string) => filename.replaceAll(' ', '-').toLowerCase();
 
@@ -147,11 +158,6 @@ export type Bundles = {
   items: ImageInfo[] | SpeciesInfo[];
   updatedAt: Timestamp;
 };
-
-// export type Bundles = {
-//   species: { id?: string; items: SpeciesInfo[]; updatedAt: Timestamp };
-//   images: { id?: string; items: SpeciesInfo[]; updatedAt: Timestamp };
-// };
 
 export async function firestoreFetch<T>(path: string): Promise<T[]> {
   const querySnapshot = await getDocs(collection(db, path));
