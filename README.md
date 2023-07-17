@@ -4,7 +4,6 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
 
 ## TODO
 
-- [ ] Logga in för att editera och skriva ut...
 - PRODUCTION
   - [ ] Deploy (not sure to where/what) and delete unused code and console.log statements.
   - [ ] Protect files and db with [Firebase rules](https://firebase.google.com/docs/firestore/security/get-started).
@@ -12,6 +11,7 @@ Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://consol
   - [ ] CSS styling of the Datalists.
   - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
 - DONE
+  - [x] Logga in för att editera och skriva ut...
   - [x] Firestore qouta hits the limit of 50k reads per day. Use bundles to cache old data.
   - [x] Remove react-use and replace with Zustand.
   - [x] Header on all printed pages
