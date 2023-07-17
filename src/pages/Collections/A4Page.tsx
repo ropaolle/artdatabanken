@@ -2,7 +2,7 @@ import classes from './Collections.module.css';
 import { SpeciesInfo } from '../../lib/firebase';
 import placeholder from '../../assets/placeholder.svg';
 import { countiesMap } from '../../lib/options';
-import { useAppStore } from '../../lib/zustand.ts';
+import { useAppStore } from '../../lib/state';
 
 // Combine multiple CSS module selectors
 const css = (...selectors: string[]) => selectors.map((selector) => classes[selector]).join(' ');

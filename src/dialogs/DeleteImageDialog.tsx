@@ -3,7 +3,7 @@ import { doc, deleteDoc } from 'firebase/firestore';
 import { db, deleteFile, type ImageInfo, COLLECTIONS } from '../lib/firebase';
 import Dialog from './Dialog';
 import { timestampToString } from '../lib/';
-import { useAppStore } from '../lib/zustand.ts';
+import { useAppStore } from '../lib/state';
 
 type Props = {
   open: boolean;

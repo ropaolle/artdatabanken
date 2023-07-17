@@ -6,7 +6,7 @@ import { createSortFunc, timestampToString } from '../lib';
 import { toOptions } from '../lib/options';
 import { Pager } from '../components';
 import { UploadImageDialog, DeleteImageDialog } from '../dialogs';
-import { useAppStore } from '../lib/zustand.ts';
+import { useAppStore } from '../lib/state';
 
 const sortStates = [
   { label: 'Filnamn (stigande)', value: 'filename-ascending' },

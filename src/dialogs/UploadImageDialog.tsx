@@ -15,7 +15,7 @@ import {
 } from '../lib/firebase.ts';
 import { useDebounceEffect, drawImageOnCanvas } from '../lib';
 import Dialog, { DialogInfo } from './Dialog';
-import { useAppStore } from '../lib/zustand.ts';
+import { useAppStore } from '../lib/state';
 
 type Inputs = {
   imageFile: FileList;

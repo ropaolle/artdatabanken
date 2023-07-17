@@ -2,35 +2,15 @@ import classes from './Navigation.module.css';
 import logo from '../assets/logo.svg';
 import { type PAGES } from '../pages';
 import { Link } from '.';
-import { useAppStore } from '../lib/zustand';
-import { auth } from '../lib/firebase';
-
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { useAppStore } from '../lib/state';
+import { signIn, signOut } from '../lib/auth';
 
 type Props = {
   setPage: (page: React.SetStateAction<PAGES>) => void;
 };
 
 export default function Navigation({ setPage }: Props) {
-  const { user, setUser } = useAppStore();
-
-  const signIn = () => {
-    const provider = new GoogleAuthProvider();
-
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // const credential = GoogleAuthProvider.credentialFromResult(result);
-        setUser(result.user);
-      })
-      .catch((error) => {
-        // const credential = GoogleAuthProvider.credentialFromError(error);
-        console.error(error);
-      });
-  };
-
-  const signOut = () => {
-    auth.signOut().then(() => setUser(null));
-  };
+  const { user } = useAppStore();
 
   return (
     <header className="container-fluid">

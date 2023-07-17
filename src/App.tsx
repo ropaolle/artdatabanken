@@ -4,7 +4,7 @@ import { Timestamp } from 'firebase/firestore';
 import { Home, ImageView, SpeciesView, Collections, Settings, type PAGES } from './pages';
 import { Navigation, Footer, Auth } from './components';
 import { firestoreFetch, type Bundles, type ImageInfo, type SpeciesInfo } from './lib/firebase';
-import { useAppStore } from './lib/zustand';
+import { useAppStore } from './lib/state';
 
 function App() {
   const { initGlobalState, updatedAt, setImage, setSpecies } = useAppStore();

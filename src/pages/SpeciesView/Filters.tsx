@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { createSortFunc } from '../../lib';
 import { toDatalistOptions } from '../../lib/options';
 import { SpeciesInfo } from '../../lib/firebase';
-import { useAppStore } from '../../lib/zustand.ts';
+import { useAppStore } from '../../lib/state';
 
 type Props = {
   setItems: React.Dispatch<SpeciesInfo[]>;

@@ -1,7 +1,8 @@
 import { create } from 'zustand';
 import { /* devtools, */ persist, type StorageValue } from 'zustand/middleware';
 import { Timestamp } from 'firebase/firestore';
-import { type User, type SpeciesInfo, type ImageInfo } from './firebase';
+import { type SpeciesInfo, type ImageInfo } from './firebase';
+import { type User } from './auth';
 
 type GlobalState = {
   initGlobalState: (images: ImageInfo[], species: SpeciesInfo[], updatedAt: Timestamp) => void;
@@ -63,7 +64,7 @@ export const useAppStore = create<GlobalState>()(
           updatedAt,
         })),
 
-      user: null,  
+      user: null,
       setUser: (user) => set(() => ({ user })),
 
       // Images

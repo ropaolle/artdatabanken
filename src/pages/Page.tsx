@@ -1,5 +1,5 @@
 import classes from './Page.module.css';
-import { useAppStore } from '../lib/zustand';
+import { useAppStore } from '../lib/state';
 
 type PageProps = {
   id?: string;

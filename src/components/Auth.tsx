@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { auth } from '../lib/firebase';
-import { useAppStore } from '../lib/zustand';
+import { auth } from '../lib/auth';
+import { useAppStore } from '../lib/state';
 
 export default function Auth() {
-  const { /* user,  */ setUser } = useAppStore();
+  const { setUser } = useAppStore();
 
   useEffect(() => {
     if (auth) {

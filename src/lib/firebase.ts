@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
 import { getFirestore, collection, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
 // const firebaseConfigProd = {
 //   apiKey: 'AIzaSyDG2cSWrnZpiiRI_rtbteXWotkljcDKO-U',
@@ -34,16 +33,6 @@ export enum PATHS {
 export const app = initializeApp(firebaseConfigDev);
 export const storage = getStorage(app);
 export const db = getFirestore(app);
-export const auth = getAuth(app);
-
-/* AUTH */
-
-export type User = {
-  displayName: string | null;
-  email: string | null;
-  photoURL: string | null;
-  uid: string | null;
-};
 
 /* FILES */
 
