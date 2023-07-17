@@ -3,7 +3,7 @@ import { doc, deleteDoc } from 'firebase/firestore';
 import { db, deleteFile, type ImageInfo, COLLECTIONS } from '../lib/firebase';
 import Dialog from './Dialog';
 import { timestampToString } from '../lib/';
-import { useAppStore } from '../lib/zustand.ts';
+import { useAppStore } from '../lib/state';
 
 type Props = {
   open: boolean;
@@ -12,7 +12,7 @@ type Props = {
 };
 
 export default function DeleteImageDialog({ open, show, values }: Props) {
-  const { deleteImage } = useAppStore();
+  const { deleteImage, user } = useAppStore();
   const [deletingImage, setDeletingImage] = useState(false);
 
   if (!values) return;
@@ -20,7 +20,7 @@ export default function DeleteImageDialog({ open, show, values }: Props) {
   const { filename, thumbnail, URL, thumbnailURL, createdAt, updatedAt } = values;
 
   const handleDeleteImage = async () => {
-    if (!filename || !thumbnail) return;
+    if (!user || !filename || !thumbnail) return;
 
     setDeletingImage(true);
 
@@ -81,6 +81,7 @@ export default function DeleteImageDialog({ open, show, values }: Props) {
             type="button"
             role="button"
             onClick={handleDeleteImage}
+            disabled={!user}
             aria-busy={deletingImage}
           >
             Radera

@@ -1,53 +1,14 @@
 # Artdatabanken
 
-Artdatabanken med [Vite](https://vitejs.dev/guide) och [Firebase](https://console.firebase.google.com/).
+[Artdatabanken](https://artdatabanken.ropaolle.se) med [Vite](https://vitejs.dev/guide) och [Firebase](https://console.firebase.google.com/).
 
 ## TODO
 
-- [ ] ?
-- PRODUCTION
-  - [ ] Deploy (not sure to where/what) and delete unused code and console.log statements.
-  - [ ] Protect files and db with [Firebase rules](https://firebase.google.com/docs/firestore/security/get-started).
+- [ ] Custom siter står som Pending, se https://console.firebase.google.com/project/artdatabanken-2023/hosting/sites
 - NICE TO HAVE
   - [ ] CSS styling of the Datalists.
-  - [ ] Visa en toast när: bild laddats upp/raderats och när art skapats/uppdaterats/raderats.
-- DONE
-  - [x] Firestore qouta hits the limit of 50k reads per day. Use bundles to cache old data.
-  - [x] Remove react-use and replace with Zustand.
-  - [x] Header on all printed pages
-  - [x] Sidnummer printed pages
-  - [x] Remove nested CSS, not supported
-  - [x] CSS on the species view
-  - [x] Re-import hane/hona to male/female
-  - [x] Sex and place to string in the species view
-  - [x] Import all images and species.
-  - [x] Pager för arter och bilder
-  - [x] Create page functions
-  - [x] Skriv ut och spara som pdf.
-  - [x] Create datalists (klass, ordning, familj, lokal)
-  - [x] Bildsida: soretera på namn, skapad, uppdaterad
-  - [x] Importera arter och bilder från Excel, eller csv.
-  - [x] Importera bilder från Firebase
-  - [x] Filtrera bilder (filnamn, används används ej)
-  - [x] Filtrera arter
-  - [x] Move CSS to local files, i.e UploadImageDialog.tsx + UploadImageDialog.css.
-  - [x] Global state?
-  - [x] Skapa och ändra arter SpeciesDialog
-  - [x] Radera bild
-  - [x] Uppdatera image-view.
-  - [x] Delete image/record and make sure assosiated files also is deleted. Delet images that does not exist in db.
-  - [x] Art: Lagra länk till bild. INte filnamn.
-  - [x] Använd inte filnamn och art som dokumentnamn. Skapa ett unikt id.
-  - [x] Radera art
-  - [x] Normalisera filnamn. Små bokstäver och mellanslag till bindestreck.
-  - [x] Uppdatera art
-  - [x] Välj bild i art
-  - [x] Thumbnails
-  - [x] Sida med filter som visar alla poster.
-  - [x] Refactor upload to use async/await insted of callbacks
-  - [x] Image corp library
 
-## Buggar
+## Known issues
 
 - [ ] UploadImageDialog `<dialog>` closes on file input cancelation in Chromiumbased browsers, workaround added in Dialog.tsx.
   - [Bug 1442824](https://bugs.chromium.org/p/chromium/issues/detail?id=1442824)
@@ -75,7 +36,7 @@ firebase deploy --only hosting
   - [Upload files](https://firebase.google.com/docs/storage/web/upload-files)
   - [Add data](https://firebase.google.com/docs/firestore/manage-data/add-data)
   - [Get data](https://firebase.google.com/docs/firestore/query-data/get-data)
-  - [Authentication](https://firebase.google.com/docs/auth/web/start)
+  - [Authentication](https://firebase.google.com/docs/auth/web/google-signin)
   - [Rules](https://firebase.google.com/docs/rules/basics)
   - [Bundles](https://firebase.google.com/docs/firestore/bundles)
 

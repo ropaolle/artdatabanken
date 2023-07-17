@@ -1,4 +1,5 @@
 import classes from './Page.module.css';
+import { useAppStore } from '../lib/state';
 
 type PageProps = {
   id?: string;
@@ -17,13 +18,15 @@ export default function Page({
   headerButtonDisabled = false,
   onHeaderButtonClick,
 }: PageProps) {
+  const user = useAppStore((state) => state.user);
+
   return (
     <main className={`container ${id ? id : ''}  ${classes.main}`}>
       <div className="grid">
         {title && <h1>{title}</h1>}
         {headerButtonTitle && (
           <div className={classes.button}>
-            <button className={classes.inline} onClick={onHeaderButtonClick} disabled={headerButtonDisabled}>
+            <button className={classes.inline} onClick={onHeaderButtonClick} disabled={!user || headerButtonDisabled}>
               {headerButtonTitle}
             </button>
           </div>

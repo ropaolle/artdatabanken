@@ -1,3 +1,8 @@
+h1,
+h2 {
+  --typography-spacing-vertical: 2rem;
+}
+
 [data-theme='light'],
 :root:not([data-theme='dark']) {
   --contrast: #d81b60;

@@ -17,7 +17,7 @@ export const toDatalistOptions = (items: string[], onlyUnique = true) => {
     items = Array.from(new Set(items));
   }
 
-  return items.map((option, i) => <option key={i}>{option}</option>);
+  return items.sort().map((option, i) => <option key={i}>{option}</option>);
 };
 
 export const counties = [
