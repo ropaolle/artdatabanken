@@ -83,3 +83,34 @@ firebase deploy --only hosting
 - PACKAGES
 
   - [DayJS](https://github.com/iamkun/dayjs)
+
+## Build
+
+```sh
+$ npm run build
+
+> artdatabanken@0.0.1 build
+> tsc && vite build
+
+vite v4.3.9 building for production...
+✓ 109 modules transformed.
+dist/index.html                           0.54 kB │ gzip:   0.34 kB
+dist/assets/logo-c03e61ba.svg             1.55 kB │ gzip:   0.66 kB
+dist/assets/placeholder-01320683.svg      5.41 kB │ gzip:   2.07 kB
+dist/assets/SpeciesView-e1879ee0.css      0.10 kB │ gzip:   0.11 kB
+dist/assets/Page-42e6fe10.css             0.14 kB │ gzip:   0.12 kB
+dist/assets/ImageView-92623bc0.css        0.32 kB │ gzip:   0.23 kB
+dist/assets/Collections-6cf79215.css      1.05 kB │ gzip:   0.49 kB
+dist/assets/SpeciesDialog-0680bb30.css    5.25 kB │ gzip:   1.38 kB
+dist/assets/index-0cf76ffe.css           74.49 kB │ gzip:  10.59 kB
+dist/assets/Page-21248a12.js              0.55 kB │ gzip:   0.34 kB
+dist/assets/Home-aa284ea2.js              0.97 kB │ gzip:   0.51 kB
+dist/assets/options-4b100823.js           1.60 kB │ gzip:   0.65 kB
+dist/assets/Collections-b6b496da.js       2.45 kB │ gzip:   1.15 kB
+dist/assets/index-52092936.js             2.68 kB │ gzip:   1.30 kB
+dist/assets/SpeciesView-57759d88.js       4.00 kB │ gzip:   1.69 kB
+dist/assets/ImageView-6545750b.js         6.02 kB │ gzip:   2.55 kB
+dist/assets/SpeciesDialog-4ad1f8eb.js    37.66 kB │ gzip:  13.01 kB
+dist/assets/index-6430aea9.js           460.17 kB │ gzip: 117.59 kB
+✓ built in 2.31s
+```
