@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { doc, setDoc, Timestamp } from 'firebase/firestore';
+import { doc, setDoc, Timestamp } from 'firebase/firestore/lite';
 import { db, type SpeciesInfo, COLLECTIONS } from '../../lib/firebase';
 import { readUploadedFileAsText, ImportStates } from '.';
 

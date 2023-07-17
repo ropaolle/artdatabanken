@@ -1,6 +1,6 @@
 import 'react-image-crop/dist/ReactCrop.css';
 import { useState, useEffect, useRef } from 'react';
-import { doc, setDoc, Timestamp } from 'firebase/firestore';
+import { doc, setDoc, Timestamp } from 'firebase/firestore/lite';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import ReactCrop, { type PixelCrop } from 'react-image-crop';
 import { Icon } from '@iconify/react';

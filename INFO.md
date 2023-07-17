@@ -2,7 +2,7 @@
 
 ## TODO
 
-- [ ] Custom siter står som Pending, se https://console.firebase.google.com/project/artdatabanken-2023/hosting/sites
+- [ ] ?
 - NICE TO HAVE
   - [ ] CSS styling of the Datalists.
 
@@ -67,7 +67,7 @@ firebase deploy --only hosting
 
 - VITE
 
-  - [Awesome Vite](https://reacthustle.com/blog/typescript-sort-array-of-objects-by-property#advanced-implementing-a-dynamic-compare-function)
+  - [Awesome Vite](https://github.com/vitejs/awesome-vite)
 
 - TYPESCRIPT
 

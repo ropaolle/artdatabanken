@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 import { /* devtools, */ persist, type StorageValue } from 'zustand/middleware';
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp } from 'firebase/firestore/lite';
 import { type SpeciesInfo, type ImageInfo } from './firebase';
 import { type User } from './auth';
 
 type GlobalState = {
-  initGlobalState: (images: ImageInfo[], species: SpeciesInfo[], updatedAt: Timestamp) => void;
+  initGlobalState: (images: ImageInfo[], species: SpeciesInfo[], updatedAt?: Timestamp) => void;
   user: User | null;
   setUser: (user: User | null) => void;
   images: ImageInfo[];

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { doc, deleteDoc } from 'firebase/firestore';
+import { doc, deleteDoc } from 'firebase/firestore/lite';
 import { db, deleteFile, type ImageInfo, COLLECTIONS } from '../lib/firebase';
 import Dialog from './Dialog';
 import { timestampToString } from '../lib/';

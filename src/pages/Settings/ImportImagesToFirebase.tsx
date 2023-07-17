@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { getStorage, ref, getDownloadURL, uploadBytes } from 'firebase/storage';
-import { setDoc, doc, Timestamp } from 'firebase/firestore';
+import { setDoc, doc, Timestamp } from 'firebase/firestore/lite';
 import { db, COLLECTIONS, PATHS, type ImageInfo } from '../../lib/firebase';
 import { ImportStates } from '.';
 

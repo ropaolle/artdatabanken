@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
-import { getFirestore, collection, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, doc, getDoc , type Timestamp  } from 'firebase/firestore/lite';
 
 const prod = {
   apiKey: 'AIzaSyDG2cSWrnZpiiRI_rtbteXWotkljcDKO-U',

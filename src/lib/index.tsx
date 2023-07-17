@@ -1,4 +1,4 @@
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp } from 'firebase/firestore/lite';
 import { useDebounceEffect } from './useDebounceEffect';
 import { drawImageOnCanvas } from './canvas';
 
