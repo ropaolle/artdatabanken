@@ -44,12 +44,12 @@ export default function A4Page({ items }: Props) {
 
   return (
     <div className={classes.collection} id="collection">
-      <div className={classes.header} /* id="header" */>
+      <div className={classes.header}>
         Klass: <span className={css('headerOption', 'headerInverse')}>{items[0].kingdom}</span>
         Ordning: <span className={classes.headerOption}>{items[0].order}</span>
         Familj: <span className={classes.headerOption}>{items[0].family}</span>
       </div>
-      <div className={classes.grid} /* id="grid" */>
+      <div className={classes.grid}>
         <Cards />
       </div>
     </div>

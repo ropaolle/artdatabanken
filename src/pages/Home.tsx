@@ -1,12 +1,16 @@
 import Page from './Page';
 import { type PAGES } from '../pages';
 import { Link } from '../components';
+import { useAppStore } from '../lib/state';
+import { signIn } from '../lib/auth';
 
 type Props = {
   setPage: (page: React.SetStateAction<PAGES>) => void;
 };
 
 export default function Home({ setPage }: Props) {
+  const { user } = useAppStore();
+
   return (
     <Page title="Artdatabanken">
       <p>Skapa dina egna artsamlingar och skriv ut eller spara som pdf-filer. </p>
@@ -23,6 +27,12 @@ export default function Home({ setPage }: Props) {
           <Link onClick={() => setPage('COLLECTIONS')}>Samlingar</Link>.
         </li>
       </ol>
+      {!user && (
+        <p>
+          <mark>Notera.</mark> För att editera, ladda upp eller radera bilder måste du vara inloggad,{' '}
+          <Link onClick={signIn}>Logga in</Link>.
+        </p>
+      )}
     </Page>
   );
 }
