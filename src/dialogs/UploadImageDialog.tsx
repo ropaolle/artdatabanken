@@ -134,7 +134,7 @@ export default function UploadImageDialog({ open, show }: Props) {
     }
   };
 
-  const handleChange = async (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
+  const handleChange = async (e?: React.ChangeEvent<HTMLInputElement>) => {
     const file = e?.target.files?.[0];
     setSelectedFile(file || null);
   };

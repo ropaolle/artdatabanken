@@ -8,7 +8,7 @@ import { useAppStore } from '../../lib/state';
 const css = (...selectors: string[]) => selectors.map((selector) => classes[selector]).join(' ');
 
 type Props = {
-  items: SpeciesInfo[] | undefined;
+  items?: SpeciesInfo[];
   page?: number;
 };
 

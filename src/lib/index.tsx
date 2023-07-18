@@ -2,7 +2,7 @@ import { Timestamp } from 'firebase/firestore/lite';
 import { useDebounceEffect } from './useDebounceEffect';
 import { drawImageOnCanvas } from './canvas';
 
-export const timestampToString = (timestamp: Timestamp | undefined) =>
+export const timestampToString = (timestamp?: Timestamp) =>
   timestamp ? timestamp.toDate().toISOString().substring(0, 19).replace('T', ' ') : '';
 
 // Locale string sort on objects of string values

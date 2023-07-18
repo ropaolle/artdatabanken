@@ -8,7 +8,7 @@ import { useAppStore } from '../lib/state';
 type Props = {
   open: boolean;
   show: React.Dispatch<boolean>;
-  values: ImageInfo | undefined;
+  values?: ImageInfo;
 };
 
 export default function DeleteImageDialog({ open, show, values }: Props) {

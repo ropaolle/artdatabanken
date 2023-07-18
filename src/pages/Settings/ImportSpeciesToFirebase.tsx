@@ -8,7 +8,7 @@ export default function ImportSpeciesToFirebase() {
   const [species, setSpecies] = useState<SpeciesInfo[]>();
   const [speciesMessage, setSpeciesMessage] = useState('');
 
-  const onHandleSpeciesImportChange = async (file: File | undefined) => {
+  const onHandleSpeciesImportChange = async (file?: File) => {
     setImportingSpecies(ImportStates.IDLE);
     setSpeciesMessage('');
 

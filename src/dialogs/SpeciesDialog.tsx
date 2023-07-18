@@ -25,7 +25,7 @@ const defaults = {
 type Props = {
   open: boolean;
   show: React.Dispatch<boolean>;
-  values: SpeciesInfo | undefined;
+  values?: SpeciesInfo;
 };
 
 export default function SpeciesDialog({ open, show, values }: Props) {
@@ -39,7 +39,7 @@ export default function SpeciesDialog({ open, show, values }: Props) {
     formState: { errors, isSubmitSuccessful, isSubmitting },
   } = useForm<Inputs>();
 
-  const loadPreview = (filename: string | undefined) => {
+  const loadPreview = (filename?: string) => {
     const image = images.find((image) => image.filename === filename);
     setPreviewImage(image?.thumbnailURL);
   };
@@ -79,7 +79,7 @@ export default function SpeciesDialog({ open, show, values }: Props) {
     }
   };
 
-  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
+  const handleImageChange = async (e?: React.ChangeEvent<HTMLInputElement>) => {
     loadPreview(e?.target.value);
   };
 
