@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { createSortFunc } from '../../lib';
+import { createSortFunc, type SortProp } from '../../lib';
 import { toDatalistOptions } from '../../lib/options';
 import { SpeciesInfo } from '../../lib/firebase';
 import { useAppStore } from '../../lib/state';
 
 type Props = {
   setItems: React.Dispatch<SpeciesInfo[]>;
-  sort: { column: string; ascending: boolean };
+  sort: SortProp<SpeciesInfo>;
 };
 
 export default function Filters({ sort, setItems }: Props) {

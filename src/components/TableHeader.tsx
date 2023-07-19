@@ -1,24 +1,23 @@
 import classes from './TableHeader.module.css';
 import { Icon } from '@iconify/react';
+import { SortProp } from '../lib';
 
 type HeaderCellType = { label: string; id: string };
-type HeaderCellsType = HeaderCellType[][];
 
-export type SortType = { column: string; ascending: boolean };
 export type HeaderCellOnClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, id: string) => void;
 
-type Props = {
-  columns: HeaderCellsType;
-  sort: SortType;
+type Props<T> = {
+  columns: HeaderCellType[][];
+  sort: SortProp<T>;
   onClick: HeaderCellOnClick;
 };
 
-export default function TableHeader({ columns, sort, onClick }: Props) {
+export default function TableHeader<T>({ columns, sort, onClick }: Props<T>) {
   const HeaderCell = ({ label, id }: HeaderCellType) => (
     <a href="#" className={classes.headerCell} onClick={(e) => onClick(e, id)}>
       {label}
       {sort.column === id && (
-        <Icon icon={`material-symbols:keyboard-arrow-${sort.ascending ? 'up' : 'down'}-rounded`} />
+        <Icon icon={`material-symbols:keyboard-arrow-${sort.order === 'asc' ? 'up' : 'down'}-rounded`} />
       )}
     </a>
   );

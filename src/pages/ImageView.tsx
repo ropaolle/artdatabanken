@@ -2,17 +2,19 @@ import classes from './ImageView.module.css';
 import { useState, useEffect } from 'react';
 import { type ImageInfo } from '../lib/firebase';
 import Page from './Page';
-import { createSortFunc, timestampToString } from '../lib';
+import { createSortFunc, timestampToString, type SortProp } from '../lib';
 import { toOptions } from '../lib/options';
 import { Pager } from '../components';
 import { UploadImageDialog, DeleteImageDialog } from '../dialogs';
 import { useAppStore } from '../lib/state';
 
-const sortStates = [
-  { label: 'Filnamn (stigande)', value: 'filename-ascending' },
-  { label: 'Filnamn (fallande)', value: 'filename-descending' },
-  { label: 'Datum (stigande)', value: 'date-ascending' },
-  { label: 'Datum (fallande)', value: 'date-descending' },
+type SortState<T> = { label: string; value: string } & SortProp<T>;
+
+const sortStates: SortState<ImageInfo>[] = [
+  { label: 'Filnamn (stigande)', value: '0', column: 'filename', order: 'asc' },
+  { label: 'Filnamn (fallande)', value: '1', column: 'filename', order: 'desc' },
+  { label: 'Datum (stigande)', value: '2', column: 'updatedAt', order: 'asc' },
+  { label: 'Datum (fallande)', value: '3', column: 'updatedAt', order: 'desc' },
 ];
 
 const pageSize = 50;
@@ -24,7 +26,7 @@ export default function ImageView() {
   const [dialogValues, setDialogValues] = useState<ImageInfo>();
   const [items, setItems] = useState<ImageInfo[]>();
   const [filter, setFilter] = useState('');
-  const [sort, setSort] = useState({ column: 'filename', ascending: false });
+  const [sort, setSort] = useState(sortStates[0]);
   const [page, setPage] = useState(0);
   const [list, setList] = useState<ImageInfo[]>();
 
@@ -75,8 +77,7 @@ export default function ImageView() {
   };
 
   const handleSortChange = (value: string) => {
-    const [column, direction] = value.split('-');
-    setSort({ column, ascending: direction === 'ascending' });
+    setSort(sortStates[Number(value)]);
   };
 
   return (

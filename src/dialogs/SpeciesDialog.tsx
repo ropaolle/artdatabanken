@@ -1,11 +1,12 @@
 import classes from './SpeciesDialog.module.css';
 import { useState, useEffect } from 'react';
-import { useForm, SubmitHandler, type FieldError } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { doc, setDoc, Timestamp, deleteDoc } from 'firebase/firestore/lite';
 import { db, type SpeciesInfo, COLLECTIONS } from '../lib/firebase.ts';
-import { toDatalistOptions, toOptions, counties, sexes } from '../lib/options';
+import { toDatalistOptions, counties, sexes } from '../lib/options';
 import Dialog from './Dialog';
 import { useAppStore } from '../lib/state';
+import { HorizontalInput, Input, Select } from './fields';
 
 type Inputs = Omit<SpeciesInfo, 'updatedAt' | 'createdAt'>;
 
@@ -102,28 +103,7 @@ export default function SpeciesDialog({ open, show, values }: Props) {
     show(false);
   };
 
-  type HorizontalInputType = {
-    id: string;
-    label: string;
-    dataList?: string[];
-    error?: FieldError;
-    required?: boolean | string;
-  };
-
-  const HorizontalInput = ({ id, label, dataList, error, required = false }: HorizontalInputType) => (
-    <>
-      <label htmlFor={id}>{label}</label>
-      <div>
-        <input id={id} list={`${id}-data`} autoComplete="off" {...register(id as keyof Inputs, { required })} />
-        {dataList && (
-          <datalist id={`${id}-data`} className={classes.dataList}>
-            {toDatalistOptions(dataList)}
-          </datalist>
-        )}
-        {error && error.type === 'required' && <div className={classes.error}>{error.message}</div>}
-      </div>
-    </>
-  );
+  const dataList = (key: keyof Inputs) => species.map((species) => species[key] || '');
 
   return (
     <Dialog open={open} hide={hide} onSubmit={handleSubmit(onSubmit)} title={`Lägg till ny art`}>
@@ -131,36 +111,22 @@ export default function SpeciesDialog({ open, show, values }: Props) {
         <HorizontalInput
           id="species"
           label="Art*"
-          dataList={species.map(({ species }) => species)}
+          dataList={dataList('species')}
           error={errors.species}
           required="This is required."
+          register={register}
         />
-        <HorizontalInput id="kingdom" label="Klass" dataList={species.map(({ kingdom }) => kingdom)} />
-        <HorizontalInput id="order" label="Ordning" dataList={species.map(({ order }) => order)} />
-        <HorizontalInput id="family" label="Familj" dataList={species.map(({ family }) => family)} />
-        <HorizontalInput id="speciesLatin" label="Latinskt namn" />
-        <HorizontalInput id="place" label="Lokal" dataList={species.map(({ place }) => place)} />
+        <HorizontalInput id="kingdom" label="Klass" dataList={dataList('kingdom')} register={register} />
+        <HorizontalInput id="order" label="Ordning" dataList={dataList('order')} register={register} />
+        <HorizontalInput id="family" label="Familj" dataList={dataList('family')} register={register} />
+        <HorizontalInput id="speciesLatin" label="Latinskt namn" register={register} />
+        <HorizontalInput id="place" label="Lokal" dataList={dataList('place')} register={register} />
       </div>
 
       <div className="grid">
-        <label htmlFor="county">
-          Län
-          <select id="county" {...register('county')}>
-            {toOptions(counties)}
-          </select>
-        </label>
-
-        <label htmlFor="sex">
-          Kön
-          <select id="sex" {...register('sex')}>
-            {toOptions(sexes)}
-          </select>
-        </label>
-
-        <label htmlFor="date">
-          Datum
-          <input id="sex" type="date" {...register('date')} />
-        </label>
+        <Select id="county" label="Län" options={counties} register={register} />
+        <Select id="sex" label="Kön" options={sexes} register={register} />
+        <Input id="date" label="Datum" type="date" register={register} />
       </div>
 
       <div className="grid">
