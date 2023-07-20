@@ -2,19 +2,19 @@ import classes from './ImageView.module.css';
 import { useState, useEffect } from 'react';
 import { type ImageInfo } from '../lib/firebase';
 import Page from './Page';
-import { createSortFunc, timestampToString, type SortProp } from '../lib';
+import { createCompareFn, timestampToString, type SortProps } from '../lib';
 import { toOptions } from '../lib/options';
 import { Pager } from '../components';
 import { UploadImageDialog, DeleteImageDialog } from '../dialogs';
 import { useAppStore } from '../lib/state';
 
-type SortState<T> = { label: string; value: string } & SortProp<T>;
+type SortState<T> = { label: string; value: string } & SortProps<T>;
 
 const sortStates: SortState<ImageInfo>[] = [
-  { label: 'Filnamn (stigande)', value: '0', column: 'filename', order: 'asc' },
-  { label: 'Filnamn (fallande)', value: '1', column: 'filename', order: 'desc' },
-  { label: 'Datum (stigande)', value: '2', column: 'updatedAt', order: 'asc' },
-  { label: 'Datum (fallande)', value: '3', column: 'updatedAt', order: 'desc' },
+  { label: 'Filnamn (stigande)', value: '0', property: 'filename', order: 'asc' },
+  { label: 'Filnamn (fallande)', value: '1', property: 'filename', order: 'desc' },
+  { label: 'Datum (stigande)', value: '2', property: 'updatedAt', order: 'asc' },
+  { label: 'Datum (fallande)', value: '3', property: 'updatedAt', order: 'desc' },
 ];
 
 const pageSize = 50;
@@ -44,7 +44,7 @@ export default function ImageView() {
     if (!items) return;
 
     const filtered = items.filter((item) => item.filename.toLowerCase().includes(filter));
-    const sorted = filtered.sort(createSortFunc<ImageInfo>(sort));
+    const sorted = filtered.sort(createCompareFn<ImageInfo>(sort));
     const paged = sorted.slice(page * pageSize, (page + 1) * pageSize);
 
     setList(paged);

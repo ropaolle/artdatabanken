@@ -2,8 +2,8 @@
 
 ## TODO
 
+- [ ] Backup storage, save to file
 - [ ] Backup db
-- [ ] Backup storage
 - NICE TO HAVE
   - [ ] CSS styling of the Datalists.
 

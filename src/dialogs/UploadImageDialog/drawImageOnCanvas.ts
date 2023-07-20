@@ -1,6 +1,6 @@
 import { type PixelCrop } from 'react-image-crop';
 
-export async function drawImageOnCanvas(
+export default async function drawImageOnCanvas(
   image: HTMLImageElement,
   canvas: HTMLCanvasElement,
   crop: PixelCrop,

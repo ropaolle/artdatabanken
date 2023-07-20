@@ -12,10 +12,11 @@ import {
   COLLECTIONS,
   PATHS,
   type ImageInfo,
-} from '../lib/firebase.ts';
-import { useDebounceEffect, drawImageOnCanvas } from '../lib';
-import Dialog, { DialogInfo } from './Dialog';
-import { useAppStore } from '../lib/state';
+} from '../../lib/firebase.ts';
+import useDebounceEffect from './useDebounceEffect.ts';
+import drawImageOnCanvas from './drawImageOnCanvas.ts';
+import Dialog, { DialogInfo } from '../Dialog';
+import { useAppStore } from '../../lib/state';
 
 type Inputs = {
   imageFile: FileList;

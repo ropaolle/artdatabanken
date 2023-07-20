@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { createSortFunc, type SortProp } from '../../lib';
+import { createCompareFn, type SortProps } from '../../lib';
 import { toDatalistOptions } from '../../lib/options';
 import { SpeciesInfo } from '../../lib/firebase';
 import { useAppStore } from '../../lib/state';
 
 type Props = {
   setItems: React.Dispatch<SpeciesInfo[]>;
-  sort: SortProp<SpeciesInfo>;
+  sort: SortProps<SpeciesInfo>;
 };
 
 export default function Filters({ sort, setItems }: Props) {
@@ -56,7 +56,7 @@ export default function Filters({ sort, setItems }: Props) {
       return all === '' || freeTextSearchHit;
     });
 
-    setItems(filteredSpecies.sort(createSortFunc(sort)));
+    setItems(filteredSpecies.sort(createCompareFn(sort)));
   }, [species, filters, sort, setItems]);
 
   if (!images) return null;

@@ -7,7 +7,7 @@ import { type SpeciesInfo } from '../../lib/firebase';
 import { sexesMap, countiesMap } from '../../lib/options';
 import { SpeciesDialog } from '../../dialogs';
 import { useAppStore } from '../../lib/state';
-import { type SortProp } from '../../lib';
+import { type SortProps } from '../../lib';
 
 const pageSize = 50;
 
@@ -36,7 +36,7 @@ export default function SpeciesView() {
   const [dialog, showDialog] = useState(false);
   const [dialogValues, setDialogValues] = useState<SpeciesInfo>();
   const [thumbnails, setThumbnails] = useState<Map<string, string>>(new Map());
-  const [sort, setSort] = useState<SortProp<SpeciesInfo>>({ column: 'species', order: 'asc' });
+  const [sort, setSort] = useState<SortProps<SpeciesInfo>>({ property: 'species', order: 'asc' });
   const [items, setItems] = useState<SpeciesInfo[]>();
   const [page, setPage] = useState(0);
   const [pagedItems, setPagedItems] = useState<SpeciesInfo[]>();
@@ -67,8 +67,8 @@ export default function SpeciesView() {
 
   const handleHeaderClick: HeaderCellOnClick = (e, id) => {
     e.preventDefault();
-    const order = sort.column === id && sort.order === 'asc' ? 'desc' : 'asc';
-    setSort({ column: id as keyof SpeciesInfo, order });
+    const order = sort.property === id && sort.order === 'asc' ? 'desc' : 'asc';
+    setSort({ property: id as keyof SpeciesInfo, order });
   };
 
   const TableBody = () => (
