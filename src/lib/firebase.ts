@@ -142,14 +142,21 @@ export type SpeciesInfo = {
   updatedAt?: Timestamp;
 };
 
-export type Bundles = {
-  id: string;
-  items: ImageInfo[] | SpeciesInfo[];
-  updatedAt: Timestamp;
-};
+// export type Bundles = {
+//   id: string;
+//   items: ImageInfo[] | SpeciesInfo[];
+//   updatedAt: Timestamp;
+// };
 
-export async function firestoreFetch<T>(path: string): Promise<T[]> {
+export type Bundles = { images: ImageInfo[]; species: SpeciesInfo[] };
+
+export async function firestoreFetch<T = ImageInfo | SpeciesInfo>(path: string): Promise<T[]> {
   const querySnapshot = await getDocs(collection(db, path));
+
+  if (path === 'bundles') {
+    const [p1, p2] = querySnapshot.docs;
+    return [{ images: p1.data().items, species: p2.data().items } as T];
+  }
 
   return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id } as T));
 }

@@ -2,8 +2,8 @@
 
 ## TODO
 
-- [ ] Backup storage, save to file
-- [ ] Backup db
+- [ ] Delete images and species
+- [ ] Update bundles and merge new docs
 - NICE TO HAVE
   - [ ] CSS styling of the Datalists.
 
@@ -23,6 +23,15 @@ firebase login
 firebase use artdatabanken-2023 (https://artdatabanken-2023.web.app)
 firebase use artdatabanken-2023-dev (https://artdatabanken-2023-dev.web.app)
 firebase deploy --only hosting
+```
+
+## GCloud - Download all images
+
+```sh
+# https://cloud.google.com/storage/docs/discover-object-storage-gcloud
+# https://console.cloud.google.com/storage/browser/artdatabanken-2023-dev.appspot.com?project=artdatabanken-2023-dev&pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&prefix=&forceOnObjectsSortingFiltering=false
+gcloud init
+gsutil -m cp -r "gs://artdatabanken-2023-dev.appspot.com/images" .
 ```
 
 ## Links
