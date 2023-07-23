@@ -3,7 +3,7 @@ import { doc, setDoc, Timestamp, collection, addDoc } from 'firebase/firestore/l
 import { db, type SpeciesInfo, COLLECTIONS } from '../../lib/firebase';
 import { readUploadedFileAsText, type ImportStates } from '.';
 
-export default function ImportSpeciesToFirebase() {
+export default function ImportSpecies() {
   const [importingSpecies, setImportingSpecies] = useState<ImportStates>('IDLE');
   const [species, setSpecies] = useState<SpeciesInfo[]>();
   const [speciesMessage, setSpeciesMessage] = useState('');
@@ -49,9 +49,19 @@ export default function ImportSpeciesToFirebase() {
     setImportingSpecies('UPLOADING');
 
     // Create custom bundle
-    await setDoc(doc(db, COLLECTIONS.BUNDLES, COLLECTIONS.SPECIES), { items: species, updatedAt: Timestamp.now() });
+    // await setDoc(doc(db, COLLECTIONS.BUNDLES, COLLECTIONS.SPECIES), { items: species, updatedAt: Timestamp.now() });
+
+    setDoc(
+      doc(db, COLLECTIONS.APPLICATION, 'bundles'),
+      {
+        species: species,
+      },
+      { merge: true }
+    );
+
     // Add delete collection
-    setDoc(doc(db, COLLECTIONS.DELETED, 'species'), { ids: [] });
+    setDoc(doc(db, COLLECTIONS.APPLICATION, 'deleted'), { species: [] }, { merge: true });
+    setDoc(doc(db, COLLECTIONS.APPLICATION, 'lastChange'), { lastChange: Timestamp.now() });
 
     setSpeciesMessage(`Done! ${species.length} species imported.`);
     setImportingSpecies('DONE');

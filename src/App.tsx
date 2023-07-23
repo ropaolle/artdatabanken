@@ -4,41 +4,55 @@ import { Timestamp } from 'firebase/firestore/lite';
 import { Home, ImageView, SpeciesView, Collections, Settings, type PAGES } from './pages';
 // import { type PAGES } from './pages';
 import { Navigation, Footer, Auth } from './components';
-import { firestoreFetch, type Bundles, type ImageInfo, type SpeciesInfo } from './lib/firebase';
+import { firestoreFetch, firestoreFetchDoc, type Bundles, type ImageInfo, type SpeciesInfo } from './lib/firebase';
 import { useAppStore } from './lib/state';
 
 function App() {
+  // const t = useAppStore()
+  // console.log('t', t);
+
   const { initGlobalState, updatedAt, setImage, setSpecies } = useAppStore();
-  const [page, setPage] = useState<PAGES>('HOME');
+  // console.log('updatedAt', updatedAt);
+  // return null;
+
+  const [page, setPage] = useState<PAGES>('SETTINGS');
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!updatedAt) {
-        // TODO: Fetch all deletions and remove from the bundles
-        // Fetch all deletions
-        type Deleted = { deletedImages: string[]; deletedSpecies: string[] };
-        const [{ deletedImages, deletedSpecies }] = await firestoreFetch<Deleted>('deleted');
-        console.log('deleted', deletedImages, deletedSpecies);
-        // Fetch all bundles
-        const [{ images, species }] = await firestoreFetch<Bundles>('bundles');
+      // TODO: Load bundles and deleted if !updatedAt || bundles updatedAt > updatedAt
+      // New data structure: BUNDLES > data > updatedAt, images, species
+
+      const { lastChange } = await firestoreFetchDoc<{lastChange: Timestamp}>('application', 'lastChange');
+      // console.log('updatedAt', updatedAt.toDate().toLocaleString());
+      // console.log('lastChange', lastChange.toDate().toLocaleString());
+      // console.log('lastChange', updatedAt === lastChange, updatedAt < lastChange, updatedAt > lastChange);
+
+
+      if (!updatedAt || updatedAt < lastChange) {
+        type Deleted = { images: string[]; species: string[] };
+        const deleted = await firestoreFetchDoc<Deleted>('application', 'deleted');
+        // console.log('deleted', deleted);
+        const bundles = await firestoreFetchDoc<Bundles>('application', 'bundles');
+        console.log('bundles', bundles);
+        // return null;
 
         // Filter deletions from bundles
-        const i = images.filter(({ filename }) => !deletedImages.includes(filename));
-        const s = species.filter(({ id }) => !deletedSpecies.includes(id || ''));
+        const images = bundles.images.filter(({ filename }) => !deleted.images.includes(filename));
+        const species = bundles.species.filter(({ id }) => !deleted.species.includes(id || ''));
 
-        console.log('images, species', images, species);
-        initGlobalState(i || [], s || [], Timestamp.now());
-        // initGlobalState(images || [], species || [], Timestamp.now());
+        // // console.log('images, species', images, species);
+        // initGlobalState(i || [], s || [], Timestamp.now());
+        initGlobalState(images || [], species || [], Timestamp.now());
       }
 
       // Fetch all new items
       const images = await firestoreFetch<ImageInfo>('images');
-      console.log('images', images);
+      // console.log('images', images);
       for (const image of images) {
         setImage(image);
       }
       const species = await firestoreFetch<SpeciesInfo>('species');
-      console.log('species', species);
+      // console.log('species', species);
       for (const item of species) {
         setSpecies(item);
       }
@@ -46,6 +60,10 @@ function App() {
 
     fetchData().catch(console.error);
   }, []);
+
+  // useEffect(() => {
+  //   console.log('updatedAt', updatedAt);
+  // }, [updatedAt]);
 
   // const Home = lazy(() => import('./pages/Home'));
   // const SpeciesView = lazy(() => import('./pages/SpeciesView/SpeciesView'));

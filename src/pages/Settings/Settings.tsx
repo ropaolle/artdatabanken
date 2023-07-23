@@ -1,6 +1,6 @@
 import Page from '../Page';
 import ImportImagesToFirebase from './ImportImagesToFirebase';
-import ImportSpeciesToFirebase from './ImportSpeciesToFirebase';
+import ImportSpecies from './ImportSpecies';
 import ExportDatabase from './ExportDatabase';
 
 export default function Settings() {
@@ -15,7 +15,7 @@ export default function Settings() {
       <h2>Import to Firebase</h2>
       <div className="grid">
         <ImportImagesToFirebase />
-        <ImportSpeciesToFirebase />
+        <ImportSpecies />
       </div>
     </Page>
   );

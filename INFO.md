@@ -2,6 +2,8 @@
 
 ## TODO
 
+- [ ]
+
 - [ ] När ny art skapas => Warning: Each child in a list should have a unique "key" prop.
 - [ ] Update bundles and merge new docs
 - [?] DB Optimization
@@ -30,12 +32,26 @@ firebase use artdatabanken-2023-dev (https://artdatabanken-2023-dev.web.app)
 firebase deploy --only hosting
 ```
 
-## GCloud - Download all images
+## Upload images and import databas
+
+1. Delete all files and and clear the database.
+2. Upload all images (500x500) and thumbs (100x100) to the buckets images and thumbs.
+3. Create database bundles for all images.
+4. Import all species into a bundle.
+
+## GCloud Buckets
+
+### Uploading files
+
+Uploading files or folders can be done directly from the console [Artdatabanken-2023-dev consol](<https://console.cloud.google.com/storage/browser/artdatabanken-2023-dev.appspot.com?project=artdatabanken-2023-dev&pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&prefix=&forceOnObjectsSortingFiltering=false>).
+
+### Download images
+
+Downloadin complete buckets can only be done from the CLI.
+
+- [Install GCloud](https://cloud.google.com/storage/docs/discover-object-storage-gcloud)
 
 ```sh
-# https://cloud.google.com/storage/docs/discover-object-storage-gcloud
-# https://console.cloud.google.com/storage/browser/artdatabanken-2023-dev.appspot.com?project=artdatabanken-2023-dev&pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&prefix=&forceOnObjectsSortingFiltering=false
-gcloud init
 gsutil -m cp -r "gs://artdatabanken-2023-dev.appspot.com/images" .
 ```
 

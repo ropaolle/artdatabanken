@@ -6,6 +6,7 @@ import { type User } from './auth';
 
 type GlobalState = {
   initGlobalState: (images: ImageInfo[], species: SpeciesInfo[], updatedAt?: Timestamp) => void;
+  updatedAt?: Timestamp | null;
   user: User | null;
   setUser: (user: User | null) => void;
   images: ImageInfo[];
@@ -14,10 +15,9 @@ type GlobalState = {
   species: SpeciesInfo[];
   setSpecies: (species: SpeciesInfo) => void;
   deleteSpecies: (id: string) => void;
-  updatedAt?: Timestamp;
 };
 
-const toTimestamp = (item: ImageInfo | SpeciesInfo) => {
+const toTimestamp = <T extends { createdAt?: Timestamp; updatedAt?: Timestamp }>(item: T) => {
   if (item.createdAt) {
     item.createdAt = new Timestamp(item.createdAt.seconds, item.createdAt.nanoseconds);
   }
@@ -30,22 +30,20 @@ const toTimestamp = (item: ImageInfo | SpeciesInfo) => {
 
 const customStorage = {
   getItem: (key: string): StorageValue<GlobalState> => {
-    const str = localStorage.getItem(key) || '';
+    const str = localStorage.getItem(key);
+    const { state, version }: { state: GlobalState; version: number } = JSON.parse(str || '');
     return {
       state: {
-        ...JSON.parse(str).state,
-        images: JSON.parse(str).state.images.map((image: ImageInfo) => toTimestamp(image)),
-        species: JSON.parse(str).state.speces.map((species: SpeciesInfo) => toTimestamp(species)),
+        ...state,
+        images: state.images.map((image) => toTimestamp(image)),
+        species: state.species.map((species: SpeciesInfo) => toTimestamp(species)),
+        updatedAt: state.updatedAt && new Timestamp(state.updatedAt.seconds, state.updatedAt.nanoseconds),
       },
+      version,
     };
   },
   setItem: (key: string, newValue: StorageValue<GlobalState>): void => {
-    const str = JSON.stringify({
-      state: {
-        ...newValue.state,
-      },
-    });
-    localStorage.setItem(key, str);
+    localStorage.setItem(key, JSON.stringify(newValue));
   },
   removeItem: (key: string): void => {
     localStorage.removeItem(key);
@@ -56,7 +54,6 @@ export const useAppStore = create<GlobalState>()(
   // devtools(
   persist<GlobalState>(
     (set) => ({
-      // Init state, replace all existing data
       initGlobalState: (images, species, updatedAt) =>
         set(() => ({
           images,
@@ -64,10 +61,11 @@ export const useAppStore = create<GlobalState>()(
           updatedAt,
         })),
 
+      // updatedAt: undefined,
+
       user: null,
       setUser: (user) => set(() => ({ user })),
 
-      // Images
       images: [],
       setImage: (image) =>
         set((state) => {
@@ -84,7 +82,6 @@ export const useAppStore = create<GlobalState>()(
       deleteImage: (filename) =>
         set((state) => ({ ...state, images: state.images.filter((image) => image.filename !== filename) })),
 
-      //Species
       species: [],
       setSpecies: (species) =>
         set((state) => {
