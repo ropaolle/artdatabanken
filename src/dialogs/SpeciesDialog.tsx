@@ -1,7 +1,7 @@
 import classes from './SpeciesDialog.module.css';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { doc, setDoc, Timestamp, deleteDoc } from 'firebase/firestore/lite';
+import { doc, setDoc, Timestamp, deleteDoc, updateDoc, arrayUnion, getDoc } from 'firebase/firestore/lite';
 import { db, type SpeciesInfo, COLLECTIONS } from '../lib/firebase.ts';
 import { toDatalistOptions, counties, sexes } from '../lib/options';
 import Dialog from './Dialog';
@@ -89,7 +89,14 @@ export default function SpeciesDialog({ open, show, values }: Props) {
 
     if (values?.id) {
       try {
-        await deleteDoc(doc(db, COLLECTIONS.SPECIES, values.id));
+        // Check if doc exists
+        const check = await getDoc(doc(db, COLLECTIONS.SPECIES, values.id));
+        // Delete doc if it exists. If not it is part of a bundle and shall be tagged for deletion.
+        if (check.exists()) {
+          await deleteDoc(doc(db, COLLECTIONS.SPECIES, values.id));
+        } else {
+          await updateDoc(doc(db, COLLECTIONS.DELETED, 'species'), { ids: arrayUnion(values?.id) });
+        }
         show(false);
         deleteSpecies(values.id);
       } catch (error) {

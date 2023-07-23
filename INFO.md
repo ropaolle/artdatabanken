@@ -2,8 +2,13 @@
 
 ## TODO
 
-- [ ] Delete images and species
+- [ ] När ny art skapas => Warning: Each child in a list should have a unique "key" prop.
 - [ ] Update bundles and merge new docs
+- [?] DB Optimization
+  1. Bundles with all old species/image data in two big arrays.
+  2. Add new images/species as documents in the images/species collection.
+  3. Tag deleted images/species in the collection deleted.
+  4. Merge new and deleted images/species in new bundles.
 - NICE TO HAVE
   - [ ] CSS styling of the Datalists.
 

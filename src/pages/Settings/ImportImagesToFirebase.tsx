@@ -2,15 +2,15 @@ import { useState } from 'react';
 import { getStorage, ref, getDownloadURL, uploadBytes } from 'firebase/storage';
 import { setDoc, doc, Timestamp } from 'firebase/firestore/lite';
 import { db, COLLECTIONS, PATHS, type ImageInfo } from '../../lib/firebase';
-import { ImportStates } from '.';
+import { type ImportStates } from '.';
 
 export default function ImportImagesToFirebase() {
   const [images, setImages] = useState<FileList>();
   const [imagesMessage, setImagesMessage] = useState('');
-  const [uploadingImages, setUploadingImages] = useState<ImportStates>(ImportStates.IDLE);
+  const [uploadingImages, setUploadingImages] = useState<ImportStates>('IDLE');
 
   const onHandleImageImportChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUploadingImages(ImportStates.IDLE);
+    setUploadingImages('IDLE');
     setImagesMessage('');
     setImages(e.currentTarget.files || undefined);
   };
@@ -23,7 +23,7 @@ export default function ImportImagesToFirebase() {
   const handleImageImport = async () => {
     if (!images) return;
 
-    setUploadingImages(ImportStates.UPLOADING);
+    setUploadingImages('UPLOADING');
 
     const storage = getStorage();
 
@@ -59,21 +59,27 @@ export default function ImportImagesToFirebase() {
           items: Object.values(bundleItems),
           updatedAt: Timestamp.now(),
         });
+        // Add delete collection
+        setDoc(doc(db, COLLECTIONS.DELETED, 'images'), { filenames: [] });
 
         setImagesMessage(`Done. ${images.length} files uploaded.`);
       })
       .catch((err) => console.error(err))
-      .finally(() => setUploadingImages(ImportStates.DONE));
+      .finally(() => setUploadingImages('DONE'));
   };
 
   return (
     <div>
       <label htmlFor="importimages">
         <b>Bilder</b>
+        <p>
+          Laddar upp bilder, miniatyrer och skapar databasposter. Både bild och miniatyr ska inkluderas, t.ex.{' '}
+          <ins>image066.jpg</ins> och <ins>image066_thumbnail.jpg</ins>.
+        </p>
         <input id="importimages" type="file" accept=".jpg" onChange={onHandleImageImportChange} multiple />
         {imagesMessage && <small>{imagesMessage}</small>}
       </label>
-      <button onClick={handleImageImport} aria-busy={uploadingImages === ImportStates.UPLOADING}>
+      <button onClick={handleImageImport} aria-busy={uploadingImages === 'UPLOADING'}>
         Importera bilder
       </button>
     </div>

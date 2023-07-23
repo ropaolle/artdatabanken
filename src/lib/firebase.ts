@@ -20,15 +20,14 @@ const dev = {
   appId: '1:544182237871:web:829c6e290800094bdcf25a',
 };
 
-export enum COLLECTIONS {
-  'IMAGES' = 'images',
-  'SPECIES' = 'species',
-  'BUNDLES' = 'bundles',
-}
+export const COLLECTIONS = {
+  IMAGES: 'images',
+  SPECIES: 'species',
+  BUNDLES: 'bundles',
+  DELETED: 'deleted',
+} as const;
 
-export enum PATHS {
-  'IMAGES' = 'images',
-}
+export const PATHS = { IMAGES: 'images' } as const;
 
 export const app = initializeApp(import.meta.env.PROD ? prod : dev);
 export const storage = getStorage(app);
@@ -155,7 +154,12 @@ export async function firestoreFetch<T = ImageInfo | SpeciesInfo>(path: string):
 
   if (path === 'bundles') {
     const [p1, p2] = querySnapshot.docs;
-    return [{ images: p1.data().items, species: p2.data().items } as T];
+    return [{ images: p1?.data().items, species: p2?.data().items } as T];
+  }
+
+  if (path === 'deleted') {
+    const [p1, p2] = querySnapshot.docs;
+    return [{ deletedImages: p1?.data().filenames, deletedSpecies: p2?.data().ids } as T];
   }
 
   return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id } as T));

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { doc, deleteDoc } from 'firebase/firestore/lite';
+import { doc, deleteDoc, updateDoc, arrayUnion, setDoc, arrayRemove, getDoc } from 'firebase/firestore/lite';
 import { db, deleteFile, type ImageInfo, COLLECTIONS } from '../lib/firebase';
 import Dialog from './Dialog';
 import { timestampToString } from '../lib/';
@@ -24,12 +24,18 @@ export default function DeleteImageDialog({ open, show, values }: Props) {
 
     setDeletingImage(true);
 
+    // Check if doc exists
+    const check = await getDoc(doc(db, COLLECTIONS.IMAGES, filename));
+
     Promise.all([
-      await deleteFile(filename),
-      await deleteFile(thumbnail),
-      await deleteDoc(doc(db, COLLECTIONS.IMAGES, filename)),
+      deleteFile(filename),
+      deleteFile(thumbnail),
+      // Delete doc if it exists. Else it is part of a bundle and shall be tagged for deletion.
+      check.exists()
+        ? deleteDoc(doc(db, COLLECTIONS.IMAGES, filename))
+        : updateDoc(doc(db, COLLECTIONS.DELETED, 'images'), { filenames: arrayUnion(filename) }),
     ])
-      .then(() => {
+      .then((x) => {
         deleteImage(filename);
       })
       .catch((error) => console.error(error))

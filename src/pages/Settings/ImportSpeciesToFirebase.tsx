@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { doc, setDoc, Timestamp } from 'firebase/firestore/lite';
+import { doc, setDoc, Timestamp, collection, addDoc } from 'firebase/firestore/lite';
 import { db, type SpeciesInfo, COLLECTIONS } from '../../lib/firebase';
-import { readUploadedFileAsText, ImportStates } from '.';
+import { readUploadedFileAsText, type ImportStates } from '.';
 
 export default function ImportSpeciesToFirebase() {
-  const [importingSpecies, setImportingSpecies] = useState<ImportStates>(ImportStates.IDLE);
+  const [importingSpecies, setImportingSpecies] = useState<ImportStates>('IDLE');
   const [species, setSpecies] = useState<SpeciesInfo[]>();
   const [speciesMessage, setSpeciesMessage] = useState('');
 
   const onHandleSpeciesImportChange = async (file?: File) => {
-    setImportingSpecies(ImportStates.IDLE);
+    setImportingSpecies('IDLE');
     setSpeciesMessage('');
 
     if (!file) return;
@@ -46,19 +46,22 @@ export default function ImportSpeciesToFirebase() {
 
   const handleSpeciesImport = async () => {
     if (!species) return;
-    setImportingSpecies(ImportStates.UPLOADING);
+    setImportingSpecies('UPLOADING');
 
     // Create custom bundle
     await setDoc(doc(db, COLLECTIONS.BUNDLES, COLLECTIONS.SPECIES), { items: species, updatedAt: Timestamp.now() });
+    // Add delete collection
+    setDoc(doc(db, COLLECTIONS.DELETED, 'species'), { ids: [] });
 
     setSpeciesMessage(`Done! ${species.length} species imported.`);
-    setImportingSpecies(ImportStates.DONE);
+    setImportingSpecies('DONE');
   };
 
   return (
     <div>
       <label htmlFor="importspecies">
         <b>Arter</b>
+        <p>Importerar alla arter från en .csv fil. Artnamn kontrolleras inte. Kan generera dubletter.</p>
         <input
           id="importspecies"
           type="file"
@@ -67,7 +70,7 @@ export default function ImportSpeciesToFirebase() {
         />
         {speciesMessage && <small>{speciesMessage}</small>}
       </label>
-      <button onClick={handleSpeciesImport} aria-busy={importingSpecies === ImportStates.UPLOADING}>
+      <button onClick={handleSpeciesImport} aria-busy={importingSpecies === 'UPLOADING'}>
         Importera arter
       </button>
     </div>

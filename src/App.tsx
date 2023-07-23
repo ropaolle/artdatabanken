@@ -14,17 +14,31 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       if (!updatedAt) {
+        // TODO: Fetch all deletions and remove from the bundles
+        // Fetch all deletions
+        type Deleted = { deletedImages: string[]; deletedSpecies: string[] };
+        const [{ deletedImages, deletedSpecies }] = await firestoreFetch<Deleted>('deleted');
+        console.log('deleted', deletedImages, deletedSpecies);
         // Fetch all bundles
         const [{ images, species }] = await firestoreFetch<Bundles>('bundles');
-        initGlobalState(images, species, Timestamp.now());
+
+        // Filter deletions from bundles
+        const i = images.filter(({ filename }) => !deletedImages.includes(filename));
+        const s = species.filter(({ id }) => !deletedSpecies.includes(id || ''));
+
+        console.log('images, species', images, species);
+        initGlobalState(i || [], s || [], Timestamp.now());
+        // initGlobalState(images || [], species || [], Timestamp.now());
       }
 
       // Fetch all new items
       const images = await firestoreFetch<ImageInfo>('images');
+      console.log('images', images);
       for (const image of images) {
         setImage(image);
       }
       const species = await firestoreFetch<SpeciesInfo>('species');
+      console.log('species', species);
       for (const item of species) {
         setSpecies(item);
       }
