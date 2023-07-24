@@ -4,12 +4,13 @@ import ImportImages from './ImportImages';
 import ImportSpeciesBundle from './ImportSpeciesBundle';
 import ExportDatabase from './ExportDatabase';
 import CreateImageBundle from './CreateImageBundle';
+import MergeChangesIntoBundle from './MergeChangesIntoBundle'
 
 export default function Settings() {
   return (
     <Page title="Inställningar">
       <h2>Actions</h2>
-      <div className="grid">
+      <div className={classes.actionGrid}>
         <div className={classes.cell}>
           <ImportImages />
         </div>
@@ -21,6 +22,9 @@ export default function Settings() {
         </div>
         <div className={classes.cell}>
           <ExportDatabase />
+        </div>
+        <div className={classes.cell}>
+          <MergeChangesIntoBundle />
         </div>
       </div>
     </Page>

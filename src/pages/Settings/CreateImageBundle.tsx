@@ -17,6 +17,7 @@ export default function CreateImageBundle() {
 
     for (const { filename, URL: thumbnailURL } of thumbsList) {
       imageMap.set(filename, {
+        id: filename,
         filename,
         thumbnailURL,
         URL: imageMap.get(filename)?.URL,
@@ -25,15 +26,7 @@ export default function CreateImageBundle() {
     }
 
     const imageInfo = Array.from(imageMap.values());
-
-    setDoc(
-      doc(db, COLLECTIONS.APPLICATION, 'bundles'),
-      {
-        images: imageInfo,
-      },
-      { merge: true }
-    );
-
+    setDoc(doc(db, COLLECTIONS.APPLICATION, 'bundles'), { images: imageInfo }, { merge: true });
     setDoc(doc(db, COLLECTIONS.APPLICATION, 'deleted'), { images: [] }, { merge: true });
     setDoc(doc(db, COLLECTIONS.APPLICATION, 'updatedAt'), { updatedAt: Timestamp.now() });
 

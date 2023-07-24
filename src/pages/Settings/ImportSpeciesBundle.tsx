@@ -41,13 +41,7 @@ export default function ImportSpeciesBundle() {
       console.error(error);
     }
 
-    setDoc(
-      doc(db, COLLECTIONS.APPLICATION, 'bundles'),
-      {
-        species: speciesCollection,
-      },
-      { merge: true }
-    );
+    setDoc(doc(db, COLLECTIONS.APPLICATION, 'bundles'), { species: speciesCollection }, { merge: true });
 
     // Add delete collection
     setDoc(doc(db, COLLECTIONS.APPLICATION, 'deleted'), { species: [] }, { merge: true });

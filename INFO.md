@@ -2,11 +2,7 @@
 
 ## TODO
 
-- [?] DB Optimization
-  1. Bundles with all old species/image data in two big arrays.
-  2. Add new images/species as documents in the images/species collection.
-  3. Tag deleted images/species in the collection deleted.
-  4. Merge new and deleted images/species in new bundles.
+- [ ] Check TODO:s
 - NICE TO HAVE
 - [ ] Toast messages https://github.com/timolins/react-hot-toast
 - [ ] CSS styling of the Datalists.

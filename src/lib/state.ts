@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { /* devtools, */ persist, type StorageValue } from 'zustand/middleware';
 import { Timestamp } from 'firebase/firestore/lite';
-import { type SpeciesInfo, type ImageInfo } from './firebase';
+import { firestoreFetch, firestoreFetchDoc, type SpeciesInfo, type ImageInfo, COLLECTIONS } from './firebase';
 import { type User } from './auth';
 
 type GlobalState = {
@@ -17,6 +17,31 @@ type GlobalState = {
   // TODO: rename to addOrUpdateSpecies
   setSpecies: (species: SpeciesInfo) => void;
   deleteSpecies: (id: string) => void;
+};
+
+export const fetchGlobalState = async (fullUpdate = true) => {
+  // Fetch all new species and images, not jet added to persistent local storage
+  const newImages = await firestoreFetch<ImageInfo>('images');
+  const newSpecies = await firestoreFetch<SpeciesInfo>('species');
+
+  if (!fullUpdate) {
+    return { images: newImages, species: newSpecies };
+  }
+
+  type Deleted = { images: string[]; species: string[] };
+  const deleted = await firestoreFetchDoc<Deleted>(COLLECTIONS.APPLICATION, 'deleted');
+
+  type Bundles = { images: ImageInfo[]; species: SpeciesInfo[] };
+  const bundles = await firestoreFetchDoc<Bundles>(COLLECTIONS.APPLICATION, 'bundles');
+
+  // Exclude deleted images and species
+  const bundleImages = bundles.images.filter(({ filename }) => !deleted.images.includes(filename));
+  const bundleSpecies = bundles.species.filter(({ id }) => !deleted.species.includes(id || ''));
+
+  return {
+    images: [...bundleImages, ...newImages],
+    species: [...bundleSpecies, ...newSpecies],
+  };
 };
 
 const toTimestamp = (item: { seconds: number; nanoseconds: number } | undefined) =>

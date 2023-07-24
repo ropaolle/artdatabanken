@@ -95,7 +95,7 @@ export default function SpeciesDialog({ open, show, values }: Props) {
         if (check.exists()) {
           await deleteDoc(doc(db, COLLECTIONS.SPECIES, values.id));
         } else {
-          await updateDoc(doc(db, COLLECTIONS.DELETED, 'species'), { ids: arrayUnion(values?.id) });
+          await updateDoc(doc(db, COLLECTIONS.APPLICATION, 'deleted'), { species: arrayUnion(values?.id) });
         }
         show(false);
         deleteSpecies(values.id);

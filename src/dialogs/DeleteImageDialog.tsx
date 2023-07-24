@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { doc, deleteDoc, updateDoc, arrayUnion, setDoc, arrayRemove, getDoc } from 'firebase/firestore/lite';
-import { db, deleteFile, type ImageInfo, COLLECTIONS } from '../lib/firebase';
+import { doc, deleteDoc, updateDoc, arrayUnion, /* setDoc, arrayRemove, */ getDoc } from 'firebase/firestore/lite';
+import { db, deleteFile, type ImageInfo, COLLECTIONS, PATHS } from '../lib/firebase';
 import Dialog from './Dialog';
 import { timestampToString } from '../lib/';
 import { useAppStore } from '../lib/state';
@@ -17,10 +17,10 @@ export default function DeleteImageDialog({ open, show, values }: Props) {
 
   if (!values) return;
 
-  const { filename, thumbnail, URL, thumbnailURL, createdAt, updatedAt } = values;
+  const { filename, /* thumbnail,  */ URL,/*  thumbnailURL,  */createdAt, updatedAt } = values;
 
   const handleDeleteImage = async () => {
-    if (!user || !filename || !thumbnail) return;
+    if (!user || !filename /* || !thumbnail */) return;
 
     setDeletingImage(true);
 
@@ -28,14 +28,14 @@ export default function DeleteImageDialog({ open, show, values }: Props) {
     const check = await getDoc(doc(db, COLLECTIONS.IMAGES, filename));
 
     Promise.all([
-      deleteFile(filename),
-      deleteFile(thumbnail),
+      deleteFile(filename, PATHS.IMAGES),
+      deleteFile(filename, PATHS.THUMBNAILS),
       // Delete doc if it exists. Else it is part of a bundle and shall be tagged for deletion.
       check.exists()
         ? deleteDoc(doc(db, COLLECTIONS.IMAGES, filename))
-        : updateDoc(doc(db, COLLECTIONS.DELETED, 'images'), { filenames: arrayUnion(filename) }),
+        : updateDoc(doc(db, COLLECTIONS.APPLICATION, 'deleted'), { images: arrayUnion(filename) }),
     ])
-      .then((x) => {
+      .then(() => {
         deleteImage(filename);
       })
       .catch((error) => console.error(error))
@@ -53,18 +53,10 @@ export default function DeleteImageDialog({ open, show, values }: Props) {
       <table>
         <tbody>
           <tr>
-            <td>Filnamn</td>
+            <td>Direktlänk</td>
             <td>
               <a href={URL} target="_blank">
                 {filename}
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>Thumbnail</td>
-            <td>
-              <a href={thumbnailURL} target="_blank">
-                {thumbnail}
               </a>
             </td>
           </tr>

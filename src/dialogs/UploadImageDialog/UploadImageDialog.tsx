@@ -109,14 +109,13 @@ export default function UploadImageDialog({ open, show }: Props) {
 
     const filename = normalizeFilename(imageFile[0].name);
     const path = `${PATHS.IMAGES}/${filename}`;
-    const [name, ext] = filename.split('.');
-    const thumbnail = `${name}_thumb.${ext}`;
-    const thumbnailPath = `${PATHS.IMAGES}/${thumbnail}`;
+    const thumbnailPath = `${PATHS.THUMBNAILS}/${filename}`;
+    const id = filename;
 
     try {
       const image: ImageInfo = {
+        id,
         filename,
-        thumbnail,
         URL: await uploadFile(previewCanvasRef.current, path),
         thumbnailURL: await uploadFile(thumbnailCanvasRef.current, thumbnailPath),
         updatedAt: Timestamp.now(),
@@ -124,9 +123,9 @@ export default function UploadImageDialog({ open, show }: Props) {
 
       if (!imageExists) {
         image.createdAt = Timestamp.now();
-        await setDoc(doc(db, COLLECTIONS.IMAGES, filename), image);
+        await setDoc(doc(db, COLLECTIONS.IMAGES, id), image);
       } else {
-        await setDoc(doc(db, COLLECTIONS.IMAGES, filename), image, { merge: true });
+        await setDoc(doc(db, COLLECTIONS.IMAGES, id), image, { merge: true });
       }
 
       setImage(image);

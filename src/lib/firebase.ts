@@ -128,7 +128,7 @@ export const uploadFile = async (
   });
 };
 
-export const deleteFile = async (filename: string, path = COLLECTIONS.IMAGES): Promise<void> => {
+export const deleteFile = async (filename: string, path: string): Promise<void> => {
   const fileRef = ref(storage, `${path}/${filename}`);
 
   return new Promise((resolve, reject) => {
@@ -145,8 +145,9 @@ export const deleteFile = async (filename: string, path = COLLECTIONS.IMAGES): P
 /* DATABASE */
 
 export type ImageInfo = {
+  // TODO: Do id have to be optional?
+  id?: string;
   filename: string;
-  thumbnail: string;
   URL: string;
   thumbnailURL: string;
   createdAt?: Timestamp;
