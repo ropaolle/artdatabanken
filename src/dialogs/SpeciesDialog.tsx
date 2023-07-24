@@ -74,7 +74,7 @@ export default function SpeciesDialog({ open, show, values }: Props) {
       }
 
       await setDoc(doc(db, COLLECTIONS.SPECIES, id), species);
-      setSpecies(data);
+      setSpecies(species);
     } catch (error) {
       console.error(error);
     }

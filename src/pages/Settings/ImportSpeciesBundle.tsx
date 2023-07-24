@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { doc, setDoc, Timestamp, collection, addDoc } from 'firebase/firestore/lite';
+import { useState, useRef } from 'react';
+import { doc, setDoc, Timestamp } from 'firebase/firestore/lite';
 import { db, type SpeciesInfo, COLLECTIONS } from '../../lib/firebase';
 import { readUploadedFileAsText, type ImportStates } from '.';
 
-export default function ImportSpecies() {
-  const [importingSpecies, setImportingSpecies] = useState<ImportStates>('IDLE');
-  const [species, setSpecies] = useState<SpeciesInfo[]>();
-  const [speciesMessage, setSpeciesMessage] = useState('');
+export default function ImportSpeciesBundle() {
+  const [loading, setLoading] = useState<ImportStates>('IDLE');
+  const [message, setMessage] = useState('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const onHandleSpeciesImportChange = async (file?: File) => {
-    setImportingSpecies('IDLE');
-    setSpeciesMessage('');
+    setLoading('BUSY');
+    setMessage('');
 
     if (!file) return;
 
@@ -41,48 +41,44 @@ export default function ImportSpecies() {
       console.error(error);
     }
 
-    setSpecies(speciesCollection);
-  };
-
-  const handleSpeciesImport = async () => {
-    if (!species) return;
-    setImportingSpecies('UPLOADING');
-
-    // Create custom bundle
-    // await setDoc(doc(db, COLLECTIONS.BUNDLES, COLLECTIONS.SPECIES), { items: species, updatedAt: Timestamp.now() });
-
     setDoc(
       doc(db, COLLECTIONS.APPLICATION, 'bundles'),
       {
-        species: species,
+        species: speciesCollection,
       },
       { merge: true }
     );
 
     // Add delete collection
     setDoc(doc(db, COLLECTIONS.APPLICATION, 'deleted'), { species: [] }, { merge: true });
-    setDoc(doc(db, COLLECTIONS.APPLICATION, 'lastChange'), { lastChange: Timestamp.now() });
+    setDoc(doc(db, COLLECTIONS.APPLICATION, 'updatedAt'), { updatedAt: Timestamp.now() });
 
-    setSpeciesMessage(`Done! ${species.length} species imported.`);
-    setImportingSpecies('DONE');
+    setMessage(`Done! ${speciesCollection.length} species imported.`);
+    setLoading('DONE');
+  };
+
+  const handleSpeciesImport = async () => {
+    fileInputRef.current?.click();
   };
 
   return (
-    <div>
+    <>
       <label htmlFor="importspecies">
-        <b>Arter</b>
-        <p>Importerar alla arter från en .csv fil. Artnamn kontrolleras inte. Kan generera dubletter.</p>
+        <b>Import species</b>
+        <p>Import a .csv file with species to a bundle. The existing species bundle is owerwritten..</p>
         <input
           id="importspecies"
           type="file"
           accept=".csv"
           onChange={(e) => onHandleSpeciesImportChange(e.currentTarget.files?.[0])}
+          ref={fileInputRef}
+          hidden
         />
-        {speciesMessage && <small>{speciesMessage}</small>}
+        {message && <small>{message}</small>}
       </label>
-      <button onClick={handleSpeciesImport} aria-busy={importingSpecies === 'UPLOADING'}>
-        Importera arter
+      <button onClick={handleSpeciesImport} aria-busy={loading === 'BUSY'}>
+        Import species bundle
       </button>
-    </div>
+    </>
   );
 }

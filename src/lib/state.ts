@@ -6,38 +6,39 @@ import { type User } from './auth';
 
 type GlobalState = {
   initGlobalState: (images: ImageInfo[], species: SpeciesInfo[], updatedAt?: Timestamp) => void;
-  updatedAt?: Timestamp | null;
+  globalStateFetchedAt?: Timestamp;
   user: User | null;
   setUser: (user: User | null) => void;
   images: ImageInfo[];
+  // TODO: rename to addOrUpdateImage
   setImage: (images: ImageInfo) => void;
   deleteImage: (filename: string) => void;
   species: SpeciesInfo[];
+  // TODO: rename to addOrUpdateSpecies
   setSpecies: (species: SpeciesInfo) => void;
   deleteSpecies: (id: string) => void;
 };
 
-const toTimestamp = <T extends { createdAt?: Timestamp; updatedAt?: Timestamp }>(item: T) => {
-  if (item.createdAt) {
-    item.createdAt = new Timestamp(item.createdAt.seconds, item.createdAt.nanoseconds);
-  }
-  if (item.updatedAt) {
-    item.updatedAt = new Timestamp(item.updatedAt.seconds, item.updatedAt.nanoseconds);
-  }
+const toTimestamp = (item: { seconds: number; nanoseconds: number } | undefined) =>
+  item && new Timestamp(item.seconds, item.nanoseconds);
 
-  return item;
-};
+const objectToTimestamp = <T extends { createdAt?: Timestamp; updatedAt?: Timestamp }>(item: T) => ({
+  ...item,
+  updatedAt: toTimestamp(item.updatedAt),
+  createdAt: toTimestamp(item.createdAt),
+});
 
 const customStorage = {
   getItem: (key: string): StorageValue<GlobalState> => {
     const str = localStorage.getItem(key);
     const { state, version }: { state: GlobalState; version: number } = JSON.parse(str || '');
+    const { images, species, globalStateFetchedAt } = state;
     return {
       state: {
         ...state,
-        images: state.images.map((image) => toTimestamp(image)),
-        species: state.species.map((species: SpeciesInfo) => toTimestamp(species)),
-        updatedAt: state.updatedAt && new Timestamp(state.updatedAt.seconds, state.updatedAt.nanoseconds),
+        images: images.map((image) => objectToTimestamp(image)),
+        species: species.map((species: SpeciesInfo) => objectToTimestamp(species)),
+        globalStateFetchedAt: toTimestamp(globalStateFetchedAt),
       },
       version,
     };
@@ -54,14 +55,12 @@ export const useAppStore = create<GlobalState>()(
   // devtools(
   persist<GlobalState>(
     (set) => ({
-      initGlobalState: (images, species, updatedAt) =>
+      initGlobalState: (images, species, globalStateFetchedAt) =>
         set(() => ({
           images,
           species,
-          updatedAt,
+          globalStateFetchedAt,
         })),
-
-      // updatedAt: undefined,
 
       user: null,
       setUser: (user) => set(() => ({ user })),

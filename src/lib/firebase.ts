@@ -28,7 +28,7 @@ export const COLLECTIONS = {
   DELETED: 'deleted',
 } as const;
 
-export const PATHS = { IMAGES: 'images' } as const;
+export const PATHS = { IMAGES: 'images', THUMBNAILS: 'thumbs' } as const;
 
 export const app = initializeApp(import.meta.env.PROD ? prod : dev);
 export const storage = getStorage(app);
@@ -175,15 +175,15 @@ export type SpeciesInfo = {
 //   updatedAt: Timestamp;
 // };
 
-export type Bundles = { images: ImageInfo[]; species: SpeciesInfo[] };
+// export type Bundles = { images: ImageInfo[]; species: SpeciesInfo[] };
 
 export async function firestoreFetch<T = ImageInfo | SpeciesInfo>(path: string): Promise<T[]> {
   const querySnapshot = await getDocs(collection(db, path));
 
-  if (path === 'bundles') {
-    const [p1, p2] = querySnapshot.docs;
-    return [{ images: p1?.data().items, species: p2?.data().items } as T];
-  }
+  // if (path === 'bundles') {
+  //   const [p1, p2] = querySnapshot.docs;
+  //   return [{ images: p1?.data().items, species: p2?.data().items } as T];
+  // }
 
   // if (path === 'deleted') {
   //   const [p1, p2] = querySnapshot.docs;
@@ -192,7 +192,6 @@ export async function firestoreFetch<T = ImageInfo | SpeciesInfo>(path: string):
 
   return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id } as T));
 }
-
 
 export async function firestoreFetchDoc<T>(path: string, id: string): Promise<T> {
   const querySnapshot = await getDoc(doc(db, path, id));

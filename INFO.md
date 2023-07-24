@@ -2,20 +2,20 @@
 
 ## TODO
 
-- [ ]
-
-- [ ] När ny art skapas => Warning: Each child in a list should have a unique "key" prop.
-- [ ] Update bundles and merge new docs
 - [?] DB Optimization
   1. Bundles with all old species/image data in two big arrays.
   2. Add new images/species as documents in the images/species collection.
   3. Tag deleted images/species in the collection deleted.
   4. Merge new and deleted images/species in new bundles.
 - NICE TO HAVE
-  - [ ] CSS styling of the Datalists.
+- [ ] Toast messages https://github.com/timolins/react-hot-toast
+- [ ] CSS styling of the Datalists.
 
 ## Known issues
 
+- [ ] showSaveFilePicker do not exist, [TypeScript's type definitions for the file system access API are currently broken](https://github.com/microsoft/vscode/issues/141908).
+  - Add `npm install --save-dev @types/wicg-file-system-access`
+  - In `tsconfig.json` add `"compilerOptions": { "types": [ "@types/wicg-file-system-access"] }`
 - [ ] UploadImageDialog `<dialog>` closes on file input cancelation in Chromiumbased browsers, workaround added in Dialog.tsx.
   - [Bug 1442824](https://bugs.chromium.org/p/chromium/issues/detail?id=1442824)
   - [HTML dialog closes automatically when file input is cancelled. How to prevent?](https://stackoverflow.com/questions/76400460/html-dialog-closes-automatically-when-file-input-is-cancelled-how-to-prevent)
