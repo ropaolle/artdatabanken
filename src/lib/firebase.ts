@@ -51,7 +51,7 @@ export const db = getFirestore(app);
 export const getDownloadURLs = async (filePath: string): Promise<Partial<ImageInfo>[]> => {
   const promises: Promise<Partial<ImageInfo>>[] = [];
 
-  // INFO: Not sure how many items we can fetch per call. Ther seems to be some kind of limit with
+  //TODO: Not sure how many items we can fetch per call. Ther seems to be some kind of limit with
   // a pager, see https://firebase.google.com/docs/storage/web/list-files#paginate_list_results.
   const listRef = ref(storage, filePath);
   await listAll(listRef).then((res) =>
@@ -145,8 +145,7 @@ export const deleteFile = async (filename: string, path: string): Promise<void> 
 /* DATABASE */
 
 export type ImageInfo = {
-  // TODO: Do id have to be optional?
-  id?: string;
+  id: string;
   filename: string;
   URL: string;
   thumbnailURL: string;
@@ -155,7 +154,7 @@ export type ImageInfo = {
 };
 
 export type SpeciesInfo = {
-  id?: string;
+  id: string;
   kingdom: string;
   order: string;
   family: string;
@@ -170,42 +169,12 @@ export type SpeciesInfo = {
   updatedAt?: Timestamp;
 };
 
-// export type Bundles = {
-//   id: string;
-//   items: ImageInfo[] | SpeciesInfo[];
-//   updatedAt: Timestamp;
-// };
-
-// export type Bundles = { images: ImageInfo[]; species: SpeciesInfo[] };
-
-export async function firestoreFetch<T = ImageInfo | SpeciesInfo>(path: string): Promise<T[]> {
+export async function firestoreFetch<T>(path: string): Promise<T[]> {
   const querySnapshot = await getDocs(collection(db, path));
-
-  // if (path === 'bundles') {
-  //   const [p1, p2] = querySnapshot.docs;
-  //   return [{ images: p1?.data().items, species: p2?.data().items } as T];
-  // }
-
-  // if (path === 'deleted') {
-  //   const [p1, p2] = querySnapshot.docs;
-  //   return [{ deletedImages: p1?.data().filenames, deletedSpecies: p2?.data().ids } as T];
-  // }
-
   return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id } as T));
 }
 
 export async function firestoreFetchDoc<T>(path: string, id: string): Promise<T> {
   const querySnapshot = await getDoc(doc(db, path, id));
-
-  // if (path === 'bundles') {
-  //   const [p1, p2] = querySnapshot.docs;
-  //   return [{ images: p1?.data().items, species: p2?.data().items } as T];
-  // }
-
-  // if (path === 'deleted') {
-  //   const [p1, p2] = querySnapshot.docs;
-  //   return [{ deletedImages: p1?.data().filenames, deletedSpecies: p2?.data().ids } as T];
-  // }
-
   return querySnapshot.data() as T;
 }

@@ -10,12 +10,10 @@ type GlobalState = {
   user: User | null;
   setUser: (user: User | null) => void;
   images: ImageInfo[];
-  // TODO: rename to addOrUpdateImage
-  setImage: (images: ImageInfo) => void;
+  addOrUpdateImage: (images: ImageInfo) => void;
   deleteImage: (filename: string) => void;
   species: SpeciesInfo[];
-  // TODO: rename to addOrUpdateSpecies
-  setSpecies: (species: SpeciesInfo) => void;
+  addOrUpdateSpecies: (species: SpeciesInfo) => void;
   deleteSpecies: (id: string) => void;
 };
 
@@ -91,7 +89,7 @@ export const useAppStore = create<GlobalState>()(
       setUser: (user) => set(() => ({ user })),
 
       images: [],
-      setImage: (image) =>
+      addOrUpdateImage: (image) =>
         set((state) => {
           // Add
           const imageIndex = state.images.findIndex(({ filename }) => image.filename === filename);
@@ -107,7 +105,7 @@ export const useAppStore = create<GlobalState>()(
         set((state) => ({ ...state, images: state.images.filter((image) => image.filename !== filename) })),
 
       species: [],
-      setSpecies: (species) =>
+      addOrUpdateSpecies: (species) =>
         set((state) => {
           // Add
           const speciesIndex = state.species.findIndex(({ id }) => species.id === id);

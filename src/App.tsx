@@ -4,25 +4,28 @@ import { Timestamp } from 'firebase/firestore/lite';
 import { Home, ImageView, SpeciesView, Collections, Settings, type PAGES } from './pages';
 // import { type PAGES } from './pages';
 import { Navigation, Footer, Auth } from './components';
-import { firestoreFetchDoc, COLLECTIONS } from './lib/firebase';
+// import { firestoreFetchDoc, COLLECTIONS } from './lib/firebase';
 import { useAppStore, fetchGlobalState } from './lib/state';
 
 function App() {
-  const { initGlobalState, globalStateFetchedAt /* ,, setImage, setSpecies */ } = useAppStore();
-  const [page, setPage] = useState<PAGES>('SETTINGS');
+  const { initGlobalState/* , globalStateFetchedAt */ } = useAppStore();
+  const [page, setPage] = useState<PAGES>('SPECIES');
 
   useEffect(() => {
     const fetchData = async () => {
-      const { updatedAt: databaseUpdatedAt } = await firestoreFetchDoc<{ updatedAt: Timestamp }>(
-        COLLECTIONS.APPLICATION,
-        'updatedAt'
-      );
-      const fullUpdate = !globalStateFetchedAt || globalStateFetchedAt < databaseUpdatedAt;
-      const { images, species } = await fetchGlobalState(fullUpdate);
+      // TODO: Partial update not working
+      // const { updatedAt: databaseUpdatedAt } = await firestoreFetchDoc<{ updatedAt: Timestamp }>(
+      //   COLLECTIONS.APPLICATION,
+      //   'updatedAt'
+      // );
+      // const fullUpdate = !globalStateFetchedAt || globalStateFetchedAt < databaseUpdatedAt;
+      const { images, species } = await fetchGlobalState(/* fullUpdate */);
+      
       initGlobalState(images, species, Timestamp.now());
     };
 
     fetchData().catch(console.error);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // const Home = lazy(() => import('./pages/Home'));

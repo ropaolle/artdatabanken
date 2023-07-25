@@ -1,5 +1,5 @@
 import classes from './SpeciesDialog.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { doc, setDoc, Timestamp, deleteDoc, updateDoc, arrayUnion, getDoc } from 'firebase/firestore/lite';
 import { db, type SpeciesInfo, COLLECTIONS } from '../lib/firebase.ts';
@@ -30,25 +30,31 @@ type Props = {
 };
 
 export default function SpeciesDialog({ open, show, values }: Props) {
-  const { setSpecies, deleteSpecies, images, species, user } = useAppStore();
-
+  const { addOrUpdateSpecies, deleteSpecies, images, species, user } = useAppStore();
   const [previewImage, setPreviewImage] = useState<string>();
   const {
     register,
     handleSubmit,
     reset,
+    // getValues,
     formState: { errors, isSubmitSuccessful, isSubmitting },
   } = useForm<Inputs>();
 
-  const loadPreview = (filename?: string) => {
-    const image = images.find((image) => image.filename === filename);
-    setPreviewImage(image?.thumbnailURL);
-  };
+  const loadPreview = useCallback(
+    (filename?: string) => {
+      const image = images.find((image) => image.filename === filename);
+      setPreviewImage(image?.thumbnailURL);
+    },
+    [images]
+  );
 
   useEffect(() => {
     reset(values || defaults);
-    loadPreview(values?.image);
   }, [values, reset]);
+
+  useEffect(() => {
+    loadPreview(values?.image);
+  }, [loadPreview, values?.image]);
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -74,7 +80,7 @@ export default function SpeciesDialog({ open, show, values }: Props) {
       }
 
       await setDoc(doc(db, COLLECTIONS.SPECIES, id), species);
-      setSpecies(species);
+      addOrUpdateSpecies(species);
     } catch (error) {
       console.error(error);
     }

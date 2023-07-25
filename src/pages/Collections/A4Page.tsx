@@ -15,7 +15,6 @@ type Props = {
 export default function A4Page({ items }: Props) {
   const { images } = useAppStore();
 
-  // TODO: is this too slow, i.e. loops all images?
   const getImage = (name: string) => images.find((image) => image.filename === name)?.URL || placeholder;
 
   const Cards = () =>

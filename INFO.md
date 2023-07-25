@@ -3,6 +3,7 @@
 ## TODO
 
 - [ ] Check TODO:s
+- [ ] Refactor state to smaller chunks
 - NICE TO HAVE
 - [ ] Toast messages https://github.com/timolins/react-hot-toast
 - [ ] CSS styling of the Datalists.

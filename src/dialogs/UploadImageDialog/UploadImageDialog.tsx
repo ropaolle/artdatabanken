@@ -36,7 +36,7 @@ type Props = {
 };
 
 export default function UploadImageDialog({ open, show }: Props) {
-  const { setImage, user } = useAppStore();
+  const { addOrUpdateImage, user } = useAppStore();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imageExists, setImageExists] = useState<boolean>(false);
   const [crop, setCrop] = useState<PixelCrop>(defaultCropArea);
@@ -57,7 +57,7 @@ export default function UploadImageDialog({ open, show }: Props) {
     setSelectedFile(null);
     reset();
     show(false);
-  }, [isSubmitSuccessful]);
+  }, [isSubmitSuccessful, reset, show]);
 
   useEffect(() => {
     if (!selectedFile) {
@@ -128,7 +128,7 @@ export default function UploadImageDialog({ open, show }: Props) {
         await setDoc(doc(db, COLLECTIONS.IMAGES, id), image, { merge: true });
       }
 
-      setImage(image);
+      addOrUpdateImage(image);
     } catch (error) {
       console.error(error);
     }
