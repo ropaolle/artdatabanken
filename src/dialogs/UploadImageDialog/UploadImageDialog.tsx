@@ -36,7 +36,7 @@ type Props = {
 };
 
 export default function UploadImageDialog({ open, show }: Props) {
-  const { setImage, user } = useAppStore();
+  const { addOrUpdateImage, user } = useAppStore();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imageExists, setImageExists] = useState<boolean>(false);
   const [crop, setCrop] = useState<PixelCrop>(defaultCropArea);
@@ -57,7 +57,7 @@ export default function UploadImageDialog({ open, show }: Props) {
     setSelectedFile(null);
     reset();
     show(false);
-  }, [isSubmitSuccessful]);
+  }, [isSubmitSuccessful, reset, show]);
 
   useEffect(() => {
     if (!selectedFile) {
@@ -109,14 +109,13 @@ export default function UploadImageDialog({ open, show }: Props) {
 
     const filename = normalizeFilename(imageFile[0].name);
     const path = `${PATHS.IMAGES}/${filename}`;
-    const [name, ext] = filename.split('.');
-    const thumbnail = `${name}_thumb.${ext}`;
-    const thumbnailPath = `${PATHS.IMAGES}/${thumbnail}`;
+    const thumbnailPath = `${PATHS.THUMBNAILS}/${filename}`;
+    const id = filename;
 
     try {
       const image: ImageInfo = {
+        id,
         filename,
-        thumbnail,
         URL: await uploadFile(previewCanvasRef.current, path),
         thumbnailURL: await uploadFile(thumbnailCanvasRef.current, thumbnailPath),
         updatedAt: Timestamp.now(),
@@ -124,12 +123,12 @@ export default function UploadImageDialog({ open, show }: Props) {
 
       if (!imageExists) {
         image.createdAt = Timestamp.now();
-        await setDoc(doc(db, COLLECTIONS.IMAGES, filename), image);
+        await setDoc(doc(db, COLLECTIONS.IMAGES, id), image);
       } else {
-        await setDoc(doc(db, COLLECTIONS.IMAGES, filename), image, { merge: true });
+        await setDoc(doc(db, COLLECTIONS.IMAGES, id), image, { merge: true });
       }
 
-      setImage(image);
+      addOrUpdateImage(image);
     } catch (error) {
       console.error(error);
     }

@@ -1,51 +1,73 @@
 import { create } from 'zustand';
 import { /* devtools, */ persist, type StorageValue } from 'zustand/middleware';
 import { Timestamp } from 'firebase/firestore/lite';
-import { type SpeciesInfo, type ImageInfo } from './firebase';
+import { firestoreFetch, firestoreFetchDoc, type SpeciesInfo, type ImageInfo, COLLECTIONS } from './firebase';
 import { type User } from './auth';
 
 type GlobalState = {
   initGlobalState: (images: ImageInfo[], species: SpeciesInfo[], updatedAt?: Timestamp) => void;
+  globalStateFetchedAt?: Timestamp;
   user: User | null;
   setUser: (user: User | null) => void;
   images: ImageInfo[];
-  setImage: (images: ImageInfo) => void;
+  addOrUpdateImage: (images: ImageInfo) => void;
   deleteImage: (filename: string) => void;
   species: SpeciesInfo[];
-  setSpecies: (species: SpeciesInfo) => void;
+  addOrUpdateSpecies: (species: SpeciesInfo) => void;
   deleteSpecies: (id: string) => void;
-  updatedAt?: Timestamp;
 };
 
-const toTimestamp = (item: ImageInfo | SpeciesInfo) => {
-  if (item.createdAt) {
-    item.createdAt = new Timestamp(item.createdAt.seconds, item.createdAt.nanoseconds);
-  }
-  if (item.updatedAt) {
-    item.updatedAt = new Timestamp(item.updatedAt.seconds, item.updatedAt.nanoseconds);
+export const fetchGlobalState = async (fullUpdate = true) => {
+  // Fetch all new species and images, not jet added to persistent local storage
+  const newImages = await firestoreFetch<ImageInfo>('images');
+  const newSpecies = await firestoreFetch<SpeciesInfo>('species');
+
+  if (!fullUpdate) {
+    return { images: newImages, species: newSpecies };
   }
 
-  return item;
+  type Deleted = { images: string[]; species: string[] };
+  const deleted = await firestoreFetchDoc<Deleted>(COLLECTIONS.APPLICATION, 'deleted');
+
+  type Bundles = { images: ImageInfo[]; species: SpeciesInfo[] };
+  const bundles = await firestoreFetchDoc<Bundles>(COLLECTIONS.APPLICATION, 'bundles');
+
+  // Exclude deleted images and species
+  const bundleImages = bundles.images.filter(({ filename }) => !deleted.images.includes(filename));
+  const bundleSpecies = bundles.species.filter(({ id }) => !deleted.species.includes(id || ''));
+
+  return {
+    images: [...bundleImages, ...newImages],
+    species: [...bundleSpecies, ...newSpecies],
+  };
 };
+
+const toTimestamp = (item: { seconds: number; nanoseconds: number } | undefined) =>
+  item && new Timestamp(item.seconds, item.nanoseconds);
+
+const objectToTimestamp = <T extends { createdAt?: Timestamp; updatedAt?: Timestamp }>(item: T) => ({
+  ...item,
+  updatedAt: toTimestamp(item.updatedAt),
+  createdAt: toTimestamp(item.createdAt),
+});
 
 const customStorage = {
   getItem: (key: string): StorageValue<GlobalState> => {
-    const str = localStorage.getItem(key) || '';
+    const str = localStorage.getItem(key);
+    const { state, version }: { state: GlobalState; version: number } = JSON.parse(str || '');
+    const { images, species, globalStateFetchedAt } = state;
     return {
       state: {
-        ...JSON.parse(str).state,
-        images: JSON.parse(str).state.images.map((image: ImageInfo) => toTimestamp(image)),
-        species: JSON.parse(str).state.speces.map((species: SpeciesInfo) => toTimestamp(species)),
+        ...state,
+        images: images.map((image) => objectToTimestamp(image)),
+        species: species.map((species: SpeciesInfo) => objectToTimestamp(species)),
+        globalStateFetchedAt: toTimestamp(globalStateFetchedAt),
       },
+      version,
     };
   },
   setItem: (key: string, newValue: StorageValue<GlobalState>): void => {
-    const str = JSON.stringify({
-      state: {
-        ...newValue.state,
-      },
-    });
-    localStorage.setItem(key, str);
+    localStorage.setItem(key, JSON.stringify(newValue));
   },
   removeItem: (key: string): void => {
     localStorage.removeItem(key);
@@ -56,20 +78,18 @@ export const useAppStore = create<GlobalState>()(
   // devtools(
   persist<GlobalState>(
     (set) => ({
-      // Init state, replace all existing data
-      initGlobalState: (images, species, updatedAt) =>
+      initGlobalState: (images, species, globalStateFetchedAt) =>
         set(() => ({
           images,
           species,
-          updatedAt,
+          globalStateFetchedAt,
         })),
 
       user: null,
       setUser: (user) => set(() => ({ user })),
 
-      // Images
       images: [],
-      setImage: (image) =>
+      addOrUpdateImage: (image) =>
         set((state) => {
           // Add
           const imageIndex = state.images.findIndex(({ filename }) => image.filename === filename);
@@ -84,9 +104,8 @@ export const useAppStore = create<GlobalState>()(
       deleteImage: (filename) =>
         set((state) => ({ ...state, images: state.images.filter((image) => image.filename !== filename) })),
 
-      //Species
       species: [],
-      setSpecies: (species) =>
+      addOrUpdateSpecies: (species) =>
         set((state) => {
           // Add
           const speciesIndex = state.species.findIndex(({ id }) => species.id === id);

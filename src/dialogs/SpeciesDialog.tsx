@@ -1,7 +1,7 @@
 import classes from './SpeciesDialog.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { doc, setDoc, Timestamp, deleteDoc } from 'firebase/firestore/lite';
+import { doc, setDoc, Timestamp, deleteDoc, updateDoc, arrayUnion, getDoc } from 'firebase/firestore/lite';
 import { db, type SpeciesInfo, COLLECTIONS } from '../lib/firebase.ts';
 import { toDatalistOptions, counties, sexes } from '../lib/options';
 import Dialog from './Dialog';
@@ -30,25 +30,31 @@ type Props = {
 };
 
 export default function SpeciesDialog({ open, show, values }: Props) {
-  const { setSpecies, deleteSpecies, images, species, user } = useAppStore();
-
+  const { addOrUpdateSpecies, deleteSpecies, images, species, user } = useAppStore();
   const [previewImage, setPreviewImage] = useState<string>();
   const {
     register,
     handleSubmit,
     reset,
+    // getValues,
     formState: { errors, isSubmitSuccessful, isSubmitting },
   } = useForm<Inputs>();
 
-  const loadPreview = (filename?: string) => {
-    const image = images.find((image) => image.filename === filename);
-    setPreviewImage(image?.thumbnailURL);
-  };
+  const loadPreview = useCallback(
+    (filename?: string) => {
+      const image = images.find((image) => image.filename === filename);
+      setPreviewImage(image?.thumbnailURL);
+    },
+    [images]
+  );
 
   useEffect(() => {
     reset(values || defaults);
-    loadPreview(values?.image);
   }, [values, reset]);
+
+  useEffect(() => {
+    loadPreview(values?.image);
+  }, [loadPreview, values?.image]);
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -74,7 +80,7 @@ export default function SpeciesDialog({ open, show, values }: Props) {
       }
 
       await setDoc(doc(db, COLLECTIONS.SPECIES, id), species);
-      setSpecies(data);
+      addOrUpdateSpecies(species);
     } catch (error) {
       console.error(error);
     }
@@ -89,7 +95,14 @@ export default function SpeciesDialog({ open, show, values }: Props) {
 
     if (values?.id) {
       try {
-        await deleteDoc(doc(db, COLLECTIONS.SPECIES, values.id));
+        // Check if doc exists
+        const check = await getDoc(doc(db, COLLECTIONS.SPECIES, values.id));
+        // Delete doc if it exists. If not it is part of a bundle and shall be tagged for deletion.
+        if (check.exists()) {
+          await deleteDoc(doc(db, COLLECTIONS.SPECIES, values.id));
+        } else {
+          await updateDoc(doc(db, COLLECTIONS.APPLICATION, 'deleted'), { species: arrayUnion(values?.id) });
+        }
         show(false);
         deleteSpecies(values.id);
       } catch (error) {

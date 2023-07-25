@@ -1,10 +1,6 @@
 import Settings from './Settings';
 
-export enum ImportStates {
-  'IDLE',
-  'UPLOADING',
-  'DONE',
-}
+export type ImportStates = 'IDLE' | 'UPLOADING' | 'BUSY' | 'DONE';
 
 export const readUploadedFileAsText = (file: File): Promise<string> => {
   const fileReader = new FileReader();

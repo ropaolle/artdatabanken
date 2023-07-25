@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getStorage, ref, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
+import { getStorage, ref, getDownloadURL, uploadBytesResumable, deleteObject, listAll } from 'firebase/storage';
 import { getFirestore, collection, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore/lite';
 
 const prod = {
@@ -20,21 +20,48 @@ const dev = {
   appId: '1:544182237871:web:829c6e290800094bdcf25a',
 };
 
-export enum COLLECTIONS {
-  'IMAGES' = 'images',
-  'SPECIES' = 'species',
-  'BUNDLES' = 'bundles',
-}
+export const COLLECTIONS = {
+  IMAGES: 'images',
+  SPECIES: 'species',
+  BUNDLES: 'bundles',
+  APPLICATION: 'application',
+  DELETED: 'deleted',
+} as const;
 
-export enum PATHS {
-  'IMAGES' = 'images',
-}
+export const PATHS = { IMAGES: 'images', THUMBNAILS: 'thumbs' } as const;
 
 export const app = initializeApp(import.meta.env.PROD ? prod : dev);
 export const storage = getStorage(app);
 export const db = getFirestore(app);
 
 /* FILES */
+
+// export const getFileList = (filePath: string): Promise<string[]> => {
+//   const listRef = ref(storage, filePath);
+
+//   return listAll(listRef)
+//     .then((res) => {
+//       return Promise.resolve(res.items.map(({ name }) => name));
+//     })
+//     .catch((error) => {
+//       return Promise.reject(error);
+//     });
+// };
+
+export const getDownloadURLs = async (filePath: string): Promise<Partial<ImageInfo>[]> => {
+  const promises: Promise<Partial<ImageInfo>>[] = [];
+
+  //TODO: Not sure how many items we can fetch per call. Ther seems to be some kind of limit with
+  // a pager, see https://firebase.google.com/docs/storage/web/list-files#paginate_list_results.
+  const listRef = ref(storage, filePath);
+  await listAll(listRef).then((res) =>
+    res.items.forEach((itemRef) =>
+      promises.push(getDownloadURL(itemRef).then((url) => ({ filename: itemRef.name, URL: url })))
+    )
+  );
+
+  return Promise.all(promises);
+};
 
 export const getURL = async (filePath: string): Promise<string> => {
   const storage = getStorage();
@@ -101,7 +128,7 @@ export const uploadFile = async (
   });
 };
 
-export const deleteFile = async (filename: string, path = COLLECTIONS.IMAGES): Promise<void> => {
+export const deleteFile = async (filename: string, path: string): Promise<void> => {
   const fileRef = ref(storage, `${path}/${filename}`);
 
   return new Promise((resolve, reject) => {
@@ -118,8 +145,8 @@ export const deleteFile = async (filename: string, path = COLLECTIONS.IMAGES): P
 /* DATABASE */
 
 export type ImageInfo = {
+  id: string;
   filename: string;
-  thumbnail: string;
   URL: string;
   thumbnailURL: string;
   createdAt?: Timestamp;
@@ -127,7 +154,7 @@ export type ImageInfo = {
 };
 
 export type SpeciesInfo = {
-  id?: string;
+  id: string;
   kingdom: string;
   order: string;
   family: string;
@@ -142,21 +169,12 @@ export type SpeciesInfo = {
   updatedAt?: Timestamp;
 };
 
-// export type Bundles = {
-//   id: string;
-//   items: ImageInfo[] | SpeciesInfo[];
-//   updatedAt: Timestamp;
-// };
-
-export type Bundles = { images: ImageInfo[]; species: SpeciesInfo[] };
-
-export async function firestoreFetch<T = ImageInfo | SpeciesInfo>(path: string): Promise<T[]> {
+export async function firestoreFetch<T>(path: string): Promise<T[]> {
   const querySnapshot = await getDocs(collection(db, path));
-
-  if (path === 'bundles') {
-    const [p1, p2] = querySnapshot.docs;
-    return [{ images: p1.data().items, species: p2.data().items } as T];
-  }
-
   return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id } as T));
+}
+
+export async function firestoreFetchDoc<T>(path: string, id: string): Promise<T> {
+  const querySnapshot = await getDoc(doc(db, path, id));
+  return querySnapshot.data() as T;
 }

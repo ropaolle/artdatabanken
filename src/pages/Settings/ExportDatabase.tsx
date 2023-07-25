@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { firestoreFetch, type Bundles } from '../../lib/firebase';
-import { ImportStates } from '.';
+import { firestoreFetchDoc, COLLECTIONS, type SpeciesInfo } from '../../lib/firebase';
+import { type ImportStates } from '.';
 
 export default function ExportDatabase() {
-  const [filename, setFilename] = useState(`species-backup-${new Date().toLocaleDateString()}.csv`);
   const [message, setMessage] = useState('');
-  const [saving, setSaving] = useState<ImportStates>(ImportStates.IDLE);
+  const [loading, setLoading] = useState<ImportStates>('IDLE');
 
   const saveToFile = (filename: string, content: string) => {
     const link = document.createElement('a');
@@ -17,31 +16,55 @@ export default function ExportDatabase() {
   };
 
   const handleSaveToFile = async () => {
-    setSaving(ImportStates.UPLOADING);
+    setLoading('BUSY');
 
-    const [{ species }] = await firestoreFetch<Bundles>('bundles');
+    const { species } = await firestoreFetchDoc<{ species: SpeciesInfo[] }>(COLLECTIONS.APPLICATION, 'bundles');
 
     const csvContent = [];
     for (const { kingdom, order, family, species: s, sex, speciesLatin, place, county, date, image } of species) {
       csvContent.push(`${kingdom};${order};${family};${s};${sex};${speciesLatin};${place};${county};${date};${image}`);
     }
-    // If we prepend \ufeff to the content the file will be saved as UTF-8 with BOM rather than UTF-8.
-    saveToFile(filename, '\ufeff' + csvContent.join('\n'));
 
-    setMessage(`File saved as ${filename}.`);
-    setSaving(ImportStates.DONE);
+    try {
+      // TODO: Add fallback if showSaveFilePicker is not supported https://web.dev/patterns/files/save-a-file/
+      const handle = await showSaveFilePicker({
+        suggestedName: `species-backup-${new Date().toLocaleDateString()}.csv`,
+        types: [
+          {
+            description: 'CSV files',
+            accept: {
+              'application/csv': ['.scv'],
+            },
+          },
+        ],
+      });
+
+      const filename = handle.name;
+
+      // If we prepend \ufeff to the content the file will be saved as UTF-8 with BOM rather than UTF-8.
+      saveToFile(filename, '\ufeff' + csvContent.join('\n'));
+
+      setMessage(`File saved as ${filename}.`);
+      setLoading('DONE');
+    } catch (error) {
+      if (error instanceof DOMException && error.stack === 'Error: The user aborted a request.') {
+        setLoading('IDLE');
+        return;
+      }
+      console.error(error);
+    }
   };
 
   return (
-    <div>
+    <>
       <label htmlFor="filename">
-        <b>Filname</b>
-        <input id="filename" value={filename} onChange={(e) => setFilename(e.currentTarget.value)} />
+        <b>Export species</b>
+        <p>Export all species to a .csv file.</p>
         <div>{message && <small>{message}</small>}</div>
       </label>
-      <button onClick={handleSaveToFile} aria-busy={saving === ImportStates.UPLOADING}>
-        Exportera databas
+      <button onClick={handleSaveToFile} aria-busy={loading === 'BUSY'}>
+        Export species
       </button>
-    </div>
+    </>
   );
 }

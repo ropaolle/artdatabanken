@@ -60,9 +60,9 @@ export default function ImageView() {
   const imageList =
     list &&
     list.map((image) => {
-      const { filename, /* thumbnail, URL, */ thumbnailURL, updatedAt, createdAt } = image;
+      const { id, filename, thumbnailURL, updatedAt, createdAt } = image;
       return (
-        <figure className={classes.imageCell} key={filename} onClick={() => handleImageClick(image)}>
+        <figure className={classes.imageCell} key={id} onClick={() => handleImageClick(image)}>
           <img className={classes.image} src={thumbnailURL} alt={filename} /* loading="lazy" */ />
           <div className={classes.info}>
             <div>{filename}</div>
