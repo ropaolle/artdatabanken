@@ -21,8 +21,8 @@ export default function MergeChangesIntoBundle() {
     // Clear the delete collection
     setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.DELETED), { images: [], species: [] } /* , { merge: true } */);
 
-    // Delete all new images and species
     // TODO: Do I need to batch this? https://cloud.google.com/firestore/docs/samples/firestore-data-delete-collection
+    // Delete all new images and species
     const imageSnapshots = await getDocs(collection(db, COLLECTIONS.IMAGES));
     for (const { id } of imageSnapshots.docs) {
       deleteDoc(doc(db, COLLECTIONS.IMAGES, id));
@@ -42,7 +42,7 @@ export default function MergeChangesIntoBundle() {
       <label htmlFor="filename">
         <b>Merge changes</b>
         <p>Create new image and speices bundles that includes all changes.</p>
-        <div>{message && <small>{message}</small>}</div>
+        <div>{message && <ins><small>{message}</small></ins>}</div>
       </label>
       <button onClick={handleCreateImageBundle} aria-busy={loading === 'BUSY'}>
         Merge changes into bundles

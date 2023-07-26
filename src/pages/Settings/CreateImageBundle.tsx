@@ -39,7 +39,7 @@ export default function CreateImageBundle() {
       <label htmlFor="filename">
         <b>Image bundle</b>
         <p>Regenerate the image bundle based on all existing images in the storage.</p>
-        <div>{message && <small>{message}</small>}</div>
+        <div>{message && <ins><small>{message}</small></ins>}</div>
       </label>
       <button onClick={handleCreateImageBundle} aria-busy={loading === 'BUSY'}>
         Create image bundle

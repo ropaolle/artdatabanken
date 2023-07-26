@@ -68,7 +68,7 @@ export default function ImportSpeciesBundle() {
           ref={fileInputRef}
           hidden
         />
-        {message && <small>{message}</small>}
+        {message && <ins><small>{message}</small></ins>}
       </label>
       <button onClick={handleSpeciesImport} aria-busy={loading === 'BUSY'}>
         Import species bundle

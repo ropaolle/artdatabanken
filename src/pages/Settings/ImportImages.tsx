@@ -77,7 +77,7 @@ export default function ImportImages() {
           multiple
           hidden
         />
-        {message && <small>{message}</small>}
+        {message && <ins><small>{message}</small></ins>}
       </label>
       <button onClick={() => fileInputRef.current?.click()} aria-busy={loading === 'UPLOADING'}>
         Import images
