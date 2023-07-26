@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { doc, setDoc, Timestamp } from 'firebase/firestore/lite';
-import { db, type SpeciesInfo, COLLECTIONS } from '../../lib/firebase';
+import { db, type SpeciesInfo, COLLECTIONS, DOCS } from '../../lib/firebase';
 import { readUploadedFileAsText, type ImportStates } from '.';
 
 export default function ImportSpeciesBundle() {
@@ -41,11 +41,11 @@ export default function ImportSpeciesBundle() {
       console.error(error);
     }
 
-    setDoc(doc(db, COLLECTIONS.APPLICATION, 'bundles'), { species: speciesCollection }, { merge: true });
+    setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.BUNDLES), { species: speciesCollection }, { merge: true });
 
     // Add delete collection
-    setDoc(doc(db, COLLECTIONS.APPLICATION, 'deleted'), { species: [] }, { merge: true });
-    setDoc(doc(db, COLLECTIONS.APPLICATION, 'updatedAt'), { updatedAt: Timestamp.now() });
+    setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.DELETED), { species: [] }, { merge: true });
+    setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.UPDATEDAT), { updatedAt: Timestamp.now() });
 
     setMessage(`Done! ${speciesCollection.length} species imported.`);
     setLoading('DONE');

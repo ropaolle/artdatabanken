@@ -5,14 +5,15 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import ReactCrop, { type PixelCrop } from 'react-image-crop';
 import { Icon } from '@iconify/react';
 import {
-  db,
   checkIfImageExistsInDB,
   uploadFile,
   normalizeFilename,
+  db,
   COLLECTIONS,
   PATHS,
   type ImageInfo,
-} from '../../lib/firebase.ts';
+} from '../../lib/firebase';
+// import {  } from '../../lib/firestore';
 import useDebounceEffect from './useDebounceEffect.ts';
 import drawImageOnCanvas from './drawImageOnCanvas.ts';
 import Dialog, { DialogInfo } from '../Dialog';

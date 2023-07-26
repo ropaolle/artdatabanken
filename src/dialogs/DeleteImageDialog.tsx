@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { doc, deleteDoc, updateDoc, arrayUnion, /* setDoc, arrayRemove, */ getDoc } from 'firebase/firestore/lite';
-import { db, deleteFile, type ImageInfo, COLLECTIONS, PATHS } from '../lib/firebase';
+import { db, type ImageInfo, COLLECTIONS, PATHS, DOCS, deleteFile } from '../lib/firebase';
 import Dialog from './Dialog';
 import { timestampToString } from '../lib/';
 import { useAppStore } from '../lib/state';
@@ -17,7 +17,7 @@ export default function DeleteImageDialog({ open, show, values }: Props) {
 
   if (!values) return;
 
-  const { filename, /* thumbnail,  */ URL,/*  thumbnailURL,  */createdAt, updatedAt } = values;
+  const { filename, /* thumbnail,  */ URL, /*  thumbnailURL,  */ createdAt, updatedAt } = values;
 
   const handleDeleteImage = async () => {
     if (!user || !filename /* || !thumbnail */) return;
@@ -33,7 +33,7 @@ export default function DeleteImageDialog({ open, show, values }: Props) {
       // Delete doc if it exists. Else it is part of a bundle and shall be tagged for deletion.
       check.exists()
         ? deleteDoc(doc(db, COLLECTIONS.IMAGES, filename))
-        : updateDoc(doc(db, COLLECTIONS.APPLICATION, 'deleted'), { images: arrayUnion(filename) }),
+        : updateDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.DELETED), { images: arrayUnion(filename) }),
     ])
       .then(() => {
         deleteImage(filename);

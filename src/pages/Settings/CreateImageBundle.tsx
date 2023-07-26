@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { db, COLLECTIONS, getDownloadURLs } from '../../lib/firebase';
-import { type ImportStates } from '.';
 import { doc, setDoc, Timestamp } from 'firebase/firestore/lite';
+import { db, COLLECTIONS, DOCS, PATHS, getDownloadURLs } from '../../lib/firebase';
+import { type ImportStates } from '.';
 
 export default function CreateImageBundle() {
   const [message, setMessage] = useState('');
@@ -11,8 +11,8 @@ export default function CreateImageBundle() {
     setLoading('BUSY');
     setMessage('');
 
-    const imageList = await getDownloadURLs('images');
-    const thumbsList = await getDownloadURLs('thumbs');
+    const imageList = await getDownloadURLs(PATHS.IMAGES);
+    const thumbsList = await getDownloadURLs(PATHS.THUMBNAILS);
     const imageMap = new Map(imageList.map((image) => [image.filename, image]));
 
     for (const { filename, URL: thumbnailURL } of thumbsList) {
@@ -26,9 +26,9 @@ export default function CreateImageBundle() {
     }
 
     const imageInfo = Array.from(imageMap.values());
-    setDoc(doc(db, COLLECTIONS.APPLICATION, 'bundles'), { images: imageInfo }, { merge: true });
-    setDoc(doc(db, COLLECTIONS.APPLICATION, 'deleted'), { images: [] }, { merge: true });
-    setDoc(doc(db, COLLECTIONS.APPLICATION, 'updatedAt'), { updatedAt: Timestamp.now() });
+    setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.BUNDLES), { images: imageInfo }, { merge: true });
+    setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.DELETED), { images: [] }, { merge: true });
+    setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.UPDATEDAT), { updatedAt: Timestamp.now() });
 
     setMessage(`Image bundle with ${imageInfo.length} images created.`);
     setLoading('DONE');

@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { db, COLLECTIONS } from '../../lib/firebase';
-import { type ImportStates } from '.';
 import { doc, setDoc, Timestamp, getDocs, collection, deleteDoc } from 'firebase/firestore/lite';
+import { type ImportStates } from '.';
 import { fetchGlobalState } from '../../lib/state';
+import { db, COLLECTIONS, DOCS } from '../../lib/firebase';
 
 export default function MergeChangesIntoBundle() {
   const [message, setMessage] = useState('');
@@ -15,11 +15,11 @@ export default function MergeChangesIntoBundle() {
     const { images, species } = await fetchGlobalState();
 
     // Update bundles
-    setDoc(doc(db, COLLECTIONS.APPLICATION, 'bundles'), { images }, { merge: true });
-    setDoc(doc(db, COLLECTIONS.APPLICATION, 'bundles'), { species }, { merge: true });
+    setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.BUNDLES), { images }, { merge: true });
+    setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.BUNDLES), { species }, { merge: true });
 
     // Clear the delete collection
-    setDoc(doc(db, COLLECTIONS.APPLICATION, 'deleted'), { images: [], species: [] } /* , { merge: true } */);
+    setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.DELETED), { images: [], species: [] } /* , { merge: true } */);
 
     // Delete all new images and species
     // TODO: Do I need to batch this? https://cloud.google.com/firestore/docs/samples/firestore-data-delete-collection
@@ -32,7 +32,7 @@ export default function MergeChangesIntoBundle() {
       deleteDoc(doc(db, COLLECTIONS.SPECIES, id));
     }
 
-    setDoc(doc(db, COLLECTIONS.APPLICATION, 'updatedAt'), { updatedAt: Timestamp.now() });
+    setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.UPDATEDAT), { updatedAt: Timestamp.now() });
     setMessage(`Info of added and deleted...`);
     setLoading('DONE');
   };

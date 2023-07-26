@@ -3,11 +3,13 @@ import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { PATHS } from '../../lib/firebase';
 import { type ImportStates } from '.';
 
+type ImageType = 'images' | 'thumbnails';
+
 export default function ImportImages() {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState<ImportStates>('IDLE');
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [type, setType] = useState<'images' | 'thumbnails'>('images');
+  const [type, setType] = useState<ImageType>('images');
 
   const onHandleImageImportChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoading('IDLE');
@@ -33,10 +35,6 @@ export default function ImportImages() {
       .finally(() => setLoading('DONE'));
   };
 
-  const handleChange = (value: string) => {
-    setType(value === 'images' ? 'images' : 'thumbnails');
-  };
-
   return (
     <>
       <label htmlFor="importimages">
@@ -54,7 +52,7 @@ export default function ImportImages() {
               name="size"
               value="images"
               checked={type === 'images'}
-              onChange={(e) => handleChange(e.target.value)}
+              onChange={(e) => setType(e.target.value as ImageType)}
             />
             Images (500x500 pixels)
           </label>
@@ -65,7 +63,7 @@ export default function ImportImages() {
               name="size"
               value="thumbnails"
               checked={type === 'thumbnails'}
-              onChange={(e) => handleChange(e.target.value)}
+              onChange={(e) => setType(e.target.value as ImageType)}
             />
             Thumbnails (100x100 pixels)
           </label>

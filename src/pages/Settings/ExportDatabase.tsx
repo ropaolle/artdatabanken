@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { firestoreFetchDoc, COLLECTIONS, type SpeciesInfo } from '../../lib/firebase';
+import { firestoreFetchDoc, COLLECTIONS, DOCS, type SpeciesInfo } from '../../lib/firebase';
 import { type ImportStates } from '.';
 
 export default function ExportDatabase() {
@@ -18,7 +18,7 @@ export default function ExportDatabase() {
   const handleSaveToFile = async () => {
     setLoading('BUSY');
 
-    const { species } = await firestoreFetchDoc<{ species: SpeciesInfo[] }>(COLLECTIONS.APPLICATION, 'bundles');
+    const { species } = await firestoreFetchDoc<{ species: SpeciesInfo[] }>(COLLECTIONS.APPLICATION, DOCS.BUNDLES);
 
     const csvContent = [];
     for (const { kingdom, order, family, species: s, sex, speciesLatin, place, county, date, image } of species) {
