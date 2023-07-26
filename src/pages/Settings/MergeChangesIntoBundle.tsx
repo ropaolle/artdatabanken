@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { doc, setDoc, Timestamp, getDocs, collection, deleteDoc } from 'firebase/firestore/lite';
 import { type ImportStates } from '.';
-import { fetchGlobalState } from '../../lib/state';
+import { fetchGlobalState } from '../../state';
 import { db, COLLECTIONS, DOCS } from '../../lib/firebase';
 
 export default function MergeChangesIntoBundle() {

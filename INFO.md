@@ -2,11 +2,16 @@
 
 ## TODO
 
+- [ ] Add changes done after 2023-07-01
 - [ ] Check TODO:s
-- [ ] Refactor state to smaller chunks
 - NICE TO HAVE
-- [ ] Toast messages https://github.com/timolins/react-hot-toast
-- [ ] CSS styling of the Datalists.
+  - [ ] Refactor state to smaller chunks https://github.com/pmndrs/zustand/blob/main/docs/guides/slices-pattern.md
+  - [ ] Toast messages https://github.com/timolins/react-hot-toast
+  - [ ] CSS styling of the Datalists.
+- TIPS
+  - [ ] Axios useMutation to get isLoading
+  - [ ] Use getValues i react hoof forms, minimera antalet local states
+  - [ ] Re-usable buttons, Youtube video
 
 ## Known issues
 

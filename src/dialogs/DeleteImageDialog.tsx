@@ -3,7 +3,7 @@ import { doc, deleteDoc, updateDoc, arrayUnion, /* setDoc, arrayRemove, */ getDo
 import { db, type ImageInfo, COLLECTIONS, PATHS, DOCS, deleteFile } from '../lib/firebase';
 import Dialog from './Dialog';
 import { timestampToString } from '../lib/';
-import { useAppStore } from '../lib/state';
+import { useAppStore } from '../state';
 
 type Props = {
   open: boolean;

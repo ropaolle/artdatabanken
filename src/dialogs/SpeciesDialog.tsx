@@ -5,7 +5,7 @@ import { doc, setDoc, Timestamp, deleteDoc, updateDoc, arrayUnion, getDoc } from
 import { db, type SpeciesInfo, COLLECTIONS, DOCS } from '../lib/firebase';
 import { toDatalistOptions, counties, sexes } from '../lib/options';
 import Dialog from './Dialog';
-import { useAppStore } from '../lib/state';
+import { useAppStore } from '../state';
 import { HorizontalInput, Input, Select } from './fields';
 
 type Inputs = Omit<SpeciesInfo, 'updatedAt' | 'createdAt'>;

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { createCompareFn, type SortProps } from '../../lib';
 import { toDatalistOptions } from '../../lib/options';
 import { SpeciesInfo } from '../../lib/firebase';
-import { useAppStore } from '../../lib/state';
+import { useAppStore } from '../../state';
 
 type Props = {
   setItems: React.Dispatch<SpeciesInfo[]>;

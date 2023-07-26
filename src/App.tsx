@@ -5,7 +5,7 @@ import { Home, ImageView, SpeciesView, Collections, Settings, type PAGES } from 
 // import { type PAGES } from './pages';
 import { Navigation, Footer, Auth } from './components';
 // import { firestoreFetchDoc, COLLECTIONS } from './lib/firebase';
-import { useAppStore, fetchGlobalState } from './lib/state';
+import { useAppStore, fetchGlobalState } from './state';
 
 function App() {
   const { initGlobalState/* , globalStateFetchedAt */ } = useAppStore();
@@ -18,8 +18,9 @@ function App() {
       //   COLLECTIONS.APPLICATION,
       //   'updatedAt'
       // );
-      // const fullUpdate = !globalStateFetchedAt || globalStateFetchedAt < databaseUpdatedAt;
+      // const fullUpdate = !globalStateFetchedAt || databaseUpdatedAt > globalStateFetchedAt;
       const { images, species } = await fetchGlobalState(/* fullUpdate */);
+      console.log('images.length', images.length);
       
       initGlobalState(images, species, Timestamp.now());
     };

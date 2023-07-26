@@ -17,7 +17,7 @@ import {
 import useDebounceEffect from './useDebounceEffect.ts';
 import drawImageOnCanvas from './drawImageOnCanvas.ts';
 import Dialog, { DialogInfo } from '../Dialog';
-import { useAppStore } from '../../lib/state';
+import { useAppStore } from '../../state';
 
 type Inputs = {
   imageFile: FileList;

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { SpeciesInfo } from '../../lib/firebase';
 import Page from '../Page';
 import A4Page from './A4Page';
-import { useAppStore } from '../../lib/state';
+import { useAppStore } from '../../state';
 import { toDatalistOptions } from '../../lib/options.tsx';
 
 const spliceIntoChunks = (items: SpeciesInfo[], chunkSize: number) => {

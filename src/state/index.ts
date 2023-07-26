@@ -1,8 +1,15 @@
 import { create } from 'zustand';
 import { /* devtools, */ persist, type StorageValue } from 'zustand/middleware';
 import { Timestamp } from 'firebase/firestore/lite';
-import { firestoreFetch, firestoreFetchDoc, type SpeciesInfo, type ImageInfo, COLLECTIONS, DOCS } from './firebase';
-import { type User } from './auth';
+import {
+  firestoreFetch,
+  firestoreFetchDoc,
+  type SpeciesInfo,
+  type ImageInfo,
+  COLLECTIONS,
+  DOCS,
+} from '../lib/firebase';
+import { type User } from '../lib/auth';
 
 type GlobalState = {
   initGlobalState: (images: ImageInfo[], species: SpeciesInfo[], updatedAt?: Timestamp) => void;

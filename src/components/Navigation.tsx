@@ -2,7 +2,7 @@ import classes from './Navigation.module.css';
 import logo from '../assets/logo.svg';
 import { type PAGES } from '../pages';
 import { Link } from '.';
-import { useAppStore } from '../lib/state';
+import { useAppStore } from '../state';
 import { signIn, signOut } from '../lib/auth';
 
 type Props = {

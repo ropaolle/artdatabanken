@@ -6,7 +6,7 @@ import Filters from './Filters';
 import { type SpeciesInfo } from '../../lib/firebase';
 import { sexesMap, countiesMap } from '../../lib/options';
 import { SpeciesDialog } from '../../dialogs';
-import { useAppStore } from '../../lib/state';
+import { useAppStore } from '../../state';
 import { type SortProps } from '../../lib';
 
 const pageSize = 50;

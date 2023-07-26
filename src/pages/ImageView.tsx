@@ -6,7 +6,7 @@ import { createCompareFn, timestampToString, type SortProps } from '../lib';
 import { toOptions } from '../lib/options';
 import { Pager } from '../components';
 import { UploadImageDialog, DeleteImageDialog } from '../dialogs';
-import { useAppStore } from '../lib/state';
+import { useAppStore } from '../state';
 
 type SortState<T> = { label: string; value: string } & SortProps<T>;
 

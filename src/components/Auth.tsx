@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { auth } from '../lib/auth';
-import { useAppStore } from '../lib/state';
+import { useAppStore } from '../state';
 
 export default function Auth() {
   const { setUser } = useAppStore();
