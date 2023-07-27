@@ -25,17 +25,6 @@ const dev = {
   appId: '1:544182237871:web:829c6e290800094bdcf25a',
 };
 
-// const pappa = {
-//   apiKey: "AIzaSyAtNXWmXp1afYAGQ51aXdyCR4WRc42ViN4",
-//   authDomain: "artdatabanken.firebaseapp.com",
-//   databaseURL: "https://artdatabanken.firebaseio.com",
-//   projectId: "artdatabanken",
-//   storageBucket: "artdatabanken.appspot.com",
-//   messagingSenderId: "495647184718",
-//   appId: "1:495647184718:web:67ae3c56aeeeacf93af01f",
-//   measurementId: "G-NBMHCY9EPV"
-// };
-
 export const app = initializeApp(import.meta.env.PROD ? prod : dev);
 export const storage = getStorage(app);
 export const db = getFirestore(app);
