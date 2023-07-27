@@ -24,31 +24,20 @@ export default function ImageView() {
   const [uploadDialog, showUploadDialog] = useState(false);
   const [deleteDialog, showDeleteDialog] = useState(false);
   const [dialogValues, setDialogValues] = useState<ImageInfo>();
-  const [items, setItems] = useState<ImageInfo[]>();
   const [filter, setFilter] = useState('');
   const [sort, setSort] = useState(sortStates[0]);
   const [page, setPage] = useState(0);
   const [list, setList] = useState<ImageInfo[]>();
 
-  // Add a date field used by sort
   useEffect(() => {
-    setItems(
-      images.map((image) => ({
-        ...image,
-        date: timestampToString(image.updatedAt || image.createdAt),
-      }))
-    );
-  }, [images]);
+    if (!images) return;
 
-  useEffect(() => {
-    if (!items) return;
-
-    const filtered = items.filter((item) => item.filename.toLowerCase().includes(filter));
+    const filtered = images.filter((image) => image.filename.toLowerCase().includes(filter));
     const sorted = filtered.sort(createCompareFn<ImageInfo>(sort));
     const paged = sorted.slice(page * pageSize, (page + 1) * pageSize);
 
     setList(paged);
-  }, [items, filter, sort, page]);
+  }, [images, filter, sort, page]);
 
   if (!images) return null;
 
@@ -101,7 +90,7 @@ export default function ImageView() {
         </div>
       </form>
       <div className={classes.gallery}>{imageList}</div>
-      <Pager active={page} count={items?.length || 0} pageSize={pageSize} onClick={setPage} />
+      <Pager active={page} count={images?.length || 0} pageSize={pageSize} onClick={setPage} />
     </Page>
   );
 }
