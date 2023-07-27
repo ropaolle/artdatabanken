@@ -3,6 +3,7 @@
 ## TODO
 
 - [ ]
+- [ ] Visa om bild används, filter för alla bilder som inte används
 - [ ] Check TODO:s
 - NICE TO HAVE
   - [ ] Refactor state to smaller chunks https://github.com/pmndrs/zustand/blob/main/docs/guides/slices-pattern.md
