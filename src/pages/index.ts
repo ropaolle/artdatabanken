@@ -1,5 +1,5 @@
 import Home from './Home';
-import ImageView from './ImageView';
+import ImageView from './ImageView/ImageView';
 import SpeciesView from './SpeciesView/SpeciesView';
 import Collections from './Collections/Collections';
 import Settings from './Settings';

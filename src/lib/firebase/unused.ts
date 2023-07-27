@@ -48,7 +48,7 @@ updated: "2023-07-17T14:56:04.995Z" */
 export default async function getMetadata(filePath: string): Promise<Partial<FullMetadata>[]> {
   const promises: Promise<Partial<FullMetadata>>[] = [];
 
-  //TODO: Not sure how many items we can fetch per call. Ther seems to be some kind of limit with
+  // Not sure how many items we can fetch per call. Ther seems to be some kind of limit with
   // a pager, see https://firebase.google.com/docs/storage/web/list-files#paginate_list_results.
   const listRef = ref(storage, filePath);
   await listAll(listRef).then((res) =>

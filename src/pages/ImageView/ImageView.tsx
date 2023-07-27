@@ -1,12 +1,12 @@
-import classes from './ImageView.module.css';
 import { useState, useEffect } from 'react';
-import { type ImageInfo } from '../lib/firebase';
-import Page from './Page';
-import { createCompareFn, timestampToString, type SortProps } from '../lib';
-import { toOptions } from '../lib/options';
-import { Pager } from '../components';
-import { UploadImageDialog, DeleteImageDialog } from '../dialogs';
-import { useAppStore } from '../state';
+import { type ImageInfo } from '../../lib/firebase';
+import Page from '../Page';
+import { createCompareFn, type SortProps } from '../../lib';
+import { toOptions } from '../../lib/options';
+import { Pager } from '../../components';
+import { UploadImageDialog, DeleteImageDialog } from '../../dialogs';
+import { useAppStore } from '../../state';
+import ImageGrid from './ImageGrid';
 
 type SortState<T> = { label: string; value: string } & SortProps<T>;
 
@@ -27,11 +27,9 @@ export default function ImageView() {
   const [filter, setFilter] = useState('');
   const [sort, setSort] = useState(sortStates[0]);
   const [page, setPage] = useState(0);
-  const [list, setList] = useState<ImageInfo[]>();
+  const [list, setList] = useState<ImageInfo[]>([]);
 
   useEffect(() => {
-    if (!images) return;
-
     const filtered = images.filter((image) => image.filename.toLowerCase().includes(filter));
     const sorted = filtered.sort(createCompareFn<ImageInfo>(sort));
     const paged = sorted.slice(page * pageSize, (page + 1) * pageSize);
@@ -39,27 +37,10 @@ export default function ImageView() {
     setList(paged);
   }, [images, filter, sort, page]);
 
-  if (!images) return null;
-
   const handleImageClick = (image: ImageInfo) => {
     setDialogValues(image);
     showDeleteDialog(true);
   };
-
-  const imageList =
-    list &&
-    list.map((image) => {
-      const { id, filename, thumbnailURL, updatedAt, createdAt } = image;
-      return (
-        <figure className={classes.imageCell} key={id} onClick={() => handleImageClick(image)}>
-          <img className={classes.image} src={thumbnailURL} alt={filename} /* loading="lazy" */ />
-          <div className={classes.info}>
-            <div>{filename}</div>
-            <div>{<small>({timestampToString(updatedAt || createdAt)})</small>}</div>
-          </div>
-        </figure>
-      );
-    });
 
   const handleFilterChange = (value: string) => {
     setFilter(value);
@@ -73,7 +54,6 @@ export default function ImageView() {
     <Page title="Bilder" headerButtonTitle="Ladda upp bild" onHeaderButtonClick={() => showUploadDialog(true)}>
       <UploadImageDialog open={uploadDialog} show={showUploadDialog} />
       <DeleteImageDialog open={deleteDialog} show={showDeleteDialog} values={dialogValues} />
-
       <form>
         <div className="grid">
           <label htmlFor="all">
@@ -89,7 +69,7 @@ export default function ImageView() {
           </label>
         </div>
       </form>
-      <div className={classes.gallery}>{imageList}</div>
+      <ImageGrid images={list} onClick={handleImageClick} />
       <Pager active={page} count={images?.length || 0} pageSize={pageSize} onClick={setPage} />
     </Page>
   );

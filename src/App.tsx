@@ -30,7 +30,7 @@ function App() {
 
   const Home = lazy(() => import('./pages/Home'));
   const SpeciesView = lazy(() => import('./pages/SpeciesView/SpeciesView'));
-  const ImageView = lazy(() => import('./pages/ImageView'));
+  const ImageView = lazy(() => import('./pages/ImageView/ImageView'));
   const Collections = lazy(() => import('./pages/Collections/Collections'));
   const Settings = lazy(() => import('./pages/Settings'));
 

@@ -31,6 +31,13 @@ type Props = {
 
 export default function SpeciesDialog({ open, show, values }: Props) {
   const { addOrUpdateSpecies, deleteSpecies, images, species, user } = useAppStore();
+  const [dataLists, setDataLists] = useState({
+    species: [''],
+    kingdoms: [''],
+    orders: [''],
+    familys: [''],
+    places: [''],
+  });
   const [previewImage, setPreviewImage] = useState<string>();
   const {
     register,
@@ -62,6 +69,17 @@ export default function SpeciesDialog({ open, show, values }: Props) {
       show(false);
     }
   }, [isSubmitSuccessful, reset, show]);
+
+  useEffect(() => {
+    const dataList = (key: keyof Inputs) => species.map((species) => species[key] || '');
+    setDataLists({
+      species: dataList('species'),
+      kingdoms: dataList('kingdom'),
+      orders: dataList('order'),
+      familys: dataList('family'),
+      places: dataList('place'),
+    });
+  }, [species]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     if (!user) return;
@@ -116,24 +134,22 @@ export default function SpeciesDialog({ open, show, values }: Props) {
     show(false);
   };
 
-  const dataList = (key: keyof Inputs) => species.map((species) => species[key] || '');
-
   return (
     <Dialog open={open} hide={hide} onSubmit={handleSubmit(onSubmit)} title={`Lägg till ny art`}>
       <div className={classes.horizontalForm}>
         <HorizontalInput
           id="species"
           label="Art*"
-          dataList={dataList('species')}
+          dataList={dataLists.species}
           error={errors.species}
           required="This is required."
           register={register}
         />
-        <HorizontalInput id="kingdom" label="Klass" dataList={dataList('kingdom')} register={register} />
-        <HorizontalInput id="order" label="Ordning" dataList={dataList('order')} register={register} />
-        <HorizontalInput id="family" label="Familj" dataList={dataList('family')} register={register} />
+        <HorizontalInput id="kingdom" label="Klass" dataList={dataLists.kingdoms} register={register} />
+        <HorizontalInput id="order" label="Ordning" dataList={dataLists.orders} register={register} />
+        <HorizontalInput id="family" label="Familj" dataList={dataLists.familys} register={register} />
         <HorizontalInput id="speciesLatin" label="Latinskt namn" register={register} />
-        <HorizontalInput id="place" label="Lokal" dataList={dataList('place')} register={register} />
+        <HorizontalInput id="place" label="Lokal" dataList={dataLists.places} register={register} />
       </div>
 
       <div className="grid">
