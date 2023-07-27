@@ -9,4 +9,8 @@ export default defineConfig({
       localsConvention: 'camelCaseOnly',
     },
   },
+  define: {
+    APP_VERSION: JSON.stringify(process.env.npm_package_version),
+    NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+  },
 });
