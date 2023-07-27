@@ -17,7 +17,7 @@ export default function TableHeader<T>({ columns, sort, onClick }: Props<T>) {
     <a href="#" className={classes.headerCell} onClick={(e) => onClick(e, id)}>
       {label}
       {sort.property === id && (
-        <Icon icon={`material-symbols:keyboard-arrow-${sort.order === 'asc' ? 'up' : 'down'}-rounded`} />
+        <Icon icon={`material-symbols:keyboard-arrow-${sort.order === 'asc' ? 'down' : 'up'}-rounded`} />
       )}
     </a>
   );

@@ -17,12 +17,12 @@ export function createCompareFn<T extends Properties>({ property, order = 'asc' 
   const localeSort = (a: T, b: T) => {
     let itemA: Props = a[property];
     let itemB: Props = b[property];
-    const sortOrder = order === 'asc' ? -1 : 1;
+    const sortOrder = order === 'asc' ? 1 : -1;
 
     // Convert Timestamp to string
-    if (a.createdAt && b.createdAt) {
-      itemA = a.createdAt.toDate().toLocaleString();
-      itemB = b.createdAt.toDate().toLocaleString();
+    if (property === 'updatedAt' && a.updatedAt && b.updatedAt) {
+      itemA = a.updatedAt.toDate().toLocaleString();
+      itemB = b.updatedAt.toDate().toLocaleString();
     }
 
     // Locale string sort
