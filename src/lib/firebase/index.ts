@@ -2,19 +2,20 @@ import { initializeApp } from 'firebase/app';
 import { getStorage } from 'firebase/storage';
 import { getFirestore } from 'firebase/firestore/lite';
 import uploadFile from './uploadFile';
-import { checkIfImageExistsInDB, normalizeFilename } from './checkIfImageExistsInDB';
+import { checkIfImageExists, normalizeFilename } from './checkIfFileExists';
 import deleteFile from './deleteFile';
 import getDownloadURLs from './getDownloadURLs';
+import deleteCollection from './deleteCollection';
 import { firestoreFetch, firestoreFetchDoc, COLLECTIONS, DOCS, type ImageInfo, type SpeciesInfo } from './firestore';
 
 const prod = {
-    apiKey: 'AIzaSyDG2cSWrnZpiiRI_rtbteXWotkljcDKO-U',
-    authDomain: 'artdatabanken-2023.firebaseapp.com',
-    projectId: 'artdatabanken-2023',
-    storageBucket: 'artdatabanken-2023.appspot.com',
-    messagingSenderId: '755130876588',
-    appId: '1:755130876588:web:ff1adae7ec3b17d1c01509',
-  };
+  apiKey: 'AIzaSyDG2cSWrnZpiiRI_rtbteXWotkljcDKO-U',
+  authDomain: 'artdatabanken-2023.firebaseapp.com',
+  projectId: 'artdatabanken-2023',
+  storageBucket: 'artdatabanken-2023.appspot.com',
+  messagingSenderId: '755130876588',
+  appId: '1:755130876588:web:ff1adae7ec3b17d1c01509',
+};
 
 const dev = {
   apiKey: 'AIzaSyARGHDdkUk65SPDDSc6tgj5jX9rq7FsUYk',
@@ -31,7 +32,7 @@ export const db = getFirestore(app);
 
 // Storage
 export const PATHS = { IMAGES: 'images', THUMBNAILS: 'thumbs' } as const;
-export { uploadFile, checkIfImageExistsInDB, normalizeFilename, deleteFile, getDownloadURLs };
+export { uploadFile, checkIfImageExists, normalizeFilename, deleteFile, getDownloadURLs };
 
 // Database
-export { firestoreFetch, firestoreFetchDoc, COLLECTIONS, DOCS, type ImageInfo, type SpeciesInfo };
+export { firestoreFetch, firestoreFetchDoc, COLLECTIONS, DOCS, type ImageInfo, type SpeciesInfo, deleteCollection };

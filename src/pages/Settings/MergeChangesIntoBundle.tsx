@@ -1,40 +1,32 @@
 import { useState } from 'react';
-import { doc, setDoc, Timestamp, getDocs, collection, deleteDoc } from 'firebase/firestore/lite';
-import { type ImportStates } from '.';
+import { doc, setDoc, Timestamp } from 'firebase/firestore/lite';
 import { fetchGlobalState } from '../../state';
-import { db, COLLECTIONS, DOCS } from '../../lib/firebase';
+import { db, COLLECTIONS, DOCS, deleteCollection } from '../../lib/firebase';
 
 export default function MergeChangesIntoBundle() {
   const [message, setMessage] = useState('');
-  const [loading, setLoading] = useState<ImportStates>('IDLE');
+  const [loading, setLoading] = useState(false);
 
-  const handleCreateImageBundle = async () => {
-    setLoading('BUSY');
+  const handleMergeChanges = async () => {
+    setLoading(true);
     setMessage('');
 
     const { images, species } = await fetchGlobalState();
 
     // Update bundles
-    setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.BUNDLES), { images }, { merge: true });
-    setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.BUNDLES), { species }, { merge: true });
+    await setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.BUNDLES), { images }, { merge: true });
+    await setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.BUNDLES), { species }, { merge: true });
 
     // Clear the delete collection
-    setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.DELETED), { images: [], species: [] } /* , { merge: true } */);
+    await setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.DELETED), { images: [], species: [] } /* , { merge: true } */);
 
-    // TODO: Do I need to batch this? https://cloud.google.com/firestore/docs/samples/firestore-data-delete-collection
     // Delete all new images and species
-    const imageSnapshots = await getDocs(collection(db, COLLECTIONS.IMAGES));
-    for (const { id } of imageSnapshots.docs) {
-      deleteDoc(doc(db, COLLECTIONS.IMAGES, id));
-    }
-    const speciesSnapshots = await getDocs(collection(db, COLLECTIONS.SPECIES));
-    for (const { id } of speciesSnapshots.docs) {
-      deleteDoc(doc(db, COLLECTIONS.SPECIES, id));
-    }
+    const deletedImages = await deleteCollection(COLLECTIONS.IMAGES);
+    const deletedSpecies = await deleteCollection(COLLECTIONS.SPECIES);
 
-    setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.UPDATEDAT), { updatedAt: Timestamp.now() });
-    setMessage(`Info of added and deleted...`);
-    setLoading('DONE');
+    await setDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.UPDATEDAT), { updatedAt: Timestamp.now() });
+    setMessage(`${deletedImages} images and ${deletedSpecies} species merged into the new bundle and then deleted.`);
+    setLoading(false);
   };
 
   return (
@@ -42,9 +34,15 @@ export default function MergeChangesIntoBundle() {
       <label htmlFor="filename">
         <b>Merge changes</b>
         <p>Create new image and speices bundles that includes all changes.</p>
-        <div>{message && <ins><small>{message}</small></ins>}</div>
+        <div>
+          {message && (
+            <ins>
+              <small>{message}</small>
+            </ins>
+          )}
+        </div>
       </label>
-      <button onClick={handleCreateImageBundle} aria-busy={loading === 'BUSY'}>
+      <button onClick={handleMergeChanges} aria-busy={loading}>
         Merge changes into bundles
       </button>
     </>

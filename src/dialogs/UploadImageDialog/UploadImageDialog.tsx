@@ -5,15 +5,14 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import ReactCrop, { type PixelCrop } from 'react-image-crop';
 import { Icon } from '@iconify/react';
 import {
-  checkIfImageExistsInDB,
-  uploadFile,
+  checkIfImageExists,
   normalizeFilename,
+  uploadFile,
   db,
   COLLECTIONS,
   PATHS,
   type ImageInfo,
 } from '../../lib/firebase';
-// import {  } from '../../lib/firestore';
 import useDebounceEffect from './useDebounceEffect.ts';
 import drawImageOnCanvas from './drawImageOnCanvas.ts';
 import Dialog, { DialogInfo } from '../Dialog';
@@ -76,7 +75,7 @@ export default function UploadImageDialog({ open, show }: Props) {
 
   useEffect(() => {
     const imageExists = async () => {
-      setImageExists(selectedFile ? await checkIfImageExistsInDB(selectedFile.name) : false);
+      setImageExists(selectedFile ? await checkIfImageExists(selectedFile?.name) : false);
     };
 
     imageExists();

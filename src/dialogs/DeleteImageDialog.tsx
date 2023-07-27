@@ -12,15 +12,17 @@ type Props = {
 };
 
 export default function DeleteImageDialog({ open, show, values }: Props) {
-  const { deleteImage, user } = useAppStore();
+  const { deleteImage, user, species } = useAppStore();
   const [deletingImage, setDeletingImage] = useState(false);
+
+  const imageIsUsedBy = species.filter(({ image }) => image === values?.filename).map(({ species }) => species);
 
   if (!values) return;
 
-  const { filename, /* thumbnail,  */ URL, /*  thumbnailURL,  */ createdAt, updatedAt } = values;
+  const { filename, URL, createdAt, updatedAt } = values;
 
   const handleDeleteImage = async () => {
-    if (!user || !filename /* || !thumbnail */) return;
+    if (!user || !filename) return;
 
     setDeletingImage(true);
 
@@ -30,7 +32,7 @@ export default function DeleteImageDialog({ open, show, values }: Props) {
     Promise.all([
       deleteFile(filename, PATHS.IMAGES),
       deleteFile(filename, PATHS.THUMBNAILS),
-      // Delete doc if it exists. Else it is part of a bundle and shall be tagged for deletion.
+      // Delete doc if it exists. If not, it is part of a bundle and should just be flagged for deletion.
       check.exists()
         ? deleteDoc(doc(db, COLLECTIONS.IMAGES, filename))
         : updateDoc(doc(db, COLLECTIONS.APPLICATION, DOCS.DELETED), { images: arrayUnion(filename) }),
@@ -52,6 +54,10 @@ export default function DeleteImageDialog({ open, show, values }: Props) {
       <img src={URL} alt={filename} />
       <table>
         <tbody>
+          <tr>
+            <td>Används av</td>
+            <td>{imageIsUsedBy.join(', ') || 'används ej'}</td>
+          </tr>
           <tr>
             <td>Direktlänk</td>
             <td>

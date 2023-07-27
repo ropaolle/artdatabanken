@@ -2,8 +2,7 @@
 
 ## TODO
 
-- [ ]
-- [ ] Visa om bild används, filter för alla bilder som inte används
+- [ ] Add and merge image/species that alredy exists in the bundel. Right now we get duplications.
 - [ ] Check TODO:s
 - NICE TO HAVE
   - [ ] Refactor state to smaller chunks https://github.com/pmndrs/zustand/blob/main/docs/guides/slices-pattern.md
@@ -71,6 +70,7 @@ gsutil -m cp -r "gs://artdatabanken-2023-dev.appspot.com/images" .
   - [Authentication](https://firebase.google.com/docs/auth/web/google-signin)
   - [Rules](https://firebase.google.com/docs/rules/basics)
   - [Bundles](https://firebase.google.com/docs/firestore/bundles)
+  - [Node code snippets](https://github.com/firebase/snippets-node/blob/HEAD/firestore/main/index.js)
 
 - REACT
 

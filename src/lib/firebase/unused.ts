@@ -1,5 +1,6 @@
 import { getStorage, ref, getDownloadURL, listAll, getMetadata as gMd, type FullMetadata } from 'firebase/storage';
-import { storage } from './index';
+import { doc, getDoc } from 'firebase/firestore/lite';
+import { db, COLLECTIONS, storage } from './index';
 
 export const getFileList = (filePath: string): Promise<string[]> => {
   const listRef = ref(storage, filePath);
@@ -57,3 +58,12 @@ export default async function getMetadata(filePath: string): Promise<Partial<Ful
 
   return Promise.all(promises);
 }
+
+export const checkIfImageExistsInDB = async (name: string): Promise<boolean> => {
+  // TODO: Image can exist in both db snd bundle. Check directly with storage instead.
+
+  const docRef = doc(db, COLLECTIONS.IMAGES, name /* normalizeFilename(name) */);
+  const docSnap = await getDoc(docRef);
+
+  return docSnap.exists();
+};
