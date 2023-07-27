@@ -2,7 +2,6 @@
 
 ## TODO
 
-- [ ] Add changes done after 2023-07-01
 - [ ] Check TODO:s
 - NICE TO HAVE
   - [ ] Refactor state to smaller chunks https://github.com/pmndrs/zustand/blob/main/docs/guides/slices-pattern.md

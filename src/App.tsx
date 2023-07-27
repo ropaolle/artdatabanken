@@ -8,7 +8,7 @@ import { Navigation, Footer, Auth } from './components';
 import { useAppStore, fetchGlobalState } from './state';
 
 function App() {
-  const { initGlobalState /* , globalStateFetchedAt */ } = useAppStore();
+  const { user, initGlobalState /* , globalStateFetchedAt */ } = useAppStore();
   const [page, setPage] = useState<PAGES>('HOME');
 
   useEffect(() => {
@@ -20,7 +20,6 @@ function App() {
       // );
       // const fullUpdate = !globalStateFetchedAt || databaseUpdatedAt > globalStateFetchedAt;
       const { images, species } = await fetchGlobalState(/* fullUpdate */);
-      console.log('images.length', images.length);
 
       initGlobalState(images, species, Timestamp.now());
     };
@@ -44,7 +43,7 @@ function App() {
         {page === 'SPECIES' && <SpeciesView />}
         {page === 'IMAGES' && <ImageView />}
         {page === 'COLLECTIONS' && <Collections />}
-        {page === 'SETTINGS' && <Settings />}
+        {page === 'SETTINGS' && user?.email === 'ropaolle@gmail.com' && <Settings />}
       </Suspense>
       <Footer />
     </>

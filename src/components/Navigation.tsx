@@ -42,9 +42,11 @@ export default function Navigation({ setPage }: Props) {
                   <li>
                     <Link onClick={signOut}>Logga ut</Link>
                   </li>
-                  <li>
-                    <Link onClick={() => setPage('SETTINGS')}>Inställningar</Link>
-                  </li>
+                  {user?.email === 'ropaolle@gmail.com' && (
+                    <li>
+                      <Link onClick={() => setPage('SETTINGS')}>Inställningar</Link>
+                    </li>
+                  )}
                 </ul>
               </details>
             </li>

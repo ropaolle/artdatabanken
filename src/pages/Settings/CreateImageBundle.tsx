@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { doc, setDoc, Timestamp } from 'firebase/firestore/lite';
 import { db, COLLECTIONS, DOCS, PATHS, getDownloadURLs } from '../../lib/firebase';
 import { type ImportStates } from '.';
+import { metadata } from '../../lib/firebase/metadata';
 
 export default function CreateImageBundle() {
   const [message, setMessage] = useState('');
@@ -15,13 +16,30 @@ export default function CreateImageBundle() {
     const thumbsList = await getDownloadURLs(PATHS.THUMBNAILS);
     const imageMap = new Map(imageList.map((image) => [image.filename, image]));
 
+    const metadataMap = new Map(
+      metadata.map((metadata) => [
+        metadata.filename.toLocaleLowerCase(),
+        {
+          // ...metadata,
+          filename: metadata.filename.toLocaleLowerCase(),
+          createdAt: Timestamp.fromDate(new Date(metadata.createdAt)),
+          updatedAt: Timestamp.fromDate(new Date(metadata.updatedAt)),
+        },
+      ])
+    );
+
     for (const { filename, URL: thumbnailURL } of thumbsList) {
+      if (!metadataMap.has(filename || '')) {
+        console.log('Image data missing for', filename);
+      }
+
       imageMap.set(filename, {
         id: filename,
         filename,
         thumbnailURL,
         URL: imageMap.get(filename)?.URL,
-        createdAt: Timestamp.now(),
+        createdAt: metadataMap.get(filename || '')?.createdAt,
+        updatedAt: metadataMap.get(filename || '')?.updatedAt,
       });
     }
 
@@ -39,7 +57,13 @@ export default function CreateImageBundle() {
       <label htmlFor="filename">
         <b>Image bundle</b>
         <p>Regenerate the image bundle based on all existing images in the storage.</p>
-        <div>{message && <ins><small>{message}</small></ins>}</div>
+        <div>
+          {message && (
+            <ins>
+              <small>{message}</small>
+            </ins>
+          )}
+        </div>
       </label>
       <button onClick={handleCreateImageBundle} aria-busy={loading === 'BUSY'}>
         Create image bundle
