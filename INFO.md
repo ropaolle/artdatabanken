@@ -3,6 +3,9 @@
 ## TODO
 
 - [ ] Add and merge image/species that alredy exists in the bundel. Right now we get duplications.
+  - Store images/species as maps keyed by id
+  - ADD IMAGE
+
 - [ ] Check TODO:s
 - NICE TO HAVE
   - [ ] Refactor state to smaller chunks https://github.com/pmndrs/zustand/blob/main/docs/guides/slices-pattern.md

@@ -29,8 +29,11 @@ export default function CreateImageBundle() {
     );
 
     for (const { filename, URL: thumbnailURL } of thumbsList) {
-      if (!metadataMap.has(filename || '')) {
-        console.log('Image data missing for', filename);
+      if (!filename) continue;
+
+      if (!metadataMap.has(filename)) {
+        console.info('Image data missing for', filename);
+        continue;
       }
 
       imageMap.set(filename, {
@@ -38,8 +41,8 @@ export default function CreateImageBundle() {
         filename,
         thumbnailURL,
         URL: imageMap.get(filename)?.URL,
-        createdAt: metadataMap.get(filename || '')?.createdAt,
-        updatedAt: metadataMap.get(filename || '')?.updatedAt,
+        createdAt: metadataMap.get(filename)?.createdAt,
+        updatedAt: metadataMap.get(filename)?.updatedAt,
       });
     }
 

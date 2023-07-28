@@ -18,7 +18,7 @@ const spliceIntoChunks = (items: SpeciesInfo[], chunkSize: number) => {
 export default function Collections() {
   const { species } = useAppStore();
 
-  const [items, setItems] = useState<SpeciesInfo[][]>();
+  const [items, setItems] = useState<SpeciesInfo[][]>([]);
   const [family, setFamily] = useState('');
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function Collections() {
         <h3>Förhandsvisning</h3>
       </div>
 
-      <Pages items={items || []} />
+      <Pages items={items} />
     </Page>
   );
 }

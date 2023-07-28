@@ -72,7 +72,7 @@ export default function Filters({ sort, setItems }: Props) {
           Klass
           <input
             id="kingdom"
-            value={filters.kingdom || ''}
+            value={filters.kingdom}
             list="kingdoms-data"
             autoComplete="off"
             size={2}
@@ -85,7 +85,7 @@ export default function Filters({ sort, setItems }: Props) {
           Art
           <input
             id="species"
-            value={filters.species || ''}
+            value={filters.species}
             list="species-data"
             autoComplete="off"
             onChange={(e) => handleFilterChange(e.target.id, e.target.value)}
