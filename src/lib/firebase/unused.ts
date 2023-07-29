@@ -60,8 +60,6 @@ export default async function getMetadata(filePath: string): Promise<Partial<Ful
 }
 
 export const checkIfImageExistsInDB = async (name: string): Promise<boolean> => {
-  // TODO: Image can exist in both db snd bundle. Check directly with storage instead.
-
   const docRef = doc(db, COLLECTIONS.IMAGES, name /* normalizeFilename(name) */);
   const docSnap = await getDoc(docRef);
 
