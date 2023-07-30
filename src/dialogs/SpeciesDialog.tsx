@@ -104,9 +104,9 @@ export default function SpeciesDialog({ open, show, values }: Props) {
     }
   };
 
-  const handleImageChange = async (e?: React.ChangeEvent<HTMLInputElement>) => {
-    loadPreview(e?.target.value);
-  };
+  // const handleImageChange = async (e?: React.ChangeEvent<HTMLInputElement>) => {
+  //   loadPreview(e?.target.value);
+  // };
 
   const handleDelete = async () => {
     if (!user) return;
@@ -159,13 +159,13 @@ export default function SpeciesDialog({ open, show, values }: Props) {
       </div>
 
       <div className="grid">
-        <label htmlFor="date">
+        <label htmlFor="image">
           Bild
           <input
-            id="date"
+            id="image"
             list="images-data"
             autoComplete="off"
-            {...register('image', { onChange: handleImageChange })}
+            {...register('image', { onChange: (e) => loadPreview(e.target.value) })}
           />
           {images && <datalist id="images-data">{toDatalistOptions(images.map(({ filename }) => filename))}</datalist>}
         </label>
