@@ -4,7 +4,7 @@ import { SpeciesInfo } from '../../lib/firebase';
 import Page from '../Page';
 import A4Page from './A4Page';
 import { useAppStore } from '../../state';
-import { toDatalistOptions } from '../../lib/options.tsx';
+import { toDatalistOptions } from '../../lib/options';
 
 const spliceIntoChunks = (items: SpeciesInfo[], chunkSize: number) => {
   const res = [];

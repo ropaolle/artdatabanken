@@ -37,6 +37,6 @@ const PATHS = {
 type Paths = keyof typeof PATHS;
 
 const fn = (paths: Paths, logLevel: LogLevel) => {
-  console.log(paths, logLevel);
+  console.info(paths, logLevel);
 };
 fn('IMAGES', LOG_LEVEL.DEBUG);

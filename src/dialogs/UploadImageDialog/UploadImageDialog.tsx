@@ -13,8 +13,8 @@ import {
   PATHS,
   type ImageInfo,
 } from '../../lib/firebase';
-import useDebounceEffect from './useDebounceEffect.ts';
-import drawImageOnCanvas from './drawImageOnCanvas.ts';
+import useDebounceEffect from './useDebounceEffect';
+import drawImageOnCanvas from './drawImageOnCanvas';
 import Dialog, { DialogInfo } from '../Dialog';
 import { useAppStore } from '../../state';
 

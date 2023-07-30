@@ -3,11 +3,11 @@ import { useState, useRef } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import Page from '../Page';
-import createImageBundle from './createImageBundle.ts';
-import importSpeciesBundle from './importSpeciesBundle.ts';
-import exportDatabase from './exportDatabase.ts';
-import importImages, { type ImageType } from './importImages.ts';
-import mergeChangesIntoBundle from './mergeChangesIntoBundle.ts';
+import createImageBundle from './createImageBundle';
+import importSpeciesBundle from './importSpeciesBundle';
+import exportDatabase from './exportDatabase';
+import importImages, { type ImageType } from './importImages';
+import mergeChangesIntoBundle from './mergeChangesIntoBundle';
 
 type FormValues = { imageType: string; importSpecies: FileList; importImages: FileList | undefined };
 

@@ -1,4 +1,5 @@
 import classes from './Navigation.module.css';
+import { forwardRef } from 'react';
 import logo from '../assets/logo.svg';
 import { type PAGES } from '../pages';
 import { Link } from '.';
@@ -6,10 +7,10 @@ import { useAppStore } from '../state';
 import { signIn, signOut } from '../lib/auth';
 
 type Props = {
-  setPage: (page: React.SetStateAction<PAGES>) => void;
+  setPage: (page: PAGES) => void;
 };
 
-export default function Navigation({ setPage }: Props) {
+const Navigation = forwardRef<HTMLDetailsElement, Props>(function Navigation({ setPage }, ref) {
   const { user } = useAppStore();
 
   return (
@@ -34,7 +35,7 @@ export default function Navigation({ setPage }: Props) {
           </li>
           {user?.photoURL && (
             <li>
-              <details role="list" dir="rtl">
+              <details role="list" dir="rtl" ref={ref}>
                 <summary aria-haspopup="listbox" role="link">
                   <img src={user.photoURL} className={classes.avatar} alt="Avatar" height={30} width={30} />
                 </summary>
@@ -60,4 +61,6 @@ export default function Navigation({ setPage }: Props) {
       </nav>
     </header>
   );
-}
+});
+
+export default Navigation;

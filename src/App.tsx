@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { Timestamp } from 'firebase/firestore/lite';
 import { /* Home, ImageView, SpeciesView, Collections, Settings, */ type PAGES } from './pages';
 import { Navigation, Footer, Auth } from './components';
@@ -9,6 +9,7 @@ import { useAppStore, fetchGlobalState } from './state';
 function App() {
   const { user, updateGlobalState, fullUpdateFetchedAt } = useAppStore();
   const [page, setPage] = useState<PAGES>('HOME');
+  const menuDrodownRef = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,6 +32,11 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleSetPage = (page: PAGES) => {
+    menuDrodownRef.current?.removeAttribute('open');
+    setPage(page);
+  };
+
   const Home = lazy(() => import('./pages/Home'));
   const SpeciesView = lazy(() => import('./pages/SpeciesView/SpeciesView'));
   const ImageView = lazy(() => import('./pages/ImageView/ImageView'));
@@ -40,7 +46,7 @@ function App() {
   return (
     <>
       <Auth />
-      <Navigation setPage={setPage} />
+      <Navigation setPage={handleSetPage} ref={menuDrodownRef} />
       <Suspense fallback={<div>Olle</div>}>
         {page === 'HOME' && <Home setPage={setPage} />}
         {page === 'SPECIES' && <SpeciesView />}
