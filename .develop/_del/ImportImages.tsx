@@ -1,38 +1,22 @@
 import { useState, useRef } from 'react';
-import { getStorage, ref, uploadBytes } from 'firebase/storage';
-import { PATHS } from '../../lib/firebase';
-import { type ImportStates } from '.';
-
-type ImageType = 'images' | 'thumbnails';
+import importImages, { ImageType } from './importImages.ts';
 
 export default function ImportImages() {
   const [message, setMessage] = useState('');
-  const [loading, setLoading] = useState<ImportStates>('IDLE');
+  const [loading, setLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [type, setType] = useState<ImageType>('images');
+  const [type, setType] = useState('images');
 
-  const onHandleImageImportChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLoading('IDLE');
+  const onHandleImageImportChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLoading(false);
     setMessage('');
+
     const images = e.currentTarget.files;
     if (!images) return;
+    const result = (await importImages(images, type as ImageType, (metadata) => setMessage(metadata.name))) || [];
 
-    setLoading('UPLOADING');
-    const storage = getStorage();
-    const promises = [];
-
-    for (const file of images) {
-      const fullPath = `${type === 'images' ? PATHS.IMAGES : PATHS.THUMBNAILS}/${file.name.toLocaleLowerCase()}`;
-      const storageRef = ref(storage, fullPath);
-      promises.push(uploadBytes(storageRef, file));
-    }
-
-    Promise.all(promises)
-      .then(() => {
-        setMessage(`Done. ${images.length} ${type}(s) uploaded.`);
-      })
-      .catch((err) => console.error(err))
-      .finally(() => setLoading('DONE'));
+    setMessage(`Done. ${result.length} ${type}(s) uploaded.`);
+    setLoading(false);
   };
 
   return (
@@ -52,7 +36,7 @@ export default function ImportImages() {
               name="size"
               value="images"
               checked={type === 'images'}
-              onChange={(e) => setType(e.target.value as ImageType)}
+              onChange={(e) => setType(e.target.value)}
             />
             Images (500x500 pixels)
           </label>
@@ -63,7 +47,7 @@ export default function ImportImages() {
               name="size"
               value="thumbnails"
               checked={type === 'thumbnails'}
-              onChange={(e) => setType(e.target.value as ImageType)}
+              onChange={(e) => setType(e.target.value)}
             />
             Thumbnails (100x100 pixels)
           </label>
@@ -77,9 +61,13 @@ export default function ImportImages() {
           multiple
           hidden
         />
-        {message && <ins><small>{message}</small></ins>}
+        {message && (
+          <ins>
+            <small>{message}</small>
+          </ins>
+        )}
       </label>
-      <button onClick={() => fileInputRef.current?.click()} aria-busy={loading === 'UPLOADING'}>
+      <button onClick={() => fileInputRef.current?.click()} aria-busy={loading}>
         Import images
       </button>
     </>

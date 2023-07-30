@@ -15,13 +15,13 @@ export const customStorage = {
   getItem: (key: string): StorageValue<GlobalState> => {
     const str = localStorage.getItem(key);
     const { state, version }: { state: GlobalState; version: number } = JSON.parse(str || '');
-    const { images, species, globalStateFetchedAt } = state;
+    const { images, species, fullUpdateFetchedAt } = state;
     return {
       state: {
         ...state,
         images: images.map((image) => objectToTimestamp(image)),
         species: species.map((species) => objectToTimestamp(species)),
-        globalStateFetchedAt: toTimestamp(globalStateFetchedAt),
+        fullUpdateFetchedAt: toTimestamp(fullUpdateFetchedAt),
       },
       version,
     };

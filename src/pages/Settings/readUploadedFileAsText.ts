@@ -1,8 +1,4 @@
-import Settings from './Settings';
-
-export type ImportStates = 'IDLE' | 'UPLOADING' | 'BUSY' | 'DONE';
-
-export const readUploadedFileAsText = (file: File): Promise<string> => {
+export default function readUploadedFileAsText(file: File): Promise<string> {
   const fileReader = new FileReader();
 
   return new Promise((resolve, reject) => {
@@ -16,6 +12,4 @@ export const readUploadedFileAsText = (file: File): Promise<string> => {
     };
     fileReader.readAsText(file);
   });
-};
-
-export default Settings;
+}
