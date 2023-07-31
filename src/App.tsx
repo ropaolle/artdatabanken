@@ -49,7 +49,7 @@ function App() {
       <Auth />
       <Navigation setPage={handleSetPage} ref={menuDrodownRef} />
       {page === 'HOME' && <Home setPage={setPage} />}
-      <Suspense fallback={<div>Olle</div>}>
+      <Suspense /* fallback={<div>Olle</div>} */>
         {/* {page === 'HOME' && <Home setPage={setPage} />} */}
         {page === 'SPECIES' && <SpeciesView />}
         {page === 'IMAGES' && <ImageView />}

@@ -1,6 +1,6 @@
 import Page from './Page';
 
-export default function Home() {
+export default function About() {
   return (
     <Page title="About">
       <h3>Version 0.0.8 (2023-07-31)</h3>
