@@ -3,7 +3,7 @@
 declare const APP_VERSION: string;
 declare const NODE_ENV: string;
 
-type PAGES = 'HOME' | 'IMAGES' | 'SPECIES' | 'COLLECTIONS' | 'SETTINGS';
+type PAGES = 'HOME' | 'IMAGES' | 'SPECIES' | 'COLLECTIONS' | 'SETTINGS' | 'ABOUT';
 
 type ImageInfo = {
   id: string;

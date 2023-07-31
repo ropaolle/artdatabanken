@@ -5,13 +5,13 @@
 
 ## TODO
 
-- [ ]
 - [ ] Check TODO:s
 - NICE TO HAVE
   - [ ] [Re-usable buttons and components](https://www.youtube.com/watch?v=eXRlVpw1SIQ)
   - [ ] [Refactor state to smaller chunks](https://github.com/pmndrs/zustand/blob/main/docs/guides/slices-pattern.md)
   - [ ] CSS styling of the Datalists.
-  
+  - [ ] Organize db by user id
+
 ## Known issues
 
 - [ ] showSaveFilePicker do not exist, [TypeScript's type definitions for the file system access API are currently broken](https://github.com/microsoft/vscode/issues/141908).

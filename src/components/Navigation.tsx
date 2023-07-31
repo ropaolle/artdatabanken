@@ -11,6 +11,7 @@ type Props = {
 
 const Navigation = forwardRef<HTMLDetailsElement, Props>(function Navigation({ setPage }, ref) {
   const { user } = useAppStore();
+  console.log('user', user);
 
   return (
     <header className="container-fluid">
@@ -47,6 +48,9 @@ const Navigation = forwardRef<HTMLDetailsElement, Props>(function Navigation({ s
                       <Link onClick={() => setPage('SETTINGS')}>Inställningar</Link>
                     </li>
                   )}
+                  <li>
+                      <Link onClick={() => setPage('ABOUT')}>Om</Link>
+                    </li>
                 </ul>
               </details>
             </li>

@@ -42,6 +42,7 @@ function App() {
   const ImageView = lazy(() => import('./pages/ImageView/ImageView'));
   const Collections = lazy(() => import('./pages/Collections/Collections'));
   const Settings = lazy(() => import('./pages/Settings/Settings'));
+  const About = lazy(() => import('./pages/About'));
 
   return (
     <>
@@ -53,6 +54,7 @@ function App() {
         {page === 'IMAGES' && <ImageView />}
         {page === 'COLLECTIONS' && <Collections />}
         {page === 'SETTINGS' && user?.email === 'ropaolle@gmail.com' && <Settings />}
+        {page === 'ABOUT' && <About />}
       </Suspense>
       <Footer />
     </>
