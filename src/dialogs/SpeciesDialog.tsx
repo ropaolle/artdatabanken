@@ -104,10 +104,6 @@ export default function SpeciesDialog({ open, show, values }: Props) {
     }
   };
 
-  // const handleImageChange = async (e?: React.ChangeEvent<HTMLInputElement>) => {
-  //   loadPreview(e?.target.value);
-  // };
-
   const handleDelete = async () => {
     if (!user) return;
 

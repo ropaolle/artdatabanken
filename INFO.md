@@ -1,18 +1,17 @@
 # Info
 
+- [Firebase](https://console.firebase.google.com/u/0/project/artdatabanken-2023-dev/firestore/data/~2Fapplication~2Fbundles)
+- [Google Cloud](https://console.cloud.google.com/storage/browser/artdatabanken-2023-dev.appspot.com;tab=objects?forceOnBucketsSortingFiltering=true&project=artdatabanken-2023-dev&prefix=&forceOnObjectsSortingFiltering=false)
+
 ## TODO
 
 - [ ]
 - [ ] Check TODO:s
 - NICE TO HAVE
-  - [ ] Refactor state to smaller chunks https://github.com/pmndrs/zustand/blob/main/docs/guides/slices-pattern.md
-  - [ ] Toast messages https://github.com/timolins/react-hot-toast
+  - [ ] [Re-usable buttons and components](https://www.youtube.com/watch?v=eXRlVpw1SIQ)
+  - [ ] [Refactor state to smaller chunks](https://github.com/pmndrs/zustand/blob/main/docs/guides/slices-pattern.md)
   - [ ] CSS styling of the Datalists.
-- TIPS
-  - [ ] Axios useMutation to get isLoading
-  - [ ] Use getValues i react hoof forms, minimera antalet local states
-  - [ ] Re-usable buttons, Youtube video
-
+  
 ## Known issues
 
 - [ ] showSaveFilePicker do not exist, [TypeScript's type definitions for the file system access API are currently broken](https://github.com/microsoft/vscode/issues/141908).
