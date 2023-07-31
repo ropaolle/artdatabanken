@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { type ImageInfo } from '../../lib/firebase';
 import Page from '../Page';
 import { createCompareFn, type SortProps } from '../../lib';
 import { Pager } from '../../components';

@@ -1,5 +1,4 @@
 import classes from './ImageView.module.css';
-import { type ImageInfo } from '../../lib/firebase';
 import { timestampToString } from '../../lib';
 
 type Props = {

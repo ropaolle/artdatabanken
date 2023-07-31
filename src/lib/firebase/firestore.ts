@@ -1,4 +1,4 @@
-import { collection, getDocs, doc, getDoc, type Timestamp } from 'firebase/firestore/lite';
+import { collection, getDocs, doc, getDoc } from 'firebase/firestore/lite';
 import { db } from '.';
 
 export const COLLECTIONS = {
@@ -12,31 +12,6 @@ export const DOCS = {
   DELETED: 'deleted',
   UPDATEDAT: 'updatedAt',
 } as const;
-
-export type ImageInfo = {
-  id: string;
-  filename: string;
-  URL: string;
-  thumbnailURL: string;
-  createdAt?: Timestamp;
-  updatedAt?: Timestamp;
-};
-
-export type SpeciesInfo = {
-  id: string;
-  kingdom: string;
-  order: string;
-  family: string;
-  species: string;
-  sex: string;
-  county: string;
-  place: string;
-  speciesLatin: string;
-  date: string;
-  image: string;
-  createdAt?: Timestamp;
-  updatedAt?: Timestamp;
-};
 
 export async function firestoreFetch<T>(path: string): Promise<T[]> {
   const querySnapshot = await getDocs(collection(db, path));

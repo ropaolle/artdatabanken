@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { /* devtools, */ persist } from 'zustand/middleware';
 import { Timestamp } from 'firebase/firestore/lite';
-import { type SpeciesInfo, type ImageInfo } from '../lib/firebase';
 import { type User } from '../lib/auth';
 import { mergeArrayOfObjects } from '../lib';
 import { customStorage } from './customStorage';

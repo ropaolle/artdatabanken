@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { doc, deleteDoc, updateDoc, arrayUnion, /* setDoc, arrayRemove, */ getDoc } from 'firebase/firestore/lite';
-import { db, type ImageInfo, COLLECTIONS, PATHS, DOCS, deleteFile } from '../lib/firebase';
+import { db, COLLECTIONS, PATHS, DOCS, deleteFile } from '../lib/firebase';
 import Dialog from './Dialog';
 import { timestampToString } from '../lib/';
 import { useAppStore } from '../state';

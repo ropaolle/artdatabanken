@@ -1,7 +1,6 @@
 import classes from './Navigation.module.css';
 import { forwardRef } from 'react';
 import logo from '../assets/logo.svg';
-import { type PAGES } from '../pages';
 import { Link } from '.';
 import { useAppStore } from '../state';
 import { signIn, signOut } from '../lib/auth';

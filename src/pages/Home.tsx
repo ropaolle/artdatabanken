@@ -1,5 +1,4 @@
 import Page from './Page';
-import { type PAGES } from '../pages';
 import { Link } from '../components';
 import { useAppStore } from '../state';
 import { signIn } from '../lib/auth';

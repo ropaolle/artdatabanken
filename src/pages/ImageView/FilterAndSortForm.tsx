@@ -1,4 +1,3 @@
-import { type ImageInfo } from '../../lib/firebase';
 import { toOptions } from '../../lib/options';
 import { type SortProps } from '../../lib';
 

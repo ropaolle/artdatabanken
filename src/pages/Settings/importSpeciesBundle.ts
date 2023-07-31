@@ -1,5 +1,5 @@
 import { doc, setDoc, Timestamp } from 'firebase/firestore/lite';
-import { db, type SpeciesInfo, COLLECTIONS, DOCS } from '../../lib/firebase';
+import { db, COLLECTIONS, DOCS } from '../../lib/firebase';
 import readUploadedFileAsText from './readUploadedFileAsText';
 
 export default async function importSpeciesBundle(file?: File) {

@@ -1,11 +1,4 @@
-import {
-  firestoreFetch,
-  firestoreFetchDoc,
-  type SpeciesInfo,
-  type ImageInfo,
-  COLLECTIONS,
-  DOCS,
-} from '../lib/firebase';
+import { firestoreFetch, firestoreFetchDoc, COLLECTIONS, DOCS } from '../lib/firebase';
 import { mergeArrayOfObjects } from '../lib';
 
 export const fetchGlobalState = async (fullUpdate = true) => {

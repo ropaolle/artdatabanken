@@ -1,6 +1,5 @@
 import classes from './Collections.module.css';
 import { useState, useEffect } from 'react';
-import { SpeciesInfo } from '../../lib/firebase';
 import Page from '../Page';
 import A4Page from './A4Page';
 import { useAppStore } from '../../state';

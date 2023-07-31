@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createCompareFn, type SortProps } from '../../lib';
 import { toDatalistOptions } from '../../lib/options';
-import { SpeciesInfo } from '../../lib/firebase';
 import { useAppStore } from '../../state';
 
 type Props = {

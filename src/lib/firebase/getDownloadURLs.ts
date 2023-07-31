@@ -1,5 +1,5 @@
 import { ref, getDownloadURL, listAll } from 'firebase/storage';
-import { storage, type ImageInfo } from './index';
+import { storage } from './index';
 
 export default async function getDownloadURLs(filePath: string): Promise<Partial<ImageInfo>[]> {
   const promises: Promise<Partial<ImageInfo>>[] = [];

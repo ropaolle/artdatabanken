@@ -4,15 +4,7 @@ import { doc, setDoc, Timestamp } from 'firebase/firestore/lite';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import ReactCrop, { type PixelCrop } from 'react-image-crop';
 import { Icon } from '@iconify/react';
-import {
-  checkIfImageExists,
-  normalizeFilename,
-  uploadFile,
-  db,
-  COLLECTIONS,
-  PATHS,
-  type ImageInfo,
-} from '../../lib/firebase';
+import { checkIfImageExists, normalizeFilename, uploadFile, db, COLLECTIONS, PATHS } from '../../lib/firebase';
 import useDebounceEffect from './useDebounceEffect';
 import drawImageOnCanvas from './drawImageOnCanvas';
 import Dialog, { DialogInfo } from '../Dialog';

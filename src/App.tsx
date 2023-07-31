@@ -1,7 +1,7 @@
 import './App.css';
 import { useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { Timestamp } from 'firebase/firestore/lite';
-import { /* Home, ImageView, SpeciesView, Collections, Settings, */ type PAGES } from './pages';
+// import { Home, ImageView, SpeciesView, Collections, Settings } from './pages';
 import { Navigation, Footer, Auth } from './components';
 import { firestoreFetchDoc, COLLECTIONS } from './lib/firebase';
 import { useAppStore, fetchGlobalState } from './state';

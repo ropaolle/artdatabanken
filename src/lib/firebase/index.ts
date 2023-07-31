@@ -6,7 +6,7 @@ import { checkIfImageExists, normalizeFilename } from './checkIfFileExists';
 import deleteFile from './deleteFile';
 import getDownloadURLs from './getDownloadURLs';
 import deleteCollection from './deleteCollection';
-import { firestoreFetch, firestoreFetchDoc, COLLECTIONS, DOCS, type ImageInfo, type SpeciesInfo } from './firestore';
+import { firestoreFetch, firestoreFetchDoc, COLLECTIONS, DOCS } from './firestore';
 
 const prod = {
   apiKey: 'AIzaSyDG2cSWrnZpiiRI_rtbteXWotkljcDKO-U',
@@ -35,4 +35,4 @@ export const PATHS = { IMAGES: 'images', THUMBNAILS: 'thumbs' } as const;
 export { uploadFile, checkIfImageExists, normalizeFilename, deleteFile, getDownloadURLs };
 
 // Database
-export { firestoreFetch, firestoreFetchDoc, COLLECTIONS, DOCS, type ImageInfo, type SpeciesInfo, deleteCollection };
+export { firestoreFetch, firestoreFetchDoc, COLLECTIONS, DOCS, deleteCollection };

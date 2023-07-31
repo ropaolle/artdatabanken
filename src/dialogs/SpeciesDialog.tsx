@@ -2,7 +2,7 @@ import classes from './SpeciesDialog.module.css';
 import { useState, useEffect, useCallback } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { doc, setDoc, Timestamp, deleteDoc, updateDoc, arrayUnion, getDoc } from 'firebase/firestore/lite';
-import { db, type SpeciesInfo, COLLECTIONS, DOCS } from '../lib/firebase';
+import { db, COLLECTIONS, DOCS } from '../lib/firebase';
 import { toDatalistOptions, counties, sexes } from '../lib/options';
 import Dialog from './Dialog';
 import { useAppStore } from '../state';

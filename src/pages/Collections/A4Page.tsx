@@ -1,5 +1,4 @@
 import classes from './Collections.module.css';
-import { SpeciesInfo } from '../../lib/firebase';
 import placeholder from '../../assets/placeholder.svg';
 import { countiesMap } from '../../lib/options';
 import { useAppStore } from '../../state';

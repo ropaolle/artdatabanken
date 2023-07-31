@@ -1,4 +1,4 @@
-import { firestoreFetchDoc, COLLECTIONS, DOCS, type SpeciesInfo } from '../../lib/firebase';
+import { firestoreFetchDoc, COLLECTIONS, DOCS } from '../../lib/firebase';
 import { saveToFile } from '../../lib';
 
 // const defaultFilename = `species-backup-${new Date().toLocaleDateString()}.csv`;

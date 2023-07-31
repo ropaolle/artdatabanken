@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import Page from './../Page';
 import { TableHeader, type HeaderCellOnClick, Pager } from '../../components';
 import Filters from './Filters';
-import { type SpeciesInfo } from '../../lib/firebase';
 import { sexesMap, countiesMap } from '../../lib/options';
 import { SpeciesDialog } from '../../dialogs';
 import { useAppStore } from '../../state';
