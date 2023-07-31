@@ -13,4 +13,14 @@ export default defineConfig({
     APP_VERSION: JSON.stringify(process.env.npm_package_version),
     NODE_ENV: JSON.stringify(process.env.NODE_ENV),
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          zustand: ['zustand'],
+          firebase: ['firebase/firestore/lite', 'firebase/storage', 'firebase/app'],
+        },
+      },
+    },
+  },
 });

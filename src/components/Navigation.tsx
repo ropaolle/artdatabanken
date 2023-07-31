@@ -11,7 +11,6 @@ type Props = {
 
 const Navigation = forwardRef<HTMLDetailsElement, Props>(function Navigation({ setPage }, ref) {
   const { user } = useAppStore();
-  console.log('user', user);
 
   return (
     <header className="container-fluid">

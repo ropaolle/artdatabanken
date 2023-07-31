@@ -1,7 +1,7 @@
 import './App.css';
 import { useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { Timestamp } from 'firebase/firestore/lite';
-// import { Home, ImageView, SpeciesView, Collections, Settings } from './pages';
+import { Home /* , ImageView, SpeciesView, Collections, Settings */ } from './pages';
 import { Navigation, Footer, Auth } from './components';
 import { firestoreFetchDoc, COLLECTIONS } from './lib/firebase';
 import { useAppStore, fetchGlobalState } from './state';
@@ -37,7 +37,7 @@ function App() {
     setPage(page);
   };
 
-  const Home = lazy(() => import('./pages/Home'));
+  // const Home = lazy(() => import('./pages/Home'));
   const SpeciesView = lazy(() => import('./pages/SpeciesView/SpeciesView'));
   const ImageView = lazy(() => import('./pages/ImageView/ImageView'));
   const Collections = lazy(() => import('./pages/Collections/Collections'));
@@ -48,8 +48,9 @@ function App() {
     <>
       <Auth />
       <Navigation setPage={handleSetPage} ref={menuDrodownRef} />
+      {page === 'HOME' && <Home setPage={setPage} />}
       <Suspense fallback={<div>Olle</div>}>
-        {page === 'HOME' && <Home setPage={setPage} />}
+        {/* {page === 'HOME' && <Home setPage={setPage} />} */}
         {page === 'SPECIES' && <SpeciesView />}
         {page === 'IMAGES' && <ImageView />}
         {page === 'COLLECTIONS' && <Collections />}

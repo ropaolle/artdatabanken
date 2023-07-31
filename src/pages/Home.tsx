@@ -17,7 +17,8 @@ export default function Home({ setPage }: Props) {
     <Page title="Artdatabanken">
       <p>Skapa dina egna artsamlingar och skriv ut eller spara som pdf-filer. </p>
       <div>
-        <img className={classes.img} src={example1} /> <img className={classes.img} src={example2} />
+        <img className={classes.img} src={example1} loading="lazy" />{' '}
+        <img className={classes.img} src={example2} loading="lazy" />
       </div>
       <h2>Hur gör man?</h2>
       <ol>
