@@ -18,11 +18,12 @@ export default function Select<Inputs extends FieldValues>({
   error,
   register,
   required = false,
+  ...rest
 }: Props<Inputs>) {
   return (
     <label htmlFor={id}>
       {label}
-      <select id={id} {...register(id, { required })}>
+      <select id={id} {...register(id, { required })} {...rest}>
         {toOptions(options)}
       </select>
       {error && error.type === 'required' && <div className={classes.error}>{error.message}</div>}
