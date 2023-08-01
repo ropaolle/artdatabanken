@@ -14,11 +14,11 @@ const spliceIntoChunks = (items: SpeciesInfo[], chunkSize: number) => {
   return res;
 };
 
-export default function Collections() {
+export default function Collections({ defaultFamily }: { defaultFamily?: string }) {
   const { species } = useAppStore();
 
   const [items, setItems] = useState<SpeciesInfo[][]>([]);
-  const [family, setFamily] = useState('');
+  const [family, setFamily] = useState(defaultFamily);
 
   useEffect(() => {
     const items = family ? species.filter((item) => item.family === family) : [];
@@ -39,7 +39,13 @@ export default function Collections() {
       <div id="filter" className={classes.filter}>
         <label htmlFor="family">
           Familj
-          <input id="family" list="family-data" autoComplete="off" onChange={(e) => setFamily(e.target.value)} />
+          <input
+            id="family"
+            value={family}
+            list="family-data"
+            autoComplete="off"
+            onChange={(e) => setFamily(e.target.value)}
+          />
           <datalist id="family-data">{toDatalistOptions(species.map(({ family }) => family))}</datalist>
         </label>
 

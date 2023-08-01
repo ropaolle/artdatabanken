@@ -1,0 +1,53 @@
+"filename", "language", "TypeScript", "CSS", "TypeScript JSX", "comment", "blank", "total"
+"c:\GitHub\artdatabanken\src\App.tsx", "TypeScript JSX", 0, 0, 22, -13, 3, 12
+"c:\GitHub\artdatabanken\src\components\Footer.tsx", "TypeScript JSX", 0, 0, 2, 0, 0, 2
+"c:\GitHub\artdatabanken\src\components\Navigation.tsx", "TypeScript JSX", 0, 0, 6, 0, 1, 7
+"c:\GitHub\artdatabanken\src\dialogs\DeleteImageDialog.tsx", "TypeScript JSX", 0, 0, 5, 0, 1, 6
+"c:\GitHub\artdatabanken\src\dialogs\SpeciesDialog.tsx", "TypeScript JSX", 0, 0, 13, 0, -1, 12
+"c:\GitHub\artdatabanken\src\dialogs\UploadImageDialog\UploadImageDialog.tsx", "TypeScript JSX", 0, 0, -8, 0, 0, -8
+"c:\GitHub\artdatabanken\src\lib\firebase.ts", "TypeScript", -138, 0, 0, -16, -27, -181
+"c:\GitHub\artdatabanken\src\lib\firebase\checkIfFileExists.ts", "TypeScript", 22, 0, 0, 0, 5, 27
+"c:\GitHub\artdatabanken\src\lib\firebase\deleteCollection.ts", "TypeScript", 15, 0, 0, 2, 5, 22
+"c:\GitHub\artdatabanken\src\lib\firebase\deleteFile.ts", "TypeScript", 14, 0, 0, 0, 3, 17
+"c:\GitHub\artdatabanken\src\lib\firebase\firestore.ts", "TypeScript", 20, 0, 0, 0, 5, 25
+"c:\GitHub\artdatabanken\src\lib\firebase\getDownloadURLs.ts", "TypeScript", 12, 0, 0, 2, 4, 18
+"c:\GitHub\artdatabanken\src\lib\firebase\index.ts", "TypeScript", 31, 0, 0, 2, 6, 39
+"c:\GitHub\artdatabanken\src\lib\firebase\metadata.ts", "TypeScript", 1847, 0, 0, 0, 1, 1848
+"c:\GitHub\artdatabanken\src\lib\firebase\unused.ts", "TypeScript", 39, 0, 0, 18, 11, 68
+"c:\GitHub\artdatabanken\src\lib\firebase\uploadFile.ts", "TypeScript", 38, 0, 0, 2, 4, 44
+"c:\GitHub\artdatabanken\src\lib\index.ts", "TypeScript", 13, 0, 0, 0, 3, 16
+"c:\GitHub\artdatabanken\src\lib\saveToFile.ts", "TypeScript", 31, 0, 0, 1, 3, 35
+"c:\GitHub\artdatabanken\src\lib\state.ts", "TypeScript", -107, 0, 0, -8, -15, -130
+"c:\GitHub\artdatabanken\src\pages\About.tsx", "TypeScript JSX", 0, 0, 11, 0, 2, 13
+"c:\GitHub\artdatabanken\src\pages\Collections\A4Page.tsx", "TypeScript JSX", 0, 0, -1, 0, 0, -1
+"c:\GitHub\artdatabanken\src\pages\Collections\Collections.tsx", "TypeScript JSX", 0, 0, -1, 0, 0, -1
+"c:\GitHub\artdatabanken\src\pages\Home.module.css", "CSS", 0, 3, 0, 0, 1, 4
+"c:\GitHub\artdatabanken\src\pages\Home.tsx", "TypeScript JSX", 0, 0, 6, 0, 0, 6
+"c:\GitHub\artdatabanken\src\pages\ImageView.module.css", "CSS", 0, -22, 0, 0, -5, -27
+"c:\GitHub\artdatabanken\src\pages\ImageView.tsx", "TypeScript JSX", 0, 0, -90, -1, -17, -108
+"c:\GitHub\artdatabanken\src\pages\ImageView\FilterAndSortForm.tsx", "TypeScript JSX", 0, 0, 37, 0, 8, 45
+"c:\GitHub\artdatabanken\src\pages\ImageView\ImageGrid.tsx", "TypeScript JSX", 0, 0, 25, 0, 4, 29
+"c:\GitHub\artdatabanken\src\pages\ImageView\ImageView.module.css", "CSS", 0, 22, 0, 0, 5, 27
+"c:\GitHub\artdatabanken\src\pages\ImageView\ImageView.tsx", "TypeScript JSX", 0, 0, 38, 0, 7, 45
+"c:\GitHub\artdatabanken\src\pages\Settings\CreateImageBundle.tsx", "TypeScript JSX", 0, 0, -42, 0, -8, -50
+"c:\GitHub\artdatabanken\src\pages\Settings\ExportDatabase.tsx", "TypeScript JSX", 0, 0, -58, -2, -11, -71
+"c:\GitHub\artdatabanken\src\pages\Settings\ImportImages.tsx", "TypeScript JSX", 0, 0, -82, 0, -8, -90
+"c:\GitHub\artdatabanken\src\pages\Settings\ImportSpeciesBundle.tsx", "TypeScript JSX", 0, 0, -66, -1, -12, -79
+"c:\GitHub\artdatabanken\src\pages\Settings\MergeChangesIntoBundle.tsx", "TypeScript JSX", 0, 0, -40, -4, -9, -53
+"c:\GitHub\artdatabanken\src\pages\Settings\Settings.module.css", "CSS", 0, 4, 0, 7, 3, 14
+"c:\GitHub\artdatabanken\src\pages\Settings\Settings.tsx", "TypeScript JSX", 0, 0, 118, 0, 12, 130
+"c:\GitHub\artdatabanken\src\pages\Settings\createImageBundle.ts", "TypeScript", 38, 0, 0, 0, 8, 46
+"c:\GitHub\artdatabanken\src\pages\Settings\exportDatabase.ts", "TypeScript", 25, 0, 0, 2, 7, 34
+"c:\GitHub\artdatabanken\src\pages\Settings\importImages.ts", "TypeScript", 24, 0, 0, 0, 5, 29
+"c:\GitHub\artdatabanken\src\pages\Settings\importSpeciesBundle.ts", "TypeScript", 34, 0, 0, 0, 7, 41
+"c:\GitHub\artdatabanken\src\pages\Settings\index.ts", "TypeScript", -16, 0, 0, 0, -6, -22
+"c:\GitHub\artdatabanken\src\pages\Settings\mergeChangesIntoBundle.ts", "TypeScript", 13, 0, 0, 4, 7, 24
+"c:\GitHub\artdatabanken\src\pages\Settings\readUploadedFileAsText.ts", "TypeScript", 13, 0, 0, 0, 3, 16
+"c:\GitHub\artdatabanken\src\pages\SpeciesView\Filters.tsx", "TypeScript JSX", 0, 0, -1, 0, 0, -1
+"c:\GitHub\artdatabanken\src\pages\SpeciesView\SpeciesView.tsx", "TypeScript JSX", 0, 0, -1, 0, 0, -1
+"c:\GitHub\artdatabanken\src\pages\index.ts", "TypeScript", -1, 0, 0, 0, -1, -2
+"c:\GitHub\artdatabanken\src\state\customStorage.ts", "TypeScript", 32, 0, 0, 0, 4, 36
+"c:\GitHub\artdatabanken\src\state\fetchGlobalState.ts", "TypeScript", 19, 0, 0, 2, 7, 28
+"c:\GitHub\artdatabanken\src\state\index.ts", "TypeScript", 69, 0, 0, 8, 11, 88
+"c:\GitHub\artdatabanken\src\vite-env.d.ts", "TypeScript", 26, 0, 0, 0, 4, 30
+"Total", "-", 2113, 7, -107, 5, 40, 2058

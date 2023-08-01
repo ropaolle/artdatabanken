@@ -1,3 +1,9 @@
 .img {
   border: 1px solid #eee;
 }
+
+.img:hover {
+  border-color: #ccc;
+  cursor: pointer;
+  filter: brightness(1.03);
+}

@@ -9,6 +9,7 @@ import { useAppStore, fetchGlobalState } from './state';
 function App() {
   const { user, updateGlobalState, fullUpdateFetchedAt } = useAppStore();
   const [page, setPage] = useState<PAGES>('HOME');
+  const [family, setFamily] = useState('');
   const menuDrodownRef = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
@@ -32,8 +33,9 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleSetPage = (page: PAGES) => {
+  const handleSetPage = (page: PAGES, family?: string) => {
     menuDrodownRef.current?.removeAttribute('open');
+    family && setFamily(family);
     setPage(page);
   };
 
@@ -48,12 +50,12 @@ function App() {
     <>
       <Auth />
       <Navigation setPage={handleSetPage} ref={menuDrodownRef} />
-      {page === 'HOME' && <Home setPage={setPage} />}
+      {page === 'HOME' && <Home setPage={handleSetPage} />}
       <Suspense /* fallback={<div>Olle</div>} */>
         {/* {page === 'HOME' && <Home setPage={setPage} />} */}
         {page === 'SPECIES' && <SpeciesView />}
         {page === 'IMAGES' && <ImageView />}
-        {page === 'COLLECTIONS' && <Collections />}
+        {page === 'COLLECTIONS' && <Collections defaultFamily={family} />}
         {page === 'SETTINGS' && user?.email === 'ropaolle@gmail.com' && <Settings />}
         {page === 'ABOUT' && <About />}
       </Suspense>

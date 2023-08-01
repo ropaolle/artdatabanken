@@ -8,7 +8,6 @@
 - [ ] Check TODO:s
 - NICE TO HAVE
   - [ ] [Re-usable buttons and components](https://www.youtube.com/watch?v=eXRlVpw1SIQ)
-  - [ ] [Refactor state to smaller chunks](https://github.com/pmndrs/zustand/blob/main/docs/guides/slices-pattern.md)
   - [ ] CSS styling of the Datalists.
   - [ ] Organize db by user id
 

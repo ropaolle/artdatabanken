@@ -7,7 +7,8 @@ import example1 from '../assets/example1.jpg';
 import example2 from '../assets/example2.jpg';
 
 type Props = {
-  setPage: (page: React.SetStateAction<PAGES>) => void;
+  // setPage: (page: React.SetStateAction<PAGES>, family?: string) => void;
+  setPage: (page: PAGES, family?: string) => void;
 };
 
 export default function Home({ setPage }: Props) {
@@ -17,8 +18,18 @@ export default function Home({ setPage }: Props) {
     <Page title="Artdatabanken">
       <p>Skapa dina egna artsamlingar och skriv ut eller spara som pdf-filer. </p>
       <div>
-        <img className={classes.img} src={example1} loading="lazy" />{' '}
-        <img className={classes.img} src={example2} loading="lazy" />
+        <img
+          className={classes.img}
+          src={example1}
+          loading="lazy"
+          onClick={() => setPage('COLLECTIONS', 'Kråkfåglar')}
+        />{' '}
+        <img
+          className={classes.img}
+          src={example2}
+          loading="lazy"
+          onClick={() => setPage('COLLECTIONS', 'Bin och humlor')}
+        />{' '}
       </div>
       <h2>Hur gör man?</h2>
       <ol>
