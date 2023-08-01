@@ -6,10 +6,9 @@
 ## TODO
 
 - [ ] Check TODO:s
-- NICE TO HAVE
-  - [ ] [Re-usable buttons and components](https://www.youtube.com/watch?v=eXRlVpw1SIQ)
-  - [ ] CSS styling of the Datalists.
-  - [ ] Organize db by user id
+- NICE TO HAVE/NEXT
+  - Organize db by user id
+  - Autocomplete/Select component
 
 ## Known issues
 
@@ -74,6 +73,7 @@ gsutil -m cp -r "gs://artdatabanken-2023-dev.appspot.com/images" .
 
   - [Async in UseEffect](https://devtrium.com/posts/async-functions-useeffect)
   - Hooks
+    - [Mantine](https://mantine.dev/hooks/use-pagination/)
     - [React Use](https://github.com/streamich/react-use)
     - [Usehooks TS](https://usehooks-ts.com/)
     - [useEffect on objects](https://dev.to/hey_yogini/useeffect-dependency-array-and-object-comparison-45el)
@@ -83,6 +83,11 @@ gsutil -m cp -r "gs://artdatabanken-2023-dev.appspot.com/images" .
     - [Understanding and Properly Using React Global State](https://clerk.com/blog/understanding-and-properly-using-react-global-state?utm_source=www.google.com&utm_medium=referral&utm_campaign=none)
     - [A guide to choosing the right React state management solution](https://blog.logrocket.com/guide-choosing-right-react-state-management-solution/)
       - [Recoil](https://recoiljs.org/)
+  - Components
+    - [React Aria](https://react-spectrum.adobe.com/react-aria/react-aria-components.html)
+    - [Base UI](https://mui.com/base-ui/react-autocomplete/)
+    - [Radix UI](https://www.radix-ui.com/docs/primitives/components/checkbox)
+    - [Headless UI](https://headlessui.com/react/combobox)
 
 - CSS
 

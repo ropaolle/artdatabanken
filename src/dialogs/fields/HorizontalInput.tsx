@@ -18,12 +18,13 @@ export default function HorizontalInput<Inputs extends FieldValues>({
   error,
   register,
   required = false,
+  ...rest
 }: Props<Inputs>) {
   return (
     <>
       <label htmlFor={id}>{label}</label>
       <div>
-        <input id={id} list={`${id}-data`} autoComplete="off" {...register(id, { required })} />
+        <input id={id} list={`${id}-data`} autoComplete="off" {...register(id, { required })} {...rest} />
         {dataList && (
           <datalist id={`${id}-data`} className={classes.dataList}>
             {toDatalistOptions(dataList)}
