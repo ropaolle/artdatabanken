@@ -2,6 +2,7 @@ import classes from './Collections.module.css';
 import placeholder from '../../assets/placeholder.svg';
 import { countiesMap } from '../../lib/options';
 import { useAppStore } from '../../state';
+import { Icon } from '@iconify/react';
 
 // Combine multiple CSS module selectors
 const css = (...selectors: string[]) => selectors.map((selector) => classes[selector]).join(' ');
@@ -18,7 +19,7 @@ export default function A4Page({ items }: Props) {
 
   const Cards = () =>
     items &&
-    items.map(({ id, image, species, speciesLatin, place, county, date }) => (
+    items.map(({ id, image, species, speciesLatin, place, county, date, sex }) => (
       <div key={id} className={classes.card}>
         <div>
           <img src={getImage(image)} alt={image} />
@@ -27,6 +28,12 @@ export default function A4Page({ items }: Props) {
         <div className={`collection-body ${classes.body}`}>
           <b>{species}</b>
           {speciesLatin && <> ({speciesLatin}) </>}
+          {['male', 'maleAndFemale'].includes(sex) && (
+            <Icon inline className={classes.genderIcon} icon="material-symbols:male" />
+          )}
+          {['female', 'maleAndFemale'].includes(sex) && (
+            <Icon inline className={classes.genderIcon} icon="material-symbols:female" />
+          )}
         </div>
 
         <div className={`collection-footer ${classes.footer}`}>
