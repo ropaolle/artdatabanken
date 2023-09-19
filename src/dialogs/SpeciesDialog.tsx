@@ -149,7 +149,7 @@ export default function SpeciesDialog({ open, show, values }: Props) {
       </div>
 
       <div className="grid">
-        <Select id="county" label="Län" options={counties} register={register} />
+        <Select id="county" label="Landskap" options={counties} register={register} />
         <Select id="sex" label="Kön" options={sexes} register={register} />
         <Input id="date" label="Datum" type="date" register={register} />
       </div>

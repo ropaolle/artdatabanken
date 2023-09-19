@@ -24,7 +24,7 @@ const headerColumns = [
   ],
   [
     { label: 'Lokal', id: 'place' },
-    { label: 'Län', id: 'county' },
+    { label: 'Landskap', id: 'county' },
     { label: 'Datum', id: 'date' },
   ],
   [{ label: 'Bild', id: 'image' }],

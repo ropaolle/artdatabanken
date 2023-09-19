@@ -38,7 +38,7 @@ export default function A4Page({ items }: Props) {
 
         <div className={`collection-footer ${classes.footer}`}>
           <span>
-            {place} ({countiesMap.get(county)?.replace('s län', '').replace(' län', '')})
+            {place} ({countiesMap.get(county)})
           </span>
           <span>{date}</span>
         </div>
