@@ -5,6 +5,16 @@ import A4Page from './A4Page';
 import { useAppStore } from '../../state';
 import { toDatalistOptions } from '../../lib/options';
 
+const sortOnLatinName = (a: SpeciesInfo, b: SpeciesInfo) => {
+  if (a.speciesLatin < b.speciesLatin) {
+    return -1;
+  }
+  if (a.speciesLatin > b.speciesLatin) {
+    return 1;
+  }
+  return 0;
+};
+
 const spliceIntoChunks = (items: SpeciesInfo[], chunkSize: number) => {
   const res = [];
   while (items.length > 0) {
@@ -21,7 +31,7 @@ export default function Collections({ defaultFamily }: { defaultFamily?: string 
   const [family, setFamily] = useState(defaultFamily);
 
   useEffect(() => {
-    const items = family ? species.filter((item) => item.family === family) : [];
+    const items = family ? species.sort(sortOnLatinName).filter((item) => item.family === family) : [];
     setItems(spliceIntoChunks(items, 9));
   }, [species, family]);
 
