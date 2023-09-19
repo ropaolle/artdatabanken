@@ -7,6 +7,16 @@ import { Icon } from '@iconify/react';
 // Combine multiple CSS module selectors
 const css = (...selectors: string[]) => selectors.map((selector) => classes[selector]).join(' ');
 
+const sortOnLatinName = (a: SpeciesInfo, b: SpeciesInfo) => {
+  if (a.speciesLatin < b.speciesLatin) {
+    return -1;
+  }
+  if (a.speciesLatin > b.speciesLatin) {
+    return 1;
+  }
+  return 0;
+};
+
 type Props = {
   items?: SpeciesInfo[];
   page?: number;
@@ -19,7 +29,7 @@ export default function A4Page({ items }: Props) {
 
   const Cards = () =>
     items &&
-    items.map(({ id, image, species, speciesLatin, place, county, date, sex }) => (
+    items.sort(sortOnLatinName).map(({ id, image, species, speciesLatin, place, county, date, sex }) => (
       <div key={id} className={classes.card}>
         <div>
           <img src={getImage(image)} alt={image} />

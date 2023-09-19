@@ -5,6 +5,7 @@ export default function About() {
     <Page title="About">
       <h5>Version 0.0.11 (2023-09-19)</h5>
       <ul>
+        <li>Bildblock sorteras på det latinska artnamnet i stigande ordning.</li>
         <li>Fältet län har ändrats till landskap.</li>
       </ul>
       <h5>Version 0.0.10 (2023-09-19)</h5>
